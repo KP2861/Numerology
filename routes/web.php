@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NumerologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,3 +30,5 @@ Route::get('forget-password', [UserController::class, 'showForgetPasswordForm'])
 Route::post('forget-password', [UserController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [UserController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [UserController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+Route::get('/numerology', [NumerologyController::class, 'showForm'])->name('numerology.form');
+Route::post('/numerology', [NumerologyController::class, 'calculate'])->name('numerology.calculate');
