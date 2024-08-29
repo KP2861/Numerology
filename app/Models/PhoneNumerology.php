@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NameNumerology extends Model
+class PhoneNumerology extends Model
 {
     use HasFactory;
-    protected $table = 'name_numerology';
+    protected $table = 'phone_numerology';
     protected $fillable = [
         'numerology_type',
-        'first_name',
-        'last_name',
+        'phone_number',
         'dob',
-        'gender'
+        'area_of_concern',
     ];
 }
