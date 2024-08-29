@@ -2,82 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NameNumerology;
+use App\Models\BusinessNumerology;
 use Illuminate\Http\Request;
 
 class NumerologyController extends Controller
 {
-    public function showForm()
+    // Display the form to create a new Name Numerology record
+    public function createNameNumerology()
     {
-        return view('numerology.form');
+        return view('numerology.name_numerology');
     }
 
-    public function calculate(Request $request)
+    // Store a new Name Numerology record
+    public function storeNameNumerology(Request $request)
     {
         $validated = $request->validate([
-            'dob' => 'required|date_format:d-m-Y',
-            'gender' => 'required|in:male,female',
+            'numerology_type' => 'required|integer',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'dob' => 'required|date',
         ]);
 
-        $dob = \DateTime::createFromFormat('d-m-Y', $validated['dob']);
-        $day = $dob->format('d');
-        $month = $dob->format('m');
-        $year = $dob->format('Y');
+        NameNumerology::create($validated);
 
-        // Calculate King
-        $king = array_sum(str_split($day));
-        $king = $this->reduceToSingleDigit($king);
+        return redirect()->back()->with('success', 'Record added successfully!');
+    }
 
-        // Calculate Queen
-        $total = array_sum(str_split($day . $month . $year));
-        $queen = $this->reduceToSingleDigit($total);
+    // Display the form to create a new Business Numerology record
+    public function createBusinessNumerology()
+    {
+        return view('numerology.business_numerology');
+    }
 
-        // Calculate Kua
-        $totalYear = array_sum(str_split($year));
-        $kua = $this->calculateKua($totalYear, $request->input('gender'));
-
-        // Step 1: Concatenate values
-        $concatenated = "{$king}{$queen}{$day}{$month}{$year}";
-
-        // Step 2: Loshu Grid Digit Count
-        $loshuGrid = $this->getLoshuGridDigitCount($concatenated);
-
-        return view('numerology.result', [
-            'king' => $king,
-            'queen' => $queen,
-            'kua' => $kua,
-            'concatenated' => $concatenated,
-            'loshuGrid' => $loshuGrid
+    // Store a new Business Numerology record
+    public function storeBusinessNumerology(Request $request)
+    {
+        $validated = $request->validate([
+            'numerology_type' => 'required|integer',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'phone_number' => 'required|string|max:20',
+            'type_of_business' => 'required|string|max:255',
         ]);
-    }
 
-    private function reduceToSingleDigit($number)
-    {
-        while ($number > 9) {
-            $number = array_sum(str_split($number));
-        }
-        return $number;
-    }
+        BusinessNumerology::create($validated);
 
-    private function calculateKua($totalYear, $gender)
-    {
-        if ($gender === 'male') {
-            $kua = $totalYear - 11;
-        } else {
-            $kua = $totalYear + 4;
-        }
-        return $this->reduceToSingleDigit($kua);
-    }
-
-    private function getLoshuGridDigitCount($concatenated)
-    {
-        $counts = array_fill(1, 9, 0);
-
-        foreach (str_split($concatenated) as $digit) {
-            if (isset($counts[$digit])) {
-                $counts[$digit]++;
-            }
-        }
-
-        return $counts;
+        return redirect()->back()->with('success', 'Record added successfully!');
     }
 }

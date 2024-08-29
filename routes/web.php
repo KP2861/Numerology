@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\NumerologyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\NumerologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +14,9 @@ use App\Http\Controllers\NumerologyController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 
@@ -30,5 +30,11 @@ Route::get('forget-password', [UserController::class, 'showForgetPasswordForm'])
 Route::post('forget-password', [UserController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [UserController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [UserController::class, 'submitResetPasswordForm'])->name('reset.password.post');
-Route::get('/', [NumerologyController::class, 'showForm'])->name('numerology.form');
-Route::post('/numerology', [NumerologyController::class, 'calculate'])->name('numerology.calculate');
+
+Route::get('name_numerology/create', [NumerologyController::class, 'createNameNumerology'])->name('name_numerology.create');
+Route::post('name_numerology', [NumerologyController::class, 'storeNameNumerology'])->name('name_numerology.store');
+// Route to display the form
+Route::get('business_numerology/create', [NumerologyController::class, 'createBusinessNumerology'])->name('business_numerology.create');
+
+// Route to handle form submission
+Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
