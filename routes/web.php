@@ -3,6 +3,10 @@
 use App\Http\Controllers\NumerologyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SimpleNumerologyController;
+use App\Http\Controllers\MobileNumerologyController;
+use App\Http\Controllers\NameNumerologyController;
+use App\Http\Controllers\BusinessNumerologyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +42,18 @@ Route::get('business_numerology/create', [NumerologyController::class, 'createBu
 
 // Route to handle form submission
 Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
+
+Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
+Route::post('/numerology', [SimpleNumerologyController::class, 'calculate'])->name('numerology.calculate');
+
+// Mobile Numerology
+Route::get('/mobile-numerology', [MobileNumerologyController::class, 'showMobileForm'])->name('numerology.mobile_numerology_form');
+Route::post('/mobile-numerology-result', [MobileNumerologyController::class, 'processMobileForm'])->name('numerology.mobile_numerology_result');
+
+// Name Numerology 
+Route::get('/name-numerology', [NameNumerologyController::class, 'showForm'])->name('numerology.name_numerology_form');
+Route::post('/name-numerology-result', [NameNumerologyController::class, 'calculateNumerology'])->name('numerology.name_numerology_result');
+
+// Business_Numerology
+Route::get('/business-numerology', [BusinessNumerologyController::class, 'showForm'])->name('business_numerology.form');
+Route::post('/business-numerology', [BusinessNumerologyController::class, 'calculate'])->name('business_numerology.result');
