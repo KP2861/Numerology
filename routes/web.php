@@ -7,6 +7,13 @@ use App\Http\Controllers\SimpleNumerologyController;
 use App\Http\Controllers\MobileNumerologyController;
 use App\Http\Controllers\NameNumerologyController;
 use App\Http\Controllers\BusinessNumerologyController;
+
+//Admin
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserListController;
+use App\Http\Controllers\Admin\NumerologyAdminController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +26,7 @@ use App\Http\Controllers\BusinessNumerologyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Website.pages.home');
 });
 
 
@@ -51,10 +58,12 @@ Route::get('numerology_type', function () {
 Route::get('name_numerology/create', [NumerologyController::class, 'createNameNumerology'])->name('name_numerology.create');
 Route::post('name_numerology', [NumerologyController::class, 'storeNameNumerology'])->name('name_numerology.store');
 // Route to display the form
+
 Route::get('business_numerology/create', [NumerologyController::class, 'createBusinessNumerology'])->name('business_numerology.create');
 
 // Route to handle form submission
 Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
@@ -76,3 +85,15 @@ Route::post('/business-numerology', [BusinessNumerologyController::class, 'calcu
 Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
 >>>>>>> 90280e16f9b0db69064e4526bb2121300914b5b3
+=======
+
+
+//Admin Routes
+Route::get('admin/dashboard',[AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+//user detail
+Route::get('admin/user/list',[UserListController::class, 'index'])->name('admin.userList');
+
+//numorology detail
+Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
+>>>>>>> 5e7b077e8795ea5b79fd4ceb1906e51de76fecb0
