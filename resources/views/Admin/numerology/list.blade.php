@@ -14,15 +14,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($numerologies as $index => $numerology)
+        @forelse($numerologies as $index => $numerology)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $numerology->name }}</td>
-                <td>{{ $numerology->created_at }}</td>
-                <td>{{ $numerology->user_names }}</td>
-                <td>{{ $numerology->user_count }}</td>
+                <td>{{ $numerology->name ?? '-' }}</td>
+                <td>{{ $numerology->created_at ?? '-' }}</td>
+                <td>{{ $numerology->user_names ?? '-' }}</td>
+                <td>{{ $numerology->user_count ?? '-' }}</td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5">No numerologies available</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
 @endsection

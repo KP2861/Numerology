@@ -14,15 +14,21 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($users as $index => $user)
+        @forelse($users as $index => $user)
             <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
-                <td>{{ $user->numerology_names }}</td>
+                <td>{{ $users->firstItem() + $index }}</td>
+                <td>{{ $user->name ?? '-' }}</td>
+                <td>{{ $user->email ?? '-' }}</td>
+                <td>{{ $user->created_at ? $user->created_at->format('Y-m-d H:i:s') : '-' }}</td>
+                <td>{{ $user->numerology_names ?? '-' }}</td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="5">No data access</td>
+            </tr>
+        @endforelse
     </tbody>
 </table>
+
+
 @endsection
