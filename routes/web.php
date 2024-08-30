@@ -67,7 +67,7 @@ Route::post('business_numerology', [NumerologyController::class, 'storeBusinessN
 
 
 Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
-Route::post('/numerology', [SimpleNumerologyController::class, 'calculate'])->name('numerology.calculate');
+Route::post('/simple-numerology', [SimpleNumerologyController::class, 'calculate'])->name('numerology.calculate');
 
 // Mobile Numerology
 Route::get('/mobile-numerology', [MobileNumerologyController::class, 'showMobileForm'])->name('numerology.mobile_numerology_form');
