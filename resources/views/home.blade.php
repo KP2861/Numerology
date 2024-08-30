@@ -4,13 +4,19 @@
 <head>
 
      <title>Home Page</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
      <header>
-          <h1>Home Page</h1>
+          <div class="text-center mt-5">
+               <h1>Home Page</h1>
+               <p>Login Your Account <a href="{{ route('login') }}">Login now</a></p>
+          </div>
      </header>
-     <a href="{{ route('numerology.create') }}"> Add Numerology Type</a>
+     <div class="container text-center mt-5">
+          <a href="{{ route('numerology.create') }}" class="btn btn-primary">Add Numerology Type</a>
+     </div>
 
 </body>
 

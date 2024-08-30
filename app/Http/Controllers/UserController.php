@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Hash;
 use DB;
 use Carbon\Carbon;
 use Mail;
-use Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -21,47 +22,83 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email:rfc,dns|unique:users,email',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 2, // 2 means User
-        ]);
+            // Create the user
+            User::create([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
+                'role' => 2, // 2 means User
+            ]);
 
-        return redirect('/login')->with('success', 'Registration successful! Please log in.');
+            return redirect('/login')->with('success', 'Registration successful! Please log in.');
+        } catch (ValidationException $e) {
+            // Handle validation exception
+            return redirect('/register')
+                ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Exception $e) {
+            // Handle any other exceptions
+            return redirect('/register')
+                ->with('error', 'An unexpected error occurred. Please try again.')
+                ->withInput();
+        }
     }
-
-
 
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    //user login
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        try {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email:rfc,dns|exists:users,email',
+                'password' => 'required|string|min:8',
+            ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/');
+            // Check if validation fails
+            if ($validator->fails()) {
+                return redirect('/login')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            // Attempt authentication
+            $credentials = $request->only('email', 'password');
+
+            if (Auth::attempt($credentials)) {
+                return redirect()->intended('/home');
+            }
+
+            // If authentication fails
+            return redirect('/login')
+                ->with('error', 'Invalid credentials. Please try again.');
+        } catch (ValidationException $e) {
+            return redirect('/login')
+                ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Exception $e) {
+            return redirect('/login')
+                ->with('error', 'An unexpected error occurred. Please try again.')
+                ->withInput();
         }
-
-        return redirect('/login')->with('error', 'Invalid credentials. Please try again.');
     }
 
-    //forget page view
+    // Forget password page view
     public function showForgetPasswordForm()
     {
         return view('auth.forgetPassword');
     }
 
-    //
     public function submitForgetPasswordForm(Request $request)
     {
         $request->validate([
@@ -84,7 +121,6 @@ class UserController extends Controller
         return back()->with('message', 'We have e-mailed your password reset link!');
     }
 
-
     public function showResetPasswordForm($token)
     {
         return view('auth.forgetPasswordLink', ['token' => $token]);
@@ -95,7 +131,7 @@ class UserController extends Controller
         $request->validate([
             'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
         ]);
 
         $updatePassword = DB::table('password_resets')

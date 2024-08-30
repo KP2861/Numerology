@@ -18,7 +18,7 @@
             <div class="hs_header_logo_right">
                 <div class="hs_btn_wrapper">
                     <ul>
-                        <li><a href="#" class="hs_btn_hover outline-btn">Sign In</a></li>
+                        <li><a href="" class="hs_btn_hover outline-btn">Sign In</a></li>
                     </ul>
                 </div>
                
@@ -78,7 +78,7 @@
                         <ul>
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="#">Home</a>
+                                    <a class="menu-button" href="{{ url('/') }}">Home</a>
                                 </div>
                             </li>
                             <li>
@@ -102,7 +102,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="menu-button" href="contact.html">Contact </a>
+                                <a class="menu-button" href="{{ url('/contact-us') }}">Contact </a>
                             </li>
                         </ul>
                     </nav>
@@ -214,7 +214,7 @@
 
 
                                                 <li>
-                                                    <a href="contact.html">Contact</a>
+                                                    <a href="{{ url('/contact-us') }}">Contact</a>
                                                 </li>
                                             </ul>
                                             <!-- .cd-dropdown-content -->

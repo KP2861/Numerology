@@ -18,6 +18,14 @@
           </div>
           @endif
 
+          <!-- Display error message -->
+          @if(session('error'))
+          <div class="alert alert-danger">
+               {{ session('error') }}
+          </div>
+          @endif
+
+
           <!-- Form to add new numerology record -->
           <form action="{{ route('name_numerology.store') }}" method="POST" class="mt-4">
                @csrf
