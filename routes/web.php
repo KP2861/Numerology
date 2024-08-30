@@ -11,6 +11,7 @@ use App\Http\Controllers\WebPagesController;
 
 //Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\UserListController;
 use App\Http\Controllers\Admin\NumerologyAdminController;
 
@@ -108,3 +109,9 @@ Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin
 
 //numorology detail
 Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
+Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
+
+//Admin profile
+Route::get('admin/profile',[AdminProfileController::class, 'index'])->name('admin.profile');
+Route::get('admin/profile/change_password',[AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+
