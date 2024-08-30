@@ -7,6 +7,13 @@ use App\Http\Controllers\SimpleNumerologyController;
 use App\Http\Controllers\MobileNumerologyController;
 use App\Http\Controllers\NameNumerologyController;
 use App\Http\Controllers\BusinessNumerologyController;
+
+//Admin
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\UserListController;
+use App\Http\Controllers\Admin\NumerologyAdminController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +26,14 @@ use App\Http\Controllers\BusinessNumerologyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Website.pages.home');
 });
 
+
+//home page 
+Route::get('/home', function () {
+     return view('home');
+});
 
 
 Route::get('/register', [UserController::class, 'showRegistrationForm']);
@@ -35,13 +47,23 @@ Route::post('forget-password', [UserController::class, 'submitForgetPasswordForm
 Route::get('reset-password/{token}', [UserController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [UserController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
+//add numerology type 
+Route::get('numerology/create', [NumerologyController::class, 'createNumerology'])->name('numerology.create');
+Route::post('numerology', [NumerologyController::class, 'storeNumerology'])->name('numerology.store');
+//show select numerology types
+Route::get('numerology_type', function () {
+     return view('selectNumerology');
+})->name('numerology.selectNumerology');
+
 Route::get('name_numerology/create', [NumerologyController::class, 'createNameNumerology'])->name('name_numerology.create');
 Route::post('name_numerology', [NumerologyController::class, 'storeNameNumerology'])->name('name_numerology.store');
 // Route to display the form
+
 Route::get('business_numerology/create', [NumerologyController::class, 'createBusinessNumerology'])->name('business_numerology.create');
 
 // Route to handle form submission
 Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
+
 
 Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
 Route::post('/numerology', [SimpleNumerologyController::class, 'calculate'])->name('numerology.calculate');
@@ -57,3 +79,19 @@ Route::post('/name-numerology-result', [NameNumerologyController::class, 'calcul
 // Business_Numerology
 Route::get('/business-numerology', [BusinessNumerologyController::class, 'showForm'])->name('business_numerology.form');
 Route::post('/business-numerology', [BusinessNumerologyController::class, 'calculate'])->name('business_numerology.result');
+
+//phone_numerology
+Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
+Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
+
+
+
+//Admin Routes
+Route::get('admin/dashboard',[AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+//user detail
+Route::get('admin/user/list',[UserListController::class, 'index'])->name('admin.userList');
+
+//numorology detail
+Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
+
