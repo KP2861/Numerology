@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('name_numerology', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('numerology_type')
-                ->constrained('numerology');
+            $table->unsignedBigInteger('numerology_type');
+            $table->foreign('numerology_type')->references('id')->on('numerology')->onDelete('cascade')->onUpdate('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->date('dob');
+            $table->string('gender');
             $table->timestamps();
         });
     }
