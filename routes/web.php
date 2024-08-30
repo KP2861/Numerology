@@ -31,7 +31,7 @@ Route::get('/', function () {
 
 
 //home page 
-Route::get('/', function () {
+Route::get('/home', function () {
      return view('home');
 });
 
@@ -63,8 +63,7 @@ Route::get('business_numerology/create', [NumerologyController::class, 'createBu
 
 // Route to handle form submission
 Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
 Route::post('/numerology', [SimpleNumerologyController::class, 'calculate'])->name('numerology.calculate');
@@ -80,12 +79,11 @@ Route::post('/name-numerology-result', [NameNumerologyController::class, 'calcul
 // Business_Numerology
 Route::get('/business-numerology', [BusinessNumerologyController::class, 'showForm'])->name('business_numerology.form');
 Route::post('/business-numerology', [BusinessNumerologyController::class, 'calculate'])->name('business_numerology.result');
-=======
+
 //phone_numerology
 Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
->>>>>>> 90280e16f9b0db69064e4526bb2121300914b5b3
-=======
+
 
 
 //Admin Routes
@@ -96,4 +94,4 @@ Route::get('admin/user/list',[UserListController::class, 'index'])->name('admin.
 
 //numorology detail
 Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
->>>>>>> 5e7b077e8795ea5b79fd4ceb1906e51de76fecb0
+
