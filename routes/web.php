@@ -7,6 +7,7 @@ use App\Http\Controllers\SimpleNumerologyController;
 use App\Http\Controllers\MobileNumerologyController;
 use App\Http\Controllers\NameNumerologyController;
 use App\Http\Controllers\BusinessNumerologyController;
+use App\Http\Controllers\WebPagesController;
 
 //Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -84,6 +85,8 @@ Route::post('/business-numerology', [BusinessNumerologyController::class, 'calcu
 Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
 
+//contact us
+Route::get('/contact-us',[WebPagesController::class, 'index'])->name('webpage.contactUs');
 
 
 //Admin Routes

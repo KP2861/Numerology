@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  <meta charset="utf-8" />
+    <title>Horoscope Responsive HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="Horoscope" />
+    <meta name="keywords" content="Horoscope" />
+    <meta name="author" content="" />
+    <meta name="MobileOptimized" content="320" />
+    <!--srart theme style -->
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/animate.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/font-awesome.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/fonts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/flaticon.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/sign_flaticon.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.carousel.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.theme.default') }}.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/magnific-popup.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/reset.css') }}" />
+    <link rel="stylesheet" href="{{ url('frontend/scss/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body>
 <div class="wrapper">
 
   <!-- Navbar -->
