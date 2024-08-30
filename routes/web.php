@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\NumerologyAdminController;
 */
 
 Route::get('/', function () {
-    return view('Website.pages.home');
+     return view('Website.pages.home');
 });
 
 
@@ -84,14 +84,24 @@ Route::post('/business-numerology', [BusinessNumerologyController::class, 'calcu
 Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
 
+//razor-pay 
+Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'])->name('payment.callback');
+
+Route::get('/payment', function () {
+     return view('payment.payment');
+})->name('payment.get');
+
+// Route for redirecting after successful payment (if applicable)
+// Route::get('/success', function () {
+//     return view('success'); // Replace with your success view
+// })->name('payment.success');
 
 
 //Admin Routes
-Route::get('admin/dashboard',[AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 //user detail
-Route::get('admin/user/list',[UserListController::class, 'index'])->name('admin.userList');
+Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin.userList');
 
 //numorology detail
-Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
-
+Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');

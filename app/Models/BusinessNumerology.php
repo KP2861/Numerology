@@ -15,6 +15,8 @@ class BusinessNumerology extends Model
         'last_name',
         'dob',
         'phone_number',
+        'business_name',
         'type_of_business',
+        'have_partner',
     ];
 }

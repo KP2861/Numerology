@@ -12,9 +12,17 @@
 <body>
      <div class="container mt-5">
           <div class="row justify-content-center">
+
                <div class="col-md-6">
+                    @if(session('error'))
+                    <div class="alert alert-danger">
+                         {{ session('error') }}
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                          @csrf
+                         <h2 class="text-center mb-4">Login</h2>
+
                          <div class="form-group">
                               <label for="email">Email</label>
                               <input
@@ -23,6 +31,7 @@
                                    name="email"
                                    class="form-control @error('email') is-invalid @enderror"
                                    placeholder="example@gmail.com"
+                                   value="{{ old('email') }}"
                                    required
                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                               @error('email')
@@ -47,6 +56,9 @@
                     <div class="form-group row mt-3">
                          <div class="col-md-12 text-center">
                               <a href="{{ route('forget.password.get') }}" class="btn btn-link">Reset Password</a>
+                         </div>
+                         <div class="text-center mt-3">
+                              <p> <a href="{{ route('register') }}">Register now</a></p>
                          </div>
                     </div>
                </div>
