@@ -1,7 +1,8 @@
-<!-- resources/views/Admin/layouts/footer.blade.php -->
-<footer class="bg-light text-center text-lg-start mt-auto">
-    <div class="text-center p-3">
-        © 2024 Your Company:
-        <a class="text-dark" href="#">yourcompany.com</a>
+ <!-- /.content-wrapper -->
+ <footer class="main-footer">
+    <strong>Copyright &copy;  <a href="{{ url('admin/dashboard') }}">Numerology</a>.</strong>
+   
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 3.2.0
     </div>
-</footer>
+  </footer>

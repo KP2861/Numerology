@@ -24,11 +24,24 @@
             </tr>
         @empty
             <tr>
-                <td colspan="5">No data access</td>
+                <td colspan="5">No data available</td>
             </tr>
         @endforelse
     </tbody>
 </table>
 
+<!-- Custom Pagination Controls -->
+<div class="pagination">
+    @if ($users->onFirstPage())
+        <span class="page-link disabled">Previous</span>
+    @else
+        <a class="page-link" href="{{ $users->previousPageUrl() }}" rel="prev">Previous</a>
+    @endif
 
+    @if ($users->hasMorePages())
+        <a class="page-link" href="{{ $users->nextPageUrl() }}" rel="next">Next</a>
+    @else
+        <span class="page-link disabled">Next</span>
+    @endif
+</div>
 @endsection
