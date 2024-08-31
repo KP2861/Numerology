@@ -366,7 +366,7 @@
         <div class="hs_sign_heading_wrapper">
             <div class="hs_about_heading_main_wrapper">
                 <div class="hs_about_heading_wrapper">
-                    <h2>Choose Your <span>Zodiac Sign</span></h2>
+                    <h2>Choose Your <span>Number</span></h2>
                     <h4><span></span></h4>
                     <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
                         auctor, nisi elit consequat hello Aenean world.</p>
@@ -376,7 +376,7 @@
         <div class="hs_sign_center_wrapper visible-xs visible-sm">
             <div class="hs_cycle_main_wrapper">
                 <div class="hs_cycle_img">
-                    <img src="{{url('frontend/assests/images/content/cycle.jpg')}}" alt="circle_img">
+                    <img src="{{url('frontend/assests/images/content/cycle.png')}}" alt="circle_img">
                     <span class="pulse"></span>
                     <div class="hs_tab_shap1">
                         <a href="#">
@@ -530,13 +530,13 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_border_wrapper1">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aries-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-one.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Aries</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -545,13 +545,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper2">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-taurus-astrological-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-two.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Taurus</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Mediator</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -560,13 +560,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper3">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-gemini-zodiac-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-three.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Gemini</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Communicator</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -575,13 +575,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper4">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-cancer"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-four.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Cancer</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Teacher</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -590,13 +590,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper5">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-leo"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-five.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Leo</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Freedom Seeker</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -605,13 +605,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper6">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-virgo-astrological-symbol-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-six.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Virgo</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Nurturer</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -626,7 +626,7 @@
                         <span></span>
 
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-libra"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -641,7 +641,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper2">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-scorpio"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -656,7 +656,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper3">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-leo"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -672,7 +672,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper4">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-capricorn"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -689,7 +689,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper5">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aquarius-zodiac-sign-symbol"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -706,7 +706,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper6">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-gemini-zodiac-sign-symbol"></i>
+                            <img src="{{url('frontend/assests/ages/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -722,7 +722,7 @@
         <div class="hs_sign_center_wrapper hidden-sm hidden-xs">
             <div class="hs_cycle_main_wrapper">
                 <div class="hs_cycle_img">
-                    <img src="{{url('frontend/assests/images/content/cycle.jpg')}}" alt="circle_img">
+                    <img src="{{url('frontend/assests/images/content/cycle.png')}}" alt="circle_img">
                     <span class="pulse"></span>
                     <div class="hs_tab_shap1">
                         <a href="#">
@@ -879,12 +879,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Libra</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Seeker</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-libra"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-seven.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -894,12 +894,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Scorpio</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Powerhouse</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-scorpio"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-eight.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -909,12 +909,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Sagittarius</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-sagittarius-arrow-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-nine.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -924,12 +924,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Capricorn</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-capricorn"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-eleven.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -939,12 +939,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Aquarius</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aquarius-zodiac-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-twenty-two.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -954,12 +954,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Pisces</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-pisces-astrological-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-thirty-three.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -981,19 +981,8 @@
                         <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
                             auctor, nisi elit consequat hello Aenean world.</p>
                     </div>
-                </div>
-            </div>
-            <div class="portfolio-area ptb-100">
-                <div class="container">
-                    <div class="portfolio-filter clearfix text-center">
-                        <!-- <ul id="filter">
-                            <li><a class="active" data-group="all">All</a></li>
-                            <li><a data-group="business">Paid Services</a></li>
-                            <li><a data-group="website"> Free Services</a></li>
-                        </ul> -->
-                    </div>
                     <div class="row">
-                        <div id="gridWrapper" class="clearfix">
+                        <div class="clearfix row">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 portfolio-wrapper III_column"
                                 data-groups='[ "all"]'>
                                 <div class="hs_service_main_box_wrapper">
@@ -1174,11 +1163,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/#gridWrapper-->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container -->
             </div>
             <!--/.portfolio-area-->
         </div>

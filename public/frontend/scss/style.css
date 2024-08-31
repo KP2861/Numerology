@@ -110,7 +110,7 @@ body::-webkit-scrollbar-thumb {
 /*---------- btn Css Start -------*/
 .hs_btn_wrapper li a {
 	float: left;
-	min-width: 100px;
+	min-width: 126px;
 	width: auto;
 	height: 50px;
 	font-size: 16px;
