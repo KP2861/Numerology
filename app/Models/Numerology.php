@@ -10,5 +10,5 @@ class Numerology extends Model
     use HasFactory;
     protected $table = 'numerology';
 
-    protected $fillable = ['name', 'type', 'user_id'];
+    protected $fillable = ['name', 'type'];
 }
