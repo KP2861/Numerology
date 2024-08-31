@@ -17,4 +17,8 @@ class BusinessNumerology extends Model
         'phone_number',
         'type_of_business',
     ];
+    public function numerology()
+{
+    return $this->belongsTo(Numerology::class, 'numerology_type');
+}
 }
