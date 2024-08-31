@@ -59,6 +59,17 @@
         </div>
     </div>
     <!-- hs bottom footer wrapper End -->
+
+
+
+
+
+
+
+
+
+
+
     <!--main js file start-->
     <script src="{{url('frontend/assests/js/jquery_min.js')}}"></script>
     <script src="{{url('frontend/assests/js/jquery_min.js')}}"></script>
