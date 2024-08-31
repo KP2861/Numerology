@@ -63,9 +63,21 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('numerology.list') }}" class="nav-link">
+                <a href="{{ route('name_numerology.list') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Numerology List</p>
+                  <p>Name Numerology</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('phone_numerology.list') }}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+                  <p>Phone Numerology</p>
+                </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{ route('bussiness_numerology.list') }}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+                  <p>Business Numerology</p>
                 </a>
               </li>
             </ul>
