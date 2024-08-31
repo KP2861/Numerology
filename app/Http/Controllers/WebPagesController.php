@@ -11,4 +11,7 @@ class WebPagesController extends Controller
         return view('Website.pages.contactus');
 
     }
+    public function numero(){
+        return view('Website.pages.numerology');
+    }
 }

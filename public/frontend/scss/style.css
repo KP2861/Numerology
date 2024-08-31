@@ -4615,6 +4615,8 @@ ul {
 
 .hs_num_sidebar_main_wrapper {
 	padding-bottom: 80px;
+	position: relative;
+	background: #F1EBE0;
 }
 
 .hs_kd_left_sidebar_main_wrapper {

@@ -11,6 +11,7 @@ use App\Http\Controllers\WebPagesController;
 
 //Admin
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\UserListController;
 use App\Http\Controllers\Admin\NumerologyAdminController;
 
@@ -87,6 +88,8 @@ Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerol
 
 //contact us
 Route::get('/contact-us',[WebPagesController::class, 'index'])->name('webpage.contactUs');
+Route::get('/numero',[WebPagesController::class, 'numero'])->name('webpage.numerology');
+
 //razor-pay 
 Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'])->name('payment.callback');
 
@@ -108,3 +111,9 @@ Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin
 
 //numorology detail
 Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
+Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
+
+//Admin profile
+Route::get('admin/profile',[AdminProfileController::class, 'index'])->name('admin.profile');
+Route::get('admin/profile/change_password',[AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+
