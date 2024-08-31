@@ -36,6 +36,16 @@
         <div class="text-center mt-4">
             <a href="{{ route('numerology.mobile_numerology_form') }}" class="btn btn-primary">Calculate Another Number</a>
         </div>
+
+       <!-- Download PDF Button -->
+        <div class="text-center mt-2">
+            <form action="{{ route('numerology.mobile_numerology_pdf') }}" method="POST">
+                @csrf
+                <input type="hidden" name="mobile_number" value="{{ $result['Mobile Number'] }}">
+                <button type="submit" name="download" class="btn btn-success">Download Report as PDF</button>
+            </form>
+        </div>
+
     </div>
 
     <!-- Optional JavaScript -->

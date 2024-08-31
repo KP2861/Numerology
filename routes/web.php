@@ -73,7 +73,7 @@ Route::post('/simple-numerology', [SimpleNumerologyController::class, 'calculate
 // Mobile Numerology
 Route::get('/mobile-numerology', [MobileNumerologyController::class, 'showMobileForm'])->name('numerology.mobile_numerology_form');
 Route::post('/mobile-numerology-result', [MobileNumerologyController::class, 'processMobileForm'])->name('numerology.mobile_numerology_result');
-
+Route::post('/download-pdf', [MobileNumerologyController::class, 'downloadPDF'])->name('numerology.mobile_numerology_pdf');
 // Name Numerology 
 Route::get('/name-numerology', [NameNumerologyController::class, 'showForm'])->name('numerology.name_numerology_form');
 Route::post('/name-numerology-result', [NameNumerologyController::class, 'calculateNumerology'])->name('numerology.name_numerology_result');

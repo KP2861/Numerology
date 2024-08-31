@@ -72,4 +72,5 @@
     <script src="{{url('frontend/assests/js/jquery.inview.min.js')}}"></script>
     <script src="{{url('frontend/assests/js/jquery.magnific-popup.js')}}"></script>
     <script src="{{url('frontend/assests/js/custom.js')}}"></script>
+
     <!--main js file end-->

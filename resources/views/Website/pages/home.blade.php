@@ -319,7 +319,7 @@
 </div>
 
 <!-- hs about ind wrapper Start -->
-<div class="hs_about_indx_main_wrapper white-overlay-section">
+<div id="about" class="hs_about_indx_main_wrapper white-overlay-section">
     <div class="white-overlay"></div>
     <div class="container">
         <div class="row">
@@ -350,7 +350,7 @@
                     <h1>+1800-123-123</h1>
                     <div class="hs_effect_btn hs_about_btn">
                         <ul>
-                            <li><a href="#" class="hs_btn_hover">Read more</a></li>
+                            <li><a href="{{ url('/login') }}" class="hs_btn_hover">Get Your Report</a></li>
                         </ul>
                     </div>
                 </div>
