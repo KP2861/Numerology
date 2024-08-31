@@ -1,7 +1,7 @@
 @extends('Admin.layouts.app')
 
 @section('content')
-<h1>Name Numerology List</h1>
+<h1>Phone Numerology List</h1>
 
 <!-- Main content -->
 <section class="content mt-5">
@@ -10,12 +10,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Total Neumorologies: {{ $nameNumerologyCount }}</h3>
+                        <h3 class="card-title">Phone Numerology</h3>
                         <!-- PDF Download Form -->
-                        <form action="{{ route('numerology.downloadPdf', ['type' => 'name']) }}" method="POST" style="float: right;">
-                            @csrf
-                            <button type="submit" class="btn btn-success">Download PDF</button>
-                        </form>
 
                     </div>
                     <!-- /.card-header -->
@@ -24,27 +20,27 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Numerology Name</th>
-                                    <th>User Name</th>
-                                    <th>User Email</th>
-                                    <th>Action</th>
+                                    <th>Numerology Type</th>
+                                    <th>Phone Number</th>
+                                    <th>Date of Birth</th>
+                                    <th>Area of Concern</th>
+                                    <th>View More</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($nameNumerologies as $index => $numerology)
+                                @foreach($phoneNumerologies as $index => $numerology)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $numerology['numerology_name'] }}</td>
-                                    <td>{{ $numerology['user_name'] }}</td>
-                                    <td>{{ $numerology['user_email'] }}</td>
+                                    <td>{{ $numerology['numerology_type'] }}</td>
+                                    <td>{{ $numerology['phone_number'] }}</td>
+                                    <td>{{ $numerology['dob'] }}</td>
+                                    <td>{{ $numerology['area_of_concern'] }}</td>
                                     <td>
                                         @php
-                                            $encryptedId = Crypt::encryptString($numerology['id']);
+                                        $encryptedId = Crypt::encryptString($numerology['id']);
                                         @endphp
-                                        
-                                        <a href="{{ url('admin/name-numerology/detail/' . $encryptedId) }}" class="btn btn-primary">View More</a>
+                                        <a href="{{ url('admin/phone-numerology/detail/' . $encryptedId) }}" class="btn btn-primary">View More</a>
                                     </td>
-
                                 </tr>
                                 @endforeach
                             </tbody>

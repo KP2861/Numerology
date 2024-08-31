@@ -15,4 +15,8 @@ class PhoneNumerology extends Model
         'dob',
         'area_of_concern',
     ];
+    public function numerology()
+{
+    return $this->belongsTo(Numerology::class, 'numerology_type');
+}
 }
