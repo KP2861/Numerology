@@ -17,27 +17,36 @@ class StorePhoneNumerologyController extends Controller
 
     public function storePhoneNumerology(Request $request)
     {
+        // Define validation rules
         $rules = [
-            // 'numerology_type' => 'required|integer',
             'phone_number' => 'required|string|max:20',
             'dob' => 'required|date',
             'area_of_concern' => 'required|string|max:255',
         ];
 
+        // Validate the request data
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
+            // Redirect back with validation errors if validation fails
             return redirect()->route('numerology.phone_numerology_form')
                 ->withErrors($validator)
                 ->withInput();
         } else {
+            // Get validated data and add default values
             $validated = $validator->validated();
-            $validated['numerology_type'] = 1;
+            $validated['numerology_type'] = 1; // Default value for numerology_type
+            $validated['user_id'] = 1; // Default value for user_id
+
+            // Store the data in the PhoneNumerology model
             PhoneNumerology::create($validated);
         }
 
         try {
+            // Initialize Razorpay API
             $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+
+            // Create a Razorpay order
             $order = $api->order->create([
                 'amount' => 50000, // 500 INR in paise
                 'currency' => 'INR',
@@ -45,6 +54,7 @@ class StorePhoneNumerologyController extends Controller
                 'payment_capture' => 1
             ]);
 
+            // Return the payment view with order details
             return view('payment.payment2', [
                 'order' => $order,
                 'paymentPurpose' => 'Phone Numerology Record',
@@ -52,6 +62,7 @@ class StorePhoneNumerologyController extends Controller
                 'callbackUrl' => route('phone_numerology.payment.callback')
             ]);
         } catch (\Exception $e) {
+            // Log the error and redirect back with an error message
             Log::error('Error during order creation: ' . $e->getMessage());
             return redirect()->route('numerology.phone_numerology_form')
                 ->with('error', 'An error occurred while processing your request. Please try again.');

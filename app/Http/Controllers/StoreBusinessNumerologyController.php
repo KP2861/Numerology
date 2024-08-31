@@ -17,8 +17,9 @@ class StoreBusinessNumerologyController extends Controller
 
     public function storeBusinessNumerology(Request $request)
     {
+        // Validate the request data
         $validated = $request->validate([
-            'numerology_type' => 'required|integer',
+            // 'numerology_type' => 'required|integer',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'dob' => 'required|date',
@@ -28,8 +29,20 @@ class StoreBusinessNumerologyController extends Controller
             'have_partner' => 'required|integer|in:0,1',
         ]);
 
+        // Add default values to the validated data
+        $numerologyData = array_merge($validated, [
+            'numerology_type' => 1, // Default value
+            'user_id' => 1, // Default value
+        ]);
+
+        // Store the data in the BusinessNumerology model
+        BusinessNumerology::create($numerologyData);
+
         try {
+            // Initialize Razorpay API
             $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+
+            // Create a Razorpay order
             $order = $api->order->create([
                 'amount' => 50000, // 500 INR in paise
                 'currency' => 'INR',
@@ -37,6 +50,7 @@ class StoreBusinessNumerologyController extends Controller
                 'payment_capture' => 1
             ]);
 
+            // Return the payment view with order details
             return view('payment.payment', [
                 'order' => $order,
                 'paymentPurpose' => 'Business Numerology Record',
@@ -44,10 +58,12 @@ class StoreBusinessNumerologyController extends Controller
                 'callbackUrl' => route('business_numerology.payment.callback')
             ]);
         } catch (\Exception $e) {
+            // Log the error and redirect back with an error message
             Log::error('Failed to create Razorpay order: ' . $e->getMessage());
             return redirect()->back()->with('error', 'An error occurred while processing your request. Please try again.');
         }
     }
+
 
     public function paymentCallback(Request $request)
     {
