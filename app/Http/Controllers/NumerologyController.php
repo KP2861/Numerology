@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Razorpay\Api\Api;
+use Illuminate\Support\Facades\Validator;
 
 
 class NumerologyController extends Controller
@@ -40,111 +41,16 @@ class NumerologyController extends Controller
         }
     }
 
-    // Display the form to create a new Name Numerology record
-    public function createNameNumerology()
-    {
-        return view('numerology.name_numerology');
-    }
-
-    // Store a new Name Numerology record
-    public function storeNameNumerology(Request $request)
-    {
-        try {
-            $validated = $request->validate([
-                'numerology_type' => 'required|integer',
-                'first_name' => 'required|string|max:10',
-                'last_name' => 'required|string|max:10',
-                'dob' => 'required|date',
-                'gender' => 'required|string|in:Male,Female',
-            ]);
-
-            NameNumerology::create($validated);
-
-            return redirect()->back()->with('success', 'Record added successfully!');
-        } catch (\Exception $e) {
-            Log::error('Failed to add name numerology record: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to add record. Please try again.');
-        }
-    }
-
-    // Display the form to create a new Business Numerology record
-    public function createBusinessNumerology()
-    {
-        return view('numerology.business_numerology');
-    }
-
-    // Store a new Business Numerology record
-    public function storeBusinessNumerology(Request $request)
-    {
-        try {
-
-            $validated = $request->validate([
-                'numerology_type' => 'required|integer',
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'dob' => 'required|date',
-                'phone_number' => 'required|string|regex:/\d{10,}/',
-                'business_name' => 'required|string|max:255',
-                'type_of_business' => 'required|string|max:255',
-                'have_partner' => 'required|integer|in:0,1',
-            ]);
-
-            // Create the new BusinessNumerology record
-            BusinessNumerology::create($validated);
-
-            return redirect()->back()->with('success', 'Record added successfully!');
-        } catch (\Exception $e) {
-            Log::error('Failed to add business numerology record: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Failed to add record. Please try again.');
-        }
-    }
-
-    // Display the form to create a new Phone Numerology record
-    public function createPhoneNumerology()
-    {
-        return view('numerology.phone_numerology');
-    }
-
-    // Store a new Phone Numerology record
-    public function storePhoneNumerology(Request $request)
-    {
-        // Step 1: Validate input
-        $validated = $request->validate([
-            'numerology_type' => 'required|integer',
-            'phone_number' => 'required|string|max:20',
-            'dob' => 'required|date',
-            'area_of_concern' => 'required|string|max:255',
-        ]);
-
-        // Step 2: Create an order with Razorpay
-        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
-        $order = $api->order->create([
-            'amount' => 50000, //(50000 paise = 500 INR)
-            'currency' => 'INR',
-            'receipt' => uniqid(),
-            'payment_capture' => 1 // Auto-capture the payment
-        ]);
-
-        // Save the order ID and user data in the session for later use
-        session([
-            'phone_numerology_data' => $validated,
-            'razorpay_order_id' => $order->id,
-        ]);
-
-
-        return view('payment.payment', [
-            'order' => $order,
-        ]);
-    }
-
     public function paymentCallback(Request $request)
     {
-        $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
-        $orderId = $request->input('order_id');
-        $paymentId = $request->input('payment_id');
-        $signature = $request->input('signature');
-
         try {
+            $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
+            $orderId = $request->input('order_id');
+            $paymentId = $request->input('payment_id');
+            $signature = $request->input('signature');
+            $invoiceId = $request->input('invoice_id');
+
+            // Fetch and verify the order
             $order = $api->order->fetch($orderId);
 
             if ($api->utility->verifyPaymentSignature([
@@ -153,28 +59,40 @@ class NumerologyController extends Controller
                 'signature' => $signature
             ])) {
                 // Payment verified successfully
-                $phoneNumerologyData = session('phone_numerology_data');
+                $phoneNumerologyData = $request->except(['order_id', 'payment_id', 'signature', 'invoice_id']);
 
-                if ($phoneNumerologyData) {
-                    $phoneNumerologyData['payment_id'] = $paymentId;
-                    $phoneNumerologyData['payment_status'] = 'completed'; // Update status
+                // Validate the incoming data
+                $validator = Validator::make($phoneNumerologyData, [
+                    'numerology_type' => 'required|integer',
+                    'phone_number' => 'required|string|max:20',
+                    'dob' => 'required|date',
+                    'area_of_concern' => 'required|string|max:255',
+                    'payment_id' => 'required|string',
+                    'payment_status' => 'required|string',
+                ]);
 
-                    // Create the PhoneNumerology record
-                    PhoneNumerology::create($phoneNumerologyData);
-
-                    // Clear session data
-                    session()->forget(['phone_numerology_data', 'razorpay_order_id']);
-
-                    return redirect()->route('numerology.selectNumerology')->with('success', 'Payment successful and record added!');
-                } else {
-                    return redirect()->route('numerology.selectNumerology')->with('error', 'Session data not found!');
+                if ($validator->fails()) {
+                    // Handle validation errors
+                    return redirect()->route('numerology.selectNumerology')
+                        ->withErrors($validator)
+                        ->withInput();
                 }
+
+                // Add additional data if needed
+                $phoneNumerologyData['payment_status'] = 'completed';
+
+                // Create the PhoneNumerology record
+                PhoneNumerology::create($phoneNumerologyData);
+
+                // return redirect()->route('numerology.selectNumerology')->with('success', 'Payment successful and record added!');
+                $redirectRoute = $this->determineRedirectRoute($phoneNumerologyData['numerology_type']);
+                return redirect()->route($redirectRoute)->with('success', 'Payment successful and record added!');
             } else {
-                return redirect()->route('numerology.selectNumerology')->with('error', 'Payment verification failed!');
+                return redirect()->route('numerology.name_numerology_form')->with('error', 'Payment verification failed!');
             }
         } catch (\Exception $e) {
-            Log::error('Payment verification failed: ' . $e->getMessage());
-            return redirect()->route('numerology.selectNumerology')->with('error', 'Payment verification failed!');
+            Log::error('Payment callback error: ' . $e->getMessage());
+            return redirect()->route('numerology.name_numerology_form')->with('error', 'Payment verification failed!');
         }
     }
 }

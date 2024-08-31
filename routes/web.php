@@ -14,7 +14,9 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\UserListController;
 use App\Http\Controllers\Admin\NumerologyAdminController;
-
+use App\Http\Controllers\StoreBusinessNumerologyController;
+use App\Http\Controllers\StoreNameNumerologyController;
+use App\Http\Controllers\StorePhoneNumerologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,14 +59,14 @@ Route::get('numerology_type', function () {
      return view('selectNumerology');
 })->name('numerology.selectNumerology');
 
-Route::get('name_numerology/create', [NumerologyController::class, 'createNameNumerology'])->name('name_numerology.create');
-Route::post('name_numerology', [NumerologyController::class, 'storeNameNumerology'])->name('name_numerology.store');
+Route::get('name_numerology/create', [StoreNameNumerologyController::class, 'createNameNumerology'])->name('name_numerology.create');
+Route::post('name_numerology', [StoreNameNumerologyController::class, 'storeNameNumerology'])->name('name_numerology.store');
 // Route to display the form
 
-Route::get('business_numerology/create', [NumerologyController::class, 'createBusinessNumerology'])->name('business_numerology.create');
+Route::get('business_numerology/create', [StoreBusinessNumerologyController::class, 'createBusinessNumerology'])->name('business_numerology.create');
 
 // Route to handle form submission
-Route::post('business_numerology', [NumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
+Route::post('business_numerology', [StoreBusinessNumerologyController::class, 'storeBusinessNumerology'])->name('business_numerology.store');
 
 
 Route::get('/simple-numerology', [SimpleNumerologyController::class, 'showForm'])->name('numerology.form');
@@ -83,15 +85,18 @@ Route::get('/business-numerology', [BusinessNumerologyController::class, 'showFo
 Route::post('/business-numerology', [BusinessNumerologyController::class, 'calculate'])->name('business_numerology.result');
 
 //phone_numerology
-Route::get('phone_numerology/create', [NumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
-Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
+Route::get('phone_numerology/create', [StorePhoneNumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
+Route::post('phone_numerology', [StorePhoneNumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
 
 //contact us
-Route::get('/contact-us',[WebPagesController::class, 'index'])->name('webpage.contactUs');
-Route::get('/numero',[WebPagesController::class, 'numero'])->name('webpage.numerology');
+Route::get('/contact-us', [WebPagesController::class, 'index'])->name('webpage.contactUs');
+Route::get('/numero', [WebPagesController::class, 'numero'])->name('webpage.numerology');
 
 //razor-pay 
 Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'])->name('payment.callback');
+Route::post('/business-numerology/callback', [StoreBusinessNumerologyController::class, 'paymentCallback'])->name('business_numerology.payment.callback');
+Route::post('/name-numerology/callback', [StoreNameNumerologyController::class, 'paymentCallback'])->name('name_numerology.payment.callback');
+Route::post('/phone-numerology/callback', [StorePhoneNumerologyController::class, 'paymentCallback'])->name('phone_numerology.payment.callback');
 
 Route::get('/payment', function () {
      return view('payment.payment');
@@ -111,9 +116,8 @@ Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin
 
 //numorology detail
 Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
-Route::get('admin/numerology/list',[NumerologyAdminController::class, 'index'])->name('numerology.list');
+Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
 
 //Admin profile
-Route::get('admin/profile',[AdminProfileController::class, 'index'])->name('admin.profile');
-Route::get('admin/profile/change_password',[AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
-
+Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');

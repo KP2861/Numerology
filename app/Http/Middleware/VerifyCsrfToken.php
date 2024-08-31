@@ -13,5 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'payment-callback',
+        'phone_numerology.payment.callback',
+
     ];
 }
