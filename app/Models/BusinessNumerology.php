@@ -11,6 +11,7 @@ class BusinessNumerology extends Model
     protected $table = 'business_numerology';
     protected $fillable = [
         'numerology_type',
+        'user_id',
         'first_name',
         'last_name',
         'dob',

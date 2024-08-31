@@ -11,6 +11,7 @@ class PhoneNumerology extends Model
     protected $table = 'phone_numerology';
     protected $fillable = [
         'numerology_type',
+        'user_id',
         'phone_number',
         'dob',
         'area_of_concern',
