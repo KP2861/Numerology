@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\NumerologyAdminController;
 use App\Http\Controllers\StoreBusinessNumerologyController;
 use App\Http\Controllers\StoreNameNumerologyController;
 use App\Http\Controllers\StorePhoneNumerologyController;
+use App\Http\Controllers\Admin\NumerologyListAdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -75,10 +77,11 @@ Route::post('/simple-numerology', [SimpleNumerologyController::class, 'calculate
 // Mobile Numerology
 Route::get('/mobile-numerology', [MobileNumerologyController::class, 'showMobileForm'])->name('numerology.mobile_numerology_form');
 Route::post('/mobile-numerology-result', [MobileNumerologyController::class, 'processMobileForm'])->name('numerology.mobile_numerology_result');
-
+Route::post('/download-pdf', [MobileNumerologyController::class, 'downloadPDF'])->name('numerology.mobile_numerology_pdf');
 // Name Numerology 
 Route::get('/name-numerology', [NameNumerologyController::class, 'showForm'])->name('numerology.name_numerology_form');
 Route::post('/name-numerology-result', [NameNumerologyController::class, 'calculateNumerology'])->name('numerology.name_numerology_result');
+Route::post('numerology/download-pdf', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
 
 // Business_Numerology
 Route::get('/business-numerology', [BusinessNumerologyController::class, 'showForm'])->name('business_numerology.form');
@@ -107,6 +110,9 @@ Route::get('/payment', function () {
 //     return view('success'); // Replace with your success view
 // })->name('payment.success');
 
+////////////////////////////////////////////
+/////--------Admin Routes----------/////////
+////////////////////////////////////////////
 
 //Admin Routes
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
@@ -114,10 +120,22 @@ Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name(
 //user detail
 Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin.userList');
 
-//numorology detail
-Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
-Route::get('admin/numerology/list', [NumerologyAdminController::class, 'index'])->name('numerology.list');
-
 //Admin profile
 Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
 Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+
+
+//numorology list
+Route::get('admin/name-numerology/list', [NumerologyListAdminController::class, 'nameNumerologyList'])->name('name_numerology.list');
+Route::get('admin/phone-numerology/list', [NumerologyListAdminController::class, 'phoneNumerologyList'])->name('phone_numerology.list');
+Route::get('admin/bussiness-numerology/list', [NumerologyListAdminController::class, 'businessNumerologyList'])->name('bussiness_numerology.list');
+
+//numerology detail
+Route::get('admin/name-numerology/detail/{id}', [NumerologyListAdminController::class, 'nameNumerologyDetail'])->name('name_numerology.detail');
+Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController::class, 'phoneNumerologyDetail'])->name('phone_numerology.detail');
+Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
+
+
+Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');

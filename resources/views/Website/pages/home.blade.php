@@ -1,8 +1,8 @@
 @extends("Website.layouts.app")
 @section('content')
-  
- <!-- hs Slider Start -->
- <div class="slider-area">
+
+<!-- hs Slider Start -->
+<div class="slider-area">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -319,7 +319,7 @@
 </div>
 
 <!-- hs about ind wrapper Start -->
-<div class="hs_about_indx_main_wrapper white-overlay-section">
+<div id="about" class="hs_about_indx_main_wrapper white-overlay-section">
     <div class="white-overlay"></div>
     <div class="container">
         <div class="row">
@@ -350,13 +350,91 @@
                     <h1>+1800-123-123</h1>
                     <div class="hs_effect_btn hs_about_btn">
                         <ul>
-                            <li><a href="#" class="hs_btn_hover">Read more</a></li>
+                            <li><a href="{{ url('/login') }}" class="hs_btn_hover">Get Your Report</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="hs_about_indx_main_wrapper white-overlay-section">
+    <div class="white-overlay"></div>
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="hs_about_heading_main_wrapper">
+                    <div class="hs_about_heading_wrapper">
+                        <h2><span> Numerology Calculator </span></h2>
+
+                        <h4><span></span></h4>
+                        <p>Prediction for Expression,and Personality Numbers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="hs_about_right_cont_wrapper find-lifepath">
+
+                    <div class="accordion-wrapper">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Enter your birthdate to calculate your birth path number.
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <form action="{{ route('numerology.calculate') }}" method="POST">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="dob">Name:</label>
+                                                                <input type="text" id="dob" name="dob" class="form-control" placeholder="Name" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="gender">Gender:</label>
+                                                                <select id="gender" name="gender" class="form-control" required>
+                                                                    <option value="" disabled selected>Select your gender</option>
+                                                                    <option value="male">Male</option>
+                                                                    <option value="female">Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="dob">Date of Birth (dd-mm-yyyy):</label>
+                                                                <input type="text" id="dob" name="dob" class="form-control" placeholder="21-05-1986" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary mt-4">Calculate</button>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="hs_about_left_img_wrapper">
+                    <img src="{{url('frontend/assests/images/content/calculator-banner-img.png')}}" alt="about_img" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </a>
 </div>
 <!-- hs about ind wrapper End -->
 <!-- hs sign wrapper Start -->
@@ -366,7 +444,7 @@
         <div class="hs_sign_heading_wrapper">
             <div class="hs_about_heading_main_wrapper">
                 <div class="hs_about_heading_wrapper">
-                    <h2>Choose Your <span>Zodiac Sign</span></h2>
+                    <h2>Choose Your <span>Number</span></h2>
                     <h4><span></span></h4>
                     <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
                         auctor, nisi elit consequat hello Aenean world.</p>
@@ -376,7 +454,7 @@
         <div class="hs_sign_center_wrapper visible-xs visible-sm">
             <div class="hs_cycle_main_wrapper">
                 <div class="hs_cycle_img">
-                    <img src="{{url('frontend/assests/images/content/cycle.jpg')}}" alt="circle_img">
+                    <img src="{{url('frontend/assests/images/content/cycle.png')}}" alt="circle_img">
                     <span class="pulse"></span>
                     <div class="hs_tab_shap1">
                         <a href="#">
@@ -530,13 +608,13 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_border_wrapper1">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aries-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-one.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Aries</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -545,13 +623,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper2">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-taurus-astrological-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-two.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Taurus</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Mediator</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -560,13 +638,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper3">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-gemini-zodiac-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-three.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Gemini</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Communicator</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -575,13 +653,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper4">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-cancer"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-four.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Cancer</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Teacher</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -590,13 +668,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper5">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-leo"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-five.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Leo</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Freedom Seeker</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -605,13 +683,13 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_left_tabs_border_wrapper6">
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-virgo-astrological-symbol-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-six.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Virgo</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Nurturer</a></li>
                             </ul>
                         </div>
                         <span></span>
@@ -626,7 +704,7 @@
                         <span></span>
 
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-libra"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -641,7 +719,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper2">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-scorpio"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -656,7 +734,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper3">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-leo"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -672,7 +750,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper4">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-capricorn"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -689,7 +767,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper5">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aquarius-zodiac-sign-symbol"></i>
+                            <img src="{{url('frontend/assests/images/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -706,7 +784,7 @@
                         class="hs_sign_left_tabs_wrapper hs_sign_left_tabs_wrapper_2 hs_sign_right_tabs_border_wrapper6">
                         <span></span>
                         <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-gemini-zodiac-sign-symbol"></i>
+                            <img src="{{url('frontend/assests/ages/content/life-1.svg')}}" alt="" class="img-fluid">
                         </div>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
@@ -722,152 +800,9 @@
         <div class="hs_sign_center_wrapper hidden-sm hidden-xs">
             <div class="hs_cycle_main_wrapper">
                 <div class="hs_cycle_img">
-                    <img src="{{url('frontend/assests/images/content/cycle.jpg')}}" alt="circle_img">
+                    <img src="{{url('frontend/assests/images/content/cycle.png')}}" alt="circle_img">
                     <span class="pulse"></span>
-                    <div class="hs_tab_shap1">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_13" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-taurus-astrological-sign-symbol"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap2">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_14" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-aries-sign"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap3">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_15" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-libra"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap4">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_16" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-scorpio"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap5">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_17" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-sagittarius-arrow-sign"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap6">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_18" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-capricorn"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap7">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_19" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-aquarius-zodiac-sign-symbol"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap8">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_20" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-pisces-astrological-sign"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap9">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_21" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-virgo-astrological-symbol-sign"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap10">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_22" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-leo"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap11">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_23" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-cancer"></i></p>
-                        </a>
-                    </div>
-                    <div class="hs_tab_shap12">
-                        <a href="#">
-                            <svg version="1.1" id="Layer_24" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="68.811px"
-                                height="64.729px" viewBox="0 0 68.811 64.729"
-                                enable-background="new 0 0 68.811 64.729" xml:space="preserve">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0,52.763c0,0,26.125,0.367,42.664,11.967l26.147-46.796
-                        c0,0-30.278-18.234-68.054-17.929L0,52.763z" />
-                            </svg>
-                            <p><i class="flaticon-gemini-zodiac-sign-symbol"></i></p>
-                        </a>
-                    </div>
+
                 </div>
 
             </div>
@@ -879,12 +814,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Libra</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Seeker</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-libra"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-seven.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -894,12 +829,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Scorpio</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn">The Powerhouse</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-scorpio"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-eight.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -909,12 +844,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Sagittarius</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-sagittarius-arrow-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-nine.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -924,12 +859,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Capricorn</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-capricorn"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-eleven.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -939,12 +874,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Aquarius</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-aquarius-zodiac-sign-symbol"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-twenty-two.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -954,12 +889,12 @@
                         <span></span>
                         <div class="hs_slider_tabs_icon_cont_wrapper">
                             <ul>
-                                <li><a href="#" class="hs_tabs_btn">Pisces</a></li>
-                                <li>31 March - 12 October</li>
+                                <li>Life Path:</li>
+                                <li><a href="#" class="hs_tabs_btn"> The Leader</a></li>
                             </ul>
                         </div>
-                        <div class="hs_slider_tabs_icon_wrapper">
-                            <i class="flaticon-pisces-astrological-sign"></i>
+                        <div class="hs_slider_tabs_icon_wrapper ">
+                            <img src="{{url('frontend/assests/images/content/life-thirty-three.svg')}}" alt="" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -981,19 +916,8 @@
                         <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
                             auctor, nisi elit consequat hello Aenean world.</p>
                     </div>
-                </div>
-            </div>
-            <div class="portfolio-area ptb-100">
-                <div class="container">
-                    <div class="portfolio-filter clearfix text-center">
-                        <!-- <ul id="filter">
-                            <li><a class="active" data-group="all">All</a></li>
-                            <li><a data-group="business">Paid Services</a></li>
-                            <li><a data-group="website"> Free Services</a></li>
-                        </ul> -->
-                    </div>
                     <div class="row">
-                        <div id="gridWrapper" class="clearfix">
+                        <div class="clearfix row">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 portfolio-wrapper III_column"
                                 data-groups='[ "all"]'>
                                 <div class="hs_service_main_box_wrapper">
@@ -1174,11 +1098,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/#gridWrapper-->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container -->
             </div>
             <!--/.portfolio-area-->
         </div>

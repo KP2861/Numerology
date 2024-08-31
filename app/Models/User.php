@@ -46,8 +46,6 @@ class User extends Authenticatable
 
     public function numerologies()
     {
-        return $this->hasMany(Numerology::class);
+        return $this->hasMany(Numerology::class, 'user_id', 'id');
     }
-
-    
 }

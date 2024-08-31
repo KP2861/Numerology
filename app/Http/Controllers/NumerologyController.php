@@ -88,11 +88,11 @@ class NumerologyController extends Controller
                 $redirectRoute = $this->determineRedirectRoute($phoneNumerologyData['numerology_type']);
                 return redirect()->route($redirectRoute)->with('success', 'Payment successful and record added!');
             } else {
-                return redirect()->route('numerology.name_numerology_form')->with('error', 'Payment verification failed!');
+                return redirect()->route('numerology.form')->with('error', 'Payment verification failed!');
             }
         } catch (\Exception $e) {
             Log::error('Payment callback error: ' . $e->getMessage());
-            return redirect()->route('numerology.name_numerology_form')->with('error', 'Payment verification failed!');
+            return redirect()->route('numerology.form')->with('error', 'Payment verification failed!');
         }
     }
 }
