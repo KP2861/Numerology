@@ -981,19 +981,8 @@
                         <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
                             auctor, nisi elit consequat hello Aenean world.</p>
                     </div>
-                </div>
-            </div>
-            <div class="portfolio-area ptb-100">
-                <div class="container">
-                    <div class="portfolio-filter clearfix text-center">
-                        <!-- <ul id="filter">
-                            <li><a class="active" data-group="all">All</a></li>
-                            <li><a data-group="business">Paid Services</a></li>
-                            <li><a data-group="website"> Free Services</a></li>
-                        </ul> -->
-                    </div>
                     <div class="row">
-                        <div id="gridWrapper" class="clearfix">
+                        <div class="clearfix row">
                             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 portfolio-wrapper III_column"
                                 data-groups='[ "all"]'>
                                 <div class="hs_service_main_box_wrapper">
@@ -1174,11 +1163,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!--/#gridWrapper-->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container -->
             </div>
             <!--/.portfolio-area-->
         </div>

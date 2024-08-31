@@ -15,18 +15,7 @@
                             title="Logo" /></a>
                 </div>
             </div>
-            <div class="hs_header_logo_right">
-                <div class="hs_btn_wrapper">
-                    <ul>
-                        <li><a href="" class="hs_btn_hover outline-btn">Sign In</a></li>
-                    </ul>
-                </div>
-               
-                <div class="hs_btn_wrapper">
-                    <ul>
-                        <li><a href="#" class="hs_btn_hover">Consultation</a></li>
-                    </ul>
-                </div>
+            <div class="hs_header_logo_right d-flex">
                 <div class="hs_header_add_wrapper hidden-xs hidden-sm">
                     <div class="hs_header_add_icon">
                         <i class="fa fa-home"></i>
@@ -45,6 +34,21 @@
                         <p>+91-123456789</p>
                     </div>
                 </div>
+                <div class="hs_btn_wrapper">
+                    <ul>
+                        <li><a href="#" class="hs_btn_hover">Consultation</a></li>
+                    </ul>
+                </div>
+
+                <div class="hs_btn_wrapper">
+                    <ul>
+                        <li><a href="#" class="hs_btn_hover outline-btn">Sign In</a></li>
+                    </ul>
+                </div>
+
+
+
+
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
 
