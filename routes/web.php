@@ -88,6 +88,8 @@ Route::post('phone_numerology', [NumerologyController::class, 'storePhoneNumerol
 
 //contact us
 Route::get('/contact-us',[WebPagesController::class, 'index'])->name('webpage.contactUs');
+Route::get('/numero',[WebPagesController::class, 'numero'])->name('webpage.numerology');
+
 //razor-pay 
 Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'])->name('payment.callback');
 
