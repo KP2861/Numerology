@@ -17,11 +17,12 @@ class StoreNameNumerologyController extends Controller
 
     public function storeNameNumerology(Request $request)
     {
+       
         $validated = $request->validate([
             'first_name' => 'required|string|max:10',
             'last_name' => 'required|string|max:10',
             'dob' => 'required|date',
-            'gender' => 'required|string|in:Male,Female',
+            'gender' => 'required|string',
         ]);
 
         // Add 'numerology_type' with a default value of 1

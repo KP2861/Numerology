@@ -28,8 +28,8 @@
 
                     <li data-tab-target="#about" class="tab"
                         onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/advance-numerology.png') }}'">
-                        phone
-                        numerology</li>
+                        Phone
+                        Numerology</li>
                     <li data-tab-target="#pricing" class="tab"
                         onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/number-numerology.png') }}'">
                         Advance
@@ -37,7 +37,7 @@
                     <li data-tab-target="#news" class="tab"
                         onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/business-numerology.png') }}'">
                         Business
-                        numerology</li>
+                        Numerology</li>
                 </ul>
             </div>
             <div class="col-4">
