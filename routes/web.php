@@ -112,4 +112,3 @@ Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController:
 Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
 
 
-Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');

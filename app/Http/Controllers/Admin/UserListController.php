@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -8,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use Exception;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class UserListController extends Controller
 {

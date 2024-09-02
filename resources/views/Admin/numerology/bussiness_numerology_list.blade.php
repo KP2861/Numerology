@@ -1,7 +1,7 @@
 @extends('Admin.layouts.app')
 
 @section('content')
-<h1>Bussiness Numerology List</h1>
+<h1 class="mb-4">Bussiness Numerology List</h1>
 <table id="myTable" class="table table-bordered table-striped">
     <thead>
         <tr>
