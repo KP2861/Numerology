@@ -20,3 +20,4 @@ yarn-error.log
 app/Http/Controllers/NumerologyController copy.php
 /resources/views/payment/payment.blade copy.php
 /resources/views/payment/paymentxxx.blade copy 2.php
+/resources/views/payment/paymenttest.blade.php

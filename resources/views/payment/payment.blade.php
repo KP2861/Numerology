@@ -138,8 +138,8 @@
                          form.submit();
                     },
                     "prefill": {
-                         "name": "{{ Auth::user()->name }}",
-                         "email": "{{ Auth::user()->email }}",
+                         "name": "text",
+                         "email": "example@example.com",
                     }
                };
 

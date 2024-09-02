@@ -51,7 +51,7 @@ class StoreBusinessNumerologyController extends Controller
             ]);
 
             // Return the payment view with order details
-            return view('payment.payment', [
+            return view('payment.notworking', [
                 'order' => $order,
                 'paymentPurpose' => 'Business Numerology Record',
                 'numerology_data' => $validated,

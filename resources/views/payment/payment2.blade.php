@@ -64,8 +64,8 @@
 
                          },
                          "prefill": {
-                              "name": "{{ Auth::user()->name }}",
-                              "email": "{{ Auth::user()->email }}",
+                              "name": "test",
+                              "email": "example@example.com",
                          }
                     };
 

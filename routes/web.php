@@ -90,7 +90,8 @@ Route::post('/business-numerology', [BusinessNumerologyController::class, 'calcu
 //phone_numerology
 Route::get('phone_numerology/create', [StorePhoneNumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [StorePhoneNumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
-
+//AdvanceNumerology
+Route::post('Advance_numerology', [StorePhoneNumerologyController::class, 'storeAdvanceNumerology'])->name('advance_numerology.store');
 //contact us
 Route::get('/contact-us', [WebPagesController::class, 'index'])->name('webpage.contactUs');
 Route::get('/numero', [WebPagesController::class, 'numero'])->name('webpage.numerology');
@@ -101,6 +102,10 @@ Route::post('/business-numerology/callback', [StoreBusinessNumerologyController:
 Route::post('/name-numerology/callback', [StoreNameNumerologyController::class, 'paymentCallback'])->name('name_numerology.payment.callback');
 Route::post('/phone-numerology/callback', [StorePhoneNumerologyController::class, 'paymentCallback'])->name('phone_numerology.payment.callback');
 
+//payment page
+Route::get('/payment-error', function () {
+     return view('payment.notworking');
+})->name('payment.error');
 Route::get('/payment', function () {
      return view('payment.payment');
 })->name('payment.get');
