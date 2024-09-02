@@ -12,7 +12,7 @@
         <h1 class="text-center">Numerology Calculator</h1>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="{{ route('numerology.mobile_numerology_result') }}" method="POST">
+                <form id="redirectForm"  action="{{ route('numerology.mobile_numerology_result') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="mobile_number">Enter Mobile Number:</label>
@@ -23,6 +23,10 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        document.getElementById('redirectForm').submit();
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

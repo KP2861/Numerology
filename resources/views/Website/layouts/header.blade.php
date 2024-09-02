@@ -92,12 +92,12 @@
                             <li>
                                 <div class="dropdown-wrapper menu-button">
                                     <a class="menu-button" href="{{ url('/numrology') }}">Numerology</a>
-                                    <div class="drop-menu hs_mega_menu">
+                                    {{-- <div class="drop-menu hs_mega_menu">
                                         <a class="menu-button" href="#">Name Numerology</a>
                                         <a class="menu-button" href="#">Phone Number Numerology</a>
                                         <a class="menu-button" href="#">Advanced Numerology</a>
                                         <a class="menu-button" href="#">Business Numerology</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </li>
                             <li>
