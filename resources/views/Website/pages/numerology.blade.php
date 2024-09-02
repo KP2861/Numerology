@@ -22,26 +22,29 @@
                 <div class="col-12">
                     <ul class="tabs">
                         <li data-tab-target="#home" class="active tab"
-                            onclick="document.getElementById('name').src='./images/content/numerology/name-numerology.png'">
+                            onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/name-numerology.png') }}'">
                             Name
                             Numerology</li>
                         <li data-tab-target="#pricing" class="tab"
-                            onclick="document.getElementById('name').src='./images/content/numerology/advance-numerology.png'">
+                            onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/advance-numerology.png') }}'">
                             Advance
                             Numerology</li>
+
                         <li data-tab-target="#about" class="tab"
-                            onclick="document.getElementById('name').src='./images/content/numerology/number-numerology.png'">
-                            phone
-                            numerology</li>
+                            onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/number-numerology.png') }}'">
+                            phone numerology
+                        </li>
+                        
                         <li data-tab-target="#news" class="tab"
-                            onclick="document.getElementById('name').src='./images/content/numerology/business-numerology.png'">
+                            onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/business-numerology.png') }}'">
                             Business
                             numerology</li>
+                            
                     </ul>
                 </div>
                 <div class="col-4">
                     <div class="numerology-img">
-                        <img id="name" src="./images/content/numerology/name-numerology.png" class="img-fluid">
+                        <img id="name" src="{{url('frontend/assests/images/content/numerology/name-numerology.png')}}" class="img-fluid">
                     </div>
 
                 </div>
