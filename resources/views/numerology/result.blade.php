@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,30 +13,37 @@
             background-color: #e9ecef;
             color: #495057;
         }
+
         .card-header {
             background-color: #28a745;
             color: white;
         }
+
         .list-group-item {
             background-color: #fff;
             border: none;
         }
+
         .btn-secondary {
             background-color: #6c757d;
             border-color: #6c757d;
         }
+
         .btn-secondary:hover {
             background-color: #5a6268;
             border-color: #545b62;
         }
+
         .container {
             margin-top: 50px;
         }
+
         .card-title {
             font-size: 1.5rem;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -53,11 +61,11 @@
                         <h2 class="mt-4">Loshu Grid Digit Count</h2>
                         <ul class="list-group">
                             @foreach($loshuGrid as $digit => $count)
-                                <li class="list-group-item">Digit {{ $digit }}: {{ $count }} times</li>
+                            <li class="list-group-item">Digit {{ $digit }}: {{ $count }} times</li>
                             @endforeach
                         </ul>
 
-                        <a href="{{ route('numerology.form') }}" class="btn btn-secondary mt-4">Calculate Again</a>
+                        <!-- <a href="{{ route('numerology.form') }}" class="btn btn-secondary mt-4">Calculate Again</a> -->
                     </div>
                 </div>
             </div>
@@ -69,4 +77,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -12,10 +12,28 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!--srart theme style -->
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/animate.css')}}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/bootstrap.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/font-awesome.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/fonts.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/flaticon.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/sign_flaticon.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.carousel.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.theme.default') }}.css" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/magnific-popup.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/reset.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/numerology.css') }}" />
+  <link rel="stylesheet" href="{{ url('frontend/scss/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+
+  <!-- favicon links -->
+  <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
 
 
 
