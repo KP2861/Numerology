@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 full_width">
                 <div class="hs_indx_title_left_wrapper">
-                    <h2>Contact Us</h2>
+                    <h2> Consultant </h2>
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                 <ul>
                     <li>
                         <input type="hidden" name="form_type" value="contact">
-                        <button type="button" class="hs_btn_hover submitForm">Contact Us</button>
+                        <button type="button" class="hs_btn_hover submitForm"> Submit</button>
                     </li>
                 </ul>
             </div>
