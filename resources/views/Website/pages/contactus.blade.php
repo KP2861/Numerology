@@ -50,13 +50,19 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="hs_kd_six_sec_input_wrapper">
                         <label>DOB</label>
-                        <input type="text" class="require" name="first_name">
+                        <input type="date" class="require" name="first_name">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="hs_kd_six_sec_input_wrapper">
                         <label>Occupation</label>
-                        <input type="text" class="require" name="first_name">
+                        <!-- <input type="text" class="require" name="first_name"> -->
+                        <select name="cars" id="cars" class="dotted-select">
+                            <option value="volvo">Business</option>
+                            <option value="saab">Private job</option>
+                            <option value="sfaab">Govt job</option>
+                        
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
