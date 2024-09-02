@@ -33,7 +33,10 @@
                                             <div class="hs_slider_right_tabs_wrapper"
                                                 data-animation="animated bounceInLeft hs_slider_tab_one">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-horse-head"></i>
+                                                    <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -47,7 +50,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_tow">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-home"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/vastu-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/vastu-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -60,7 +66,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_three">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-avatar"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -73,7 +82,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_four">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-shapes"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -86,7 +98,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_fifth">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-coins"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -130,7 +145,10 @@
                                             <div class="hs_slider_right_tabs_wrapper"
                                                 data-animation="animated bounceInLeft hs_slider_tab_one">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-horse-head"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -144,7 +162,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_tow">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-home"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/vastu-dark-icon')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/vastu-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -157,7 +178,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_three">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-avatar"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -170,7 +194,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_four">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-shapes"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -183,7 +210,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_fifth">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-coins"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -227,7 +257,10 @@
                                             <div class="hs_slider_right_tabs_wrapper"
                                                 data-animation="animated bounceInLeft hs_slider_tab_one">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-horse-head"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -241,7 +274,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_tow">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-home"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/vastu-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/vastu-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -254,7 +290,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_three">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-avatar"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -267,7 +306,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInRight hs_slider_tab_four">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-shapes"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
@@ -280,7 +322,10 @@
                                             <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
                                                 data-animation="animated bounceInLeft hs_slider_tab_fifth">
                                                 <div class="hs_slider_tabs_icon_wrapper">
-                                                    <i class="flaticon-coins"></i>
+                                                <img
+                                                        src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                        src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
                                                 </div>
                                                 <div class="hs_slider_tabs_icon_cont_wrapper">
                                                     <ul>
