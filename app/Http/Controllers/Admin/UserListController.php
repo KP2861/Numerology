@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -13,13 +14,13 @@ class UserListController extends Controller
     public function index(Request $request)
     {
         try {
-            $users = User::with('numerologies') 
-                ->select('id', 'name', 'email', 'created_at')
+            // Fetch users without numerology data
+            $users = User::select('id', 'name', 'email', 'created_at')
                 ->paginate(10);
 
+            // Transform the data to format the created_at field
             $users->getCollection()->transform(function ($user) {
                 $user->created_at = Carbon::parse($user->created_at);
-                $user->numerology_names = $user->numerologies->pluck('name')->implode(', ');
                 return $user;
             });
 

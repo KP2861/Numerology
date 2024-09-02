@@ -4,24 +4,27 @@
 <div class="container">
     <h1>Name Numerology Detail</h1>
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Details for ID: {{ $nameNumerology['id'] }}</h2>
+    @if ($details)
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Numerology Details</h5>
+                <p><strong>Numerology Type:</strong> {{ $details->numerology_type }}</p>
+                <p><strong>First Name:</strong> {{ $details->first_name }}</p>
+                <p><strong>Last Name:</strong> {{ $details->last_name }}</p>
+                <p><strong>Date of Birth:</strong> {{ $details->dob }}</p>
+                <p><strong>Gender:</strong> {{ $details->gender }}</p>
+            </div>
         </div>
-        <div class="card-body">
-            <ul>
-                <li><strong>Numerology Name:</strong> {{ $nameNumerology['numerology_name'] }}</li>
-                <li><strong>First Name:</strong> {{ $nameNumerology['first_name'] }}</li>
-                <li><strong>Last Name:</strong> {{ $nameNumerology['last_name'] }}</li>
-                <li><strong>Date of Birth:</strong> {{ $nameNumerology['dob'] }}</li>
-                <li><strong>Gender:</strong> {{ $nameNumerology['gender'] }}</li>
-                <li><strong>User Name:</strong> {{ $nameNumerology['user_name'] }}</li>
-                <li><strong>User Email:</strong> {{ $nameNumerology['user_email'] }}</li>
-            </ul>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">User Information</h5>
+                <p><strong>Name:</strong> {{ $details->user_name }}</p>
+                <p><strong>Email:</strong> {{ $details->user_email }}</p>
+            </div>
         </div>
-        <div class="card-footer">
-            <a href="{{ route('name_numerology.list') }}" class="btn btn-primary">Back to List</a>
-        </div>
-    </div>
+    @else
+        <p>No details found.</p>
+    @endif
 </div>
 @endsection

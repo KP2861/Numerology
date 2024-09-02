@@ -8,288 +8,297 @@ use App\Models\PhoneNumerology;
 use App\Models\BusinessNumerology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\DB;
 use Exception;
+use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class NumerologyListAdminController extends Controller
 {
+    //name numerology list
     public function nameNumerologyList(Request $request)
     {
+        if ($request->ajax()) {
+            $query = DB::table('name_numerology')
+                ->leftJoin('users', 'name_numerology.user_id', '=', 'users.id')
+                ->select(
+                    'name_numerology.first_name',
+                    'name_numerology.last_name',
+                    'name_numerology.dob',
+                    'name_numerology.gender',
+                    'users.name as user_name',
+                    'users.email as user_email',
+                    'name_numerology.id' // Keep this for the action column
+                );
+    
+            return FacadesDataTables::of($query)
+                ->addIndexColumn() // Add index column for row numbers
+                ->addColumn('action', function ($row) {
+                    $encryptedId = Crypt::encryptString($row->id);
+                    return '<a href="'. url('admin/name-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                })
+                ->filterColumn('user_name', function($query, $keyword) {
+                    $query->where('users.name', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('user_email', function($query, $keyword) {
+                    $query->where('users.email', 'like', "%{$keyword}%");
+                })
+                ->make(true);
+        }
+    
         try {
-            // Fetch all name numerologies and count them
-            $nameNumerologies = NameNumerology::with(['numerology.user'])
-                ->get()
-                ->map(function ($nameNumerology) {
-                    $numerology = $nameNumerology->numerology;
-                    $user = $numerology ? $numerology->user : null;
-                    return [
-                        'id' => $numerology ? $numerology->id : 'N/A',
-                        'numerology_name' => $numerology ? $numerology->name : 'N/A',
-                        'first_name' => $nameNumerology->first_name,
-                        'last_name' => $nameNumerology->last_name,
-                        'dob' => $nameNumerology->dob,
-                        'gender' => $nameNumerology->gender,
-                        'user_name' => $user ? $user->name : 'N/A',
-                        'user_email' => $user ? $user->email : 'N/A'
-                    ];
-                });
-
-            // Count the number of name numerologies
+            // Fetch data for the view (not used in DataTables AJAX)
+            $nameNumerologies = DB::table('name_numerology')
+                ->leftJoin('users', 'name_numerology.user_id', '=', 'users.id')
+                ->select(
+                    'name_numerology.first_name',
+                    'name_numerology.last_name',
+                    'name_numerology.dob',
+                    'name_numerology.gender',
+                    'users.name as user_name',
+                    'users.email as user_email'
+                )
+                ->get();
+            
             $nameNumerologyCount = $nameNumerologies->count();
-
-            Log::info('Fetched Name Numerologies:', $nameNumerologies->toArray());
-            Log::info('Name Numerology Count: ' . $nameNumerologyCount);
-
-            // Pass the count along with the data to the view
             return view('Admin.numerology.list', [
                 'nameNumerologies' => $nameNumerologies,
                 'nameNumerologyCount' => $nameNumerologyCount
             ]);
+            
+        } catch (QueryException $e) {
+            return response()->view('errors.general', [], 500);
         } catch (Exception $e) {
-            Log::error('Error fetching name numerologies: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while fetching the name numerologies.');
+            return response()->view('errors.general', [], 500);
         }
     }
-
-
+    //end
+    
     public function phoneNumerologyList(Request $request)
     {
+        if ($request->ajax()) {
+            $query = DB::table('phone_numerology')
+                ->leftJoin('users', 'phone_numerology.user_id', '=', 'users.id')
+                ->select(
+                    'phone_numerology.phone_number',
+                    'phone_numerology.dob',
+                    'phone_numerology.area_of_concern',
+                    'users.name as user_name',
+                    'users.email as user_email',
+                    'phone_numerology.id'
+                );
+    
+            return FacadesDataTables::of($query)
+                ->addIndexColumn() // Add index column for row numbers
+                ->addColumn('action', function ($row) {
+                    $encryptedId = Crypt::encrypt($row->id);
+                    return '<a href="'. url('admin/phone-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                })
+                ->filterColumn('user_name', function($query, $keyword) {
+                    $query->where('users.name', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('user_email', function($query, $keyword) {
+                    $query->where('users.email', 'like', "%{$keyword}%");
+                })
+                ->make(true);
+        }
+    
         try {
-            // Fetch phone numerologies with related numerology and user data
-            $phoneNumerologies = PhoneNumerology::with(['numerology.user']) // Eager load the numerology and user
-                ->get()
-                ->map(function ($phoneNumerology) {
-                    $numerology = $phoneNumerology->numerology;
-                    $user = $numerology ? $numerology->user : null;
-
-                    return [
-                        'id' => $numerology ? $numerology->id : 'N/A',
-                        'numerology_type' => $numerology ? $numerology->name : 'N/A',
-                        'phone_number' => $phoneNumerology->phone_number,
-                        'dob' => $phoneNumerology->dob,
-                        'area_of_concern' => $phoneNumerology->area_of_concern,
-                        'user_name' => $user ? $user->name : 'N/A',
-                        'user_email' => $user ? $user->email : 'N/A',
-                    ];
-                });
-
-            Log::info('Fetched Phone Numerologies:', $phoneNumerologies->toArray());
-
-            return view('Admin.numerology.phone_numerology_list', ['phoneNumerologies' => $phoneNumerologies]);
+            // Fetch data for the view (not used in DataTables AJAX)
+            $phoneNumerologies = DB::table('phone_numerology')
+            ->leftJoin('users', 'phone_numerology.user_id', '=', 'users.id')
+            ->select(
+                   'phone_numerology.phone_number',
+                    'phone_numerology.dob',
+                    'phone_numerology.area_of_concern',
+                    'users.name as user_name',
+                    'users.email as user_email',
+                    'phone_numerology.id'
+                )
+                ->get();
+            
+            $phoneNumerologyCount = $phoneNumerologies->count();
+            return view('Admin.numerology.phone_numerology_list', [
+                'nameNumerologies' => $phoneNumerologies,
+                'nameNumerologyCount' => $phoneNumerologyCount
+            ]);
+            
+        } catch (QueryException $e) {
+            return response()->view('errors.general', [], 500);
         } catch (Exception $e) {
-            Log::error('Error fetching phone numerologies: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while fetching the phone numerologies.');
+            return response()->view('errors.general', [], 500);
         }
     }
-
+ 
 
     public function businessNumerologyList(Request $request)
     {
+        if ($request->ajax()) {
+            $query = DB::table('business_numerology')
+                ->leftJoin('users', 'business_numerology.user_id', '=', 'users.id')
+                ->select(
+                    'business_numerology.first_name',
+                    'business_numerology.last_name',
+                    'business_numerology.dob',
+                    'business_numerology.phone_number',
+                    'business_numerology.type_of_business',
+                    'users.name as user_name',
+                    'users.email as user_email',
+                    'business_numerology.id'
+                );
+    
+            return FacadesDataTables::of($query)
+                ->addIndexColumn() // Add index column for row numbers
+                ->addColumn('action', function ($row) {
+                    $encryptedId = Crypt::encrypt($row->id);
+                    return '<a href="'. url('admin/phone-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                })
+                ->filterColumn('user_name', function($query, $keyword) {
+                    $query->where('users.name', 'like', "%{$keyword}%");
+                })
+                ->filterColumn('user_email', function($query, $keyword) {
+                    $query->where('users.email', 'like', "%{$keyword}%");
+                })
+                ->make(true);
+        }
+    
         try {
-            // Fetch business numerologies with related numerology and user data
-            $businessNumerologies = BusinessNumerology::with(['numerology.user']) // Eager load the numerology and user
-                ->get()
-                ->map(function ($businessNumerology) {
-                    $numerology = $businessNumerology->numerology;
-                    $user = $numerology ? $numerology->user : null;
-
-                    return [
-                        'id' => $numerology ? $numerology->id : 'N/A',
-                        'numerology_type' => $numerology ? $numerology->name : 'N/A', // Adjust if 'name' is the correct field for the type
-                        'first_name' => $businessNumerology->first_name,
-                        'last_name' => $businessNumerology->last_name,
-                        'dob' => $businessNumerology->dob,
-                        'phone_number' => $businessNumerology->phone_number,
-                        'type_of_business' => $businessNumerology->type_of_business,
-                        'user_name' => $user ? $user->name : 'N/A',
-                        'user_email' => $user ? $user->email : 'N/A',
-                    ];
-                });
-
-            Log::info('Fetched Business Numerologies:', $businessNumerologies->toArray());
-
-            return view('Admin.numerology.bussiness_numerology_list', ['businessNumerologies' => $businessNumerologies]);
+            // Fetch data for the view (not used in DataTables AJAX)
+            $bussinessNumerologyList =  DB::table('business_numerology')
+            ->leftJoin('users', 'business_numerology.user_id', '=', 'users.id')
+            ->select(
+                'business_numerology.first_name',
+                'business_numerology.last_name',
+                'business_numerology.dob',
+                'business_numerology.phone_number',
+                'business_numerology.type_of_business',
+                'users.name as user_name',
+                'users.email as user_email',
+                'business_numerology.id'
+                )
+                ->get();
+            
+            $bussinessNumerologyCount = $bussinessNumerologyList->count();
+            return view('Admin.numerology.bussiness_numerology_list', [
+                'nameNumerologies' => $bussinessNumerologyList,
+                'nameNumerologyCount' => $bussinessNumerologyCount
+            ]);
+            
+        } catch (QueryException $e) {
+            return response()->view('errors.general', [], 500);
         } catch (Exception $e) {
-            Log::error('Error fetching business numerologies: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while fetching the business numerologies.');
+            return response()->view('errors.general', [], 500);
         }
     }
+ 
+    // bussiness numerology list
+    // public function businessNumerologyList()
+    // {
+    //     try {
+    //         // Fetch business numerologies with user details
+    //         $businessNumerologies = DB::table('business_numerology')
+    //             ->leftJoin('users', 'business_numerology.user_id', '=', 'users.id')
+    //             ->select(
+    //                 'business_numerology.id', // Select the id for encryption
+    //                 'business_numerology.first_name',
+    //                 'business_numerology.last_name',
+    //                 'business_numerology.dob',
+    //                 'business_numerology.phone_number',
+    //                 'business_numerology.type_of_business',
+    //                 'users.name as user_name',
+    //                 'users.email as user_email'
+    //             )
+    //             ->get();
 
+    //         return view('Admin.numerology.bussiness_numerology_list', compact('businessNumerologies'));
+    //     } catch (QueryException $e) {
+    //         Log::error('Database query error in businessNumerologyList: ' . $e->getMessage());
 
+    //         return response()->view('errors.general', ['error' => 'A database error occurred.'], 500);
+    //     } catch (Exception $e) {
+    //         Log::error('General error in businessNumerologyList: ' . $e->getMessage());
 
-    public function downloadPdf(Request $request, $type)
+    //         return response()->view('errors.general', ['error' => 'An unexpected error occurred.'], 500);
+    //     }
+    // }
+    //end
+
+    public function nameNumerologyDetail($encryptedId)
     {
-        try {
-            $pdf = null;
-            $viewData = [];
+        // Decrypt the ID
+        $id = Crypt::decryptString($encryptedId);
 
-            switch ($type) {
-                case 'name':
-                    $numerologies = NameNumerology::with(['numerology.user'])
-                        ->get()
-                        ->map(function ($nameNumerology) {
-                            $numerology = $nameNumerology->numerology;
-                            $user = $numerology ? $numerology->user : null;
-                            return [
-                                'numerology_name' => $numerology ? $numerology->name : 'N/A',
-                                'first_name' => $nameNumerology->first_name,
-                                'last_name' => $nameNumerology->last_name,
-                                'dob' => $nameNumerology->dob,
-                                'gender' => $nameNumerology->gender,
-                                'user_name' => $user ? $user->name : 'N/A',
-                                'user_email' => $user ? $user->email : 'N/A'
-                            ];
-                        });
-                    $viewData['nameNumerologies'] = $numerologies;
-                    $pdf = PDF::loadView('Admin.numerology.pdf', $viewData);
-                    break;
+        // Fetch the name numerology record with user details using a left join
+        $details = NameNumerology::leftJoin('users', 'name_numerology.user_id', '=', 'users.id')
+            ->where('name_numerology.id', $id)
+            ->select(
+                'name_numerology.*',
+                'users.name as user_name',
+                'users.email as user_email'
+            )
+            ->first();
 
-                case 'phone':
-                    $numerologies = PhoneNumerology::all()
-                        ->map(function ($phoneNumerology) {
-                            return [
-                                'numerology_type' => $phoneNumerology->numerology_type,
-                                'phone_number' => $phoneNumerology->phone_number,
-                                'dob' => $phoneNumerology->dob,
-                                'area_of_concern' => $phoneNumerology->area_of_concern
-                            ];
-                        });
-                    $viewData['phoneNumerologies'] = $numerologies;
-                    $pdf = PDF::loadView('Admin.numerology.phone_pdf', $viewData);
-                    break;
-
-                case 'business':
-                    $numerologies = BusinessNumerology::all()
-                        ->map(function ($businessNumerology) {
-                            return [
-                                'numerology_type' => $businessNumerology->numerology_type,
-                                'first_name' => $businessNumerology->first_name,
-                                'last_name' => $businessNumerology->last_name,
-                                'dob' => $businessNumerology->dob,
-                                'phone_number' => $businessNumerology->phone_number,
-                                'type_of_business' => $businessNumerology->type_of_business
-                            ];
-                        });
-                    $viewData['businessNumerologies'] = $numerologies;
-                    $pdf = PDF::loadView('Admin.numerology.business_pdf', $viewData);
-                    break;
-
-                default:
-                    return redirect()->route('error.page')->with('error', 'Invalid type for PDF generation.');
-            }
-
-            return $pdf->download($type . '_numerologies_report.pdf');
-        } catch (Exception $e) {
-            Log::error('Error generating PDF: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while generating the PDF.');
+        // Handle case where no record is found
+        if (!$details) {
+            abort(404, 'Name numerology detail not found.');
         }
+
+        return view('Admin.numerology.name_numerology_detail', ['details' => $details]);
     }
 
-    public function nameNumerologyDetail($id)
-    {
-        try {
-            // Decrypt the ID if it is encrypted
-            $decryptedId = Crypt::decryptString($id);
-
-            // Fetch the specific NameNumerology entry by the decrypted ID
-            $nameNumerology = NameNumerology::with(['numerology.user'])
-                ->findOrFail($decryptedId);
-
-            // Get the related numerology and user data
-            $numerology = $nameNumerology->numerology;
-            $user = $numerology ? $numerology->user : null;
-
-            // Prepare the data for the view
-            $data = [
-                'id' => $numerology ? $numerology->id : 'N/A',
-                'numerology_name' => $numerology ? $numerology->name : 'N/A',
-                'first_name' => $nameNumerology->first_name,
-                'last_name' => $nameNumerology->last_name,
-                'dob' => $nameNumerology->dob,
-                'gender' => $nameNumerology->gender,
-                'user_name' => $user ? $user->name : 'N/A',
-                'user_email' => $user ? $user->email : 'N/A' // Decrypt email
-            ];
-
-            Log::info('Fetched Name Numerology Detail:', $data);
-
-            return view('Admin.numerology.name_numerology_detail', ['nameNumerology' => $data]);
-        } catch (Exception $e) {
-            Log::error('Error fetching name numerology detail: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while fetching the name numerology detail.');
-        }
-    }
 
     public function phoneNumerologyDetail($id)
     {
-        try {
-            // Decrypt the ID if it is encrypted
-            $decryptedId = Crypt::decryptString($id);
+        // Decrypt the ID
+        $decryptedId = Crypt::decrypt($id);
 
-            // Fetch the specific PhoneNumerology entry by the decrypted ID
-            $phoneNumerology = PhoneNumerology::with(['numerology.user'])
-                ->findOrFail($decryptedId);
+        // Fetch phone numerology details with user information using a left join
+        $phoneNumerologyDetail = PhoneNumerology::select('phone_numerology.*', 'users.name', 'users.email')
+            ->leftJoin('users', 'phone_numerology.user_id', '=', 'users.id')
+            ->where('phone_numerology.id', $decryptedId)
+            ->first();
 
-            // Get the related numerology and user data
-            $numerology = $phoneNumerology->numerology;
-            $user = $numerology ? $numerology->user : null;
-
-            // Prepare the data for the view
-            $data = [
-                'numerology_type' => $numerology ? $numerology->name : 'N/A',
-                'phone_number' => $phoneNumerology->phone_number,
-                'dob' => $phoneNumerology->dob,
-                'area_of_concern' => $phoneNumerology->area_of_concern,
-                'user_name' => $user ? $user->name : 'N/A',
-                'user_email' => $user ? $user->email : 'N/A'
-            ];
-
-            Log::info('Fetched Phone Numerology Detail:', $data);
-
-            return view('Admin.numerology.phone_numerology_detail', ['phoneNumerology' => $data]);
-            } catch (Exception $e) {
-            Log::error('Error fetching phone numerology detail: ' . $e->getMessage());
-            return redirect()->route('error.page')->with('error', 'An error occurred while fetching the phone numerology detail.');
+        // Check if the record exists
+        if (!$phoneNumerologyDetail) {
+            return response()->view('errors.404', [], 404);
         }
-        
+
+        // Return the view with the data
+        return view('Admin.numerology.phone_numerology_detail', ['phoneNumerologyDetail' => $phoneNumerologyDetail]);
     }
 
     public function busssinessNumerologyDetail($id)
-{
-    try {
-        // Decrypt the ID if it is encrypted
-        $decryptedId = Crypt::decryptString($id);
+    {
+        try {
+            // Decrypt the ID
+            $decryptedId = Crypt::decrypt($id);
 
-        // Fetch the specific BusinessNumerology entry by the decrypted ID
-        $businessNumerology = BusinessNumerology::with(['numerology.user'])
-            ->findOrFail($decryptedId);
+            // Fetch Business Numerology details and join with Users table
+            $numerologyDetail = DB::table('business_numerology')
+                ->leftJoin('users', 'business_numerology.user_id', '=', 'users.id')
+                ->select(
+                    'business_numerology.*',
+                    'users.name as user_name',
+                    'users.email as user_email'
+                )
+                ->where('business_numerology.id', $decryptedId)
+                ->first();
 
-        // Get the related numerology and user data
-        $numerology = $businessNumerology->numerology;
-        $user = $numerology ? $numerology->user : null;
+            if (!$numerologyDetail) {
+                return view('Admin.numerology.bussiness_numerology_detail', [
+                    'error' => 'Business Numerology record not found.'
+                ]);
+            }
 
-        // Prepare the data for the view
-        $data = [
-            'id' => $numerology ? $numerology->id : 'N/A',
-            'numerology_name' => $numerology ? $numerology->name : 'N/A',
-            'first_name' => $businessNumerology->first_name,
-            'last_name' => $businessNumerology->last_name,
-            'dob' => $businessNumerology->dob,
-            'phone_number' => $businessNumerology->phone_number,
-            'type_of_business' => $businessNumerology->type_of_business,
-            'user_name' => $user ? $user->name : 'N/A',
-            'user_email' => $user ? $user->email : 'N/A'
-        ];
-
-        Log::info('Fetched Business Numerology Detail:', $data);
-
-        return view('Admin.numerology.business_numerology_detail', ['businessNumerology' => $data]);
-    } catch (Exception $e) {
-        Log::error('Error fetching business numerology detail: ' . $e->getMessage());
-        return redirect()->route('error.page')->with('error', 'An error occurred while fetching the business numerology detail.');
+            // Return the view with the data
+            return view('Admin.numerology.bussiness_numerology_detail', [
+                'numerologyDetail' => $numerologyDetail
+            ]);
+        } catch (\Exception $e) {
+            return view('Admin.numerology.phone_numerology_detail', [
+                'error' => 'Invalid ID or decryption error.'
+            ]);
+        }
     }
-}
-
 }

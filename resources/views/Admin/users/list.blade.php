@@ -10,7 +10,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Created At</th>
-            <th>Numerologies</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +19,6 @@
                 <td>{{ $user->name ?? '-' }}</td>
                 <td>{{ $user->email ?? '-' }}</td>
                 <td>{{ $user->created_at ? $user->created_at->format('Y-m-d H:i:s') : '-' }}</td>
-                <td>{{ $user->numerology_names ?? '-' }}</td>
             </tr>
         @empty
             <tr>

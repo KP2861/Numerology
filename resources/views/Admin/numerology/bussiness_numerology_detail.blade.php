@@ -1,29 +1,33 @@
-{{-- resources/views/Admin/numerology/business_numerology_detail.blade.php --}}
 @extends('Admin.layouts.app')
 
 @section('content')
 <div class="container">
     <h1>Business Numerology Detail</h1>
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Details for ID: {{ $businessNumerology['id'] }}</h2>
+    @if($numerologyDetail)
+        <div class="card">
+            <div class="card-header">
+                Business Numerology Details
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Numerology Type: {{ $numerologyDetail->numerology_type }}</h5>
+                <p class="card-text">
+                    <strong>First Name:</strong> {{ $numerologyDetail->first_name }}<br>
+                    <strong>Last Name:</strong> {{ $numerologyDetail->last_name }}<br>
+                    <strong>Date of Birth:</strong> {{ $numerologyDetail->dob }}<br>
+                    <strong>Phone Number:</strong> {{ $numerologyDetail->phone_number }}<br>
+                    <strong>Type of Business:</strong> {{ $numerologyDetail->type_of_business }}<br>
+                </p>
+                <hr>
+                <h5 class="card-title">User Details</h5>
+                <p class="card-text">
+                    <strong>Name:</strong> {{ $numerologyDetail->user_name }}<br>
+                    <strong>Email:</strong> {{ $numerologyDetail->user_email }}<br>
+                </p>
+            </div>
         </div>
-        <div class="card-body">
-            <ul>
-                <li><strong>Numerology Name:</strong> {{ $businessNumerology['numerology_name'] }}</li>
-                <li><strong>First Name:</strong> {{ $businessNumerology['first_name'] }}</li>
-                <li><strong>Last Name:</strong> {{ $businessNumerology['last_name'] }}</li>
-                <li><strong>Date of Birth:</strong> {{ $businessNumerology['dob'] }}</li>
-                <li><strong>Phone Number:</strong> {{ $businessNumerology['phone_number'] }}</li>
-                <li><strong>Type of Business:</strong> {{ $businessNumerology['type_of_business'] }}</li>
-                <li><strong>User Name:</strong> {{ $businessNumerology['user_name'] }}</li>
-                <li><strong>User Email:</strong> {{ $businessNumerology['user_email'] }}</li>
-            </ul>
-        </div>
-        <div class="card-footer">
-            <a href="{{ route('business_numerology.list') }}" class="btn btn-primary">Back to List</a>
-        </div>
-    </div>
+    @else
+        <p>No details found for the given ID.</p>
+    @endif
 </div>
 @endsection
