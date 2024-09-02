@@ -143,7 +143,7 @@ Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController:
 Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
 
 
-Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
+// Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
 
 Route::get('consultant', [WebPagesController::class, 'index'])->name('Website.pages.contactus');
 Route::get('numrology', [WebPagesController::class, 'numero'])->name('Website.pages.numerology');

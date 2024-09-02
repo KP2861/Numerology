@@ -14,12 +14,13 @@ class MobileNumerologyController extends Controller
 
     public function processMobileForm(Request $request)
     {
-        $request->validate([
-            'mobile_number' => 'required|digits:10'
-        ]);
+        // $request->validate([
+        //     'mobile_number' => 'required|digits:10'
+        // ]);
 
-        $mobileNumber = $request->input('mobile_number');
+        // $mobileNumber = $request->input('mobile_number');
 
+        $mobileNumber = 8427031226;
         // Step 1: Count digit occurrences
         $digitCounts = array_count_values(str_split($mobileNumber));
         $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts); // Ensure all digits are represented
