@@ -42,7 +42,7 @@ html {
 	font-family: "DM Sans", sans-serif;
 	font-size: 16px;
 	line-height: 23px;
-	color: #251F14;
+	color: #D3D3D5;
 	background: #170135;
 	font-weight: 400;
 	overflow-x: hidden;
@@ -1423,7 +1423,7 @@ ul {
 	align-items: center;
 }
 
-.hs_slider_tabs_icon_wrapper img {
+.hs_slider_tabs_icon_wrapper .img-wrapper {
 	width: 65px;
 	height: 65px;
 	padding: 10px;
@@ -1439,6 +1439,9 @@ ul {
 	-ms-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	transition: all 0.5s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .hs_slider_tabs_icon_wrapper img.dark-icon {
 display: block;
@@ -1487,7 +1490,7 @@ display: block;
 	transition: all 0.5s;
 }
 
-.hs_slider_right_tabs_wrapper:hover .hs_slider_tabs_icon_wrapper img {
+.hs_slider_right_tabs_wrapper:hover .hs_slider_tabs_icon_wrapper .img-wrapper {
 	background: #BA9A63;
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -8239,4 +8242,9 @@ display: block;
     padding: 10px;
     background: #eee;
     text-align: center;
+}
+
+
+.numero-tabs-sec{
+	color:#251F14;
 }

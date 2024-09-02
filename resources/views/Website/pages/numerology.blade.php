@@ -16,9 +16,9 @@
     </div>
     <!-- hs About Title End -->
     <!-- hs sidebar Start -->
-    <div class="hs_kd_sidebar_main_wrapper hs_num_sidebar_main_wrapper">
+    <div class="hs_kd_sidebar_main_wrapper hs_num_sidebar_main_wrapper numero-tabs-sec">
         <div class="container">
-            <div class="row py-5 gy-5">
+            <div class="row py-5 gy-5 m-0">
                 <div class="col-12">
                     <ul class="tabs">
                         <li data-tab-target="#home" class="active tab"
@@ -32,13 +32,13 @@
 
                         <li data-tab-target="#about" class="tab"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/number-numerology.png') }}'">
-                            phone numerology
+                            Phone Numerology
                         </li>
                         
                         <li data-tab-target="#news" class="tab"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/business-numerology.png') }}'">
                             Business
-                            numerology</li>
+                            Numerology</li>
                             
                     </ul>
                 </div>
@@ -53,10 +53,10 @@
                     <div class="tab-content m-0">
                         <div id="home" data-tab-content class="active">
                             <div>
-                                <h2>
+                                <h2 class="mb-3 fw-bold">
                                     Name Numerology
                                 </h2>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                <p class=" mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                     Eligendi, nobis dolores. Voluptatibus explicabo
                                     exercitationem
                                     laudantium blanditiis voluptates molestias vel maxime
@@ -88,10 +88,10 @@
                         </div>
                         <div id="pricing" data-tab-content>
                             <div>
-                                <h2>
+                                <h2 class="mb-3 fw-bold">
                                     Advance Numerology
                                 </h2>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                <p class=" mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                     Eligendi, nobis dolores. Voluptatibus explicabo
                                     exercitationem
                                     laudantium blanditiis voluptates molestias vel maxime
@@ -124,10 +124,10 @@
                         </div>
                         <div id="about" data-tab-content>
                             <div>
-                                <h2>
+                                <h2 class="mb-3 fw-bold">
                                     Phone Numerology
                                 </h2>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                <p class=" mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                     Eligendi, nobis dolores. Voluptatibus explicabo
                                     exercitationem
                                     laudantium blanditiis voluptates molestias vel maxime
@@ -157,10 +157,10 @@
                         </div>
                         <div id="news" data-tab-content>
                             <div>
-                                <h2>
+                                <h2 class="mb-3 fw-bold">
                                     Business Numerology
                                 </h2>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                <p class=" mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                     Eligendi, nobis dolores. Voluptatibus explicabo
                                     exercitationem
                                     laudantium blanditiis voluptates molestias vel maxime
