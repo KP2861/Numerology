@@ -64,7 +64,42 @@
                                     sed
                                     unde maiores.</p>
                             </div>
-                            <form>
+
+
+                            <form action="{{ route('name_numerology.store') }}" method="POST" class="mt-4">
+                                @csrf
+                                <!-- <div class="form-group">
+                                    <label for="numerology_type">Numerology Type:</label>
+                                    <input type="number" class="form-control" id="numerology_type" name="numerology_type" required>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="first_name">First Name:</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name:</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">Date of Birth:</label>
+                                    <input type="date" class="form-control" id="dob" name="dob" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender:</label><br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="gender_male" name="gender" value="Male" required>
+                                        <label class="form-check-label" for="gender_male">Male</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="gender_female" name="gender" value="Female" required>
+                                        <label class="form-check-label" for="gender_female">Female</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+
+
+                            {{-- <form>
                                 <div class="tabs-content">
                                     <div class="row">
                                         <div class="col-6">
@@ -83,7 +118,7 @@
 
                                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
                         <div id="pricing" data-tab-content>
                             <div>
@@ -222,37 +257,7 @@
                                 sed
                                 unde maiores.</p>
                         </div>
-                        <form action="{{ route('name_numerology.store') }}" method="POST" class="mt-4">
-                            @csrf
-                            <!-- <div class="form-group">
-                                <label for="numerology_type">Numerology Type:</label>
-                                <input type="number" class="form-control" id="numerology_type" name="numerology_type" required>
-                            </div> -->
-                            <div class="form-group">
-                                <label for="first_name">First Name:</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="last_name">Last Name:</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="dob">Date of Birth:</label>
-                                <input type="date" class="form-control" id="dob" name="dob" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Gender:</label><br>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="gender_male" name="gender" value="Male" required>
-                                    <label class="form-check-label" for="gender_male">Male</label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="gender_female" name="gender" value="Female" required>
-                                    <label class="form-check-label" for="gender_female">Female</label>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
+                      
                     </div>
 
                     <div id="about" data-tab-content>
