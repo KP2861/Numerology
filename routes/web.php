@@ -114,3 +114,6 @@ Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminControl
 
 
 Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
+
+Route::get('consultant', [WebPagesController::class, 'index'])->name('Website.pages.contactus');
+Route::get('numrology', [WebPagesController::class, 'numero'])->name('Website.pages.numerology');
