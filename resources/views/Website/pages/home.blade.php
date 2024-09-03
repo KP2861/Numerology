@@ -643,6 +643,26 @@
     </div>
     </a>
 </div>
+<!-- <div class="hs_sign_main_wrapper choose-path-sec">
+    <div class="hs_news_slider_bg_overlay"></div>
+    <div class="container">
+        <div class="hs_about_heading_main_wrapper mb-4">
+            <div class="hs_about_heading_wrapper">
+                <h2>Choose Your <span>Number</span></h2>
+                <h4><span></span></h4>
+                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum<br>
+                    auctor, nisi elit consequat hello Aenean world.</p>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-6">
+                <img src='frontend/assests/images/content/life-path img.png' alt="about_img" class="img-fluid" width="1000px" />
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
 <!-- hs about ind wrapper End -->
 <!-- hs sign wrapper Start -->
 <div class="hs_sign_main_wrapper choose-path-sec">
@@ -1344,19 +1364,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -1374,19 +1384,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -1404,19 +1404,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

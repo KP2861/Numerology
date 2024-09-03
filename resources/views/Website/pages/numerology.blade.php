@@ -26,7 +26,7 @@
                             Numerology</li>
                         <li data-tab-target="#about" class="tab"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/number-numerology.png') }}'">
-                            Phone Numerology
+                            Mobile Numerology
                         </li>
 
                         <li data-tab-target="#pricing" class="tab"
@@ -45,7 +45,6 @@
                     <div class="numerology-img">
                         <img id="name" src="{{url('frontend/assests/images/content/numerology/name-numerology.png')}}" class="img-fluid">
                     </div>
-
                 </div>
                 <div class="col-8">
                     <!-- Display success message if available -->
@@ -199,7 +198,7 @@
                         <div id="about" data-tab-content>
                             <div>
                                 <h2 class="mb-3 fw-bold">
-                                    Phone Numerology
+                                    Mobile Numerology
                                 </h2>
                                 <p class=" mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                                     Eligendi, nobis dolores. Voluptatibus explicabo
