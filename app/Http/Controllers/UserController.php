@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email:rfc,dns|exists:users,email',
+                'email' => 'required|exists:users,email',
                 'password' => 'required|string|min:8',
             ]);
 
