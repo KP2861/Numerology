@@ -90,20 +90,21 @@ class StoreBusinessNumerologyController extends Controller
 
             if (!$orderId || !$paymentId || !$signature) {
                 Log::error('Missing required parameters.');
-                return redirect()->route('payment.error')->with('error', 'Invalid payment callback data.');
+                $errorMessage = 'Missing required parameters.';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
 
             $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
 
             if ($signature === $expectedSignature) {
 
-                $numerologyData = session('numerology_data');
+                // $numerologyData = session('numerology_data');
 
-                // Check if numerology data exists in session
-                if (!$numerologyData) {
-                    Log::error('Session data not found.');
-                    return redirect()->route('session')->with('error', 'Session data not found.');
-                }
+                // // Check if numerology data exists in session
+                // if (!$numerologyData) {
+                //     Log::error('Session data not found.');
+                //     return redirect()->route('session')->with('error', 'Session data not found.');
+                // }
 
                 // // Update numerology data with payment details
                 // $numerologyData['payment_id'] = $paymentId;
@@ -114,12 +115,14 @@ class StoreBusinessNumerologyController extends Controller
                 return redirect()->route('business_numerology.result')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
-                return redirect()->route('pot')->with('error', 'Payment verification failed!');
+                $errorMessage = 'Payment verification failed!';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
         } catch (\Exception $e) {
 
             Log::error('Payment callback error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
-            return redirect()->route('payment.error')->with('error', 'Payment verification failed!');
+            $errorMessage = 'Payment verification failed due to an unexpected error.';
+            return view('payment.notworking', ['errorMessage' => $errorMessage]);
         }
     }
 }

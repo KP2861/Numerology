@@ -34,6 +34,7 @@ class StoreAdvanceNumerologyController extends Controller
             $validated['numerology_type'] = 1; // Default value for numerology_type
             $validated['user_id'] = 1; // Default value for user_id
 
+
             PhoneNumerology::create($validated);
 
             try {
@@ -62,7 +63,7 @@ class StoreAdvanceNumerologyController extends Controller
                 'order' => $order,
                 'paymentPurpose' => 'Advance Numerology Record',
                 'numerology_data' => $validated,
-                'callbackUrl' => route('phone_numerology.payment.callback')
+                'callbackUrl' => route('advance_numerology.payment.callback')
             ])->with('success', 'Advance Numerology data saved successfully. Please proceed with the payment.');
         } catch (\Exception $e) {
             Log::error('Error in storeAdvanceNumerology: ' . $e->getMessage());
@@ -73,7 +74,7 @@ class StoreAdvanceNumerologyController extends Controller
 
     public function paymentCallback(Request $request)
     {
-        return $this->handlePaymentCallback($request, 'phone_numerology_form');
+        return $this->handlePaymentCallback($request, 'advance_numerology_form');
     }
     protected function handlePaymentCallback(Request $request, $formRoute)
     {
@@ -84,11 +85,13 @@ class StoreAdvanceNumerologyController extends Controller
             $orderId = $request->input('order_id');
             $paymentId = $request->input('payment_id');
             $signature = $request->input('signature');
+            // $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
             // dd($orderId, $paymentId, $signature, $expectedSignature);
 
             if (!$orderId || !$paymentId || !$signature) {
                 Log::error('Missing required parameters.');
-                return redirect()->route('xx')->with('error', 'Invalid payment callback data.');
+                $errorMessage = 'Missing required parameters.';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
 
             $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
@@ -100,7 +103,8 @@ class StoreAdvanceNumerologyController extends Controller
                 // Check if numerology data exists in session
                 if (!$numerologyData) {
                     Log::error('Session data not found.');
-                    return redirect()->route('session')->with('error', 'Session data not found.');
+                    $errorMessage = 'Session data not found.';
+                    return view('payment.notworking', ['errorMessage' => $errorMessage]);
                 }
 
                 // // Update numerology data with payment details
@@ -112,12 +116,14 @@ class StoreAdvanceNumerologyController extends Controller
                 return redirect()->route('numerology.mobile_numerology_form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
-                return redirect()->route('pot')->with('error', 'Payment verification failed!');
+                $errorMessage = 'Payment verification failed!';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
         } catch (\Exception $e) {
 
             Log::error('Payment callback error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
-            return redirect()->route('payment.error')->with('error', 'Payment verification failed!');
+            $errorMessage = 'Payment verification failed due to an unexpected error.';
+            return view('payment.notworking', ['errorMessage' => $errorMessage]);
         }
     }
 }

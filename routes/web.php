@@ -103,7 +103,7 @@ Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'
 Route::post('/business-numerology/callback', [StoreBusinessNumerologyController::class, 'paymentCallback'])->name('business_numerology.payment.callback');
 Route::post('/name-numerology/callback', [StoreNameNumerologyController::class, 'paymentCallback'])->name('name_numerology.payment.callback');
 Route::post('/phone-numerology/callback', [StorePhoneNumerologyController::class, 'paymentCallback'])->name('phone_numerology.payment.callback');
-
+Route::post('/advance-numerology/callback', [StoreAdvanceNumerologyController::class, 'paymentCallback'])->name('advance_numerology.payment.callback');
 //payment page
 Route::get('/payment-error', function () {
      return view('payment.notworking');
