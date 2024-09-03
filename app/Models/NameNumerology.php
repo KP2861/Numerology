@@ -17,4 +17,9 @@ class NameNumerology extends Model
         'dob',
         'gender'
     ];
+
+    public function numerology()
+    {
+        return $this->belongsTo(Numerology::class, 'numerology_type');
+    }
 }

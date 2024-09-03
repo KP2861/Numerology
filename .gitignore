@@ -17,3 +17,13 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+app/Http/Controllers/NumerologyController copy.php
+/resources/views/payment/payment.blade copy.php
+/resources/views/payment/paymentxxx.blade copy 2.php
+/resources/views/payment/paymenttest.blade.php
+app/Http/Controllers/TStorePhoneNumerologyController.php
+resources/views/payment/payment.blade copy 2.php
+resources/views/payment/payment.blade.php
+resources/views/payment/temp.blade.php
+resources/views/payment/payment2.blade.php
+resources/views/payment/payment.blade.php

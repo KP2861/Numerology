@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PDF;
 
 class MobileNumerologyController extends Controller
 {
@@ -46,6 +47,11 @@ class MobileNumerologyController extends Controller
 
         // Step 7 & 8: Evaluate and format results
         $result = $this->evaluateResults($singleDigit, $total, $combinationData);
+
+        if ($request->has('download')) {
+            $pdf = PDF::loadView('numerology.mobile_numerology_pdf', compact('result'));
+            return $pdf->download('numerology_report.pdf');
+        }
 
         return view('numerology.mobile_numerology_result', ['result' => $result]);
     }
@@ -151,5 +157,26 @@ class MobileNumerologyController extends Controller
         ];
 
         return $result;
+    }
+
+    public function downloadPDF(Request $request)
+    {
+        $mobileNumber = $request->input('mobile_number');
+
+        // Assuming $result is generated based on the mobile number
+        $result = [
+            'Mobile Number' => $mobileNumber,
+            'Total' => 15, // Example data
+            'Single Digit' => 6, // Example data
+            'Personalized Message' => 'This is a personalized message.', // Example data
+            'Combinations' => [
+                'Combination 1' => ['type' => 'Benefic', 'message' => 'Good for you.'],
+                'Combination 2' => ['type' => 'Melefic', 'message' => 'Avoid these dates.'],
+            ],
+        ];
+
+        $pdf = PDF::loadView('numerology.mobile_numerology_pdf', ['result' => $result]);
+
+        return $pdf->download('numerology_result.pdf'); // Downloads the PDF
     }
 }

@@ -11,7 +11,7 @@
         <div class="container">
             <div class="hs_header_logo_left hidden-xs">
                 <div class="hs_logo_wrapper">
-                    <a href="index.html"><img src="{{url('frontend/assests/images/content/top_logo.png')}}" class="img-responsive" alt="logo"
+                    <a href="{{url('/')}}"><img src="{{url('frontend/assests/images/content/top_logo.png')}}" class="img-responsive" alt="logo"
                             title="Logo" /></a>
                 </div>
             </div>
@@ -36,13 +36,13 @@
                 </div>
                 <div class="hs_btn_wrapper">
                     <ul>
-                        <li><a href="#" class="hs_btn_hover">Consultation</a></li>
+                        <li><a href="{{ url('/contact-us') }}" class="hs_btn_hover">Consultation</a></li>
                     </ul>
                 </div>
 
                 <div class="hs_btn_wrapper">
                     <ul>
-                        <li><a href="#" class="hs_btn_hover outline-btn">Sign In</a></li>
+                        <li><a href="{{ url('/login') }}" class="hs_btn_hover outline-btn">Sign In</a></li>
                     </ul>
                 </div>
 
@@ -86,7 +86,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="menu-button" href="about.html">About Us</a>
+                                <a class="menu-button" href="{{ url('/#about') }}">About Us</a>
                             </li>
 
                             <li>
@@ -101,12 +101,12 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="dropdown-wrapper menu-button">
+                                {{-- <div class="dropdown-wrapper menu-button">
                                     <a class="menu-button" href="#">Consultant</a>
-                                </div>
+                                </div> --}}
                             </li>
                             <li>
-                                <a class="menu-button" href="{{ url('/contact-us') }}">Contact </a>
+                                <a class="menu-button" href="{{ url('/contact-us') }}">Consultant </a>
                             </li>
                         </ul>
                     </nav>

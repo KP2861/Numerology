@@ -1,24 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Payment Page</title>
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
-<body>
-     <h1>Payment for Phone Numerology Record</h1>
-     <form>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+     <div class="card text-center p-4 shadow-lg" style="max-width: 400px;">
+          <div class="card-body">
+               <h3 class="card-title text-danger">Proceed with Payment?</h3>
+               <p class="card-text mt-3">Are you sure you want to proceed with the payment?</p>
+               <div class="d-flex justify-content-around mt-4">
+                    <button id="yesButton" class="btn btn-success">Yes</button>
+                    <a href="javascript:history.back()" class="btn btn-danger">No</a>
+               </div>
+          </div>
+     </div>
+
+     <form id="paymentForm">
           <script>
                var options = {
                     "key": "{{ env('RAZORPAY_KEY') }}",
                     "amount": "{{ $order->amount }}",
                     "currency": "INR",
-                    "name": "Your Company",
+                    "name": "Test Company",
                     "description": "Payment for Phone Numerology Record",
                     "order_id": "{{ $order->id }}",
                     "handler": function(response) {
-                         // Redirect to callback route with payment details
                          var form = document.createElement('form');
                          form.method = 'POST';
                          form.action = "{{ route('payment.callback') }}";
@@ -41,31 +54,31 @@
                          input.value = response.signature;
                          form.appendChild(input);
 
-                         // Adding Invoice ID to the form
                          input = document.createElement('input');
                          input.type = 'hidden';
                          input.name = 'invoice_id';
-                         input.value = 'test'; // Invoice ID
+                         input.value = 'test';
                          form.appendChild(input);
 
                          document.body.appendChild(form);
                          form.submit();
                     },
                     "prefill": {
-                         "name": "{{ Auth::user()->name }}",
-                         "email": "{{ Auth::user()->email }}",
+                         "name": "text",
+                         "email": "example@example.com",
                     }
                };
-               var paymentButton = document.createElement('button');
-               paymentButton.textContent = "Pay Now";
-               paymentButton.onclick = function(e) {
+
+               document.getElementById('yesButton').onclick = function(e) {
                     e.preventDefault();
                     var rzp1 = new Razorpay(options);
                     rzp1.open();
                };
-               document.body.appendChild(paymentButton);
           </script>
      </form>
+
+     <!-- Bootstrap JS and dependencies -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
