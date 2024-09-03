@@ -15,21 +15,13 @@ class SimpleNumerologyController extends Controller
 
     public function calculate(Request $request)
     {
-    $validated = DB::table('name_numerology')
-        ->select('user_id', 'dob')
-        ->first();
+    
+    $validated = NameNumerology::select('user_id', 'dob', 'gender')->latest('created_at')->first();
 
-    if (!$validated) {
-        // Handle the case where no record is found
-        return redirect()->back()->withErrors(['error' => 'No data found for the given user.']);
-    }
-
-    $validated->gender = 'male';
 
     // Parse and extract date components
     $dob = \DateTime::createFromFormat('Y-m-d', $validated->dob);
     if (!$dob) {
-        // Handle the case where the date format is incorrect
         return redirect()->back()->withErrors(['error' => 'Invalid date format in the database.']);
     }
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PDF;
+use Illuminate\Support\Facades\DB;
+use App\Models\PhoneNumerology;
 
 class MobileNumerologyController extends Controller
 {
@@ -14,13 +16,9 @@ class MobileNumerologyController extends Controller
 
     public function processMobileForm(Request $request)
     {
-        // $request->validate([
-        //     'mobile_number' => 'required|digits:10'
-        // ]);
-
-        // $mobileNumber = $request->input('mobile_number');
-
-        $mobileNumber = 8427031226;
+      
+        $mobileNumber = PhoneNumerology::latest()->pluck('phone_number')->first();
+        
         // Step 1: Count digit occurrences
         $digitCounts = array_count_values(str_split($mobileNumber));
         $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts); // Ensure all digits are represented
@@ -53,100 +51,38 @@ class MobileNumerologyController extends Controller
             $pdf = PDF::loadView('numerology.mobile_numerology_pdf', compact('result'));
             return $pdf->download('numerology_report.pdf');
         }
+       
 
         return view('numerology.mobile_numerology_result', ['result' => $result]);
     }
 
     private function getCombinationData($combinations)
     {
-        // Placeholder for predefined data retrieval
-        $data = [
-            '95' => [
-                'type' => 'Neutral', 
-                'message' => 'Destroy Relationship Through Bad Speech, Person Opt For Science Or Commerce Stream'
-            ],
-            '57' => [
-                'type' => 'Benefic', 
-                'message' => 'Speaker, Writer, Public Relation, Good Expressive Person, Lot Of Person Comes To Them For Advice'
-            ],
-            '74' => [
-                'type' => 'Benefic', 
-                'message' => 'Honest, Brilliant, Gives Importance Of Integrity, Rahu-Ketu Combo'
-            ],
-            '41' => [
-                'type' => 'Melefic', 
-                'message' => 'A Person May Be Drawn To Loan Obligations, Legal Notices, Health Problems, Diligence, And Toughness Numbers.'
-            ],
-            '18' => [
-                'type' => 'Melefic', 
-                'message' => '(Strongly Negative) Spouse Health Concerns, Comprehending Father And Son Issues, Government-Related Issues, And Frequent Work Changes'
-            ],
-            '82' => [
-                'type' => 'Melefic', 
-                'message' => 'A Person With A Respectable Income, Excessive Medical And Hospital Expenses, Two Family Marriages, And A Desire To Keep Oneself Safe From Harmful Company Vish Yog'
-            ],
-            '22' => [
-                'type' => 'Melefic', 
-                'message' => 'Mood Swing, Depression, Too Much Emotional, BP Problem, If Name Starting With B,K, R Then 100% Emotional Issue'
-            ],
-            
-            '0' => [
-                'type' => 'Multiple count',
-                'message' => 'Arash Se Farsh Tak'
-            ],
-            '1' => [
-                'type' => 'Multiple count',
-                'message' => 'Ego, Attitude Attractive'
-            ],
-            '2' => [
-                'type' => 'Multiple count',
-                'message' => 'Mood Swing-by Issue, Intuition'
-            ],
-            '3' => [
-                'type' => 'Multiple count',
-                'message' => 'Over Trust Nature, Hungry For Knowledge, Story Teller'
-            ],
-            '4' => [
-                'type' => 'Multiple count',
-                'message' => 'Digestive Issue, Delay, Frequent Change In Life'
-            ],
-            '5' => [
-                'type' => 'Multiple count',
-                'message' => 'Very Good For Business'
-            ],
-            '6' => [
-                'type' => 'Multiple count',
-                'message' => 'Clever, Luxury, Travel, Always Complain'
-            ],
-            '7' => [
-                'type' => 'Multiple count',
-                'message' => 'Relationship Issues, Health Sector, Spirituality, Over Thinking'
-            ],
-            '8' => [
-                'type' => 'Multiple count',
-                'message' => 'All Responsibilities Of Family'
-            ],
-            '9' => [
-                'type' => 'Multiple count',
-                'message' => 'Good For Rough & Tough Person, Blood Pressure, Strong'
-            ],
-        ];
-        
-        
-
+        // Retrieve all records
+        $data = DB::table('mobile_combination_details')->get()->keyBy('combination_number');
+    
         $result = [];
         foreach ($combinations as $combination) {
-            $result[$combination] = $data[$combination] ?? ['type' => 'Unknown', 'message' => 'No data'];
+            $result[$combination] = $data->get($combination, (object)['type' => 'Unknown', 'message' => 'No data with this combination.']);
         }
-
+    
         return $result;
     }
+    
+
 
     private function evaluateResults($singleDigit, $total, $combinationData)
     {
         $messages = [
-            1 => 'You Are At Good Communicating And You Are Very Intelligent And Wise Person.',
-            // Add messages for other single digits
+            1 => 'You are a natural leader with a strong will and independence. You thrive on challenges and are highly motivated.',
+            2 => 'You are a peacemaker with a diplomatic nature. You value harmony and work well in collaborative environments.',
+            3 => 'You are creative and expressive with a vibrant personality. You enjoy social interactions and are often the life of the party.',
+            4 => 'You are practical and disciplined. You value stability and work hard to achieve your goals through methodical planning.',
+            5 => 'You are adventurous and dynamic, with a love for freedom. You thrive on change and enjoy exploring new opportunities.',
+            6 => 'You are nurturing and responsible. You have a strong sense of duty and are dedicated to family and community.',
+            7 => 'You are introspective and analytical. You seek knowledge and have a deep understanding of spiritual and intellectual matters.',
+            8 => 'You are ambitious and determined. You have a strong drive for success and are focused on achieving material and professional goals.',
+            9 => 'You are compassionate and humanitarian. You are driven by a desire to help others and make a positive impact in the world.',
         ];
 
         $result = [
