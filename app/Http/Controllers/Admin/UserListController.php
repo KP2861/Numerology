@@ -23,16 +23,13 @@ class UserListController extends Controller
 
     private function getUserData()
     {
-        // Assuming a User model and potentially related numerology names
+        // Query to fetch users
         $query = User::select('id', 'name', 'email', 'created_at');
-
-        // Modify this if you need to fetch related numerology names
-        // For example: $query->with('numerologyNames');
 
         return DataTables::of($query)
             ->addIndexColumn()
-            ->addColumn('numerology_names', function ($user) {
-                return 'Example Numerology';
+            ->editColumn('created_at', function ($user) {
+                return $user->created_at->format('d/m/Y');
             })
             ->make(true);
     }
