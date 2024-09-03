@@ -2,7 +2,7 @@
 @section('content')
 
 <!-- hs Slider Start -->
-<div class="slider-area">
+<!-- <div class="slider-area">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -389,6 +389,137 @@
 
                     <i class="fa fa-angle-right"></i>
                 </a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="slider-area">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="carousel-captions caption-1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <div class="content">
+                                    <h1 data-animation="animated bounceInLeft"><img
+                                            src="{{url('frontend/assests/images/header/slider_logo.png')}}" alt="slider_logo" /></h1>
+                                    <h2 data-animation="animated zoomInDown">the best <span>horoscope</span></h2>
+                                    <p data-animation="animated bounceInUp">Proin gravida nibh vel velit auctor
+                                        aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit<br>
+                                        consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio.</p>
+                                    <div class="hs_effect_btn">
+                                        <ul>
+                                            <li data-animation="animated flipInX"><a href="#"
+                                                    class="hs_btn_hover">Read more</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs">
+                                <div class="content_tabs">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="hs_slider_right_tabs_wrapper"
+                                                data-animation="animated bounceInLeft hs_slider_tab_one">
+                                                <div class="hs_slider_tabs_icon_wrapper">
+                                                    <div class="img-wrapper">
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/chinese-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/chinese-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="hs_slider_tabs_icon_cont_wrapper">
+                                                    <ul>
+                                                        <li><a href="#" class="hs_tabs_btn">Chinese Astrology</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
+                                                data-animation="animated bounceInRight hs_slider_tab_tow">
+                                                <div class="hs_slider_tabs_icon_wrapper">
+                                                    <div class="img-wrapper">
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/vastu-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/vastu-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
+                                                    </div>
+                                                </div>
+                                                <div class="hs_slider_tabs_icon_cont_wrapper">
+                                                    <ul>
+                                                        <li><a href="#" class="hs_tabs_btn">Vasthusastra</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
+                                                data-animation="animated bounceInLeft hs_slider_tab_three">
+                                                <div class="hs_slider_tabs_icon_wrapper">
+                                                    <div class="img-wrapper">
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/career-tarot-dark-icon.svg')}}" alt="slider_logo" class="dark-icon" />
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/career-tarot-light-icon.svg')}}" alt="slider_logo" class="light-icon" />
+                                                    </div>
+                                                </div>
+                                                <div class="hs_slider_tabs_icon_cont_wrapper">
+                                                    <ul>
+                                                        <li><a href="#" class="hs_tabs_btn">Carrer Tarot</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
+                                                data-animation="animated bounceInRight hs_slider_tab_four">
+                                                <div class="hs_slider_tabs_icon_wrapper">
+                                                    <div class="img-wrapper">
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/love-tarot-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/love-tarot-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
+                                                    </div>
+                                                </div>
+                                                <div class="hs_slider_tabs_icon_cont_wrapper">
+                                                    <ul>
+                                                        <li><a href="#" class="hs_tabs_btn">Love Tarot</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="hs_slider_right_tabs_wrapper hs_slider_right_tabs_wrapper2"
+                                                data-animation="animated bounceInLeft hs_slider_tab_fifth">
+                                                <div class="hs_slider_tabs_icon_wrapper">
+                                                    <div class="img-wrapper">
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/numerology-dark-icon.svg')}}" alt="slider_logo" class="img-fluid dark-icon" />
+                                                        <img
+                                                            src="{{url('frontend/assests/images/content/numerology-light-icon.svg')}}" alt="slider_logo" class="img-fluid light-icon" />
+                                                    </div>
+                                                </div>
+                                                <div class="hs_slider_tabs_icon_cont_wrapper">
+                                                    <ul>
+                                                        <li><a href="#" class="hs_tabs_btn">Numerology</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
