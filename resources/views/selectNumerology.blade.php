@@ -10,7 +10,12 @@
 <body>
      <div class="container">
           <h1 class="mt-5">Select Numerology Type</h1>
-
+          <!-- Display error message -->
+          @if(session('error'))
+          <div class="alert alert-danger">
+               {{ session('error') }}
+          </div>
+          @endif
           <div class="mt-4">
                <a href="{{ route('name_numerology.create') }}" class="btn btn-primary btn-lg">Name Numerology</a>
                <a href="{{ route('business_numerology.create') }}" class="btn btn-secondary btn-lg">Business Numerology</a>

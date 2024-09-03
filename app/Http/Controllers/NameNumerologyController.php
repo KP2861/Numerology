@@ -34,14 +34,20 @@ class NameNumerologyController extends Controller
 
     public function calculateNumerology(Request $request)
     {
-        $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-        ]);
+      
+        // $request->validate([
+        //     'first_name' => 'required|string',
+        //     'last_name' => 'required|string',
+        // ]);
 
-        $firstName = strtoupper($request->input('first_name'));
-        $lastName = strtoupper($request->input('last_name'));
+        // $validated = DB::table('name_numerology')
+        // ->select('user_id', 'dob')
+        // ->first();
 
+        // $firstName = strtoupper($request->input('first_name'));
+        // $lastName = strtoupper($request->input('last_name'));
+        $firstName = "rahul";
+        $lastName = "kumar";
         // Calculate totals
         $firstNameTotal = $this->calculateNameTotal($firstName);
         $firstNameSingleDigit = $this->reduceToSingleDigit($firstNameTotal);

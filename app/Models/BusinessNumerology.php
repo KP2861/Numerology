@@ -12,11 +12,14 @@ class BusinessNumerology extends Model
     protected $fillable = [
         'user_id',
         'numerology_type',
+        'user_id',
         'first_name',
         'last_name',
         'dob',
         'phone_number',
+        'business_name',
         'type_of_business',
+        'have_partner',
     ];
 
 }
