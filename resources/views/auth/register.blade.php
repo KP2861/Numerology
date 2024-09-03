@@ -59,6 +59,7 @@
                                         @enderror
                                    </div>
 
+
                                    <!-- Email Field -->
                                    <div class="form-group">
                                         <label for="email">Email</label>
@@ -124,62 +125,69 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
      <script>
-          $(document).ready(function() {
-               $('#registrationForm').validate({
-                    rules: {
-                         name: {
-                              required: true,
-                              minlength: 2,
-                              maxlength: 255,
-                              pattern: /^[A-Za-z ]+$/
-                         },
-                         email: {
-                              required: true,
-                              email: true
-                         },
-                         password: {
-                              required: true,
-                              minlength: 6
-                         },
-                         password_confirmation: {
-                              required: true,
-                              equalTo: "#password"
-                         }
+        $(document).ready(function() {
+            // Add custom regex method for email
+            $.validator.addMethod("regex", function(value, element, regexp) {
+                var regExp = new RegExp(regexp);
+                return this.optional(element) || regExp.test(value);
+            }, "Invalid input.");
+
+            // Validate the form
+            $('#registrationForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255,
+                        regex: /^[A-Za-z ]+$/
                     },
-                    messages: {
-                         name: {
-                              required: "Please enter your name.",
-                              minlength: "Name must be at least 2 characters long.",
-                              maxlength: "Name can be at most 255 characters long.",
-                              pattern: "Name must contain only letters and spaces."
-                         },
-                         email: {
-                              required: "Please enter your email address.",
-                              email: "Please enter a valid email address."
-                         },
-                         password: {
-                              required: "Please provide a password.",
-                              minlength: "Password must be at least 6 characters long."
-                         },
-                         password_confirmation: {
-                              required: "Please confirm your password.",
-                              equalTo: "Passwords do not match."
-                         }
+                    email: {
+                        required: true,
+                        regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
                     },
-                    errorElement: 'div',
-                    errorPlacement: function(error, element) {
-                         error.addClass('invalid-feedback');
-                         element.closest('.form-group').append(error);
+                    password: {
+                        required: true,
+                        minlength: 8
                     },
-                    highlight: function(element) {
-                         $(element).addClass('is-invalid');
-                    },
-                    unhighlight: function(element) {
-                         $(element).removeClass('is-invalid');
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password"
                     }
-               });
-          });
-     </script>
+                },
+                messages: {
+                    name: {
+                        required: "Please enter your name.",
+                        minlength: "Name must be at least 2 characters long.",
+                        maxlength: "Name can be at most 255 characters long.",
+                        regex: "Name must contain only letters and spaces."
+                    },
+                    email: {
+                        required: "Please enter your email address.",
+                        regex: "Please enter a valid email address."
+                    },
+                    password: {
+                        required: "Please provide a password.",
+                        minlength: "Password must be at least 8 characters long."
+                    },
+                    password_confirmation: {
+                        required: "Please confirm your password.",
+                        equalTo: "Passwords do not match."
+                    }
+                },
+                errorElement: 'div',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\NumerologyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -120,6 +121,12 @@ Route::get('/payment', function () {
 /////--------Admin Routes----------/////////
 ////////////////////////////////////////////
 
+//Admin Auth
+Route::get('admin/login',[AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');;
+Route::post('admin/loginsubmit',[AdminAuthController::class, 'loginsubmit']);
+
+Route::group(['middleware' => ['auth']], function () {
+
 //Admin Routes
 Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -143,6 +150,7 @@ Route::get('admin/name-numerology/detail/{id}', [NumerologyListAdminController::
 Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController::class, 'phoneNumerologyDetail'])->name('phone_numerology.detail');
 Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
 
+});
 
 // Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
 

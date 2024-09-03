@@ -20,15 +20,16 @@ class UserController extends Controller
         return view('auth.register');
     }
 
+
     public function register(Request $request)
     {
         try {
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email:rfc,dns|unique:users,email',
-                'password' => 'required|string|min:6|confirmed',
+                'password' => 'required|string|min:8|confirmed',
             ]);
-
+    
             // Create the user
             User::create([
                 'name' => $validatedData['name'],
@@ -36,12 +37,12 @@ class UserController extends Controller
                 'password' => Hash::make($validatedData['password']),
                 'role' => 2, // 2 means User
             ]);
-
+    
             return redirect('/login')->with('success', 'Registration successful! Please log in.');
         } catch (ValidationException $e) {
             // Handle validation exception
             return redirect('/register')
-                ->withErrors($e->validator)
+                ->withErrors($e->errors())
                 ->withInput();
         } catch (\Exception $e) {
             // Handle any other exceptions
@@ -50,6 +51,7 @@ class UserController extends Controller
                 ->withInput();
         }
     }
+    
 
     public function showLoginForm()
     {
@@ -61,7 +63,7 @@ class UserController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email:rfc,dns|exists:users,email',
+                'email' => 'required|exists:users,email',
                 'password' => 'required|string|min:8',
             ]);
 
@@ -76,13 +78,14 @@ class UserController extends Controller
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt($credentials)) {
-                return redirect()->intended('/home');
+                return redirect()->intended('/');
             }
 
             // If authentication fails
             return redirect('/login')
                 ->with('error', 'Invalid credentials. Please try again.');
-        } catch (ValidationException $e) {
+        }
+         catch (ValidationException $e) {
             return redirect('/login')
                 ->withErrors($e->validator)
                 ->withInput();
@@ -90,7 +93,7 @@ class UserController extends Controller
             return redirect('/login')
                 ->with('error', 'An unexpected error occurred. Please try again.')
                 ->withInput();
-        }
+         }
     }
 
     // Forget password page view

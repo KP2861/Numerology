@@ -69,7 +69,7 @@
                     ">{{ $details->dob }}</p>
             </div>
 
-               <div style="
+            <div style="
                     border-bottom: 1px solid #dddddd; 
                     padding-bottom: 10px; 
                     margin-bottom: 10px;
@@ -104,6 +104,37 @@
                         font-size: 18px; 
                         margin-bottom: 0;
                     ">{{ $details->gender }}</p>
+            </div>
+
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Created At</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        margin-bottom: 0;
+                    ">
+                    @if($details->created_at)
+                    @php
+                    try {
+                    $date = new DateTime($details->created_at);
+                    echo $date->format('d/m/Y H:i:s');
+                    } catch (Exception $e) {
+                    echo '-';
+                    }
+                    @endphp
+                    @else
+                    -
+                    @endif
+                </p>
             </div>
         </div>
     </div>

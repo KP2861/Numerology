@@ -36,7 +36,7 @@ class NumerologyListAdminController extends Controller
                 ->addIndexColumn() // Add index column for row numbers
                 ->addColumn('action', function ($row) {
                     $encryptedId = Crypt::encryptString($row->id);
-                    return '<a href="'. url('admin/name-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                    return '<a href="'. url('admin/name-numerology/detail/' . $encryptedId) .'" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>';
                 })
                 ->filterColumn('user_name', function($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
@@ -93,7 +93,8 @@ class NumerologyListAdminController extends Controller
                 ->addIndexColumn() // Add index column for row numbers
                 ->addColumn('action', function ($row) {
                     $encryptedId = Crypt::encrypt($row->id);
-                    return '<a href="'. url('admin/phone-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                    return '<a href="'. url('admin/phone-numerology/detail/' . $encryptedId) .'" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>';
+
                 })
                 ->filterColumn('user_name', function($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
@@ -152,7 +153,8 @@ class NumerologyListAdminController extends Controller
                 ->addIndexColumn() // Add index column for row numbers
                 ->addColumn('action', function ($row) {
                     $encryptedId = Crypt::encrypt($row->id);
-                    return '<a href="'. url('admin/bussiness-numerology/detail/' . $encryptedId) .'" class="btn btn-primary">View More</a>';
+                    return '<a href="'. url('admin/bussiness-numerology/detail/' . $encryptedId) .'" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>';
+
                 })
                 ->filterColumn('user_name', function($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
