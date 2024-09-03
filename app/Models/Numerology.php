@@ -11,6 +11,5 @@ class Numerology extends Model
 
     protected $table = 'numerology';
     protected $fillable = ['name', 'numerology_type'];
-    // Define a method to fetch related NameNumerologies
   
 }
