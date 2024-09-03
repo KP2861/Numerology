@@ -32,7 +32,7 @@ class StoreAdvanceNumerologyController extends Controller
 
             $validated = $validator->validated();
             $validated['numerology_type'] = 1; // Default value for numerology_type
-            // $validated['user_id'] = 1; // Default value for user_id
+            $validated['user_id'] = 1; // Default value for user_id
 
 
             PhoneNumerology::create($validated);
@@ -85,25 +85,27 @@ class StoreAdvanceNumerologyController extends Controller
             $orderId = $request->input('order_id');
             $paymentId = $request->input('payment_id');
             $signature = $request->input('signature');
-            $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
-            dd($orderId, $paymentId, $signature, $expectedSignature);
+            // $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
+            // dd($orderId, $paymentId, $signature, $expectedSignature);
 
             if (!$orderId || !$paymentId || !$signature) {
                 Log::error('Missing required parameters.');
-                return redirect()->route('xx')->with('error', 'Invalid payment callback data.');
+                $errorMessage = 'Missing required parameters.';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
 
             $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
 
             if ($signature === $expectedSignature) {
 
-                // $numerologyData = session('numerology_data');
+                $numerologyData = session('numerology_data');
 
-                // // Check if numerology data exists in session
-                // if (!$numerologyData) {
-                //     Log::error('Session data not found.');
-                //     return redirect()->route('session')->with('error', 'Session data not found.');
-                // }
+                // Check if numerology data exists in session
+                if (!$numerologyData) {
+                    Log::error('Session data not found.');
+                    $errorMessage = 'Session data not found.';
+                    return view('payment.notworking', ['errorMessage' => $errorMessage]);
+                }
 
                 // // Update numerology data with payment details
                 // $numerologyData['payment_id'] = $paymentId;
@@ -114,12 +116,14 @@ class StoreAdvanceNumerologyController extends Controller
                 return redirect()->route('numerology.mobile_numerology_form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
-                return redirect()->route('pot')->with('error', 'Payment verification failed!');
+                $errorMessage = 'Payment verification failed!';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
         } catch (\Exception $e) {
 
             Log::error('Payment callback error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
-            return redirect()->route('payment.error')->with('error', 'Payment verification failed!');
+            $errorMessage = 'Payment verification failed due to an unexpected error.';
+            return view('payment.notworking', ['errorMessage' => $errorMessage]);
         }
     }
 }

@@ -33,7 +33,8 @@ class StoreNameNumerologyController extends Controller
             $validated['user_id'] = 1;
 
             // Attempt to create the NameNumerology record
-            NameNumerology::create($validated);
+            // NameNumerology::create($validated);
+            session(['name_numerology_data' => $validated]);
 
             try {
                 $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
@@ -60,7 +61,7 @@ class StoreNameNumerologyController extends Controller
             return view('payment.pay', [
                 'order' => $order,
                 'paymentPurpose' => 'Name Numerology Record',
-                'numerology_data' => $validated,
+                'name_numerology_data' => $validated,
                 'callbackUrl' => route('name_numerology.payment.callback')
             ])->with('success', 'Name Numerology data saved successfully. Please proceed with the payment.');
         } catch (\Illuminate\Validation\ValidationException $e) {
@@ -94,36 +95,44 @@ class StoreNameNumerologyController extends Controller
 
             if (!$orderId || !$paymentId || !$signature) {
                 Log::error('Missing required parameters.');
-                return redirect()->route('xx')->with('error', 'Invalid payment callback data.');
+                $errorMessage = 'Missing required parameters.';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
 
             $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
 
             if ($signature === $expectedSignature) {
 
-                // $numerologyData = session('numerology_data');
+                $nameNumerologyData = session('name_numerology_data');
 
                 // Check if numerology data exists in session
-                // if (!$numerologyData) {
-                //     Log::error('Session data not found.');
-                //     return redirect()->route('session')->with('error', 'Session data not found.');
-                // }
+                if (!$nameNumerologyData) {
+                    Log::error('Session data not found.');
+                    $errorMessage = 'Session data not found.';
+                    return view('payment.notworking', ['errorMessage' => $errorMessage]);
+                }
 
-                // // Update numerology data with payment details
-                // $numerologyData['payment_id'] = $paymentId;
-                // $numerologyData['payment_status'] = 'completed';
+                // Update numerology data with payment details
+                $nameNumerologyData['payment_id'] = $paymentId;
+                $nameNumerologyData['payment_status'] = '1';
 
-                // PhoneNumerology::create($numerologyData);
+                // Store the NameNumerology record in the database
+                NameNumerology::create($nameNumerologyData);
 
-                return redirect()->route('numerology.name_numerology_form')->with('success', 'Payment successful and record added!');
+                // Clear the session data
+                session()->forget('name_numerology_data');
+
+                return redirect()->route('numerology.form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
-                return redirect()->route('pot')->with('error', 'Payment verification failed!');
+                $errorMessage = 'Payment verification failed!';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
         } catch (\Exception $e) {
 
             Log::error('Payment callback error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
-            return redirect()->route('payment.error')->with('error', 'Payment verification failed!');
+            $errorMessage = 'Payment verification failed due to an unexpected error.';
+            return view('payment.notworking', ['errorMessage' => $errorMessage]);
         }
     }
 }

@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('name_numerology', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('numerology_type')->nullable();
+        Schema::table('phone_numerology', function (Blueprint $table) {
+            // Add user_id column
+            $table->unsignedBigInteger('user_id')->after('id');
         });
     }
 
@@ -21,7 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('name_numerology', function (Blueprint $table) {
+        Schema::table('phone_numerology', function (Blueprint $table) {
+            // Drop user_id column
             $table->dropColumn('user_id');
         });
     }

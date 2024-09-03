@@ -30,7 +30,7 @@ class StoreBusinessNumerologyController extends Controller
 
             $numerologyData = array_merge($validated, [
                 'numerology_type' => 1, // Default value
-                // 'user_id' => 1, // Default value
+                'user_id' => 1, // Default value
             ]);
 
             // Store the data in the BusinessNumerology model
@@ -90,7 +90,8 @@ class StoreBusinessNumerologyController extends Controller
 
             if (!$orderId || !$paymentId || !$signature) {
                 Log::error('Missing required parameters.');
-                return redirect()->route('payment.error')->with('error', 'Invalid payment callback data.');
+                $errorMessage = 'Missing required parameters.';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
 
             $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
@@ -114,12 +115,14 @@ class StoreBusinessNumerologyController extends Controller
                 return redirect()->route('business_numerology.result')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
-                return redirect()->route('pot')->with('error', 'Payment verification failed!');
+                $errorMessage = 'Payment verification failed!';
+                return view('payment.notworking', ['errorMessage' => $errorMessage]);
             }
         } catch (\Exception $e) {
 
             Log::error('Payment callback error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
-            return redirect()->route('payment.error')->with('error', 'Payment verification failed!');
+            $errorMessage = 'Payment verification failed due to an unexpected error.';
+            return view('payment.notworking', ['errorMessage' => $errorMessage]);
         }
     }
 }
