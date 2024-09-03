@@ -1,32 +1,39 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+use Yajra\DataTables\Facades\DataTables;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class UserListController extends Controller
 {
     public function index(Request $request)
     {
-        // Fetch users with concatenated numerology names
-        $users = DB::table('users')
-            ->leftJoin('numerology', 'users.id', '=', 'numerology.user_id')
-            ->select(
-                'users.id',
-                'users.name',
-                'users.email',
-                'users.created_at',
-                DB::raw('GROUP_CONCAT(numerology.name SEPARATOR ", ") as numerology_names')
-            )
-            ->groupBy('users.id', 'users.name', 'users.email', 'users.created_at')
-            ->get()
-            ->map(function ($user) {
-                $user->created_at = Carbon::parse($user->created_at);
-                return $user;
-            });
+        if ($request->ajax()) {
+            return $this->getUserData();
+        }
 
-        return view('Admin.users.list', compact('users'));
+        // Render the main view
+        return view('Admin.users.list');
+    }
+
+    private function getUserData()
+    {
+        // Assuming a User model and potentially related numerology names
+        $query = User::select('id', 'name', 'email', 'created_at');
+
+        // Modify this if you need to fetch related numerology names
+        // For example: $query->with('numerologyNames');
+
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('numerology_names', function ($user) {
+                return 'Example Numerology';
+            })
+            ->make(true);
     }
 }

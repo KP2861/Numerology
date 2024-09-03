@@ -10,12 +10,16 @@ class BusinessNumerology extends Model
     use HasFactory;
     protected $table = 'business_numerology';
     protected $fillable = [
+        'user_id',
         'numerology_type',
         'user_id',
         'first_name',
         'last_name',
         'dob',
         'phone_number',
+        'business_name',
         'type_of_business',
+        'have_partner',
     ];
+
 }

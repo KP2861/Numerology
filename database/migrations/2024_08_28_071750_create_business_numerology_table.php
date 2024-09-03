@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('last_name');
             $table->date('dob');
             $table->string('phone_number');
+            $table->string('business_name');
             $table->string('type_of_business');
+            $table->integer('have_partner');  // 0 and 1 
             $table->timestamps();
         });
     }

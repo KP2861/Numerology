@@ -3,52 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\NameNumerology;
+use Illuminate\Support\Facades\DB;
 
 class SimpleNumerologyController extends Controller
 {
     public function showForm()
     {
-        return view('numerology.form');
+        return view('numerology.redirect_to_calculate');
     }
 
     public function calculate(Request $request)
     {
-        $validated = $request->validate([
-            'dob' => 'required|date_format:d-m-Y',
-            'gender' => 'required|in:male,female',
-        ]);
+    $validated = DB::table('name_numerology')
+        ->select('user_id', 'dob')
+        ->first();
 
-        // Parse and extract date components
-        $dob = \DateTime::createFromFormat('d-m-Y', $validated['dob']);
-        $day = $dob->format('d');
-        $month = $dob->format('m');
-        $year = $dob->format('Y');
+    if (!$validated) {
+        // Handle the case where no record is found
+        return redirect()->back()->withErrors(['error' => 'No data found for the given user.']);
+    }
 
-        // Calculate King number
-        $king = array_sum(str_split($day));
-        $king = $this->reduceToSingleDigit($king);
+    $validated->gender = 'male';
 
-        // Calculate Queen number
-        $total = array_sum(str_split($day . $month . $year));
-        $queen = $this->reduceToSingleDigit($total);
+    // Parse and extract date components
+    $dob = \DateTime::createFromFormat('Y-m-d', $validated->dob);
+    if (!$dob) {
+        // Handle the case where the date format is incorrect
+        return redirect()->back()->withErrors(['error' => 'Invalid date format in the database.']);
+    }
 
-        // Calculate Kua number based on gender
-        $totalYear = array_sum(str_split($year));
-        $kua = $this->calculateKua($totalYear, $validated['gender']);
+    $day = $dob->format('d');
+    $month = $dob->format('m');
+    $year = $dob->format('Y');
 
-        // Concatenate values for Loshu Grid
-        $concatenated = "{$king}{$queen}{$day}{$month}{$year}";
+    // Calculate King number
+    $king = array_sum(str_split($day));
+    $king = $this->reduceToSingleDigit($king);
 
-        // Calculate Loshu Grid digit counts
-        $loshuGrid = $this->getLoshuGridDigitCount($concatenated);
+    // Calculate Queen number
+    $total = array_sum(str_split($day . $month . $year));
+    $queen = $this->reduceToSingleDigit($total);
 
-        return view('numerology.result', [
-            'king' => $king,
-            'queen' => $queen,
-            'kua' => $kua,
-            'concatenated' => $concatenated,
-            'loshuGrid' => $loshuGrid
-        ]);
+    // Calculate Kua number based on gender
+    $totalYear = array_sum(str_split($year));
+    $kua = $this->calculateKua($totalYear, $validated->gender);
+
+    // Concatenate values for Loshu Grid
+    $concatenated = "{$king}{$queen}{$day}{$month}{$year}";
+
+    // Calculate Loshu Grid digit counts
+    $loshuGrid = $this->getLoshuGridDigitCount($concatenated);
+
+    return view('numerology.result', [
+        'king' => $king,
+        'queen' => $queen,
+        'kua' => $kua,
+        'concatenated' => $concatenated,
+        'loshuGrid' => $loshuGrid
+    ]);
     }
 
     private function reduceToSingleDigit($number)

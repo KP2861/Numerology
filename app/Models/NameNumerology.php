@@ -14,7 +14,9 @@ class NameNumerology extends Model
         'user_id',
         'first_name',
         'last_name',
+        'user_id',
         'dob',
         'gender'
     ];
+
 }
