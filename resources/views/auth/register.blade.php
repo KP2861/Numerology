@@ -7,103 +7,110 @@
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.css">
+     <link rel="stylesheet" href="{{ URL::asset('frontend/assests/css/app.css') }}">
 </head>
 
 <body>
-     <div class="container mt-5">
-          <div class="row justify-content-center">
-               <div class="col-md-6">
-                    <!-- Display success message -->
-                    @if(session('success'))
-                    <div class="alert alert-success">
-                         {{ session('success') }}
+     <div class="vh-100 vw-100 signup">
+          <div class="row h-100 g-0 m-0">
+               <div class="col-7 ">
+                    <div class="banner-img w-100 h-100">
+
                     </div>
-                    @endif
+               </div>
+               <div class="col-5 ">
+                    <div class=" d-flex justify-content-center align-items-center h-100">
+                         <div class="form-part">
+                              @if(session('success'))
+                              <div class="alert alert-success">
+                                   {{ session('success') }}
+                              </div>
+                              @endif
 
-                    <!-- Display error message -->
-                    @if(session('error'))
-                    <div class="alert alert-danger">
-                         {{ session('error') }}
-                    </div>
-                    @endif
+                              <!-- Display error message -->
+                              @if(session('error'))
+                              <div class="alert alert-danger">
+                                   {{ session('error') }}
+                              </div>
+                              @endif
 
-                    <!-- Registration Form -->
-                    <h2 class="text-center mb-4">Register</h2>
-                    <form id="registrationForm" method="POST" action="{{ route('register') }}">
-                         @csrf
+                              <!-- Registration Form -->
+                              <h2 class=" mb-4 heading ">Register</h2>
+                              <form id="registrationForm" method="POST" action="{{ route('register') }}">
+                                   @csrf
 
-                         <!-- Name Field -->
-                         <div class="form-group">
-                              <label for="name">Name</label>
-                              <input
-                                   type="text"
-                                   id="name"
-                                   name="name"
-                                   class="form-control @error('name') is-invalid @enderror"
-                                   placeholder="Name"
-                                   value="{{ old('name') }}"
-                                   required
-                                   minlength="2"
-                                   maxlength="255"
-                                   pattern="[A-Za-z ]+"
-                                   title="Name must contain only letters and spaces">
-                              @error('name')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                              @enderror
+                                   <!-- Name Field -->
+                                   <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input
+                                             type="text"
+                                             id="name"
+                                             name="name"
+                                             class="form-control @error('name') is-invalid @enderror"
+                                             placeholder="Name"
+                                             value="{{ old('name') }}"
+                                             required
+                                             minlength="2"
+                                             maxlength="255"
+                                             pattern="[A-Za-z ]+"
+                                             title="Name must contain only letters and spaces">
+                                        @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                   </div>
+
+                                   <!-- Email Field -->
+                                   <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input
+                                             type="text"
+                                             id="email"
+                                             name="email"
+                                             class="form-control @error('email') is-invalid @enderror"
+                                             placeholder="Email"
+                                             value="{{ old('email') }}"
+                                             required>
+                                        @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                   </div>
+
+                                   <!-- Password Field -->
+                                   <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input
+                                             type="password"
+                                             id="password"
+                                             name="password"
+                                             class="form-control @error('password') is-invalid @enderror"
+                                             placeholder="Password"
+                                             required
+                                             minlength="6">
+                                        @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                   </div>
+
+                                   <!-- Confirm Password Field -->
+                                   <div class="form-group">
+                                        <label for="password_confirmation">Confirm Password</label>
+                                        <input
+                                             type="password"
+                                             id="password_confirmation"
+                                             name="password_confirmation"
+                                             class="form-control @error('password_confirmation') is-invalid @enderror"
+                                             placeholder="Confirm Password"
+                                             required>
+                                        @error('password_confirmation')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                   </div>
+                                   <button type="submit" class="btn w-100 login-button mt-4">Register</button>
+                              </form>
+                              <div class="text-center mt-3">
+                                   <p>Already have an account? <a href="{{ route('login') }}">Login now</a></p>
+                              </div>
                          </div>
-
-                         <!-- Email Field -->
-                         <div class="form-group">
-                              <label for="email">Email</label>
-                              <input
-                                   type="text"
-                                   id="email"
-                                   name="email"
-                                   class="form-control @error('email') is-invalid @enderror"
-                                   placeholder="Email"
-                                   value="{{ old('email') }}"
-                                   required>
-                              @error('email')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                              @enderror
-                         </div>
-
-                         <!-- Password Field -->
-                         <div class="form-group">
-                              <label for="password">Password</label>
-                              <input
-                                   type="password"
-                                   id="password"
-                                   name="password"
-                                   class="form-control @error('password') is-invalid @enderror"
-                                   placeholder="Password"
-                                   required
-                                   minlength="6">
-                              @error('password')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                              @enderror
-                         </div>
-
-                         <!-- Confirm Password Field -->
-                         <div class="form-group">
-                              <label for="password_confirmation">Confirm Password</label>
-                              <input
-                                   type="password"
-                                   id="password_confirmation"
-                                   name="password_confirmation"
-                                   class="form-control @error('password_confirmation') is-invalid @enderror"
-                                   placeholder="Confirm Password"
-                                   required>
-                              @error('password_confirmation')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                              @enderror
-                         </div>
-
-                         <button type="submit" class="btn btn-primary">Register</button>
-                    </form>
-
-                    <div class="text-center mt-3">
-                         <p>Already have an account? <a href="{{ route('login') }}">Login now</a></p>
                     </div>
                </div>
           </div>
