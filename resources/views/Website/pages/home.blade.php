@@ -1344,19 +1344,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+                       
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -1374,19 +1364,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+                       
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -1404,19 +1384,9 @@
                         <h5>Proin gravida nibh vel velit auctor aliquet.</h5>
                         <p>Lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.
                             Duis sed odio sit amet.</p>
-                        <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4>
+                  
                     </div>
-                    <div class="hs_lest_news_cont_bottom">
-                        <div class="hs_lest_news_cont_bottom_left">
-                            <p><a href="#">by - Admin</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_center">
-                            <p><a href="#">1244 Likes</a></p>
-                        </div>
-                        <div class="hs_lest_news_cont_bottom_right">
-                            <p><a href="#">04 Comm.</a></p>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

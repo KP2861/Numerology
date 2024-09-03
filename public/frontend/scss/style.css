@@ -3283,9 +3283,7 @@ display: block;
 .hs_lest_news_cont_wrapper {
 	float: left;
 	width: 100%;
-	padding-top: 40px;
-	padding-left: 30px;
-	padding-right: 30px;
+	padding: 40px 30px;
 	border: 1px dashed rgba(255, 255, 255, 0.5);
 	border-top: 0;
 	border-bottom: 0;
@@ -8256,4 +8254,14 @@ display: block;
 .numero-tabs-sec{
 	color:#251F14;
 }
+img.avtar{
+	object-fit: cover;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	object-position: center;
+}
+.dropdown.avtar .dropdown-toggle::after {
+	display: none;
 
+}
