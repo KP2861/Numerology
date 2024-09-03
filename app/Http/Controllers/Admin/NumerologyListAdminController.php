@@ -191,38 +191,6 @@ class NumerologyListAdminController extends Controller
             return response()->view('errors.general', [], 500);
         }
     }
- 
-    // bussiness numerology list
-    // public function businessNumerologyList()
-    // {
-    //     try {
-    //         // Fetch business numerologies with user details
-    //         $businessNumerologies = DB::table('business_numerology')
-    //             ->leftJoin('users', 'business_numerology.user_id', '=', 'users.id')
-    //             ->select(
-    //                 'business_numerology.id', // Select the id for encryption
-    //                 'business_numerology.first_name',
-    //                 'business_numerology.last_name',
-    //                 'business_numerology.dob',
-    //                 'business_numerology.phone_number',
-    //                 'business_numerology.type_of_business',
-    //                 'users.name as user_name',
-    //                 'users.email as user_email'
-    //             )
-    //             ->get();
-
-    //         return view('Admin.numerology.bussiness_numerology_list', compact('businessNumerologies'));
-    //     } catch (QueryException $e) {
-    //         Log::error('Database query error in businessNumerologyList: ' . $e->getMessage());
-
-    //         return response()->view('errors.general', ['error' => 'A database error occurred.'], 500);
-    //     } catch (Exception $e) {
-    //         Log::error('General error in businessNumerologyList: ' . $e->getMessage());
-
-    //         return response()->view('errors.general', ['error' => 'An unexpected error occurred.'], 500);
-    //     }
-    // }
-    //end
 
     public function nameNumerologyDetail($encryptedId)
     {
@@ -247,19 +215,23 @@ class NumerologyListAdminController extends Controller
         return view('Admin.numerology.name_numerology_detail', ['details' => $details]);
     }
 
-
     public function phoneNumerologyDetail($id)
     {
         // Decrypt the ID
         $decryptedId = Crypt::decrypt($id);
 
         // Fetch phone numerology details with user information using a left join
-        $phoneNumerologyDetail = PhoneNumerology::select('phone_numerology.*', 'users.name', 'users.email')
-            ->leftJoin('users', 'phone_numerology.user_id', '=', 'users.id')
-            ->where('phone_numerology.id', $decryptedId)
-            ->first();
+        $phoneNumerologyDetail =PhoneNumerology::leftJoin('users', 'phone_numerology.user_id', '=', 'users.id')
+        ->where('phone_numerology.id', $decryptedId)
+        ->select(
+            'phone_numerology.*',
+            'users.name as user_name',
+            'users.email as user_email'
+        )
+        ->first();
 
-        // Check if the record exists
+
+       // Check if the record exists
         if (!$phoneNumerologyDetail) {
             return response()->view('errors.404', [], 404);
         }

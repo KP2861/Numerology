@@ -30,7 +30,7 @@
                         font-size: 18px; 
                         line-height: 1.5; 
                         margin-bottom: 0;
-                    ">{{ $phoneNumerologies->phone_number }}</p>
+                    ">{{ $phoneNumerologyDetail->phone_number }}</p>
             </div>
 
                <div style="
@@ -49,7 +49,7 @@
                         font-size: 18px; 
                         line-height: 1.5; 
                         margin-bottom: 0;
-                    ">{{ $phoneNumerologies->dob }}</p>
+                    ">{{ $phoneNumerologyDetail->dob }}</p>
             </div>
 
             <div style="
@@ -67,7 +67,7 @@
                         color: #251F14; 
                         font-size: 18px; 
                         margin-bottom: 0;
-                    ">{{ $phoneNumerologies->area_of_concern }}</p>
+                    ">{{ $phoneNumerologyDetail->area_of_concern }}</p>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
                         font-size: 18px; 
                         line-height: 1.5; 
                         margin-bottom: 0;
-                    ">{{ $phoneNumerologies->user_name }}</p>
+                    ">{{ $phoneNumerologyDetail->user_name }}</p>
             </div>
 
 
@@ -118,7 +118,7 @@
                         font-size: 18px; 
                         line-height: 1.5; 
                         margin-bottom: 0;
-                    ">{{ $phoneNumerologies->user_email }}</p>
+                    ">{{ $phoneNumerologyDetail->user_email }}</p>
             </div>
         </div>
     </div>
