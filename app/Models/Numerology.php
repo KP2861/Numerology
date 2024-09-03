@@ -10,10 +10,7 @@ class Numerology extends Model
     use HasFactory;
 
     protected $table = 'numerology';
-    protected $fillable = ['name', 'type', 'user_id'];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
+    protected $fillable = ['name', 'type'];
+    // Define a method to fetch related NameNumerologies
+  
 }

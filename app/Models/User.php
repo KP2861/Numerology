@@ -44,8 +44,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function numerologies()
-    {
-        return $this->hasMany(Numerology::class, 'user_id', 'id');
-    }
+
 }

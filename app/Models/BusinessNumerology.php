@@ -10,6 +10,7 @@ class BusinessNumerology extends Model
     use HasFactory;
     protected $table = 'business_numerology';
     protected $fillable = [
+        'user_id',
         'numerology_type',
         'first_name',
         'last_name',
@@ -19,8 +20,5 @@ class BusinessNumerology extends Model
         'type_of_business',
         'have_partner',
     ];
-    public function numerology()
-{
-    return $this->belongsTo(Numerology::class, 'numerology_type');
-}
+
 }

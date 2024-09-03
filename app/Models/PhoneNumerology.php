@@ -10,13 +10,11 @@ class PhoneNumerology extends Model
     use HasFactory;
     protected $table = 'phone_numerology';
     protected $fillable = [
+        'user_id',
         'numerology_type',
         'phone_number',
         'dob',
         'area_of_concern',
     ];
-    public function numerology()
-{
-    return $this->belongsTo(Numerology::class, 'numerology_type');
-}
+
 }

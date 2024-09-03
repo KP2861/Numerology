@@ -13,12 +13,9 @@ class NameNumerology extends Model
         'numerology_type',
         'first_name',
         'last_name',
+        'user_id',
         'dob',
         'gender'
     ];
 
-    public function numerology()
-    {
-        return $this->belongsTo(Numerology::class, 'numerology_type');
-    }
 }
