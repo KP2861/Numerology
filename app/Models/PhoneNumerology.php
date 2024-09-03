@@ -12,6 +12,7 @@ class PhoneNumerology extends Model
     protected $fillable = [
         'user_id',
         'numerology_type',
+        'user_id',
         'phone_number',
         'dob',
         'area_of_concern',
