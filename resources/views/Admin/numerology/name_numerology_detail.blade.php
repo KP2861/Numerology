@@ -1,27 +1,165 @@
 @extends('Admin.layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Name Numerology Detail</h1>
+<h2 style="margin-bottom: 1.5rem; color: #333; font-size: 28px;">Name Numerology Detail</h2>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-md-6">
+        <div style="
+                width: 100%; 
+                height: 100%; 
+                padding: 1rem; 
+                border: 1px solid #dddddd; 
+                background: #f3f3f3; 
+                border-radius: 8px; 
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            ">
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">First Name</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    ">{{ $details->first_name }}</p>
+            </div>
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                    margin-top: 1rem;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Last Name</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    "> {{ $details->last_name }}</p>
+            </div>
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Date of Birth</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    ">{{ $details->dob }}</p>
+            </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Details for ID: {{ $nameNumerology['id'] }}</h2>
+               <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Date Of Birth</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    ">{{ $details->dob }}</p>
+            </div>
+
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Gender</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        margin-bottom: 0;
+                    ">{{ $details->gender }}</p>
+            </div>
         </div>
-        <div class="card-body">
-            <ul>
-                <li><strong>Numerology Name:</strong> {{ $nameNumerology['numerology_name'] }}</li>
-                <li><strong>First Name:</strong> {{ $nameNumerology['first_name'] }}</li>
-                <li><strong>Last Name:</strong> {{ $nameNumerology['last_name'] }}</li>
-                <li><strong>Date of Birth:</strong> {{ $nameNumerology['dob'] }}</li>
-                <li><strong>Gender:</strong> {{ $nameNumerology['gender'] }}</li>
-                <li><strong>User Name:</strong> {{ $nameNumerology['user_name'] }}</li>
-                <li><strong>User Email:</strong> {{ $nameNumerology['user_email'] }}</li>
-            </ul>
-        </div>
-        <div class="card-footer">
-            <a href="{{ route('name_numerology.list') }}" class="btn btn-primary">Back to List</a>
+    </div>
+    <div class="col-md-6">
+        <div style="
+                width: 100%; 
+                height: 100%; 
+                padding: 1rem; 
+                border: 1px solid #dddddd; 
+                background: #f3f3f3; 
+                border-radius: 8px; 
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            ">
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Name</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    ">{{ $details->user_name }}</p>
+            </div>
+
+
+            <div style="
+                    border-bottom: 1px solid #dddddd; 
+                    padding-bottom: 10px; 
+                    margin-bottom: 10px;
+                    margin-top: 1rem;
+                ">
+                <h6 style="
+                        color: #251F14; 
+                        font-size: 22px; 
+                        font-weight: bold; 
+                        margin-bottom: 0;
+                    ">Email</h6>
+                <p style="
+                        color: #251F14; 
+                        font-size: 18px; 
+                        line-height: 1.5; 
+                        margin-bottom: 0;
+                    ">{{ $details->user_email }}</p>
+            </div>
         </div>
     </div>
 </div>
+
+<script src="{{ URL::asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+
 @endsection

@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('numerology', function (Blueprint $table) {
             $table->id();
-             
             $table->string('name');
-            $table->enum('numerology_type', ['1', '2', '3', '4'])->change();
+            $table->enum('numerology_type', ['1', '2', '3', '4','5']);
             $table->timestamps();
         });
     }

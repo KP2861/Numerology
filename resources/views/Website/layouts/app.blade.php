@@ -35,6 +35,28 @@
   <!-- favicon links -->
   <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
 
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!--srart theme style -->
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/animate.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/bootstrap.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/font-awesome.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/fonts.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/flaticon.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/sign_flaticon.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.carousel.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/owl.theme.default') }}.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/magnific-popup.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/reset.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/scss/numerology.css') }}" />
+    <link rel="stylesheet" href="{{ url('frontend/scss/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
+   
+    <!-- favicon links -->
+    <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
+ 
 </head>
 
 <body>

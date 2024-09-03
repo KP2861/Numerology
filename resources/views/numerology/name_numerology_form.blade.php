@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-5">
+    {{-- <div class="container mt-5">
         <h1>Name Numerology Calculator</h1>
         <form action="{{ route('numerology.name_numerology_result') }}" method="POST">
             @csrf
@@ -21,6 +21,13 @@
             </div>
             <button type="submit" class="btn btn-primary">Calculate</button>
         </form>
-    </div>
+    </div> --}}
+    <form id="redirectForm" action="{{ route('numerology.name_numerology_result') }}" method="POST">
+        @csrf
+    </form>
+
+    <script type="text/javascript">
+        document.getElementById('redirectForm').submit();
+    </script>
 </body>
 </html>

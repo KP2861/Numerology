@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <a href="{{ route('numerology.name_numerology_form') }}" class="btn btn-primary mt-3">Calculate Another Name</a>
+        {{-- <a href="{{ route('numerology.name_numerology_form') }}" class="btn btn-primary mt-3">Calculate Another Name</a> --}}
     </div>
 </body>
 </html>

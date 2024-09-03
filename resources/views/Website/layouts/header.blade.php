@@ -36,7 +36,7 @@
                 </div>
                 <div class="hs_btn_wrapper">
                     <ul>
-                        <li><a href="{{ url('/contact-us') }}" class="hs_btn_hover">Consultation</a></li>
+                        <li><a href="{{ url('/consultant') }}" class="hs_btn_hover">Consultation</a></li>
                     </ul>
                 </div>
 
@@ -91,13 +91,13 @@
 
                             <li>
                                 <div class="dropdown-wrapper menu-button">
-                                    <a class="menu-button" href="#">Numerology</a>
-                                    <div class="drop-menu hs_mega_menu">
+                                    <a class="menu-button" href="{{ url('/numrology') }}">Numerology</a>
+                                    {{-- <div class="drop-menu hs_mega_menu">
                                         <a class="menu-button" href="#">Name Numerology</a>
                                         <a class="menu-button" href="#">Phone Number Numerology</a>
                                         <a class="menu-button" href="#">Advanced Numerology</a>
                                         <a class="menu-button" href="#">Business Numerology</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </li>
                             <li>
@@ -106,7 +106,7 @@
                                 </div> --}}
                             </li>
                             <li>
-                                <a class="menu-button" href="{{ url('/contact-us') }}">Consultant </a>
+                                <a class="menu-button" href="{{ url('/consultant') }}">Consultant </a>
                             </li>
                         </ul>
                     </nav>
@@ -218,7 +218,7 @@
 
 
                                                 <li>
-                                                    <a href="{{ url('/contact-us') }}">Contact</a>
+                                                    <a href="{{ url('/consultant') }}">Contact</a>
                                                 </li>
                                             </ul>
                                             <!-- .cd-dropdown-content -->
