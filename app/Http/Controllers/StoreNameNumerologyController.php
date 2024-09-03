@@ -89,6 +89,7 @@ class StoreNameNumerologyController extends Controller
             $orderId = $request->input('order_id');
             $paymentId = $request->input('payment_id');
             $signature = $request->input('signature');
+            // $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
             // dd($orderId, $paymentId, $signature, $expectedSignature);
 
             if (!$orderId || !$paymentId || !$signature) {
@@ -100,13 +101,13 @@ class StoreNameNumerologyController extends Controller
 
             if ($signature === $expectedSignature) {
 
-                $numerologyData = session('numerology_data');
+                // $numerologyData = session('numerology_data');
 
                 // Check if numerology data exists in session
-                if (!$numerologyData) {
-                    Log::error('Session data not found.');
-                    return redirect()->route('session')->with('error', 'Session data not found.');
-                }
+                // if (!$numerologyData) {
+                //     Log::error('Session data not found.');
+                //     return redirect()->route('session')->with('error', 'Session data not found.');
+                // }
 
                 // // Update numerology data with payment details
                 // $numerologyData['payment_id'] = $paymentId;
@@ -114,7 +115,7 @@ class StoreNameNumerologyController extends Controller
 
                 // PhoneNumerology::create($numerologyData);
 
-                return redirect()->route('numerology.name_numerology_result')->with('success', 'Payment successful and record added!');
+                return redirect()->route('numerology.name_numerology_form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
                 return redirect()->route('pot')->with('error', 'Payment verification failed!');

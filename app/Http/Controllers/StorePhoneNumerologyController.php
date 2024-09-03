@@ -33,7 +33,7 @@ class StorePhoneNumerologyController extends Controller
 
             $validated = $validator->validated();
             $validated['numerology_type'] = 1; // Default value for numerology_type
-            $validated['user_id'] = 1; // Default value for user_id
+            // $validated['user_id'] = 1; // Default value for user_id
             $validated['area_of_concern'] = 'null';
 
             PhoneNumerology::create($validated);
@@ -99,19 +99,19 @@ class StorePhoneNumerologyController extends Controller
 
             if ($signature === $expectedSignature) {
 
-                $numerologyData = session('numerology_data');
+                // $numerologyData = session('numerology_data');
 
-                // Check if numerology data exists in session
-                if (!$numerologyData) {
-                    Log::error('Session data not found.');
-                    return redirect()->route('session')->with('error', 'Session data not found.');
-                }
+                // // Check if numerology data exists in session
+                // if (!$numerologyData) {
+                //     Log::error('Session data not found.');
+                //     return redirect()->route('session')->with('error', 'Session data not found.');
+                // }
 
-                // // Update numerology data with payment details
-                // $numerologyData['payment_id'] = $paymentId;
-                // $numerologyData['payment_status'] = 'completed';
+                // // // Update numerology data with payment details
+                // // $numerologyData['payment_id'] = $paymentId;
+                // // $numerologyData['payment_status'] = 'completed';
 
-                // PhoneNumerology::create($numerologyData);
+                // // PhoneNumerology::create($numerologyData);
 
                 return redirect()->route('numerology.mobile_numerology_form')->with('success', 'Payment successful and record added!');
             } else {

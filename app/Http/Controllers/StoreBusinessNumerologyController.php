@@ -30,7 +30,7 @@ class StoreBusinessNumerologyController extends Controller
 
             $numerologyData = array_merge($validated, [
                 'numerology_type' => 1, // Default value
-                'user_id' => 1, // Default value
+                // 'user_id' => 1, // Default value
             ]);
 
             // Store the data in the BusinessNumerology model
@@ -97,13 +97,13 @@ class StoreBusinessNumerologyController extends Controller
 
             if ($signature === $expectedSignature) {
 
-                $numerologyData = session('numerology_data');
+                // $numerologyData = session('numerology_data');
 
-                // Check if numerology data exists in session
-                if (!$numerologyData) {
-                    Log::error('Session data not found.');
-                    return redirect()->route('session')->with('error', 'Session data not found.');
-                }
+                // // Check if numerology data exists in session
+                // if (!$numerologyData) {
+                //     Log::error('Session data not found.');
+                //     return redirect()->route('session')->with('error', 'Session data not found.');
+                // }
 
                 // // Update numerology data with payment details
                 // $numerologyData['payment_id'] = $paymentId;
