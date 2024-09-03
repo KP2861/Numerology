@@ -12,6 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('name_numerology', function (Blueprint $table) {
+            $table->unsignedBigInteger('numerology_type');
+
+            $table->foreign('numerology_type')->references('id')->on('numerology')->onDelete('cascade')->onUpdate('cascade');
+
             $table->unsignedBigInteger('user_id')->after('id'); // Add user_id column after id
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); // Add foreign key constraint
         });
