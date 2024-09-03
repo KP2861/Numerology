@@ -148,6 +148,7 @@ Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminControl
 
 Route::get('consultant', [WebPagesController::class, 'index'])->name('Website.pages.contactus');
 Route::get('numrology', [WebPagesController::class, 'numero'])->name('Website.pages.numerology');
+Route::get('profile', [WebPagesController::class, 'profile'])->name('Website.pages.profile');
 // Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
 
 // Route::post('/tphone-numerology/store', [TStorePhoneNumerologyController::class, 'storePhoneNumerology'])

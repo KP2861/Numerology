@@ -14,4 +14,7 @@ class WebPagesController extends Controller
     public function numero(){
         return view('Website.pages.numerology');
     }
+    public function profile(){
+        return view('Website.pages.profile');
+    }
 }

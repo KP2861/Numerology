@@ -21,7 +21,7 @@
                         <i class="fa fa-home"></i>
                     </div>
                     <div class="hs_header_add_icon_cont">
-                        <h5>Reach Us</h5>
+                        <h5 class="fw-bold">Reach Us</h5>
                         <p>601 , Ram Nagar Dewas</p>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         <i class="fa fa-phone"></i>
                     </div>
                     <div class="hs_header_add_icon_cont">
-                        <h5>Contact Us</h5>
+                        <h5 class="fw-bold">Contact Us</h5>
                         <p>+91-123456789</p>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <img src="{{url('frontend/assests/images/header/avtar-img.png')}}" alt="Logo" class="avtar">
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item"href="{{ url('/profile') }}">Profile</a></li>
                         <li><a class="dropdown-item" href="#">Logout</a></li>
                     </ul>
                 </div>
