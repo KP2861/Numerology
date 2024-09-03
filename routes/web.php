@@ -18,7 +18,8 @@ use App\Http\Controllers\StoreBusinessNumerologyController;
 use App\Http\Controllers\StoreNameNumerologyController;
 use App\Http\Controllers\StorePhoneNumerologyController;
 use App\Http\Controllers\Admin\NumerologyListAdminController;
-
+use App\Http\Controllers\StoreAdvanceNumerologyController;
+use App\Http\Controllers\TStorePhoneNumerologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,7 @@ Route::post('/business-numerology', [BusinessNumerologyController::class, 'calcu
 Route::get('phone_numerology/create', [StorePhoneNumerologyController::class, 'createPhoneNumerology'])->name('phone_numerology.create');
 Route::post('phone_numerology', [StorePhoneNumerologyController::class, 'storePhoneNumerology'])->name('phone_numerology.store');
 //AdvanceNumerology
-Route::post('Advance_numerology', [StorePhoneNumerologyController::class, 'storeAdvanceNumerology'])->name('advance_numerology.store');
+Route::post('Advance_numerology', [StoreAdvanceNumerologyController::class, 'storeAdvanceNumerology'])->name('advance_numerology.store');
 //contact us
 Route::get('/contact-us', [WebPagesController::class, 'index'])->name('webpage.contactUs');
 Route::get('/numero', [WebPagesController::class, 'numero'])->name('webpage.numerology');
@@ -147,3 +148,20 @@ Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminControl
 
 Route::get('consultant', [WebPagesController::class, 'index'])->name('Website.pages.contactus');
 Route::get('numrology', [WebPagesController::class, 'numero'])->name('Website.pages.numerology');
+Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
+
+// Route::post('/tphone-numerology/store', [TStorePhoneNumerologyController::class, 'storePhoneNumerology'])
+//      ->name('numerology.tphone_numerology_store');
+
+// // Route to handle form submission for advance numerology
+// Route::post('/tadvance-numerology/store', [TStorePhoneNumerologyController::class, 'storeAdvanceNumerology'])
+//      ->name('numerology.tadvance_numerology_store');
+
+// // Route to handle payment callback
+// Route::post('/tpayment/callback', [TStorePhoneNumerologyController::class, 'paymentCallback'])
+//      ->name('phone_numerology.tpayment.callback');
+
+
+Route::get('/pay', function () {
+     return view('payment.pay');
+})->name('payment.pay');

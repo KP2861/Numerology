@@ -2,38 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NameNumerology;
 use Illuminate\Http\Request;
+use App\Models\PhoneNumerology;
 use Illuminate\Support\Facades\Log;
-use Razorpay\Api\Api;
 use Illuminate\Support\Facades\Validator;
+use App\Services\RazorpayService;
+use Razorpay\Api\Api;
 
-class StoreNameNumerologyController extends Controller
+
+class StoreAdvanceNumerologyController extends Controller
 {
-    public function createNameNumerology()
-    {
-        return view('numerology.name_numerology');
-    }
-
-    public function storeNameNumerology(Request $request)
+    //advance numerology
+    public function storeAdvanceNumerology(Request $request)
     {
         try {
-            // Validate the request data
-            $validated = $request->validate([
-                'first_name' => 'required|string|max:10',
-                'last_name' => 'required|string|max:10',
+            $rules = [
+                'phone_number' => 'required|string|max:20',
                 'dob' => 'required|date',
-                'gender' => 'required|string|in:Male,Female',
-            ]);
+                'area_of_concern' => 'required|string|max:255',
+            ];
 
-            // Add 'numerology_type' with a default value of 1
-            $validated['numerology_type'] = 1;
+            $validator = Validator::make($request->all(), $rules);
 
-            // Add 'user_id' with a default value of 1
-            $validated['user_id'] = 1;
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-            // Attempt to create the NameNumerology record
-            NameNumerology::create($validated);
+            $validated = $validator->validated();
+            $validated['numerology_type'] = 1; // Default value for numerology_type
+            $validated['user_id'] = 1; // Default value for user_id
+
+            PhoneNumerology::create($validated);
 
             try {
                 $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
@@ -52,34 +53,28 @@ class StoreNameNumerologyController extends Controller
                     'payment_capture' => 1
                 ]);
             } catch (\Exception $e) {
-                Log::error('Failed to create Razorpay order: ' . $e->getMessage());
+                Log::error('Error during Razorpay order creation: ' . $e->getMessage());
                 return redirect()->back()
                     ->with('error', 'Failed to create payment order. Please try again.');
             }
 
             return view('payment.pay', [
                 'order' => $order,
-                'paymentPurpose' => 'Name Numerology Record',
+                'paymentPurpose' => 'Advance Numerology Record',
                 'numerology_data' => $validated,
-                'callbackUrl' => route('name_numerology.payment.callback')
-            ])->with('success', 'Name Numerology data saved successfully. Please proceed with the payment.');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->back()
-                ->withErrors($e->errors())
-                ->withInput();
+                'callbackUrl' => route('phone_numerology.payment.callback')
+            ])->with('success', 'Advance Numerology data saved successfully. Please proceed with the payment.');
         } catch (\Exception $e) {
-            Log::error('Error in storeNameNumerology: ' . $e->getMessage());
+            Log::error('Error in storeAdvanceNumerology: ' . $e->getMessage());
             return redirect()->back()
                 ->with('error', 'An error occurred while processing your request. Please try again.');
         }
     }
 
-
     public function paymentCallback(Request $request)
     {
-        return $this->handlePaymentCallback($request, 'name_numerology_form');
+        return $this->handlePaymentCallback($request, 'phone_numerology_form');
     }
-
     protected function handlePaymentCallback(Request $request, $formRoute)
     {
         try {
@@ -114,7 +109,7 @@ class StoreNameNumerologyController extends Controller
 
                 // PhoneNumerology::create($numerologyData);
 
-                return redirect()->route('numerology.name_numerology_result')->with('success', 'Payment successful and record added!');
+                return redirect()->route('numerology.mobile_numerology_form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
                 return redirect()->route('pot')->with('error', 'Payment verification failed!');
