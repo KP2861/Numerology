@@ -253,18 +253,22 @@
             </div>
             <div class="col-8">
                 <!-- Display success message if available -->
-                @if(session('success'))
-                <div class="alert alert-success mt-3" id="successMessage">
+                @if (session('success'))
+                <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
                 @endif
 
-                <!-- Display error message -->
-                @if(session('error'))
-                <div class="alert alert-danger mt-3" id="errorMessage">
+                @if (session('error'))
+                <div class="alert alert-danger">
                     {{ session('error') }}
                 </div>
                 @endif
+
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
+                @endforeach
+
 
                 <div class="tab-content m-0">
                     <div id="home" data-tab-content class="active">

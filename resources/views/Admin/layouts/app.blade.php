@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,18 +30,31 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{{ URL::asset('backend/dist/css/app.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Static DataTable Example</title>
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+  <!-- Optional DataTables Buttons CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.2/css/buttons.dataTables.min.css">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.2/css/buttons.dataTables.min.css">
+
+  <!-- Optional DataTables Buttons CSS -->
+  
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.2/css/buttons.dataTables.min.css">
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
   <!-- Wrapper -->
   <div class="wrapper">
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center" style="background-color:#EFEFDF;">
-      <h1 style="color:#080705;"><b>Numerology</b></h1>
-      <img class="animation__shake" src="{{ URL::asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
-      <h2 style="color:#40434E;"><b>Admin Dashboard</b></h2>
-      <h3 style="color:#702632; margin-top:10px;"><b>{{ Auth::user()->name ?? 'Guest' }}</b></h3>
-    </div>
-
+   
     <!-- Navbar -->
     @include('Admin.layouts.header')
 
@@ -64,8 +78,7 @@
   </div>
   <!-- ./wrapper -->
 
-  <!-- jQuery -->
-  <script src="{{ URL::asset('backend/plugins/jquery/jquery.min.js') }}"></script>
+
   <!-- jQuery UI 1.11.4 -->
   <script src="{{ URL::asset('backend/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -94,9 +107,7 @@
   <script src="{{ URL::asset('backend/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ URL::asset('backend/dist/js/adminlte.js') }}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="{{ URL::asset('backend/dist/js/pages/dashboard.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
+
 </html>
