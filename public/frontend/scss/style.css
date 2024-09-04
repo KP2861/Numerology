@@ -466,7 +466,7 @@ ul {
 .hs_top_header_main_Wrapper {
 	float: left;
 	width: 100%;
-	background: #F1EBE0;
+	background: #21212C;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	position: relative;
@@ -491,6 +491,8 @@ ul {
 	float: left;
 	width: 220px;
 	margin-left: 20px;
+	max-width: 220px;
+	min-width: 220px;
 }
 
 .hs_header_add_icon {
@@ -513,12 +515,12 @@ ul {
 
 .hs_header_add_icon_cont h5 {
 	font-size: 16px;
-	color: #251F14;
+	color: #D3D3D5;
 }
 
 .hs_header_add_icon_cont p {
 	font-size: 14px;
-	color: #251F14;
+	color: #D3D3D5;
 	margin-top: 3px;
 }
 
@@ -8286,25 +8288,43 @@ img.avtar {
 	border-radius: 50%;
 	object-position: center;
 }
-.profile-sec .user-name{
+.profile-sec  .left-part{
+	border-right: 1px solid #F1EBE0 ;
+	height: 100%;
+}
+
+.profile-sec .user-name {
 	font-size: 22px;
 	color: #251F14;
 }
-.profile-sec .logout-btn{
+
+.submit-btn {
 	color: #fff;
-	background:#BA9A63 ;
-	font-size:22px ;
+	background: #BA9A63;
+	font-size: 18px;
 }
-.profile-sec .tab.active{
+
+.profile-sec .logout-btn {
+	color: #fff;
+	background: #BA9A63;
+	font-size: 18px;
+}
+.profile-sec .tab{
+	border-bottom: 2px solid transparent;
+	font-weight: 700;
+}
+.profile-sec .tab.active {
 	border-radius: 0%;
 	background: #fff;
 	border-bottom: 2px solid #BA9A63;
-	color:#BA9A63;
-	font-weight: 700;
+	color: #BA9A63;
+
 }
-.profile-sec .tab.active:hover{
-color: #BA9A63;
+
+.profile-sec .tab.active:hover {
+	color: #BA9A63;
 }
-.profile-sec  label{
+
+.profile-sec label {
 	color: #251F14;
 }
