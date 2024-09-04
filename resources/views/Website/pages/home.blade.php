@@ -631,7 +631,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-<<<<<<< HEAD
 
                                                     <div class="form-group">
                                                         <label for="dob">Date of Birth:</label>
@@ -647,10 +646,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-=======
                                                     <button type="submit" class="btn submit-btn mt-4">Calculate</button>
->>>>>>> d11104002010dde76bef19de2cc0b88924097a18
                                                 </form>
 
 
