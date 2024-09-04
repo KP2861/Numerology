@@ -124,7 +124,7 @@
                                     <div class="col-6">
                                         <div>
                                             <label for="exampleFormControlInput1" class="form-label">
-                                                old password
+                                                Old Password
                                             </label>
                                             <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                                         </div>
