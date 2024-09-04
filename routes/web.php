@@ -124,7 +124,8 @@ Route::get('/payment', function () {
 //Admin Auth
 Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');
 Route::post('admin/loginsubmit', [AdminAuthController::class, 'loginsubmit']);
-Route::post('admin/logout',[AdminAuthController::class, 'destroy']);
+Route::post('admin/logout', [AdminAuthController::class, 'destroy']);
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -174,3 +175,5 @@ Route::get('profile', [WebPagesController::class, 'profile'])->name('Website.pag
 Route::get('/pay', function () {
      return view('payment.pay');
 })->name('payment.pay');
+
+Route::get('/numerology/type/{type}', [WebPagesController::class, 'fetchNumerologyType']);
