@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <div class="text-center">
+                <div class="text-center left-part">
                     <img src="{{url('frontend/assests/images/header/avtar-img.png')}}" alt="Logo" class="profile-img">
                     <h2 class="user-name mt-3">
                         UserName
@@ -26,50 +26,58 @@
                 <div class="tab-content m-0 mt-4">
                     <div id="home" data-tab-content class="active">
                         <div>
-                            <h3 class="mb-3 fw-bold">
-                            Personal Details
+                            <h3 class="mb-4 fw-bold">
+                                Personal Details
                             </h3>
-
                             <div class="profile-detail-sec mt-3">
                                 <div class="row g-3">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <label for="exampleFormControlInput1" class="form-label">
-                                            Name
-                                        </label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">
-                                            Name
-                                        </label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">
-                                            Name
-                                        </label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">
-                                            Name
-                                        </label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="exampleFormControlInput1" class="form-label">
-                                            Name
+                                            First Name
                                         </label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
                                     </div>
 
+                                    <div class="col-4">
+                                        <label for="exampleFormControlInput1" class="form-label">
+                                            Middle Name
+                                        </label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="exampleFormControlInput1" class="form-label">
+                                            Last Name
+                                        </label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleFormControlInput1" class="form-label">
+                                            Email
+                                        </label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleFormControlInput1" class="form-label">
+                                            Phone Number
+                                        </label>
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="exampleFormControlInput1" class="form-label">
+                                            Date of Birth
+                                        </label>
+                                        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Tanisha" value="Tanisha">
+                                    </div>
                                 </div>
+                                <button type='button' class="logout-btn px-4 py-2 border-0 rounded mt-5">
+                                    Update
+                                </button>
                             </div>
                         </div>
                     </div>
                     <div id="pricing" data-tab-content>
                         <div>
-                            <h3 class="mb-3 fw-bold">
+                            <h3 class="mb-4 fw-bold">
                                 History
                             </h3>
                             <div>
@@ -108,25 +116,35 @@
                     </div>
                     <div id="news" data-tab-content>
                         <div>
-
-                            <div class="w-75 ">
-                                <h3 class="mb-3 fw-bold">
+                            <div >
+                                <h3 class="mb-4 fw-bold">
                                     Change Password
                                 </h3>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">
-                                        old password
-                                    </label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>
+                                            <label for="exampleFormControlInput1" class="form-label">
+                                                old password
+                                            </label>
+                                            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <label for="exampleFormControlInput1" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <label for="exampleFormControlInput1" class="form-label"> Confirm New Password</label>
+                                            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">New Password</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label"> Confirm New Password</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                                </div>
+                                <button type='button' class="logout-btn px-4 py-2 border-0 rounded mt-5">
+                                  Save
+                                </button>
                             </div>
                         </div>
                     </div>
