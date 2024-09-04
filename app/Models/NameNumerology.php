@@ -10,11 +10,13 @@ class NameNumerology extends Model
     use HasFactory;
     protected $table = 'name_numerology';
     protected $fillable = [
+        'user_id',
         'numerology_type',
         'first_name',
         'last_name',
         'dob',
-        'gender'
+        'gender',
+        'payment_status',
+        'payment_id',
     ];
-
 }

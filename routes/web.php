@@ -103,7 +103,7 @@ Route::post('/payment-callback', [NumerologyController::class, 'paymentCallback'
 Route::post('/business-numerology/callback', [StoreBusinessNumerologyController::class, 'paymentCallback'])->name('business_numerology.payment.callback');
 Route::post('/name-numerology/callback', [StoreNameNumerologyController::class, 'paymentCallback'])->name('name_numerology.payment.callback');
 Route::post('/phone-numerology/callback', [StorePhoneNumerologyController::class, 'paymentCallback'])->name('phone_numerology.payment.callback');
-
+Route::post('/advance-numerology/callback', [StoreAdvanceNumerologyController::class, 'paymentCallback'])->name('advance_numerology.payment.callback');
 //payment page
 Route::get('/payment-error', function () {
      return view('payment.notworking');
@@ -156,6 +156,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('consultant', [WebPagesController::class, 'index'])->name('Website.pages.contactus');
 Route::get('numrology', [WebPagesController::class, 'numero'])->name('Website.pages.numerology');
+Route::get('profile', [WebPagesController::class, 'profile'])->name('Website.pages.profile');
 // Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
 
 // Route::post('/tphone-numerology/store', [TStorePhoneNumerologyController::class, 'storePhoneNumerology'])
