@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessNumerology;
+use App\Models\BusinessPartner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Razorpay\Api\Api;
@@ -17,25 +18,67 @@ class StoreBusinessNumerologyController extends Controller
 
     public function storeBusinessNumerology(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to proceed.');
+        }
         try {
+            // Validate the main form data
             $validated = $request->validate([
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
                 'dob' => 'required|date',
-                'phone_number' => 'required|string|regex:/\d{10,}/',
+                'phone_number' => 'required|string|regex:/\d{10}/',
                 'business_name' => 'required|string|max:255',
                 'type_of_business' => 'required|string|max:255',
                 'have_partner' => 'required|integer|in:0,1',
             ]);
 
-            $numerologyData = array_merge($validated, [
-                'numerology_type' => 1, // Default value
-                'user_id' => 1, // Default value
-            ]);
+            // Additional validation for partner fields if have_partner is 1
+            if ($validated['have_partner'] == 1) {
+                $request->validate([
+                    'partner_first_names.*' => 'required|string|max:255',
+                    'partner_last_names.*' => 'required|string|max:255',
+                    'partner_dobs.*' => 'required|date',
+                ], [
+                    'partner_first_names.*.required' => 'Each partner\'s first name is required.',
+                    'partner_first_names.*.string' => 'Each partner\'s first name must be a valid string.',
+                    'partner_first_names.*.max' => 'Each partner\'s first name cannot exceed 255 characters.',
+                    'partner_last_names.*.required' => 'Each partner\'s last name is required.',
+                    'partner_last_names.*.string' => 'Each partner\'s last name must be a valid string.',
+                    'partner_last_names.*.max' => 'Each partner\'s last name cannot exceed 255 characters.',
+                    'partner_dobs.*.required' => 'Each partner\'s date of birth is required.',
+                    'partner_dobs.*.date' => 'Each partner\'s date of birth must be a valid date.',
+                ]);
+            }
 
-            // Store the data in the BusinessNumerology model
-            BusinessNumerology::create($numerologyData);
+            $validated['user_id'] = auth()->id();
+            $validated['numerology_type'] = 1; // Default numerology_type
 
+            // Store data in session
+            session()->put('business_numerology_data', $validated);
+
+
+            if ($validated['have_partner'] == 1) {
+                $partnerData = [];
+                $partnerFirstNames = $request->input('partner_first_names', []);
+                $partnerLastNames = $request->input('partner_last_names', []);
+                $partnerDobs = $request->input('partner_dobs', []);
+
+                foreach ($partnerFirstNames as $index => $firstName) {
+                    $partnerData[] = [
+                        'first_name' => $firstName,
+                        'last_name' => $partnerLastNames[$index],
+                        'dob' => $partnerDobs[$index],
+                    ];
+                }
+                session()->put('business_numerology_partners', $partnerData);
+            } else {
+                session()->forget('business_numerology_partners');
+            }
+
+            // dd($validated, $partnerData);
+
+            // Redirect to payment page
             try {
                 $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
             } catch (\Exception $e) {
@@ -59,9 +102,8 @@ class StoreBusinessNumerologyController extends Controller
             return view('payment.pay', [
                 'order' => $order,
                 'paymentPurpose' => 'Business Numerology Record',
-                'numerology_data' => $validated,
                 'callbackUrl' => route('business_numerology.payment.callback')
-            ])->with('success', 'Numerology data saved successfully. Please proceed with the payment.');
+            ])->with('success', 'Numerology data saved in session. Please proceed with the payment.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->back()->withErrors($e->validator)->withInput();
         } catch (\Exception $e) {
@@ -69,6 +111,7 @@ class StoreBusinessNumerologyController extends Controller
             return redirect()->back()->with('error', 'An error occurred while processing your request. Please try again.');
         }
     }
+
 
 
 
@@ -98,21 +141,40 @@ class StoreBusinessNumerologyController extends Controller
 
             if ($signature === $expectedSignature) {
 
-                // $numerologyData = session('numerology_data');
+                // Retrieve data from session
+                $numerologyData = session('business_numerology_data');
+                $partnerData = session('business_numerology_partners', []);
 
                 // // Check if numerology data exists in session
-                // if (!$numerologyData) {
-                //     Log::error('Session data not found.');
-                //     return redirect()->route('session')->with('error', 'Session data not found.');
-                // }
+                if (!$numerologyData) {
+                    Log::error('Session data not found.');
+                    $errorMessage = 'Phone Numerology Session data not found.';
+                    return view('payment.notworking', ['errorMessage' => $errorMessage]);
+                }
 
-                // // Update numerology data with payment details
-                // $numerologyData['payment_id'] = $paymentId;
-                // $numerologyData['payment_status'] = 'completed';
+                // Update numerology data with payment details
+                $numerologyData['payment_id'] = $paymentId;
+                $numerologyData['payment_status'] = '1';
 
-                // BusinessNumerology::create($numerologyData);
+                $businessNumerology = BusinessNumerology::create($numerologyData);
 
-                return redirect()->route('business_numerology.result')->with('success', 'Payment successful and record added!');
+                // Store partner data if present
+                if (!empty($partnerData)) {
+                    foreach ($partnerData as $partner) {
+                        BusinessPartner::create([
+                            'business_id' => $businessNumerology->id,
+                            'first_name' => $partner['first_name'],
+                            'last_name' => $partner['last_name'],
+                            'dob' => $partner['dob'],
+                        ]);
+                    }
+                }
+
+                // Clear the session data after processing
+                session()->forget('business_numerology_data');
+                session()->forget('business_numerology_partners');
+
+                return redirect()->route('business_numerology.form')->with('success', 'Payment successful and record added!');
             } else {
                 Log::error('Signature mismatch. Expected: ' . $expectedSignature . ' | Received: ' . $signature);
                 $errorMessage = 'Payment verification failed!';

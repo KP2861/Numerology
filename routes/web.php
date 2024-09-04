@@ -122,34 +122,33 @@ Route::get('/payment', function () {
 ////////////////////////////////////////////
 
 //Admin Auth
-Route::get('admin/login',[AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');;
-Route::post('admin/loginsubmit',[AdminAuthController::class, 'loginsubmit']);
+Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');;
+Route::post('admin/loginsubmit', [AdminAuthController::class, 'loginsubmit']);
 
 Route::group(['middleware' => ['auth']], function () {
 
-//Admin Routes
-Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+     //Admin Routes
+     Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
-//user detail
-Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin.userList');
+     //user detail
+     Route::get('admin/user/list', [UserListController::class, 'index'])->name('admin.userList');
 
-//Admin profile
-Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
-Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
-Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
-Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+     //Admin profile
+     Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+     Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
+     Route::get('admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
+     Route::get('admin/profile/change_password', [AdminProfileController::class, 'changePassword'])->name('admin.profile.changePass');
 
 
-//numorology list
-Route::get('admin/name-numerology/list', [NumerologyListAdminController::class, 'nameNumerologyList'])->name('name_numerology.list');
-Route::get('admin/phone-numerology/list', [NumerologyListAdminController::class, 'phoneNumerologyList'])->name('phone_numerology.list');
-Route::get('admin/bussiness-numerology/list', [NumerologyListAdminController::class, 'businessNumerologyList'])->name('bussiness_numerology.list');
+     //numorology list
+     Route::get('admin/name-numerology/list', [NumerologyListAdminController::class, 'nameNumerologyList'])->name('name_numerology.list');
+     Route::get('admin/phone-numerology/list', [NumerologyListAdminController::class, 'phoneNumerologyList'])->name('phone_numerology.list');
+     Route::get('admin/bussiness-numerology/list', [NumerologyListAdminController::class, 'businessNumerologyList'])->name('bussiness_numerology.list');
 
-//numerology detail
-Route::get('admin/name-numerology/detail/{id}', [NumerologyListAdminController::class, 'nameNumerologyDetail'])->name('name_numerology.detail');
-Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController::class, 'phoneNumerologyDetail'])->name('phone_numerology.detail');
-Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
-
+     //numerology detail
+     Route::get('admin/name-numerology/detail/{id}', [NumerologyListAdminController::class, 'nameNumerologyDetail'])->name('name_numerology.detail');
+     Route::get('admin/phone-numerology/detail/{id}', [NumerologyListAdminController::class, 'phoneNumerologyDetail'])->name('phone_numerology.detail');
+     Route::get('admin/bussiness-numerology/detail/{id}', [NumerologyListAdminController::class, 'busssinessNumerologyDetail'])->name('bussiness_numerology.detail');
 });
 
 // Route::post('admin/numerology/download-pdf/{type}', [NumerologyListAdminController::class, 'downloadPdf'])->name('numerology.downloadPdf');
@@ -174,3 +173,5 @@ Route::get('profile', [WebPagesController::class, 'profile'])->name('Website.pag
 Route::get('/pay', function () {
      return view('payment.pay');
 })->name('payment.pay');
+
+Route::get('/numerology/type/{type}', [WebPagesController::class, 'fetchNumerologyType']);

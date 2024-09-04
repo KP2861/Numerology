@@ -20,26 +20,27 @@
             <div class="row py-5 gy-5 m-0">
                 <div class="col-12">
                     <ul class="tabs">
-                        <li data-tab-target="#home" class="active tab"
-                            onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/name-numerology.png') }}'">
+                        <li data-tab-target="#home" data-type="1" class="active tab"
+                            onclick="fetchNumerologyType(1)">
                             Name
                             Numerology</li>
-                        <li data-tab-target="#about" class="tab"
+                        <li data-tab-target="#about" data-type="2" class="tab"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/number-numerology.png') }}'">
                             Mobile Numerology
                         </li>
 
-                        <li data-tab-target="#pricing" class="tab"
+                        <li data-tab-target="#pricing" data-type="3" class="tab"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/advance-numerology.png') }}'">
                             Advance
                             Numerology</li>
 
-                        <li data-tab-target="#news" class="tab"
+                        <li data-tab-target="#news" class="tab" data-type="4"
                             onclick="document.getElementById('name').src='{{url('frontend/assests/images/content/numerology/business-numerology.png') }}'">
                             Business
                             Numerology</li>
 
                     </ul>
+                    <!-- <input type="text" id="numerology_type" name="numerology_type" value=""> -->
                 </div>
                 <div class="col-4">
                     <div class="numerology-img">
@@ -83,10 +84,8 @@
 
                             <form action="{{ route('name_numerology.store') }}" method="POST" class="mt-4">
                                 @csrf
-                                <!-- <div class="form-group">
-                                    <label for="numerology_type">Numerology Type:</label>
-                                    <input type="number" class="form-control" id="numerology_type" name="numerology_type" required>
-                                </div> -->
+                                <!-- <input type="text" id="numerology_type" name="numerology_type" value=" "> -->
+                                <!-- data.numerology_type -->
                                 <div class="form-group">
                                     <label for="first_name">First Name:</label>
                                     <input type="text" class="form-control" id="first_name" name="first_name" required>
@@ -153,13 +152,7 @@
                             </form> --}}
                             <form id="numerologyForm" action="{{ route('advance_numerology.store') }}" method="POST" class="mt-4">
                                 @csrf
-                                <!-- <div class="form-group">
-                                    <label for="numerology_type">Numerology Type:</label>
-                                    <input type="number" class="form-control @error('numerology_type') is-invalid @enderror" id="numerology_type" name="numerology_type" step="1" min="1" value="{{ old('numerology_type') }}" required>
-                                    @error('numerology_type')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div> -->
+                                <!-- <input type="text" id="numerology_type" name="numerology_type" value=""> -->
                                 <div class="form-group">
                                     <label for="phone_number">Phone Number:</label>
                                     <input type="tel"
@@ -218,6 +211,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div> -->
+                                <!-- <input type="text" id="numerology_type" name="numerology_type" value=" "> -->
                                 <div class="form-group">
                                     <label for="phone_number">Phone Number:</label>
                                     <input type="tel"
@@ -269,6 +263,8 @@
                             </div>
                             <form action="{{ route('business_numerology.store') }}" method="POST" class="mt-4">
                                 @csrf
+                                <!-- <input type="text" id="numerology_type" name="numerology_type" value=""> -->
+
 
                                 <div class="form-group">
                                     <label for="first_name">First Name:</label>
@@ -373,6 +369,26 @@
 
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.tabs li').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const type = this.dataset.type;
+                console.log('Setting numerology_type to:', type);
+
+                fetch(`/numerology/type/${type}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Fetched data:', data); // Inspect the fetched data
+                        document.getElementById('numerology_type').value = data.numerology_type;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching numerology type:', error);
+                    });
+            });
+        });
+    });
+
+    // Handle tab switching
     const tabs = document.querySelectorAll('[data-tab-target]')
     const tabContents = document.querySelectorAll('[data-tab-content]')
 

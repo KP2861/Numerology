@@ -16,6 +16,7 @@ class PhoneNumerology extends Model
         'phone_number',
         'dob',
         'area_of_concern',
+        'payment_id',
+        'payment_status',
     ];
-
 }

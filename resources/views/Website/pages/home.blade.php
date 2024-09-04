@@ -595,35 +595,63 @@
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="card">
+                                            <!-- Display success message if available -->
+                                            @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                            @endif
+
+                                            @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                            @endif
+
+                                            @foreach ($errors->all() as $error)
+                                            <div class="alert alert-danger">{{ $error }}</div>
+                                            @endforeach
+
                                             <div class="card-body">
-                                                <form action="{{ route('numerology.calculate') }}" method="POST">
+                                                <form action="{{ route('name_numerology.store') }}" method="POST">
                                                     @csrf
+                                                    <input type="hidden" id="numerology_type" name="numerology_type" value=" ">
+
                                                     <div class="row">
                                                         <div class="col-6">
                                                             <div class="form-group">
-                                                                <label for="dob">Name:</label>
-                                                                <input type="text" id="dob" name="dob" class="form-control" placeholder="Name" required>
+                                                                <label for="first_name">First Name:</label>
+                                                                <input type="text" class="form-control" id="first_name" name="first_name" required>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="form-group">
-                                                                <label for="gender">Gender:</label>
-                                                                <select id="gender" name="gender" class="form-control" required>
-                                                                    <option value="" disabled selected>Select your gender</option>
-                                                                    <option value="male">Male</option>
-                                                                    <option value="female">Female</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label for="dob">Date of Birth (dd-mm-yyyy):</label>
-                                                                <input type="text" id="dob" name="dob" class="form-control" placeholder="21-05-1986" required>
+                                                                <label for="last_name">Last Name:</label>
+                                                                <input type="text" class="form-control" id="last_name" name="last_name" required>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary mt-4">Calculate</button>
+
+                                                    <div class="form-group">
+                                                        <label for="dob">Date of Birth:</label>
+                                                        <input type="date" class="form-control" id="dob" name="dob" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="gender">Gender:</label>
+                                                        <select id="gender" name="gender" class="form-control" required>
+                                                            <option value="" disabled selected>Select your gender</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
                                                 </form>
+
+
+
+
                                             </div>
                                         </div>
 

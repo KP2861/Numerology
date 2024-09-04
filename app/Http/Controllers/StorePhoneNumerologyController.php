@@ -17,6 +17,9 @@ class StorePhoneNumerologyController extends Controller
 
     public function storePhoneNumerology(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to proceed.');
+        }
         try {
             $rules = [
                 'phone_number' => 'required|string|max:20',
@@ -33,15 +36,18 @@ class StorePhoneNumerologyController extends Controller
 
             $validated = $validator->validated();
             $validated['numerology_type'] = 1; // Default value for numerology_type
-            $validated['user_id'] = 1; // Default value for user_id
-            $validated['area_of_concern'] = 'null';
+            $validated['user_id'] = auth()->id();
+            $validated['area_of_concern'] = 'null'; // Default value for AOC = null
 
-            PhoneNumerology::create($validated);
+            // PhoneNumerology::create($validated);
+            // Store validated data in the session
+            session(['phone_numerology_data' => $validated]);
+
 
             try {
                 $api = new Api(env('RAZORPAY_KEY'), env('RAZORPAY_SECRET'));
             } catch (\Exception $e) {
-                Log::error('Failed to initialize Razorpay API: ' . $e->getMessage());
+                Log::error('Failed to initialize Razor-pay API: ' . $e->getMessage());
                 return redirect()->route('numerology.phone_numerology_form')
                     ->with('error', 'Failed to initialize payment gateway. Please try again later.');
             }
@@ -62,7 +68,7 @@ class StorePhoneNumerologyController extends Controller
             return view('payment.pay', [
                 'order' => $order,
                 'paymentPurpose' => 'Phone Numerology Record',
-                'numerology_data' => $validated,
+                'phone_numerology_data' => $validated,
                 'callbackUrl' => route('phone_numerology.payment.callback')
             ])->with('success', 'Phone Numerology data saved successfully. Please proceed with the payment.');
         } catch (\Exception $e) {
@@ -88,6 +94,7 @@ class StorePhoneNumerologyController extends Controller
             $orderId = $request->input('order_id');
             $paymentId = $request->input('payment_id');
             $signature = $request->input('signature');
+            // $expectedSignature = hash_hmac('sha256', $orderId . '|' . $paymentId, env('RAZORPAY_SECRET'));
             // dd($orderId, $paymentId, $signature, $expectedSignature);
 
             if (!$orderId || !$paymentId || !$signature) {
@@ -100,20 +107,20 @@ class StorePhoneNumerologyController extends Controller
 
             if ($signature === $expectedSignature) {
 
-                // $numerologyData = session('numerology_data');
+                $numerologyData = session('phone_numerology_data');
 
-                // // Check if numerology data exists in session
-                // if (!$numerologyData) {
-                //     Log::error('Session data not found.');
-                //     $errorMessage = 'Session data not found.';
-                //    return view('payment.notworking', ['errorMessage' => $errorMessage]);
-                // }
+                // Check if numerology data exists in session
+                if (!$numerologyData) {
+                    Log::error('Session data not found.');
+                    $errorMessage = 'Phone Numerology Session data not found.';
+                    return view('payment.notworking', ['errorMessage' => $errorMessage]);
+                }
 
-                // // // Update numerology data with payment details
-                // // $numerologyData['payment_id'] = $paymentId;
-                // // $numerologyData['payment_status'] = 'completed';
+                // Update numerology data with payment details
+                $numerologyData['payment_id'] = $paymentId;
+                $numerologyData['payment_status'] = '1';
 
-                // // PhoneNumerology::create($numerologyData);
+                PhoneNumerology::create($numerologyData);
 
                 return redirect()->route('numerology.mobile_numerology_form')->with('success', 'Payment successful and record added!');
             } else {

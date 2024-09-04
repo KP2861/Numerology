@@ -17,6 +17,9 @@ class StoreNameNumerologyController extends Controller
 
     public function storeNameNumerology(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login')->with('error', 'You must be logged in to proceed.');
+        }
         try {
             // Validate the request data
             $validated = $request->validate([
@@ -29,8 +32,7 @@ class StoreNameNumerologyController extends Controller
             // Add 'numerology_type' with a default value of 1
             $validated['numerology_type'] = 1;
 
-            // Add 'user_id' with a default value of 1
-            $validated['user_id'] = 1;
+            $validated['user_id'] = auth()->id();
 
             // Attempt to create the NameNumerology record
             // NameNumerology::create($validated);
