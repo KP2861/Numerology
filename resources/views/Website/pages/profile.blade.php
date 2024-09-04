@@ -120,7 +120,7 @@
                                 <h3 class="mb-4 fw-bold">
                                     Change Password
                                 </h3>
-                                <div class="row">
+                                <div class="row gy-3">
                                     <div class="col-6">
                                         <div>
                                             <label for="exampleFormControlInput1" class="form-label">
