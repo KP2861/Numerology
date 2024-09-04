@@ -622,7 +622,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary mt-4">Calculate</button>
+                                                    <button type="submit" class="btn submit-btn mt-4">Calculate</button>
                                                 </form>
                                             </div>
                                         </div>
