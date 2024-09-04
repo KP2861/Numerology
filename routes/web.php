@@ -47,7 +47,7 @@ Route::get('/home', function () {
 Route::get('/register', [UserController::class, 'showRegistrationForm']);
 Route::post('/register', [UserController::class, 'register'])->name('register');
 
-Route::get('/login', [UserController::class, 'showLoginForm']);
+Route::get('/login', [UserController::class, 'showLoginForm'])->middleware('guest');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::get('forget-password', [UserController::class, 'showForgetPasswordForm'])->name('forget.password.get');
@@ -122,8 +122,10 @@ Route::get('/payment', function () {
 ////////////////////////////////////////////
 
 //Admin Auth
-Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');;
+Route::get('admin/login', [AdminAuthController::class, 'index'])->name('admin.login')->middleware('guest');
 Route::post('admin/loginsubmit', [AdminAuthController::class, 'loginsubmit']);
+Route::post('admin/logout', [AdminAuthController::class, 'destroy']);
+
 
 Route::group(['middleware' => ['auth']], function () {
 

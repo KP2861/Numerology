@@ -547,7 +547,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="hs_about_right_cont_wrapper">
-                    <h2>HoroScope Revels The Will Of God</h2>
+                    <h2 class="pb-3">HoroScope Revels The Will Of God</h2>
                     <p class="about-para">Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit.
                         Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat
                         auctor eu in elit. Class aptent taciti sociosqu
@@ -631,6 +631,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
 
                                                     <div class="form-group">
                                                         <label for="dob">Date of Birth:</label>
@@ -647,6 +648,9 @@
                                                     </div>
 
                                                     <button type="submit" class="btn btn-primary mt-4">Submit</button>
+=======
+                                                    <button type="submit" class="btn submit-btn mt-4">Calculate</button>
+>>>>>>> d11104002010dde76bef19de2cc0b88924097a18
                                                 </form>
 
 

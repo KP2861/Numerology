@@ -29,7 +29,7 @@ class UserController extends Controller
                 'email' => 'required|email:rfc,dns|unique:users,email',
                 'password' => 'required|string|min:8|confirmed',
             ]);
-    
+
             // Create the user
             User::create([
                 'name' => $validatedData['name'],
@@ -37,7 +37,7 @@ class UserController extends Controller
                 'password' => Hash::make($validatedData['password']),
                 'role' => 2, // 2 means User
             ]);
-    
+
             return redirect('/login')->with('success', 'Registration successful! Please log in.');
         } catch (ValidationException $e) {
             // Handle validation exception
@@ -51,7 +51,7 @@ class UserController extends Controller
                 ->withInput();
         }
     }
-    
+
 
     public function showLoginForm()
     {
@@ -62,39 +62,51 @@ class UserController extends Controller
     public function login(Request $request)
     {
         try {
+            // Validate request data
             $validator = Validator::make($request->all(), [
                 'email' => 'required|exists:users,email',
                 'password' => 'required|string|min:8',
             ]);
 
-            // Check if validation fails
             if ($validator->fails()) {
                 return redirect('/login')
                     ->withErrors($validator)
                     ->withInput();
             }
 
-            // Attempt authentication
-            $credentials = $request->only('email', 'password');
+            // Attempt to retrieve user by email
+            $user = User::where('email', $request->email)->first();
 
-            if (Auth::attempt($credentials)) {
-                return redirect()->intended('/');
+            // Check if user exists and has the correct role
+            if ($user && $user->role === "2") {
+                $credentials = $request->only('email', 'password');
+
+                if (Auth::attempt($credentials)) {
+                    return redirect()->intended('/');
+                }
+
+                // Authentication failed
+                return redirect('/login')
+                    ->with('error', 'Invalid credentials. Please try again.')
+                    ->withInput();
             }
 
-            // If authentication fails
+            // User does not have the correct role
             return redirect('/login')
-                ->with('error', 'Invalid credentials. Please try again.');
-        }
-         catch (ValidationException $e) {
+                ->with('error', 'Unauthorized access. Please check your role.')
+                ->withInput();
+        } catch (ValidationException $e) {
             return redirect('/login')
                 ->withErrors($e->validator)
                 ->withInput();
         } catch (\Exception $e) {
+
             return redirect('/login')
                 ->with('error', 'An unexpected error occurred. Please try again.')
                 ->withInput();
-         }
+        }
     }
+
 
     // Forget password page view
     public function showForgetPasswordForm()
