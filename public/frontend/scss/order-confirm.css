@@ -1,0 +1,235 @@
+.order-successful-section {
+    background-color: #674735;
+    padding-top: 170px;
+    padding-bottom: 60px;
+    position: relative;
+}
+
+.bottom-adorn-section {
+    position: absolute;
+    bottom: 0;
+    left: auto;
+    right: auto;
+    width: 100%;
+    overflow: hidden;
+    height: 50px;
+}
+
+.bottom-adorn-section img {
+    width: 100%;
+}
+
+.order-successful-section h1 {
+    font-family: Poppins;
+    font-size: 62px;
+    font-weight: 700;
+    line-height: 93px;
+    color: #FFFFFF;
+
+}
+
+
+.order-successful-section h3 {
+    font-size: 54px;
+    font-weight: 300;
+    line-height: 82px;
+    color: #FFFFFF;
+}
+
+.order-successful-section p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+
+.whatsapp-details {
+    border: 1px solid #73CD45;
+    background-color: #F3FFED;
+    width: 100%;
+    display: flex;
+    text-align: center;
+
+}
+
+.whatsapp-num {
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 57px;
+    color: #21212C;
+
+}
+
+.whatsapp-num span {
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 57px;
+    color: #21212C;
+
+}
+
+.order-confirmed-section {
+    background-color: #FFFFFF;
+}
+
+.client-order-details p {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 41px;
+    color: #21212C;
+}
+
+.client-order-details span {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 41px;
+    color: #21212C;
+}
+
+.client-order-details p.bill-amount {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 41px;
+    color: #73CD45;
+
+}
+
+.client-order-details span.bill-amount {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 41px;
+    color: #21212C;
+}
+
+.min-fullscreen {
+    min-height: 100vh;
+}
+
+.order-successful-section h1 img {
+    height: unset;
+}
+
+@media screen and (max-width:999px) {
+    .order-successful-section {
+        padding-top: 200px;
+    }
+
+    .order-successful-section h1 {
+        font-size: 42px;
+        line-height: 73px;
+    }
+
+    .order-successful-section h3 {
+        font-size: 34px;
+        line-height: 62px;
+
+    }
+
+    .order-successful-section p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
+    .whatsapp-num {
+        font-size: 28px;
+        line-height: 47px;
+    }
+
+    .whatsapp-num span {
+        font-size: 28px;
+        line-height: 47px;
+    }
+
+    .client-order-details p {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .client-order-details span {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .client-order-details p.bill-amount {
+        font-size: 24px;
+        line-height: 32px;
+
+    }
+
+    .client-order-details span.bill-amount {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    .order-successful-section h1 img {
+        height: 40px;
+    }
+
+}
+
+@media screen and (max-width:767px) {
+    .order-successful-section {
+        padding-top: 100px;
+    }
+}
+
+
+@media screen and (max-width:576px) {
+    .order-successful-section {
+        padding-top: 100px;
+    }
+
+    .order-successful-section h1 {
+        font-size: 26px;
+        line-height: 57px;
+    }
+
+    .order-successful-section h1 img {
+        height: 30px;
+    }
+
+
+
+    .order-successful-section h3 {
+        font-size: 24px;
+        line-height: 52px;
+
+    }
+
+    .order-successful-section p {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .whatsapp-num {
+        font-size: 24px;
+        line-height: 43px;
+    }
+
+    .whatsapp-num span {
+        font-size: 24px;
+        line-height: 43px;
+    }
+
+    .client-order-details p {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .client-order-details span {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .client-order-details p.bill-amount {
+        font-size: 22px;
+        line-height: 30px;
+
+    }
+
+    .client-order-details span.bill-amount {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+}

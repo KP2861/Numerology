@@ -1,0 +1,127 @@
+/* General body styling */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f8f8f4; /* Light background color for better contrast */
+}
+
+/* Wrapper styles */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Header and Footer styling */
+.main-header, .main-footer {
+    background-color: #EFEFDF; /* Matches sidebar background */
+}
+
+/* Sidebar styling */
+.main-sidebar {
+    background-color: #080705; /* Dark background for the sidebar */
+    position: fixed;
+    top: 80px; /* Adjust based on header height */
+    bottom: 0;
+    left: 0;
+    width: 255px; /* Width of the sidebar */
+    height: 100vh; /* Full height minus header height */
+}
+
+/* Sidebar link styling */
+.nav-sidebar .nav-link {
+    color: #f2f2f3; /* Light text color */
+}
+
+.nav-sidebar .nav-link.active {
+    background-color: #EFEFDF; /* Background color for active item */
+    color: #0C0800; /* Dark text color */
+}
+
+/* Sidebar submenu items */
+.nav-sidebar .nav-treeview .nav-link {
+    color: #f2f2f3; /* Light text color for submenu items */
+}
+
+/* Content wrapper styling */
+.content-wrapper {
+    margin-left: 250px; /* Adjust based on sidebar width */
+    padding: 20px;
+    background-color: #FFFFFA; /* Light background color for the content area */
+    flex: 1;
+}
+
+/* Navbar and footer styling */
+.navbar, .main-footer {
+    background-color: #EFEFDF;
+}
+
+/* Custom button styles */
+/* .btn-sidebar {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 2px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 2px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-sidebar {
+        width: 100%;
+        height: auto; /* Sidebar height will adapt */
+        position: relative;
+        top: 0;
+        bottom: auto;
+    }
+
+    .content-wrapper {
+        margin-left: 0; /* Remove margin on smaller screens */
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-link {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #007bff;
+    background-color: #fff;
+}
+
+.page-link:hover {
+    background-color: #e9ecef;
+}
+
+.page-link.disabled {
+    color: #6c757d;
+    border-color: #ddd;
+    cursor: not-allowed;
+}

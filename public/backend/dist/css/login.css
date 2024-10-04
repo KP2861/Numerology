@@ -1,0 +1,56 @@
+.body{
+    text-align : center;
+    background-color: red;
+}
+.banner-img{
+    background-color: red;
+}
+.login-file{
+    background-color:#fcfce9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.login-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+}
+.admin-logo{
+    margin: auto; 
+}
+.login-box{
+    margin: auto;
+    background-color: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 41px 62px 37px 3px linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    -webkit-box-shadow: 41px 62px 37px 3px rgba(121, 129, 124, 0.81);
+    -moz-box-shadow: 41px 62px 37px 3px rgba(117, 218, 152, 0.81);
+}
+.login-logo{
+    color:rgb(7, 8, 8);
+}
+.card-body{
+    background-color: rgb(3, 3, 3);
+}
+.login-box-msg{
+    color:rgb(78, 182, 148);
+}
+.submit-button{
+    color:rgb(249, 245, 254);
+}
+.form-control{
+    border-radius: 50px;
+    border: 2px solid #fffdfd;
+    padding: 20px;
+}
+
+/* Responsive Styling */
+@media only screen and (max-width: 768px) {
+    .login-box {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+    .form-control {
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+}

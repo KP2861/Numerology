@@ -1,0 +1,53 @@
+/* .form-part{
+	width: 80%;
+.form-part {
+    width: 80%;
+}
+
+.heading {
+    color: #BA9A63;
+}
+
+.form-part input:focus {
+    box-shadow: 0 0 0 .2rem rgb(255 255 255 / 0%);
+    border-color: #BA9A63;
+}
+
+.login-button {
+    width: 100%;
+    background-color: #BA9A63;
+    color: #fff;
+}
+
+.login-button:hover {
+
+    color: #fff;
+}
+
+.form-part a {
+    color: #BA9A63;
+}
+
+.reset-btn {
+    background-color: #FFF;
+    color: #BA9A63;
+    border: 1px solid #BA9A63;
+}
+
+.reset-btn:hover {
+    background-color: #BA9A63;
+    color: #FFF;
+    border: 1px solid transparent;
+}
+
+.banner-img {
+    background: url('../../assests/images/signin/signin-banner.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.banner-img-admin-signin {
+    background: url('../../assests/images/signin/admin-signin-banner.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+} */

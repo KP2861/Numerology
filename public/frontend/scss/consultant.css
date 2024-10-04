@@ -1,0 +1,104 @@
+.consultant-header {
+    background-color: #674735;
+    background-image: url("../assests/images/contactus/banner-img.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 20%;
+    min-height: 50vh;
+    padding: 150px 0 200px 0;
+    position: relative;
+}
+
+.consultant-header h1 {
+    font-size: 52px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.consultant-form-sec label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #21212C;
+    padding-bottom: 4px;
+}
+
+.consultant-form-sec input.form-control,
+.consultant-form-sec textarea.form-control,
+.consultant-form-sec select.form-select {
+    border: 1px solid #D9D9D9;
+    font-size: 14px;
+    font-weight: 500;
+    color: #21212C;
+    padding: 6px 14px;
+    line-height: 24px;
+    height: auto;
+    margin-bottom: 0;
+}
+
+.consultant-form-sec .form-control:focus,
+.consultant-form-sec select.form-select:focus {
+    border: 1px solid #D9D9D9;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(13, 109, 253, 0);
+}
+
+button.submit-button-contactus {
+    background: #EC4400;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 8px;
+    padding: 9px 38px;
+    border: 1px solid #EC4400;
+}
+
+button.submit-button-contactus:hover {
+    background: #fff;
+    border: 1px solid #EC4400;
+    color: #EC4400;
+}
+
+.consultant-form-sec h2 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #21212C;
+    margin-bottom: 35px;
+}
+
+.consultant-form-sec .para {
+    font-size: 14px;
+    font-weight: 300;
+    color: #21212C;
+    margin-bottom: 40px;
+}
+
+
+@media (min-width: 1600px) {
+    .consultant-header {
+        padding: 250px 0 300px 0;
+    }
+
+    .consultant-header h1 {
+        font-size: 62px;
+    }
+
+    .consultant-form-sec h2 {
+        font-size: 52px;
+    }
+
+    .consultant-form-sec .para {
+        font-size: 20px;
+        margin-bottom: 70px;
+    }
+
+    .consultant-form-sec label {
+        font-size: 18px;
+        padding-bottom: 8px;
+    }
+
+    .consultant-form-sec input.form-control,
+    .consultant-form-sec textarea.form-control,
+    .consultant-form-sec select.form-select {
+        font-size: 16px;
+        padding: 12px 14px;
+    }
+}
