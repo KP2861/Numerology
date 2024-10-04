@@ -11,7 +11,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.9",
         "mailersend/laravel-driver": "^2.7",
-        "mpdf/mpdf": "^8.2",
+        "mpdf/mpdf": "^8.2.4",
         "razorpay/razorpay": "^2.9",
         "yajra/laravel-datatables-oracle": "^10.11"
     },
