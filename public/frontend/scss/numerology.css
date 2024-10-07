@@ -31,7 +31,7 @@
     left: 0;
     height: 100%;
     background-color: #f19CDA;
-    /* transition: width 0.3s, left 0.3s; */
+    
     border-radius: 20px;
 }
 
@@ -84,7 +84,6 @@
 }
 
 .tab:hover {
-    /* background-color: #AAA; */
     color: #BA9A63;
 
 }
@@ -107,11 +106,427 @@
 }
 
 .tab-content.right-content-part {
-    min-height: 500px;
+    min-height: 450px;
 }
 .wht-mobile-n .subheading{
 color: #251F14;
 }
 .wht-mobile-n p.para{
     color: #251F14;
+}
+
+/*---------------------------------------- services Page (mm) ----------------------------------------*/
+
+.tabs-successor {
+    /* gap: 5px; */
+    margin-bottom: 40px;
+}
+
+.tablink-num {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.tablink-num:hover {
+    background-color: #EC4400;
+    color: #fff;
+}
+
+.tablink-num.active {
+    background-color: #EC4400;
+    color: #fff;
+}
+
+.tablink-num:hover img{
+    filter: invert(1);
+}
+
+.tablink-num.active img{
+    filter: invert(1);
+}
+
+.tabcontent-num {
+    display: none;
+    /* padding: 40px; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    /* max-width: 600px; */
+    margin: 0 auto;
+    /* color: #333; */
+}
+
+/* #MobileNumerology form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+} */
+
+
+.submit-btn-numerology .btn {
+    background-color: #EC4400;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn-numerology .btn:hover {
+    background-color: #EC4400;
+}
+
+/* Show the first tab by default */
+.tabcontent-num:first-child {
+    display: block;
+}
+
+
+/* ------- */
+
+
+
+.services-forms {
+    padding-top: 125px;
+    background-color: #FFFFFF;
+}
+
+.services-forms .services-heading {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 72px;
+    color: #21212C;
+
+}
+
+.services-forms .services-para {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #666666;
+
+}
+
+.services-tabs button {
+    box-shadow: 0px 4px 84px 0px #00000014;
+    background-color: #FDFDFD;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-radius: 0px;
+
+}
+
+.intro-content {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.tab-info-description {
+    background-color: #FFFFFF;
+}
+
+.tab-info-heading {
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 50px;
+    color: #21212C;
+
+}
+
+.tab-info-heading span {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 50px;
+    color: #21212C;
+}
+
+.tab-info-content {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    color: #666666;
+
+}
+
+.numerology-form-wrapper,
+.services-forms {
+    background-color: #F9F9F9;
+}
+
+.numerology-form-wrapper .form-heading {
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 57px;
+    color: #21212c;
+
+}
+
+/*---------------------------------------- form --------------------------------------*/
+
+label.custom-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24.3px;
+    color: #21212C;
+
+}
+
+ input[type="text"].numerology-service-labels,
+ input[type="date"].numerology-service-labels,
+input[type="email"].numerology-service-labels ,
+input[type="tel"].numerology-service-labels,
+input[type="checkbox"].numerology-service-labels,
+select.numerology-service-labels  {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: transparent;
+    background: transparent;
+    color:#21212c;
+}
+input[type="text"].numerology-service-labels::placeholder,
+input[type="date"].numerology-service-labels::placeholder,
+input[type="email"].numerology-service-labels::placeholder ,
+input[type="tel"].numerology-service-labels::placeholder,
+input[type="checkbox"].numerology-service-labels::placeholder,
+select.numerology-service-labels::placeholder  {
+  
+   color:grey;
+}
+
+input[type="text"].numerology-service-labels :focus,
+input[type="date"].numerology-service-labels :focus,
+input[type="email"].numerology-service-labels :focus,
+input[type="tel"].numerology-service-labels :focus,
+input[type="checkbox"].numerology-service-labels,
+select.numerology-service-labels :focus {
+
+    border: 1px solid #EC4400;
+
+}
+
+.radio-group-custom {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.radio-group-custom input {
+    margin-right:0px;
+}
+
+.radio-group-custom label {
+    margin-right:20px;
+}
+
+.radio-group-custom-2 label {
+    margin-right:20px;
+}
+
+.radio-group-custom-2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.radio-group-custom-2 input {
+    margin-right:0px;
+}
+
+.time-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.am-pm {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.am-pm input {
+    margin-right: 5px;
+}
+
+.submit-btn-numerology button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #EC4400;
+    border:1px solid #EC4400!important;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition:0.6s;
+}
+
+.submit-btn-numerology button[type="submit"]:hover {
+    background-color:transparent;
+    color:#EC4400;
+}
+
+.select-radio-custom {
+    font-size: 16px;
+    font-weight: 500;
+    /* line-height: 21px; */
+    color: #21212c;
+    margin-top: 10px;
+
+}
+
+input[type="radio"].numerology-service-labels,
+input[type="checkbox"].checkbox-cutom
+ {
+    accent-color: #EC4400;
+}
+
+.custom-mb-gender {
+    margin-bottom: 23px;
+}
+
+.custom-mb-language {
+    margin-bottom: 25px;
+}
+
+/* 27-09 */
+
+@media screen and (max-width:1199px){
+    .services-forms {
+        padding-top: 95px;
+    }
+    .tab-responsive-text{
+        display: none;
+    }
+}
+@media screen and (max-width:767px){
+    /* .services-forms {
+        padding-top: 105px;
+    } */
+    .services-forms .services-heading {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 42px;
+        color: #21212C;
+    }
+    .numerology-form-wrapper .form-heading {
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 48px;
+        color: #21212c;
+    }
+    .tab-info-heading {
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 40px;
+        color: #21212C;
+    }
+    .tab-info-heading span{
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 40px;
+        color: #21212C;
+    }
+}
+
+@media screen and (max-width:576px)
+{
+    .tab-info-heading {
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 32px;
+        color: #21212C;
+    }
+    .tab-info-heading span{
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 32px;
+        color: #21212C;
+    }
+    .services-forms .services-para {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #666666;
+    }
+    .services-forms .services-heading {
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 40px;
+        color: #21212C;
+    }
+    .numerology-form-wrapper .form-heading {
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 48px;
+        color: #21212c;
+    }
+    .tab-info-content {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        color: #666666;
+    }
+    .services-forms {
+        padding-top: 95px;
+    }
+    .tablink-num img{
+        height:32px;
+    }
+}
+@media (max-width: 425px) {
+    .need-our-help-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        justify-content: space-between;
+        align-items: center;
+        width: 80vw;
+        padding: 20px;
+    }
+}
+h5.services-subheading {
+    font-family: poppins;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32.4px;
+    color: #21212c;
+
+}
+
+.partner-button{
+    border: 1px solid #21212C;
+    background-color: #21212C;
+    color: #FFFFFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
 }

@@ -40,6 +40,16 @@
             }
         });
 
+        $(window).scroll(function() {
+            var window_top = $(window).scrollTop() + 1;
+            if (window_top > 160) {
+                $('.redesign-navigation-header-wrapper').addClass(' animated fadeInDown');
+            } else {
+                $('.redesign-navigation-header-wrapper').removeClass('menu_fixed_n animated fadeInDown');
+            }
+        });
+
+
 
         // Main Slider Animation
 

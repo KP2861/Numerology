@@ -66,15 +66,15 @@
             background-position: center
         }
     </style>
-    <div class="content">
+    {{-- <div class="content">
         @include('pdf.static_page.greetPdf')
     </div>
 
-    <div class="page-break"></div>
-    <div class="content">
+    <div class="page-break"></div> --}}
+    {{-- <div class="content">
         @include('pdf.advance_numerology.advanceNumerologyIndex')
     </div>
-
+ --}}
 
     <div class="content">
         @include('pdf.static_page.freeGifts')
@@ -214,10 +214,10 @@
         @include('pdf.static_page.eleveenthPage')
     </div>
 
-    <div class="page-break"></div>
-    <div class="content">
+    {{-- <div class="page-break"></div> --}}
+    {{-- <div class="content">
         @include('pdf.static_page.termAndConditionRemaining')
-    </div>
+    </div> --}}
 </body>
 
 </html>

@@ -1,8 +1,12 @@
 .body{
     text-align : center;
+    background-color: red;
+}
+.banner-img{
+    background-color: red;
 }
 .login-file{
-    background-color:#FFFFFA;
+    background-color:#fcfce9;
     display:flex;
     justify-content:center;
     align-items:center;

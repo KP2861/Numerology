@@ -1008,7 +1008,7 @@ class NameNumerologyController extends Controller
             $nameMatches = $this->checkNameParts($firstName, $lastName, $username);
             $alphabetIssues = $this->getMostFrequentAlphabetIssues($username);
             $nameDetails = [];
-    
+
             // Prepare name details
             if ($nameMatches) {
                 // First Name Matches
@@ -1026,7 +1026,7 @@ class NameNumerologyController extends Controller
                         })->toArray();
                     }
                 }
-    
+
                 // Last Name Matches
                 if (isset($nameMatches['last_name_matches'])) {
                     if ($nameMatches['last_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
@@ -1042,7 +1042,7 @@ class NameNumerologyController extends Controller
                         })->toArray();
                     }
                 }
-    
+
                 // Full Name Matches
                 if (isset($nameMatches['full_name_matches'])) {
                     if ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
@@ -1059,7 +1059,7 @@ class NameNumerologyController extends Controller
                     }
                 }
             }
-    
+
             // Process DOB for compound details
             if ($dob) {
                 $dobParts = explode('-', $dob);
@@ -1071,7 +1071,7 @@ class NameNumerologyController extends Controller
                 }
             }
             $getBasicDetail = $this->getDOBCompound($dobNonLeadingZero);
-    
+
             // Collect data for PDF
             $multiCountDetail = $result['multiDateCountDetails'];
             $dateDetail = $result['dateDetail'];
@@ -1085,7 +1085,7 @@ class NameNumerologyController extends Controller
                 'footer_name' => $pdfTemplate ? $pdfTemplate->footer_name : 'Default Footer',
                 'footer_img' => $pdfTemplate ? $pdfTemplate->footer_img : null,
             ];
-    
+
             $data = [
                 'Username' => $username,
                 'FirstName' => $firstName,
@@ -1112,7 +1112,7 @@ class NameNumerologyController extends Controller
                 'getBasicDetail' => $getBasicDetail,
                 'bestJobs' => $bestJobs
             ];
-            //   dd($data);
+            //  dd($data);
             // Initialize mPDF instance with margins
             $mpdf = new \Mpdf\Mpdf([
                 'tempDir' => '/tmp',
@@ -1122,331 +1122,63 @@ class NameNumerologyController extends Controller
                 'margin_top' => 20,
                 'margin_bottom' => 70, // Ensure space for footer
             ]);
+            $mpdf->autoScriptToLang = true;
+            $mpdf->autoLangToFont = true;
+            // Prepare the first and last page footer
+            // Render the first and last page footer using Blade
+            $footerHtmlfirstandLast = view('pdf.static_page.first_page_footer', ['result' => $data])->render();
 
-    // Enable automatic font and language detection
-    $mpdf->autoScriptToLang = true;
-    $mpdf->autoLangToFont = true;
+            // Render the common footer using Blade
+            $footerHtmlCommon = view('pdf.static_page.footer', ['result' => $data])->render();
+            // Render Blade views into HTML content
+            $firstPageContent = view('pdf.static_page.greetPdf', ['result' => $data])->render(); // Greet PDF content
+            $middlePagesContent = view('pdf.name_numerology.name_numerology_pdf', ['result' => $data])->render(); // Name Numerology content
+            $lastPageContent = view('pdf.static_page.termAndConditionRemaining', ['result' => $data])->render(); // Free Gifts content
 
 
-    // Set the background image (watermark) for all pages
-    // $backgroundImagePath = public_path('frontend/assests/images/pdf/background-bg.png');
-    // $mpdf->SetWatermarkImage($backgroundImagePath, 0.8, 'P', 'C'); // Full opacity, centered
-    // $mpdf->showWatermarkImage = true; // Ensure watermark is visible
+            // Get the path to the background image and encode it
+            $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+            $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
+            $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
 
-    // Generate HTML content from the Blade view
-            $html = view('pdf.name_numerology.name_numerology_pdf', ['result' => $data])->render();
+            // Set the background image CSS
+            $mpdf->SetDefaultBodyCSS('background', "url('" . $backgroundImagePath . "')");
+            $mpdf->SetDefaultBodyCSS('background-image-resize', 6); // Stretch the background image
 
-    // Define CSS rules for content and footer
-    $css = "
-   .content-section { height: calc(100vh - 60mm); } /* Adjust content height */
-   .footer { position: fixed; bottom: 0; width: 100%; height: 60mm; } /* Footer height = 60mm */
-";
-    $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
+            // Add the first page with its footer
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlfirstandLast);
+            $mpdf->WriteHTML('<div class="content">' . $firstPageContent . '</div>');
 
-    // Define and set the HTML footer
-    $footerHtml = view('pdf.static_page.footer', ['result' => $result])->render();
-    $mpdf->SetHTMLFooter($footerHtml, 'O');
+            // Render the indexing content and add it after the greet page
+            $indexingContent = view('pdf.name_numerology.nameNumerologyIndex', ['result' => $data])->render();
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlCommon);
+            $mpdf->WriteHTML('<div class="content">' . $indexingContent . '</div>');
 
-    // Write the HTML content to the PDF
-    $mpdf->WriteHTML($html);
-    
-    // Generate dynamic filename
-    $fileName = $username . '.pdf';
+            // Add content for the middle pages (common footer)
+            for ($i = 2; $i < 3; $i++) {  // Adjust page count as needed
+                $mpdf->AddPage();
+                $mpdf->SetFooter($footerHtmlCommon);  // Apply the common footer
+                $mpdf->WriteHTML('<div class="content">' . $middlePagesContent . '</div>'); // Name Numerology content
+            }
 
-    // Output the PDF
-    return response($mpdf->Output($fileName, 'I'), 200)
-        ->header('Content-Type', 'application/pdf');
+            // Add the last page with the same footer as the first
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlfirstandLast);
+            $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
 
+            // Output the PDF (inline display in browser)
+            $fileName = $result['username'] . '.pdf';
+            return response($mpdf->Output($fileName, 'I'), 200)
+                ->header('Content-Type', 'application/pdf');
         } catch (\Exception $e) {
             // Log the error and return an error response
             Log::error('PDF generation error: ' . $e->getMessage());
             return response()->json(['error' => 'Could not generate PDF. Please try again later.'], 500);
         }
     }
-    
 
-
-//     private function downloadPDF($result)
-//     {
-//         try {
-//             $id = $result['id'];
-//             $firstName = $result['firstName'];
-//             $lastName = $result['lastName'];
-//             $username = $result['username'];
-//             $fullNameTotal = $result['full_name_total'];
-//             $fullNameSingleDigit = $result['full_name_single_digit'];
-//             $fullNameInterpretation = $result['full_name_interpretation'];
-//             $firstNameTotal = $result['first_name_total'];
-//             $firstNameSingleDigit = $result['first_name_single_digit'];
-//             $firstNameInterpretation = $result['first_name_interpretation'];
-//             $fullNameDetails = $result['full_name_details'];
-//             $firstNameDigitInterpretation = $result['firstNameDigitInterpretation'];
-//             $fullNameDigitInterpretation = $result['fullNameDigitInterpretation'];
-//             $nameNumberTotalResult = $this->getNameNumberTotalDetails($fullNameTotal);
-//             $dob =  $result['dob'];
-//             $crystalDetails = $this->getCrystalDetails($dob);
-
-//             $charAndMultiples = $this->characterAndMultiples($username);
-
-//             $nameMatches = $this->checkNameParts($firstName, $lastName, $username);
-//             $alphabetIssues = $this->getMostFrequentAlphabetIssues($username);
-//             // dd($nameMatches);
-//             $nameDetails = [];
-
-//             if ($nameMatches) {
-//                 // Check for matches in the first name
-//                 if (isset($nameMatches['first_name_matches'])) {
-//                     // Ensure first_name_matches is a collection
-//                     if ($nameMatches['first_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
-//                         // Extract specific attributes you want from the collection
-//                         $nameDetails['first_name_matches'] = $nameMatches['first_name_matches']->map(function ($match) {
-//                             return [
-//                                 'id' => $match->id,
-//                                 'name' => $match->name_sound,
-//                                 'type' => $match->energy_type,
-//                                 'issues_faced_in_life' => $match->life_challenges_or_success,
-//                                 'details' => $match->meaning,
-//                                 'famous_names' =>  $match->famous_names
-//                             ];
-//                         })->toArray(); // Convert to array for easier access in the PDF
-//                     } else {
-//                         // If it's a single instance, wrap it in an array
-//                         $nameDetails['first_name_matches'] = [
-//                             [
-//                                 'id' => $nameMatches['full_name_matches']->id,
-//                                 'name' => $nameMatches['full_name_matches']->name_sound,
-//                                 'type' => $nameMatches['full_name_matches']->energy_type,
-//                                 'issues_faced_in_life' => $nameMatches['full_name_matches']->life_challenges_or_success,
-//                                 'details' => $nameMatches['full_name_matches']->meaning,
-//                                 'famous_names' => $nameMatches['full_name_matches']->famous_names
-//                             ]
-//                         ];
-//                     }
-//                 }
-
-//                 // Check for matches in the last name
-//                 if (isset($nameMatches['last_name_matches'])) {
-//                     // Ensure last_name_matches is a collection
-//                     if ($nameMatches['last_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
-//                         // Extract specific attributes you want from the collection
-//                         $nameDetails['last_name_matches'] = $nameMatches['last_name_matches']->map(function ($match) {
-//                             return [
-//                                 'id' => $match->id,
-//                                 'name' => $match->name_sound,
-//                                 'type' => $match->energy_type,
-//                                 'issues_faced_in_life' => $match->life_challenges_or_success,
-//                                 'details' => $match->meaning,
-//                                 'famous_names' =>  $match->famous_names
-//                             ];
-//                         })->toArray(); // Convert to array for easier access in the PDF
-//                     } else {
-//                         // If it's a single instance, wrap it in an array
-//                         $nameDetails['last_name_matches'] = [
-//                             [
-//                                 'id' => $nameMatches['full_name_matches']->id,
-//                                 'name' => $nameMatches['full_name_matches']->name_sound,
-//                                 'type' => $nameMatches['full_name_matches']->energy_type,
-//                                 'issues_faced_in_life' => $nameMatches['full_name_matches']->life_challenges_or_success,
-//                                 'details' => $nameMatches['full_name_matches']->meaning,
-//                                 'famous_names' => $nameMatches['full_name_matches']->famous_names
-//                             ]
-//                         ];
-//                     }
-//                 }
-
-//                 // Check for matches in the last name
-//                 if (isset($nameMatches['full_name_matches'])) {
-//                     // Ensure last_name_matches is a collection
-//                     if ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
-//                         // Extract specific attributes you want from the collection
-//                         $nameDetails['full_name_matches'] = $nameMatches['last_name_matches']->map(function ($match) {
-//                             return [
-//                                 'id' => $match->id,
-//                                 'name' => $match->name_sound,
-//                                 'type' => $match->energy_type,
-//                                 'issues_faced_in_life' => $match->life_challenges_or_success,
-//                                 'details' => $match->meaning,
-//                                 'famous_names' =>  $match->famous_names
-//                             ];
-//                         })->toArray(); // Convert to array for easier access in the PDF
-//                     } else {
-//                         // If it's a single instance, wrap it in an array
-//                         $nameDetails['full_name_matches'] = [
-//                             [
-//                                 'id' => $nameMatches['full_name_matches']->id,
-//                                 'name' => $nameMatches['full_name_matches']->name_sound,
-//                                 'type' => $nameMatches['full_name_matches']->energy_type,
-//                                 'issues_faced_in_life' => $nameMatches['full_name_matches']->life_challenges_or_success,
-//                                 'details' => $nameMatches['full_name_matches']->meaning,
-//                                 'famous_names' => $nameMatches['full_name_matches']->famous_names
-
-//                             ]
-//                         ];
-//                     }
-//                 }
-//             }
-
-//             // At this point, $nameDetails will contain the relevant matches for both first and last names.
-
-
-
-//             if ($dob) {
-//                 // Assuming dob is in the format 'YYYY-MM-DD'
-//                 $dobParts = explode('-', $dob);
-//                 //dd($dobParts);
-//                 if (count($dobParts) === 3) {
-//                     $day = $dobParts[0];
-//                     $month = ltrim($dobParts[1], '0'); // Remove leading zero from month
-//                     $year = ltrim($dobParts[2], '0');   // Remove leading zero from day
-
-//                     // Reconstruct the DOB without leading zeros
-//                     $dobNonLeadingZero = "$year-$month-$day";
-//                 }
-//             }
-//             // dd($dobNonLeadingZero);
-//             $getBasicDetail = $this->getDOBCompound($dobNonLeadingZero);
-
-//             $multiCountDetail =  $result['multiDateCountDetails'];
-//             $dateDetail = $result['dateDetail'];
-//             $bestJobs = $this->collectBestJobsFromName($username);
-
-//             $result['Crystal Details'] = $crystalDetails;
-//             $pdfTemplate = $this->getPdfTemplateData();
-
-//             // Assuming the retrieved header and footer can be used in the PDF
-//             $headerData = [
-//                 'header_name' => $pdfTemplate ? $pdfTemplate->header_name : 'Default Header',
-//                 'header_img' => $pdfTemplate ? $pdfTemplate->header_img : null,
-//             ];
-
-//             $footerData = [
-//                 'footer_name' => $pdfTemplate ? $pdfTemplate->footer_name : 'Default Footer',
-//                 'footer_img' => $pdfTemplate ? $pdfTemplate->footer_img : null,
-//             ];
-
-//             $data = [
-//                 'Username' => $username,
-//                 'FirstName' => $firstName,
-//                 'LastName' => $lastName,
-//                 'Name Details' => $nameDetails,
-//                 'Character Multiples' => $charAndMultiples,
-//                 'alphabetIssues' => $alphabetIssues,
-//                 'First Name Total' => $firstNameTotal,
-//                 'First Name Single Digit' => $firstNameSingleDigit,
-//                 'First Name Interpretation' => $firstNameInterpretation,
-//                 'Full Name Total' => $fullNameTotal,
-//                 'Full Name Single Digit' => $fullNameSingleDigit,
-//                 'Full Name Interpretation' => $fullNameInterpretation,
-//                 'full_name_details' => $fullNameDetails,
-//                 'fullNameDigitInterpretation' => $fullNameDigitInterpretation,
-//                 'firstNameDigitInterpretation' => $firstNameDigitInterpretation,
-//                 'name_number_total' => $nameNumberTotalResult,
-//                 'DOB' => $dob,
-//                 'Multi-Date Count' => $multiCountDetail,
-//                 'Date Detail' => $dateDetail,
-//                 'Crystal Details' => $crystalDetails,
-//                 'headerData' => $headerData,
-//                 'footerData' => $footerData,
-//                 'getBasicDetail' => $getBasicDetail,
-//                 'bestJobs' => $bestJobs
-
-//             ];
-//             // dd($data);
-//             // Initialize mPDF instance with margins
-//             $mpdf = new \Mpdf\Mpdf([
-//                 'tempDir' => '/tmp',
-//                 'format' => 'A4',
-//                 'margin_left' => 0,
-//                 'margin_right' => 0,
-//                 'margin_top' => 20,
-//                 'margin_bottom' => 90, // Ensure space for footer
-//             ]);
-
-//             // Enable automatic font and language detection
-//             $mpdf->autoScriptToLang = true;
-//             $mpdf->autoLangToFont = true;
-
-//             $mpdf->SetDisplayMode('fullpage');
-
-//             // Generate HTML content from the Blade view
-//             $html = view('pdf.name_numerology.name_numerology_pdf', ['result' => $data])->render();
-
-//             // Define CSS rules for content and footer
-//             //         $css = "
-//             //      .content-section { height: calc(100vh - 60mm); } /* Adjust content height */
-//             //      .footer { position: fixed; bottom: 0; width: 100%; height: 60mm; } /* Footer height = 60mm */
-//             //  ";
-
-//             $css = "
-//     .content-section { 
-//         height: calc(100vh - 60mm); /* Adjust content height to account for footer */
-//         position: relative; 
-//     }
-//     .footer { 
-//         position: fixed; 
-//         bottom: 0; 
-//         width: 100%; 
-//         height: 60mm; /* Footer height = 60mm */
-//     }
-// ";
-//             $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
-
-//             $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
-
-//             // Define and set the HTML footer
-//             // $footerHtml = view('pdf.static_page.footer', ['result' => $data])->render();
-//             // $mpdf->SetHTMLFooter($footerHtml, 'O');
-//             // Define and render footer HTML
-//             $footerHtml = view('pdf.static_page.footer', ['result' => $data])->render();
-
-//             // Get the total number of pages after writing content
-//             $totalPages = $mpdf->page;
-
-//             // Set footer only on pages 2 to (totalPages - 1)
-//             for ($i = 2; $i < $totalPages; $i++) {
-//                 $mpdf->SetHTMLFooterByPage($footerHtml, $i);
-//             }
-
-//             // $firstPageFooterHtml = view('pdf.static_page.first_page_footer', ['result' => $data])->render();
-//             // $mpdf->SetHTMLFooter($firstPageFooterHtml, 'O');
-
-//             // Define and set the HTML footer
-//             // $totalPages = $mpdf->page;
-
-//             // // Set footer HTML for each page
-//             // for ($i = 1; $i <= $totalPages; $i++) {
-//             //     // Render footer with the current page number
-//             //     $footerHtml = view('pdf.static_page.footer', ['result' => $data, 'pageNum' => $i])->render();
-//             //     $mpdf->SetHTMLFooter($footerHtml, 'O');
-
-//             //     // If you're using fixed positioning for the footer, ensure each page is being properly managed
-//             //     if ($i < $totalPages) {
-//             //         $mpdf->AddPage(); // Only add a new page if there are more pages
-//             //     }
-//             // }
-//             // Write the HTML content to the PDF
-//             $mpdf->WriteHTML($html);
-//             // Get the total number of pages after writing content
-
-//             // Generate dynamic filename
-//             $fileName = $username . '.pdf';
-
-//             // $filePath = storage_path('app/public/uploads/nameNumerology/' . $firstName . '-' . $id . '.pdf');
-//             // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
-
-
-//             // Output the PDF as a download
-//             return response($mpdf->Output($fileName, 'I'), 200)
-//                 ->header('Content-Type', 'application/pdf');
-//         } catch (\Exception $e) {
-//             // Handle errors here
-//             // Log the error
-//             Log::error('PDF generation error: ' . $e->getMessage());
-
-//             // Optionally return a response to the user
-//             return response()->json(['error' => 'Could not generate PDF. Please try again later.'], 500);
-//         }
-//     }
 
 
     public function calculateNumerology(Request $request)

@@ -1,0 +1,170 @@
+.register {
+    background: url('../../assests/images/signin/new-login-banner.png') no-repeat;
+    background-size: 50%;
+    background-position: left center;
+}
+.custom-vh-100{
+    min-height: 100vh !important;
+}
+
+
+
+.register .inner-wrapper {
+    height: 90vh;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 84px 0px #0000001C;
+    padding: 30px 100px;
+}
+
+@media screen and (max-width:991px){
+    .register {       
+        background-size: 100%;
+    }
+    .custom-vh-100{
+        min-height: 100vh !important;
+    }
+    .register .inner-wrapper {
+        min-height: auto;
+        padding: 20px;
+        height:auto;
+        box-shadow: none;
+    }
+    .custom-mobile-vh{
+        min-height: auto!important;
+    }
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-control.password-input {
+    padding-right: 60px;
+}
+
+.input-wrapper .error {
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    font-size: 12px;
+}
+
+h1.main-heading {
+    font-size: 30px;
+    color: #21212C;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+}
+
+h1.main-heading::after {
+    content: "";
+    width: 44px;
+    height: 2px;
+    background: #EC4400;
+    position: absolute;
+    right: -50px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+}
+
+
+input.form-control {
+    border: 0px solid transparent;
+    border-bottom: 1px solid #BDBDBD;
+    border-radius: 0;
+    color: #21212C;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 0;
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
+input.form-control:focus {
+    box-shadow: 0 0 0 .2rem rgb(0 123 255 / 0%);
+    border-color: #EC4400;
+
+}
+
+.home-link {
+    color: #21212C;
+    font-size: 14px;
+    font-weight: 400;
+
+}
+
+label.custom-label {
+    font-size: 14px;
+    color: #757575;
+    font-weight: 500;
+    margin-bottom: 0;
+
+}
+
+.back-btn {
+    border: 1px solid #21212C;
+    color: #21212C;
+    background: #fff;
+    border-radius: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.back-btn:hover{
+    background: #fff;
+    border: 1px solid #EC4400;
+    color: #EC4400;
+}
+
+
+.register-button.btn {
+    background: #EC4400;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.register-button.btn:hover{
+    background: #fff;
+    border: 1px solid #EC4400;
+    color: #EC4400;
+}
+
+.already-account p {
+    font-size: 16px;
+    color: #424242;
+    font-weight: 600;
+}
+
+.already-account a {
+    font-size: 16px;
+    color: #EC4400;
+    text-decoration: underline;
+}
+
+@media (min-width: 1600px) {
+    .register .inner-wrapper {
+        height: 75vh;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 84px 0px #0000001C;
+        padding: 50px 100px;
+    }
+
+    .back-btn {
+        border-radius: 18px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .register-button.btn {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}

@@ -173,4 +173,19 @@ class WebPagesController extends Controller
         return view('Website.pages.error404');
     }
 
+    public function termCondition()
+    {
+        return view('Website.pages.termCondition');
+    }
+
+    public function privacyPolicy()
+    {
+        return view('Website.pages.privacyPolicy');
+    }
+
+    public function refundPolicy()
+    {
+        return view('Website.pages.refundPolicy');
+    }
+
 }

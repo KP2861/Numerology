@@ -1,0 +1,178 @@
+.coming-soon-header .mainheading {
+    font-size: 50px;
+    font-weight: 700;
+    color: #674735;
+}
+
+.coming-soon-header {
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 20%;
+    min-height: 60vh;
+    padding: 100px 0 30px 0;
+    position: relative;
+}
+
+.coming-soon-header .subheading {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    text-align: center;
+    width: 100%;
+}
+
+
+
+.coming-soon-header p {
+    color: #000;
+    font-size: 18px;
+}
+
+.contact-info p {
+    color: #000;
+    font-size: 16px;
+}
+
+.contact-info a {
+    color: #EC4400;
+    font-size: 16px;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+    color: #EC4400;
+}
+
+@media screen and (min-width:576px) {
+    .coming-soon-header {
+        padding: 200px 0 100px 0;
+        min-height: 40vh;
+
+    }
+
+    .coming-soon-header .mainheading {
+        font-size: 85px;
+    }
+
+    .coming-soon-header .subheading {
+        width: 80%;
+    }
+
+    .coming-soon-header p {
+        font-size: 20px;
+    }
+
+    .contact-info p {
+        font-size: 18px;
+    }
+
+    .contact-info a {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width:1199px) {
+    .coming-soon-header {
+        min-height: 50vh;
+    }
+}
+
+
+@media screen and (min-width:1599px) {
+    .coming-soon-header .mainheading {
+        font-size: 110px;
+    }
+
+    .coming-soon-header {
+        min-height: 90vh;
+        padding: 150px 0 50px 0;
+    }
+
+    .coming-soon-header .subheading {
+        font-size: 28px;
+    }
+
+    .coming-soon-header p {
+
+        font-size: 28px;
+    }
+
+    .contact-info p {
+
+        font-size: 24px;
+    }
+
+    .contact-info a {
+
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.notify-sec {
+    border: 1px solid #EC4400;
+    width: 40%;
+}
+
+.notify-sec input.form-control {
+    border-color: transparent;
+    font-weight: 700;
+    color: #674735;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 0%), 0 0 8px rgb(77 98 114 / 0%);
+}
+
+.notify-sec input.form-control:focus {
+    border-color: transparent;
+    font-weight: 700;
+    color: #674735;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 0%), 0 0 8px rgb(77 98 114 / 0%);
+}
+
+
+.notify-sec input.form-control::placeholder {
+    border-color: transparent;
+    font-weight: 400;
+}
+
+.notify-sec button {
+    background: #EC4400;
+    color: #fff;
+    font-size: 14px;
+    padding:8px 12px;
+    min-width: 100px;
+    max-width: auto;
+    border: 1px solid #EC4400;
+    font-weight: 700;
+
+}
+
+.notify-sec button:hover {
+    background: #fff;
+    color: #EC4400;
+    border: 1px solid #EC4400;
+
+} */

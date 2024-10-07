@@ -120,15 +120,18 @@
                                         <a href="#0" class="cd-close">Close</a>
                                         <ul class="cd-dropdown-content">
                                             <li>
-                                                <a href="#">Home</a>
+                                                <a href="{{ url('/') }}">Home</a>
                                             </li>
 
                                             <li>
                                                 <a href="index.html">About US</a>
                                             </li>
+                                            <li>
+                                                <a href="{{ url('/products') }}">Numerology</a>
+                                            </li>
 
 
-                                            <li class="has-children">
+                                            <!-- <li class="has-children">
                                                 <a href="#">Numerology</a>
 
                                                 <ul class="cd-secondary-dropdown is-hidden">
@@ -146,10 +149,10 @@
                                                         <a href="#">Business Numerology</a>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                            </li> -->
 
                                             <li>
-                                                <a href="#">Consultant</a>
+                                                <a href="{{ url('/consultant') }}">Consultant</a>
 
                                             </li>
 

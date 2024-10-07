@@ -4,16 +4,16 @@
     $raviMundraImagePath = public_path('frontend/assests/images/pdf/ravi-mundrra-img-min.png');
     $imageWatermark = public_path('frontend/assests/images/pdf/ravi-mundrra-watermark2.png');
     $imageBannerOne = public_path('frontend/assests/images/pdf/banner1.png');
-    $backgroundWatermark = public_path('frontend/assests/images/pdf/file.png');
-    $imageQRPath = public_path('frontend/assests/images/pdf/footer-scanner-img.png');
+    $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+    // $imageQRPath = public_path('frontend/assests/images/pdf/footer-scanner-img.png');
 
     // Read the file contents and encode them
     $imageData = base64_encode(file_get_contents($imagePath));
     $raviMundrraImageData = base64_encode(file_get_contents($raviMundraImagePath));
     $raviMundrraWatermark = base64_encode(file_get_contents($imageWatermark));
     $raviMundrraBannerOne = base64_encode(file_get_contents($imageBannerOne));
-    $backgroundPdfImg = base64_encode(file_get_contents($backgroundWatermark));
-    $imageQRData = base64_encode(file_get_contents($imageQRPath));
+    $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
+    // $imageQRData = base64_encode(file_get_contents($imageQRPath));
 
     // Format the images as base64 data URIs
     $imageSrc = 'data:image/png;base64,' . $imageData;
@@ -21,7 +21,7 @@
     $raviMundrraWatermarkSrc = 'data:image/png;base64,' . $raviMundrraWatermark;
     $raviMundrraBannerOneSrc = 'data:image/png;base64,' . $raviMundrraBannerOne;
     $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
-    $imageQR = 'data:image/png;base64,' . $imageQRData;
+    // $imageQR = 'data:image/png;base64,' . $imageQRData;
 
 @endphp
 @php
@@ -30,7 +30,7 @@
 @endphp
 
 {{-- <div
-    style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}
+    style="background-image: url('{{ $backgroundImagePath }}'); background-size: cover; background-position: center; margin:auto; margin-top:20px; width:100%; height:100%;"> --}}
 
 <div style="height: 900px;width:70%; margin:0 auto;">
     <table style="width: 100%">
@@ -179,18 +179,18 @@
                 </td>
             </tr>
 
-            <tr>
+            {{-- <tr>
                 <td>
                     <div>
                         <img src="{{ $imageQR }}" alt="qr"
                             style="max-width:100%; height:100px; margin-top:10px;">
                     </div>
                 </td>
-            </tr>
+            </tr> --}}
         </tbody>
     </table>
 </div>
-
+</div>
 {{-- <div style="height: 300px; ">
         @include('pdf.static_page.footer')
     </div> --}}

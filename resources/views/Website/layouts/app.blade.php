@@ -56,6 +56,8 @@
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/scss/termcondition.css') }}" />
+
 </head>
 
 <body>

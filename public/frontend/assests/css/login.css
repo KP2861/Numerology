@@ -1,0 +1,149 @@
+.banner-img {
+    background: url('../../assests/images/signin/new-login-banner.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.signup .form-part {
+    width: 50%;
+}
+
+input.form-control {
+    border: 0px solid transparent;
+    border-bottom: 1px solid #BDBDBD;
+    border-radius: 0;
+    color: #21212C;
+    font-weight: 400;
+
+}
+
+input.form-control:focus {
+    box-shadow: 0 0 0 .2rem rgb(0 123 255 / 0%);
+    border-color: #EC4400;
+
+}
+
+.login-heading {
+    color: #21212C;
+    font-size: 30px;
+    position: relative;
+    display: inline-block;
+    font-weight: 700;
+}
+
+
+
+/* .home-icon .home-link:hover .hover-img {
+    display: block;
+}
+.home-icon .home-link img{
+    width: 25px;
+    height: 25px;
+}
+
+.home-icon .home-link:hover .unhover-img {
+    display: none;
+}
+
+.hover-img {
+    display: none;
+} */
+
+.home-icon .home-link:hover svg path {
+    stroke: #EC4400;
+}
+
+
+
+
+.login-heading::after {
+    content: "";
+    width: 44px;
+    height: 2px;
+    background: #EC4400;
+    position: absolute;
+    right: -50px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+}
+
+button.login-btn.btn {
+    background: #EC4400;
+    color: #fff;
+    font-size: 14px;
+    padding: 18px;
+    min-width: 150px;
+    max-width: auto;
+    border-radius: 18px;
+    border: 1px solid #EC4400;
+    font-weight: 700;
+}
+
+button.login-btn.btn:hover {
+    background: #fff;
+    color: #EC4400;
+    border: 1px solid #EC4400;
+}
+
+label {
+    font-size: 16px;
+    color: #757575;
+    font-weight: 500;
+}
+
+.forgot-link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #424242;
+
+
+}
+
+.register-link {
+    font-size: 16px;
+    font-weight: 600;
+    color: #21212C;
+
+}
+
+.register-link a {
+    color: #EC4400;
+    text-decoration: underline;
+}
+
+.form-check-input.remember-checkbox {
+    margin-top: 8px;
+}
+
+.back-btn {
+    border: 1px solid #21212C;
+    color: #21212C;
+    background: #fff;
+    border-radius: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.back-btn:hover {
+    background: #fff;
+    border: 1px solid #EC4400;
+    color: #EC4400;
+}
+
+
+.register-button.btn {
+    background: #EC4400;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 18px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.register-button.btn:hover {
+    background: #fff;
+    border: 1px solid #EC4400;
+    color: #EC4400;
+}

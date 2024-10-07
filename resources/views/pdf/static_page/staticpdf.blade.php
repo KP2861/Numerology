@@ -47,7 +47,7 @@
 
     @endphp
 
-    <style>
+    {{-- <style>
         body {
             background-image: url('{{ $backgroundPdfSrcImg }}');
             background-size: contain;
@@ -57,15 +57,15 @@
             background-repeat: no-repeat;
             background-position: center
         }
-    </style>
+    </style> --}}
 
-    <div class="content">
+    {{-- <div class="content">
         @include('pdf.static_page.greetPdf')
     </div>
     <div class="page-break"></div>
     <div class="content">
         @include('pdf.static_page.index')
-    </div>
+    </div> --}}
 
     <div class="content">
         @include('pdf.static_page.freeGifts')
@@ -228,10 +228,10 @@
         @include('pdf.static_page.eleveenthPage')
     </div>
 
-    <div class="page-break"></div>
+    {{-- <div class="page-break"></div>
     <div class="content">
         @include('pdf.static_page.termAndConditionRemaining')
-    </div>
+    </div> --}}
 </body>
 
 </html>

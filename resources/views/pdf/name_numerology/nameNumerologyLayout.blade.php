@@ -36,7 +36,7 @@
             src: url('{{ public_path(' fonts/NotoSansDevanagari-VariableFont_wdth, wght.ttf') }}');
         }
 
-        body {
+        /* body {
             background-image: url('{{ $backgroundPdfSrcImg }}');
             background-size: contain;
             font-family: 'Noto Sans Devanagari', sans-serif;
@@ -44,7 +44,7 @@
             height: 100%;
             background-repeat: no-repeat;
             background-position: center
-        }
+        } */
 
 
         .border-pdf {
@@ -96,9 +96,9 @@
     {{-- <div
         style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}
 
-    <div class="content">
+    {{-- <div class="content">
         @include('pdf.static_page.greetPdf')
-    </div>
+    </div> --}}
 
 
 
@@ -110,10 +110,10 @@
 
 
 
-    <div class="page-break"></div>
-    <div class="content">
+    {{-- <div class="page-break"></div> --}}
+    {{-- <div class="content">
         @include('pdf.name_numerology.nameNumerologyIndex')
-    </div>
+    </div> --}}
 
     <div class="content">
         @include('pdf.static_page.freeGifts')
@@ -271,10 +271,9 @@
         @include('pdf.static_page.eleveenthPage')
     </div>
 
-    <div class="page-break"></div>
-    <div class="content">
+    {{-- <div class="content">
         @include('pdf.static_page.termAndConditionRemaining')
-    </div>
+    </div> --}}
 
 
     {{-- </div> --}}

@@ -1,0 +1,15 @@
+.password-input .input-group .eye-absolute {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.password-input .input-group input {
+    padding-right: 24px;
+    background-color: transparent;
+}
+.error{
+    font-size: 12px;
+    line-height: normal;
+}

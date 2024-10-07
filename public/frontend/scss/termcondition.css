@@ -1,0 +1,32 @@
+.term-main-heading{
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 62px;
+    color:#674735;
+    text-align: center;
+}
+
+.term-subtitle{
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 32px;
+    color:#674735;
+}
+
+.term-para{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color:#000;
+}
+.term-condition{
+    padding-top: 140px;
+}
+.refund-list li{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    color:#000;
+    list-style-type: disc;
+    margin-left: 40px;
+}

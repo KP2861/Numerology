@@ -20,6 +20,7 @@
 {{-- <div
     style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}
 <div style="height: 780px; width:70%; margin:0 auto;  ">
+    <a name="serviceOffered"></a>
     <table style="width: 100%">
         <thead>
             <tr>

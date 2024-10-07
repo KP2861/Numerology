@@ -235,58 +235,58 @@ class AdvanceNumerologyController extends Controller
             'details' => 'No crystal detail found for this date.'
         ];
     }
-   
-    
-//     private function getAreaOfConcern(string $idsString)
-// {
-//     // Convert the comma-separated string of IDs into an array
-//     $ids = array_map('trim', explode(',', $idsString));
 
-//     // Initialize an array to hold the results
-//     $areasOfConcern = [];
 
-//     // Retrieve the area of concern based on the provided IDs
-//     foreach ($ids as $id) {
-//         // Ensure $id is an integer
-//         $areaOfConcern = AreaOfStruggle::find((int)$id);
-        
-//         if ($areaOfConcern) {
-//             $areasOfConcern[] = [
-//                 'Problem' => $areaOfConcern->problem,
-//                 'Affirmation' => $areaOfConcern->affirmation,
-//                 'Wallpaper' => $areaOfConcern->wallpaper,
-//                 'Rudraksh' => $areaOfConcern->rudraksh,
-//                 'Direction to Work' => $areaOfConcern->direction_to_work,
-//             ];
-//         }
-//     }
-// // dd($areaOfConcern);
-//     // Return the results array, which will be empty if no records are found
-//     return $areasOfConcern;
-// }
+    //     private function getAreaOfConcern(string $idsString)
+    // {
+    //     // Convert the comma-separated string of IDs into an array
+    //     $ids = array_map('trim', explode(',', $idsString));
 
-private function getAreaOfConcern(string $idsString)
-{
-    // Convert the comma-separated string of IDs into an array
-    $ids = array_map('trim', explode(',', $idsString));
-    $areasOfConcern = [];
+    //     // Initialize an array to hold the results
+    //     $areasOfConcern = [];
 
-    // Retrieve the area of concern based on the provided IDs
-    foreach (array_chunk($ids, 10) as $chunk) { // Adjust the chunk size as needed
-        $areaOfConcerns = AreaOfStruggle::whereIn('id', $chunk)->get();
-        foreach ($areaOfConcerns as $areaOfConcern) {
-            $areasOfConcern[] = [
-                'Problem' => $areaOfConcern->problem,
-                'Affirmation' => $areaOfConcern->affirmation,
-                'Wallpaper' => $areaOfConcern->wallpaper,
-                'Rudraksh' => $areaOfConcern->rudraksh,
-                'Direction to Work' => $areaOfConcern->direction_to_work,
-            ];
+    //     // Retrieve the area of concern based on the provided IDs
+    //     foreach ($ids as $id) {
+    //         // Ensure $id is an integer
+    //         $areaOfConcern = AreaOfStruggle::find((int)$id);
+
+    //         if ($areaOfConcern) {
+    //             $areasOfConcern[] = [
+    //                 'Problem' => $areaOfConcern->problem,
+    //                 'Affirmation' => $areaOfConcern->affirmation,
+    //                 'Wallpaper' => $areaOfConcern->wallpaper,
+    //                 'Rudraksh' => $areaOfConcern->rudraksh,
+    //                 'Direction to Work' => $areaOfConcern->direction_to_work,
+    //             ];
+    //         }
+    //     }
+    // // dd($areaOfConcern);
+    //     // Return the results array, which will be empty if no records are found
+    //     return $areasOfConcern;
+    // }
+
+    private function getAreaOfConcern(string $idsString)
+    {
+        // Convert the comma-separated string of IDs into an array
+        $ids = array_map('trim', explode(',', $idsString));
+        $areasOfConcern = [];
+
+        // Retrieve the area of concern based on the provided IDs
+        foreach (array_chunk($ids, 10) as $chunk) { // Adjust the chunk size as needed
+            $areaOfConcerns = AreaOfStruggle::whereIn('id', $chunk)->get();
+            foreach ($areaOfConcerns as $areaOfConcern) {
+                $areasOfConcern[] = [
+                    'Problem' => $areaOfConcern->problem,
+                    'Affirmation' => $areaOfConcern->affirmation,
+                    'Wallpaper' => $areaOfConcern->wallpaper,
+                    'Rudraksh' => $areaOfConcern->rudraksh,
+                    'Direction to Work' => $areaOfConcern->direction_to_work,
+                ];
+            }
         }
-    }
 
-    return $areasOfConcern;
-}
+        return $areasOfConcern;
+    }
 
 
     private function getPdfTemplateData()
@@ -440,56 +440,63 @@ private function getAreaOfConcern(string $idsString)
             'footerData' => $footerData,
         ];
 
-      // dd($result);
-        // Set up the mPDF instance
+        // dd($result);
         // Initialize mPDF instance with margins
         $mpdf = new \Mpdf\Mpdf([
-           'tempDir' => '/tmp',
+            'tempDir' => '/tmp',
             'format' => 'A4',
             'margin_left' => 0,
             'margin_right' => 0,
             'margin_top' => 20,
             'margin_bottom' => 70, // Ensure space for footer
         ]);
-        //  dd($result);
-
-        // Enable automatic font and language detection
         $mpdf->autoScriptToLang = true;
         $mpdf->autoLangToFont = true;
+        // Prepare the first and last page footer
+        // Render the first and last page footer using Blade
+        $footerHtmlfirstandLast = view('pdf.static_page.first_page_footer', ['result' => $result])->render();
+
+        // Render the common footer using Blade
+        $footerHtmlCommon = view('pdf.static_page.footer', ['result' => $result])->render();
+        // Render Blade views into HTML content
+        $firstPageContent = view('pdf.static_page.greetPdf', ['result' => $result])->render(); // Greet PDF content
+        $middlePagesContent = view('pdf.advance_numerology.advanceNumerology', ['result' => $result])->render(); // Name Numerology content
+        $lastPageContent = view('pdf.static_page.termAndConditionRemaining', ['result' => $result])->render(); // Free Gifts content
 
 
-        // Set the background image (watermark) for all pages
-        // $backgroundImagePath = public_path('frontend/assests/images/pdf/background-bg.png');
-        // $mpdf->SetWatermarkImage($backgroundImagePath, 0.8, 'P', 'C'); // Full opacity, centered
-        // $mpdf->showWatermarkImage = true; // Ensure watermark is visible
+        // Get the path to the background image and encode it
+        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+        $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
+        $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
 
-        // Generate HTML content from the Blade view
-        $html = view('pdf.advance_numerology.advanceNumerology', ['result' => $result])->render();
+        // Set the background image CSS
+        $mpdf->SetDefaultBodyCSS('background', "url('" . $backgroundImagePath . "')");
+        $mpdf->SetDefaultBodyCSS('background-image-resize', 6); // Stretch the background image
 
-        
+        // Add the first page with its footer
+        $mpdf->AddPage();
+        $mpdf->SetFooter($footerHtmlfirstandLast);
+        $mpdf->WriteHTML('<div class="content">' . $firstPageContent . '</div>');
 
-        // Define CSS rules for content and footer
-        $css = "
-       .content-section { height: calc(100vh - 60mm); } /* Adjust content height */
-       .footer { position: fixed; bottom: 0; width: 100%; height: 60mm; } /* Footer height = 60mm */
-   ";
-        $mpdf->WriteHTML($css, \Mpdf\HTMLParserMode::HEADER_CSS);
+        // Render the indexing content and add it after the greet page
+        $indexingContent = view('pdf.advance_numerology.advanceNumerologyIndex', ['result' => $result])->render();
+        $mpdf->AddPage();
+        $mpdf->WriteHTML('<div class="content">' . $indexingContent . '</div>');
 
-        // Define and set the HTML footer
-        $footerHtml = view('pdf.static_page.footer',['result' => $result])->render();
-        $mpdf->SetHTMLFooter($footerHtml, 'O');
+        // Add content for the middle pages (common footer)
+        for ($i = 2; $i < 3; $i++) {  // Adjust page count as needed
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlCommon);  // Apply the common footer
+            $mpdf->WriteHTML('<div class="content">' . $middlePagesContent . '</div>'); // Name Numerology content
+        }
 
-        // Write the HTML content to the PDF
-        $mpdf->WriteHTML($html);
+        // Add the last page with the same footer as the first
+        $mpdf->AddPage();
+        $mpdf->SetFooter($footerHtmlfirstandLast);
+        $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
 
         // Generate a dynamic filename including the phone number
         $fileName = 'advance_' . $phoneNumber . '.pdf';
-
-        $filePath = storage_path('/app/public/uploads/advanceNumerology' . $phoneNumber . '-' . $id . '.pdf');
-        $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
-
-        // Generate a dynamic filename including the phone number
-        $fileName = 'mobile_' . $phoneNumber . '.pdf';
 
         // $filePath = storage_path('app\public\uploads\mobileNumerology' . $phoneNumber . '-' . $id . '.pdf');
         // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);

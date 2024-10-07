@@ -56,19 +56,23 @@
                                           alt="footer_logo" /></div> -->
                             <div class="services-bullet-list">
                                 <ul>
-                                    <li><a href="">Home</a></li>
+                                    <li><a href="{{ url('/') }}">Home</a></li>
                                     <li><a href="">About us</a></li>
-                                    <li><a href="">Services</a></li>
-                                    <li><a href="">Gallery</a></li>
-                                    <li><a href="">Contact Us</a></li>
-                                    <li><a href="">Privacy Policy</a></li>
+                                    <li><a href="{{ url('/consultant') }}">Consultant</a></li>
+                                    <li><a href="{{ url('/term-condition') }}">Terms of Service</a></li>
+                                    <li><a href="{{ url('/refund-policy') }}">Refund Policy</a></li>
+                                    <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="">Husband wife Dispute</a></li>
+                                <li><a href="{{ url('/products') }}">Name Numerology</a></li>
+                                    <li><a href="{{ url('/products') }}">Mobile Numerology</a></li>
+                                    <li><a href="{{ url('/products') }}">Advanced Numerology</a></li>
+                                    <li><a href="{{ url('/products') }}">Business Numerology</a></li>
+                                    <!-- <li><a href="">Husband wife Dispute</a></li>
                                     <li><a href="">Powerful Mantras for Love Spell</a></li>
                                     <li><a href="">Business Back</a></li>
                                     <li><a href="">Extra-Marital Affairs</a></li>
-                                    <li><a href="">Divorce Problem Soluions</a></li>
+                                    <li><a href="">Divorce Problem Soluions</a></li> -->
                                 </ul>
 
                             </div>
@@ -101,7 +105,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="footer-content-wrapper">
-                    <p class="copyright-text mb-0">© 2024 All rights reserved</p>
+                    <p class="copyright-text mb-0">© 2024 All rights reserved by Ravi Mundra Numerology</p>
                 </div>
             </div>
         </div>

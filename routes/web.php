@@ -396,3 +396,8 @@ Route::post('/delete-session', function () {
      session()->forget(['numerology_payment']);
      return response()->json(['success' => true]);
 })->name('delete.session');
+
+Route::get('term-condition', [WebPagesController::class, 'termCondition'])->name('term-condition');
+Route::get('privacy-policy', [WebPagesController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('refund-policy', [WebPagesController::class, 'refundPolicy'])->name('refund-policy');
+
