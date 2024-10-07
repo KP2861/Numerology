@@ -18,5 +18,10 @@ class NameNumerology extends Model
         'gender',
         'payment_status',
         'payment_id',
+        'town_city',
+        'email',
+        'time',
+        'language',
+        'phone_number'
     ];
 }

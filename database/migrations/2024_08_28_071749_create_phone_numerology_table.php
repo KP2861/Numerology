@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('phone_numerology', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('numerology_type');
-            $table->foreign('numerology_type')->references('id')->on('numerology')->onDelete('cascade')->onUpdate('cascade');
+           
+            //$table->foreignId('numerology_type')->constrained('numerology')->onDelete('cascade')->onUpdate('cascade');
             $table->string('phone_number');
             $table->date('dob');
             $table->string('area_of_concern');

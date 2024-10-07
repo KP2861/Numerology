@@ -10,6 +10,10 @@ class Numerology extends Model
     use HasFactory;
 
     protected $table = 'numerology';
-    protected $fillable = ['name', 'numerology_type'];
-  
+    protected $fillable = [
+        'name',
+        'numerology_type',
+        'packages_amount',
+        'expiry_day',
+    ];
 }

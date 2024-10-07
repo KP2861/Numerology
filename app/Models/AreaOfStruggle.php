@@ -9,8 +9,6 @@ class AreaOfStruggle extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'numerology_type',
         'problem',
         'affirmation',
         'wallpaper',

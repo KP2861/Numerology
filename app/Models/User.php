@@ -21,7 +21,13 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'middle_name',
+        'last_name',
+        'phone_number',
+        'dob',
+        'file',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,6 +48,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
 }

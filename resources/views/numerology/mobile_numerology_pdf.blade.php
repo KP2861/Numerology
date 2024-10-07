@@ -31,7 +31,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Numerology Report</h1>
+        <h1 class="text-center">Mobile Numerology Report</h1>
 
         <div class="card">
             <div class="card-body">

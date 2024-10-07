@@ -15,12 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->after('id'); // Add user_id column after id
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade'); // Add foreign key constraint
             $table->foreign('numerology_type')->references('id')->on('numerology')->onDelete('cascade')->onUpdate('cascade');
-
         });
-
-       
-       
-       
     }
 
     /**

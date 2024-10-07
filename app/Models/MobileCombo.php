@@ -10,10 +10,8 @@ class MobileCombo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'numerology_type',
-        'number_type',
-        'detail',
-
+        'digit',
+        'type',
+        'message'
     ];
 }

@@ -29,7 +29,7 @@ class AdminAuthController extends Controller
              ]);
      
              if ($validator->fails()) {
-                 return redirect('/admin/login')
+                 return redirect('/admin')
                      ->withErrors($validator)
                      ->withInput();
              }
@@ -46,22 +46,22 @@ class AdminAuthController extends Controller
                  }
      
                  // Authentication failed
-                 return redirect('/admin/login')
+                 return redirect('/admin')
                      ->with('error', 'Invalid credentials. Please try again.')
                      ->withInput();
              }
      
              // User does not have the correct role
-             return redirect('/admin/login')
+             return redirect('/admin')
                  ->with('error', 'Unauthorized access. Please check your role.')
                  ->withInput();
          } catch (ValidationException $e) {
-             return redirect('/admin/login')
+             return redirect('/admin')
                  ->withErrors($e->validator)
                  ->withInput();
          } catch (\Exception $e) {
      
-             return redirect('/admin/login')
+             return redirect('/admin')
                  ->with('error', 'An unexpected error occurred. Please try again.')
                  ->withInput();
          }
@@ -72,7 +72,7 @@ class AdminAuthController extends Controller
     public function destroy(){
         try {
             Auth::logout();
-            return redirect('admin/login');
+            return redirect('admin');
         } 
         catch (\Exception $e) {
             // Log or handle the exception appropriately

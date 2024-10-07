@@ -41,6 +41,19 @@
         .card-title {
             font-size: 1.5rem;
         }
+
+        /* Blur effect */
+        .blurred {
+            filter: blur(2.6px);
+            pointer-events: none;
+        }
+
+        /* Red text message */
+        .red-text {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -59,14 +72,31 @@
                         <p><strong>Concatenated Value:</strong> {{ $concatenated }}</p>
 
                         <h2 class="mt-4">Loshu Grid Digit Count</h2>
-                        <ul class="list-group">
-                            @foreach($loshuGrid as $digit => $count)
-                            <li class="list-group-item">Digit {{ $digit }}: {{ $count }} times</li>
+                        <ul class="list-group blurred">
+                            @foreach ($loshuGrid as $digit => $count)
+                                <li class="list-group-item">
+                                    Digit {{ $digit }}: {{ $count }} times</li>
                             @endforeach
                         </ul>
+                        {{-- @if ($showPaymentButton) --}}
+                        <p class="red-text text-center">Pay and see full report</p>
+                        {{-- @endif --}}
 
-                        <!-- <a href="{{ route('numerology.form') }}" class="btn btn-secondary mt-4">Calculate Again</a> -->
                     </div>
+                </div>
+                <div class="text-center my-4">
+                    {{-- <p>Payment Status: {{ $dbPaymentStatus }}</p> --}}
+
+                    {{-- @if ($showDownloadButton) --}}
+                    {{-- <button type="submit" name="download" class="btn btn-success">Download Report</button> --}}
+                    {{-- @elseif ($showPaymentButton) --}}
+                    <a href="{{ route('payment.get') }}" class="btn btn-warning">Proceed to Payment</a>
+                    {{-- @else
+                        <p>Payment status is not recognized. Please contact support.</p>
+                    @endif --}}
+
+                    <a href=" {{ url('/') }}" class="btn btn-primary">Calculate Again</a>
+                    <!-- <a type="submit" class="btn btn-danger mx-2">Download Report</a> -->
                 </div>
             </div>
         </div>

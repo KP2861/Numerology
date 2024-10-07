@@ -14,5 +14,14 @@ class BusinessPartner extends Model
         'first_name',
         'last_name',
         'dob',
+        'phone_number',
+        'email',
+        'time',
     ];
+
+    // BusinessPartner.php
+    public function businessNumerology()
+    {
+        return $this->belongsTo(BusinessNumerology::class, 'business_id');
+    }
 }

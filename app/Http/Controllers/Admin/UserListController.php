@@ -23,8 +23,8 @@ class UserListController extends Controller
 
     private function getUserData()
     {
-        // Query to fetch users
-        $query = User::select('id', 'name', 'email', 'created_at');
+        // Query to fetch users with role_id 2
+        $query = User::select('id', 'name', 'email', 'created_at')->where('role', 2);
 
         return DataTables::of($query)
             ->addIndexColumn()
@@ -32,5 +32,20 @@ class UserListController extends Controller
                 return $user->created_at->format('d/m/Y');
             })
             ->make(true);
+    }
+
+    public function destroy($id)
+    {
+        try {
+            // Find the user by ID
+            $user = User::findOrFail($id);
+            // Delete the user
+            $user->delete();
+            // Return a success response
+            return response()->json(['success' => 'User deleted successfully']);
+        } catch (Exception $e) {
+            Log::error('Error deleting user: ' . $e->getMessage());
+            return response()->json(['error' => 'Error deleting user: ' . $e->getMessage()], 500);
+        }
     }
 }

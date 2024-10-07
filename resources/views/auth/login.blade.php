@@ -2,116 +2,221 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Login</title>
-     <!-- Add Bootstrap CSS -->
-     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="{{ URL::asset('frontend/assests/css/app.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ URL::asset('frontend/assests/css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ URL::asset('frontend/assests/css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-     <style>
-          .sub-heading {
-               color: #251F14;
-               font-size: 22px;
-          }
+    <style>
+        .sub-heading {
+            color: #251F14;
+            font-size: 22px;
+        }
 
-          .para-data {
-               color: #251F14;
-               font-size: 18px;
-          }
+        .para-data {
+            color: #251F14;
+            font-size: 18px;
+        }
 
-          .bordered-cols {
-               border: 1px solid #dddddd;
-               background: #f3f3f3;
-               border-radius: 4px;
-          }
+        .bordered-cols {
+            border: 1px solid #dddddd;
+            background: #f3f3f3;
+            border-radius: 4px;
+        }
 
-          .border-bottom-col {
-               border-bottom: 1px solid #dddddd;
-          }
-     </style>
+        .border-bottom-col {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .invalid-feedback {
+            display: block;
+        }
+
+        .eye-password-icon {
+            top: 0;
+            bottom: 0;
+            right: 8px;
+        }
+
+        .custom-gaping {
+            gap: 0;
+            margin-top: 0px;
+        }
+
+    @media screen and (max-width:1250px){
+        .signup .form-part{
+            width:auto;
+        }
+    }
+
+    
+
+    @media screen and (max-width:575px) {
+        .custom-gaping{
+           gap:1.5rem;
+           margin-top:20px;
+        }
+        
+    }
+
+
+    </style>
 </head>
 
 <body>
 
-     <div class="vh-100 vw-100 signup">
-          <div class="row h-100 g-0 m-0">
-               <div class="col-7 ">
-                   <div class="banner-img w-100 h-100">
+    <div class="vh-100 vw-100 signup">
+        <div class="row h-100 g-0 m-0">
+            <div class="col-xl-6 col-lg-5 col-md-4 col-12 p-0 d-md-block d-none">
+                <div class="banner-img w-100 h-100">
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7 col-md-8 col-12 p-0">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="form-part mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form id="loginForm" method="POST" action="{{ route('login') }}">
+                            <div class="home-icon mb-2">
+                                <a href="{{ url('/') }}" class="home-link">
+                                    <svg width="24" height="21" viewBox="0 0 24 21" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.48633 11.3823L12.2006 0.667969L22.9149 11.3823" stroke="black"
+                                            stroke-width="1.14286" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M3.86719 9V17.3333C3.86719 17.9648 4.11804 18.5704 4.56455 19.0169C5.01107 19.4634 5.61667 19.7143 6.24814 19.7143H18.1529C18.7844 19.7143 19.39 19.4634 19.8365 19.0169C20.283 18.5704 20.5339 17.9648 20.5339 17.3333V9"
+                                            stroke="black" stroke-width="1.14286" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
 
-                   </div>
-               </div>
-               <div class="col-5 ">
-                    <div class=" d-flex justify-content-center align-items-center h-100">
-                         <div class="form-part">
-                              @if(session('error'))
-                              <div class="alert alert-danger">
-                                   {{ session('error') }}
-                              </div>
-                              @endif
-                              <form id="loginForm" method="POST" action="{{ route('login') }}">
+                                </a>
+                            </div>
                             @csrf
-                            <h2 class="mb-4 heading">Login</h2>
-
+                            <h2 class="login-heading">Login</h2>
                             <!-- Email Field -->
-                            <div class="form-group">
+                            <div class="form-group mt-5">
                                 <label for="email">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="example@gmail.com"
-                                    value="{{ old('email') }}"
-                                    required
+                                <input type="email" id="email" name="email"
+                                    class="form-control pl-0  @error('email') is-invalid @enderror"
+                                    placeholder="example@gmail.com" value="{{ old('email') }}" required
                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                <div class="invalid-feedback email-error">
+                                    <!-- Dynamic error messages for email validation will be inserted here -->
+                                </div>
                                 @error('email')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <!-- Password Field -->
-                            <div class="form-group">
+                            <div class="form-group position-relative">
                                 <label for="password">Password</label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    placeholder="Password"
-                                    required>
+                                <div class="position-relative">
+                                    <input type="password" id="password" name="password"
+                                        class="form-control pl-0  @error('password') is-invalid @enderror"
+                                        placeholder="Password" required minlength="8"
+                                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                        title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.">
+
+                                    <div class="position-absolute eye-password-icon d-flex align-items-center"
+                                        style="right: 13px;">
+
+                                        <i class="eye-icon fas fa-eye m-auto" id="toggle-password"
+                                            style="padding-right: 10px;"></i>
+
+                                    </div>
+
+                                </div>
+                                <div class="invalid-feedback password-error">
+                                    <!-- Dynamic error messages for password validation will be inserted here -->
+                                </div>
                                 @error('password')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <!-- Eye Icon for Toggle -->
                             </div>
 
-                            <button type="submit" class="btn login-button mt-4">Login</button>
-                        </form>
-                        <div class="form-group mt-3 text-center">
-                            <a href="{{ route('forget.password.get') }}" class="btn btn-link reset-btn w-100">Reset Password</a>
+                            <div class=" row gy-3 ">
+                                <div class="col-12">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-sm-row flex-column custom-gaping">
+                                        <div class="form-check custom-check ">
+                                            <input class="form-check-input remember-checkbox" type="checkbox"
+                                                value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn  login-btn ">Login</button>
+                                    </div>
+                                </div>
 
-                            <div class="text-center mt-3">
-                                <p>Already have an account? <a href="{{ route('register') }}">Register now</a></p>
+                                <div class="col-12 ">
+                                    <div class="text-center py-4">
+                                        <a href="{{ route('forget.password.get') }}" class="forgot-link ">Forgot
+                                            Password?</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </form>
+                        {{-- <div class="form-group mt-3 text-center">
+
+                            <!-- Back button added here -->
+                            <a href="{{ url('/') }}" class="btn btn-secondary text-white w-100 mt-3">Back</a>
+
+
+                    </div> --}}
+                        <div>
+                            <div class="text-center mt-2 register-link">
+                                <p>Don't have an account? <a href="{{ route('register') }}">Register now</a></p>
                             </div>
                         </div>
-                         </div>
                     </div>
-               </div>
-          </div>
-     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-   
+
+
     <!-- jQuery and jQuery Validation Plugin -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
     <script>
         $(document).ready(function() {
-            // Add custom regex method for email
+            $('#toggle-password').on('click', function() {
+                // Get the password input field
+                var passwordField = $('#password');
+
+                // Toggle the input type
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Add custom regex method
             $.validator.addMethod("regex", function(value, element, regexp) {
                 var regExp = new RegExp(regexp);
                 return this.optional(element) || regExp.test(value);
@@ -122,33 +227,40 @@
                 rules: {
                     email: {
                         required: true,
-                        regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                        email: true
                     },
                     password: {
                         required: true,
-                        minlength: 8
+                        regex: "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                     }
                 },
                 messages: {
                     email: {
                         required: "Please enter your email address.",
-                        regex: "Please enter a valid email address."
+                        email: "Please enter a valid email address."
                     },
                     password: {
                         required: "Please provide a password.",
-                        minlength: "Password must be at least 8 characters long."
+                        regex: "Password must be at least 8 characters long, including at least one uppercase letter, one lowercase letter, and one digit."
                     }
                 },
                 errorElement: 'div',
                 errorPlacement: function(error, element) {
                     error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
+                    if (element.attr('name') === 'password') {
+                        element.closest('.form-group').find('.password-error').html(error);
+                    } else if (element.attr('name') === 'email') {
+                        element.closest('.form-group').find('.email-error').html(error);
+                    } else {
+                        element.closest('.form-group').append(error);
+                    }
                 },
                 highlight: function(element) {
                     $(element).addClass('is-invalid');
                 },
                 unhighlight: function(element) {
                     $(element).removeClass('is-invalid');
+                    $(element).siblings('.invalid-feedback').html('');
                 }
             });
         });

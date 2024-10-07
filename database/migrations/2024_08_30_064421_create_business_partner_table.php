@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('dob');
             $table->timestamps();
 
-            $table->foreign('business_id')->references('id')->on('business_numerology')->onDelete('cascade')->onUpdate('cascade');
+          //  $table->foreign('business_id')->references('id')->on('business_numerology')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

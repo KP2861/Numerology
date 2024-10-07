@@ -9,10 +9,8 @@ class DateDetail extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'numerology_type',
         'number',
-        'specific_detail',
-        'detail'
+        'unique_characteristic',
+        'personalized_insights'
     ];
 }
