@@ -45,7 +45,9 @@ use App\Http\Controllers\YouTubeFeedController;
 |
 */
 
-
+Route::fallback(function() {
+     return view('Website.pages.error404');
+   });
 
 Route::get('lang/{locale}', function ($locale) {
      if (in_array($locale, ['en', 'hi'])) {
@@ -400,4 +402,5 @@ Route::post('/delete-session', function () {
 Route::get('term-condition', [WebPagesController::class, 'termCondition'])->name('term-condition');
 Route::get('privacy-policy', [WebPagesController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('refund-policy', [WebPagesController::class, 'refundPolicy'])->name('refund-policy');
+Route::get('order-placed', [WebPagesController::class, 'orderPlaced'])->name('order-placed');
 

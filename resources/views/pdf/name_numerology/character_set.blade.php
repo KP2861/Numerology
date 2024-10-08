@@ -39,7 +39,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding-top:20px;">
+                                    <td style="padding-bottom:40px;">
                                         <table style="width: 100%; border-collapse: collapse;">
                                             <tbody>
                                                 <tr>

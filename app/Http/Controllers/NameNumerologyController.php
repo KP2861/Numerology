@@ -162,74 +162,71 @@ class NameNumerologyController extends Controller
     // }
 
 
-    // DOB Multi digit and its detail
     private function getMultiDateCount($dob)
-    {
-        try {
-            // Remove dashes and split DOB into individual digits
-            $dobDigits = str_split(str_replace('-', '', $dob));
+{
+    try {
+        // Remove dashes and split DOB into individual digits
+        $dobDigits = str_split(str_replace('-', '', $dob));
 
-            // Count occurrences of each digit, ignoring leading zeros
-            $dobDigitCounts = array_count_values(array_map(function ($digit) {
-                return $digit === '0' ? '0' : ltrim($digit, '0');
-            }, $dobDigits));
+        // Filter out zeroes and count occurrences of each remaining digit
+        $dobDigitCounts = array_count_values(array_filter($dobDigits, function ($digit) {
+            return $digit !== '0';
+        }));
 
-            // Get the maximum occurrence
-            $maxCount = max($dobDigitCounts);
-            $largestDigits = array_keys($dobDigitCounts, $maxCount);
+        // Get the maximum occurrence
+        $maxCount = max($dobDigitCounts);
+        $largestDigits = array_keys($dobDigitCounts, $maxCount);
 
-            // Initialize largestDigit
-            $largestDigit = '';
+        // Initialize largestDigit
+        $largestDigit = '';
 
-            // Check if there are any largest digits
-            if (!empty($largestDigits)) {
-                // If the largest digit is '0', keep it, otherwise take the first largest
-                $largestDigit = in_array('0', $largestDigits) ? '0' : $largestDigits[0];
-            }
-
-            // Fetch records from MultiCountDOB for the digits found in the DOB
-            $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
-
-            // If no matching records found, return a message
-            if ($multiDateCount->isEmpty()) {
-                return 'No matching records found.';
-            }
-
-            // Find the corresponding record for the largest occurring digit and its count
-            $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
-                return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
-            });
-            // Return the relevant information
-            return [
-                'multiDateCount' => $multiDateCount,
-                'largestDigit' => $largestDigit,
-                'maxCount' => $maxCount,
-                'largestDigitDetails' => $largestDigitRecord ? [
-                    'your_unique_number' => $largestDigitRecord->your_unique_number,
-                    'occurrence' => $largestDigitRecord->occurrence,
-                    'discover_your_nature' => $largestDigitRecord->discover_your_nature,
-                    'your_key_characteristics' => $largestDigitRecord->your_key_characteristics,
-                    'your_emotional_insights' => $largestDigitRecord->your_emotional_insights,
-                    'your_behavior_insights' => $largestDigitRecord->your_behavior_insights,
-                    'balance_through_vastu_and_numerology' => $largestDigitRecord->balance_through_vastu_and_numerology,
-                    'focus_area_to_balance' => $largestDigitRecord->focus_area_to_balance,
-                    'why_this_direction_works_and_potential_challenges' => $largestDigitRecord->why_this_direction_works_and_potential_challenges
-                ] : null,
-            ];
-        } catch (\Exception $e) {
-            // Log the error for debugging
-            Log::error('Error in getMultiDateCount: ' . $e->getMessage(), [
-                'dob' => $dob,
-                'dobDigits' => $dobDigits ?? null,
-                'dobDigitCounts' => $dobDigitCounts ?? null,
-                'largestDigit' => $largestDigit ?? null,
-                'maxCount' => $maxCount ?? null,
-            ]);
-
-            // Return a user-friendly error message
-            return 'An error occurred while processing the date of birth.';
+        // Check if there are any largest digits and take the first one
+        if (!empty($largestDigits)) {
+            $largestDigit = $largestDigits[0];
         }
+
+        // Fetch records from MultiCountDOB for the digits found in the DOB
+        $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
+
+        // If no matching records found, return a message
+        if ($multiDateCount->isEmpty()) {
+            return 'No matching records found.';
+        }
+
+        // Find the corresponding record for the largest occurring digit and its count
+        $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
+            return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
+        });
+
+        // Return the relevant information
+        return [
+            'multiDateCount' => $multiDateCount,
+            'largestDigit' => $largestDigit,
+            'maxCount' => $maxCount,
+            'largestDigitDetails' => $largestDigitRecord ? [
+                'your_unique_number' => $largestDigitRecord->your_unique_number,
+                'occurrence' => $largestDigitRecord->occurrence,
+                'discover_your_nature' => $largestDigitRecord->discover_your_nature,
+                'your_key_characteristics' => $largestDigitRecord->your_key_characteristics,
+                'your_emotional_insights' => $largestDigitRecord->your_emotional_insights,
+                'your_behavior_insights' => $largestDigitRecord->your_behavior_insights,
+                'balance_through_vastu_and_numerology' => $largestDigitRecord->balance_through_vastu_and_numerology,
+                'focus_area_to_balance' => $largestDigitRecord->focus_area_to_balance,
+                'why_this_direction_works_and_potential_challenges' => $largestDigitRecord->why_this_direction_works_and_potential_challenges
+            ] : null,
+        ];
+    } catch (\Exception $e) {
+        Log::error('Error in getMultiDateCount: ' . $e->getMessage(), [
+            'dob' => $dob,
+            'dobDigits' => $dobDigits ?? null,
+            'dobDigitCounts' => $dobDigitCounts ?? null,
+            'largestDigit' => $largestDigit ?? null,
+            'maxCount' => $maxCount ?? null,
+        ]);
+
+        return 'An error occurred while processing the date of birth.';
     }
+}
 
 
 
@@ -1175,7 +1172,8 @@ class NameNumerologyController extends Controller
         } catch (\Exception $e) {
             // Log the error and return an error response
             Log::error('PDF generation error: ' . $e->getMessage());
-            return response()->json(['error' => 'Could not generate PDF. Please try again later.'], 500);
+            return view('pdf.error', ['error' => 'Could not generate PDF. Please try again later.']);
+
         }
     }
 

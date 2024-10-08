@@ -580,8 +580,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -668,8 +668,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -712,8 +712,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -756,8 +756,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -800,8 +800,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -844,8 +844,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -888,8 +888,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -932,8 +932,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <div class="hands-absolute d-lg-block d-md-none d-sm-block"><img
-                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                        class="img-fluid web-2b"></div>
+                                        src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}"
+                                        alt="" class="img-fluid web-2b"></div>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -1529,7 +1529,7 @@
 
         </div>
     </section>
-    
+
     <section class="pre-footer">
         <div class="noh-wrapper">
             <div class="need-our-help-cta ">
@@ -1762,7 +1762,8 @@
                                                 <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
                                                     alt="">
                                             </div>
-                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat ipsum,
+                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat
+                                                ipsum,
                                                 nec
                                                 sagittis sem
                                                 nibh id elit. Duis
@@ -1792,7 +1793,8 @@
                                                 <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
                                                     alt="">
                                             </div>
-                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat ipsum,
+                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat
+                                                ipsum,
                                                 nec
                                                 sagittis sem
                                                 nibh id elit. Duis
@@ -1822,7 +1824,8 @@
                                                 <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
                                                     alt="">
                                             </div>
-                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat ipsum,
+                                            <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat
+                                                ipsum,
                                                 nec
                                                 sagittis sem
                                                 nibh id elit. Duis
@@ -1840,9 +1843,9 @@
             </div>
         </div>
     </section>
-     <!-- hs footer wrapper Start -->
+    <!-- hs footer wrapper Start -->
 
-     <div class="footer-main-wrapper">
+    <div class="footer-main-wrapper">
         <div class="footer-ellipse">
             <img src="{{ asset('frontend/assests/images/hero-section/footer-ellipse.png') }}" alt=""
                 class="img-fluid">
@@ -1924,7 +1927,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- hs footer wrapper End -->
     <!-- hs bottom footer wrapper Start -->
     <div class="primary-bg">
@@ -2195,7 +2198,7 @@
     </script>
 
 
-   
+
     <!-- hs bottom footer wrapper End -->
 
 

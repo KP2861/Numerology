@@ -17,7 +17,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="menu-button" href="{{ url('/#about') }}">About Us</a>
+                                <a class="menu-button" href="{{ url('#what-we-do-section') }}">About Us</a>
                             </li>
 
                             <li>

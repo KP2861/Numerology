@@ -3,9 +3,9 @@
     <div class="noh-wrapper">
         <div class="need-our-help-cta max-width-cta">
             <div>
-                <h2>Need Our Help</h2>
-                <p>Need help with designing your brand new website or you have any idea and thinking of getting it’s
-                    branding done then get a FREE quote today..</p>
+                <h3 class="mb-3">Get Expert Help with Astrology, Numerology, and Vastu</h3>
+<p class="lead text-muted">Our experienced team combines astrology, numerology, and Vastu Shastra to guide you toward success, balance, and happiness. We offer personalized solutions to improve your life, health, relationships, and career by aligning your space and energies.</p>
+
             </div>
             <div class="text-start">
                 <button class="fill-button fill-button-body">CONSULTATION
@@ -26,7 +26,7 @@
         <div class="row justify-content-between">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="footer-subsection text-start">
-                    <a href="index.html"><img
+                    <a href="{{url('/')}}"><img
                             src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-logo.svg') }}"
                             alt="footer_logo" class="img-fluid" /></a>
                     <p class="me-lg-5 me-md-3 me-0 footer-text">Donec id elit non mi porta gravida at eget metus.
@@ -57,14 +57,14 @@
                             <div class="services-bullet-list">
                                 <ul>
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="">About us</a></li>
+                                    <li><a  href="{{ url('#what-we-do-section') }}">About us</a></li>
                                     <li><a href="{{ url('/consultant') }}">Consultant</a></li>
                                     <li><a href="{{ url('/term-condition') }}">Terms of Service</a></li>
                                     <li><a href="{{ url('/refund-policy') }}">Refund Policy</a></li>
                                     <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 </ul>
                                 <ul>
-                                <li><a href="{{ url('/products') }}">Name Numerology</a></li>
+                                    <li><a href="{{ url('/products') }}">Name Numerology</a></li>
                                     <li><a href="{{ url('/products') }}">Mobile Numerology</a></li>
                                     <li><a href="{{ url('/products') }}">Advanced Numerology</a></li>
                                     <li><a href="{{ url('/products') }}">Business Numerology</a></li>
@@ -144,296 +144,446 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script>
-function confirmLogout() {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: 'You will be logged out of your account.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, log out!',
-        cancelButtonText: 'No, cancel'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // If user confirms, submit the form
-            document.getElementById('logout-form').submit();
+    function confirmLogout() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will be logged out of your account.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log out!',
+            cancelButtonText: 'No, cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user confirms, submit the form
+                document.getElementById('logout-form').submit();
+            }
+        });
+    }
+
+    //language
+    document.getElementById('languageSwitcher').addEventListener('change', function() {
+        var selectedLanguage = this.value;
+        if (selectedLanguage) {
+            window.location.href = "{{ url('lang') }}/" + selectedLanguage;
         }
     });
-}
-
-//language
-document.getElementById('languageSwitcher').addEventListener('change', function() {
-    var selectedLanguage = this.value;
-    if (selectedLanguage) {
-        window.location.href = "{{ url('lang') }}/" + selectedLanguage;
-    }
-});
 </script>
 <script>
-let items = document.querySelectorAll('.proin-wrap .proin')
+    let items = document.querySelectorAll('.proin-wrap .proin')
 
-items.forEach((el) => {
-    const minPerSlide = 3
-    let next = el.nextElementSibling
-    for (var i = 1; i < minPerSlide; i++) {
-        if (!next) {
-            // wrap carousel by using first child
-            next = items[0]
+    items.forEach((el) => {
+        const minPerSlide = 3
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
         }
-        let cloneChild = next.cloneNode(true)
-        el.appendChild(cloneChild.children[0])
-        next = next.nextElementSibling
-    }
-})
+    })
 </script>
 <script>
-const content = [{
-        title: "Career Problems",
-        issue: "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit onsequat hello Aenean world.nibh vel velit auctor aliquet lorem quis bibendum auctor auctor aliquet.",
-        solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-    },
-    {
-        title: "Marital Life Problems",
-        issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
-        solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-    },
-    {
-        title: "Work-Life Balance Struggles",
-        issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
-        solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-    }
-];
-
-let currentIndex = 0;
-
-function changeContent(direction) {
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = content.length - 1;
-    if (currentIndex >= content.length) currentIndex = 0;
-
-    // Change title, issue, and solution separately
-    document.getElementById("dynamic-title").innerHTML = content[currentIndex].title;
-    document.getElementById("dynamic-issue").innerHTML = `<strong>Issue :</strong> ${content[currentIndex].issue}`;
-    document.getElementById("dynamic-solution").innerHTML =
-        `<strong>Solution :</strong> ${content[currentIndex].solution}`;
-}
-</script>
-
-<script>
-function openTab(evt, tabName) {
-    // Get all tab content elements and hide them
-    var tabContent = document.getElementsByClassName("tab-content-n");
-    for (var i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = "none";
-    }
-
-    // Get all tab links and remove the active class
-    var tabLinks = document.getElementsByClassName("tab-link");
-    for (var i = 0; i < tabLinks.length; i++) {
-        tabLinks[i].classList.remove("active");
-    }
-
-    // Show the clicked tab's content and add active class to the button
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.classList.add("active");
-}
-</script>
-
-<script>
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
-const indicators = document.querySelectorAll('.indicator');
-const slideWidth = slides[0].getBoundingClientRect().width;
-let slideInterval;
-const intervalTime = 3000; // Change slide every 3 seconds  // Arrange slides next to each other  
-slides.forEach((slide, index) => {
-    slide.style.left = slideWidth * index + 'px';
-});
-const moveToSlide = (track, currentSlide, targetSlide) => {
-    track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-    currentSlide.classList.remove('current-slide');
-    targetSlide.classList.add('current-slide');
-};
-const updateIndicators = (targetIndex) => {
-    indicators.forEach((indicator, index) => {
-        indicator.classList.remove('active');
-        if (index === targetIndex) {
-            indicator.classList.add('active');
+    const content = [{
+            title: "Career Problems",
+            issue: "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit onsequat hello Aenean world.nibh vel velit auctor aliquet lorem quis bibendum auctor auctor aliquet.",
+            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
+        },
+        {
+            title: "Marital Life Problems",
+            issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
+            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
+        },
+        {
+            title: "Work-Life Balance Struggles",
+            issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
+            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
         }
-    });
-};
-const findIndexOfSlide = (targetSlide) => {
-    return slides.findIndex(slide => slide === targetSlide);
-};
-const autoSlide = () => {
-    const currentSlide = track.querySelector('.current-slide');
-    const nextSlide = currentSlide.nextElementSibling ? currentSlide.nextElementSibling : slides[0];
-    moveToSlide(track, currentSlide, nextSlide);
-    updateIndicators(findIndexOfSlide(nextSlide));
-}; // When I click next, move slides to the right  
-nextButton.addEventListener('click', () => {
-    const currentSlide = track.querySelector('.current-slide');
-    const nextSlide = currentSlide.nextElementSibling ? currentSlide.nextElementSibling : slides[0];
-    moveToSlide(track, currentSlide, nextSlide);
-    updateIndicators(findIndexOfSlide(nextSlide));
-}); // When I click prev, move slides to the left  
-prevButton.addEventListener('click', () => {
-    const currentSlide = track.querySelector('.current-slide');
-    const prevSlide = currentSlide.previousElementSibling ? currentSlide.previousElementSibling : slides[
-        slides
-        .length - 1];
-    moveToSlide(track, currentSlide, prevSlide);
-    updateIndicators(findIndexOfSlide(prevSlide));
-}); // Add click events to indicators  
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-        const currentSlide = track.querySelector('.current-slide');
-        const targetSlide = slides[index];
-        moveToSlide(track, currentSlide, targetSlide);
-        updateIndicators(index);
-    });
-}); // Start auto sliding  
-slideInterval = setInterval(autoSlide, intervalTime); // Optional: pause auto-slide when hovering over carousel  
-track.addEventListener('mouseenter', () => clearInterval(slideInterval));
-track.addEventListener('mouseleave', () => slideInterval = setInterval(autoSlide, intervalTime));
+    ];
+
+    let currentIndex = 0;
+
+    function changeContent(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = content.length - 1;
+        if (currentIndex >= content.length) currentIndex = 0;
+
+        // Change title, issue, and solution separately
+        document.getElementById("dynamic-title").innerHTML = content[currentIndex].title;
+        document.getElementById("dynamic-issue").innerHTML = `<strong>Issue :</strong> ${content[currentIndex].issue}`;
+        document.getElementById("dynamic-solution").innerHTML =
+            `<strong>Solution :</strong> ${content[currentIndex].solution}`;
+    }
 </script>
 
 <script>
-function showContent(section) {
-    const contents = document.querySelectorAll('.content-section');
+    function openTab(evt, tabName) {
+        // Get all tab content elements and hide them
+        var tabContent = document.getElementsByClassName("tab-content-n");
+        for (var i = 0; i < tabContent.length; i++) {
+            tabContent[i].style.display = "none";
+        }
+
+        // Get all tab links and remove the active class
+        var tabLinks = document.getElementsByClassName("tab-link");
+        for (var i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active");
+        }
+
+        // Show the clicked tab's content and add active class to the button
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+<script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
     const indicators = document.querySelectorAll('.indicator');
-
-    contents.forEach(content => {
-        content.classList.remove('active');
-        if (content.id === section) {
-            content.classList.add('active');
-        }
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    let slideInterval;
+    const intervalTime = 3000; // Change slide every 3 seconds  // Arrange slides next to each other  
+    slides.forEach((slide, index) => {
+        slide.style.left = slideWidth * index + 'px';
     });
-
-    // Update indicators based on the section
-    const index = Array.from(contents).findIndex(content => content.id === section);
-    indicators.forEach((indicator, i) => {
-        if (i === index) {
-            indicator.classList.add('active');
-        } else {
+    const moveToSlide = (track, currentSlide, targetSlide) => {
+        track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+        currentSlide.classList.remove('current-slide');
+        targetSlide.classList.add('current-slide');
+    };
+    const updateIndicators = (targetIndex) => {
+        indicators.forEach((indicator, index) => {
             indicator.classList.remove('active');
-        }
-    });
-}
-
-// Set the default active content
-document.addEventListener("DOMContentLoaded", function() {
-    showContent('numerology');
-});
+            if (index === targetIndex) {
+                indicator.classList.add('active');
+            }
+        });
+    };
+    const findIndexOfSlide = (targetSlide) => {
+        return slides.findIndex(slide => slide === targetSlide);
+    };
+    const autoSlide = () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling ? currentSlide.nextElementSibling : slides[0];
+        moveToSlide(track, currentSlide, nextSlide);
+        updateIndicators(findIndexOfSlide(nextSlide));
+    }; // When I click next, move slides to the right  
+    nextButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling ? currentSlide.nextElementSibling : slides[0];
+        moveToSlide(track, currentSlide, nextSlide);
+        updateIndicators(findIndexOfSlide(nextSlide));
+    }); // When I click prev, move slides to the left  
+    prevButton.addEventListener('click', () => {
+        const currentSlide = track.querySelector('.current-slide');
+        const prevSlide = currentSlide.previousElementSibling ? currentSlide.previousElementSibling : slides[
+            slides
+            .length - 1];
+        moveToSlide(track, currentSlide, prevSlide);
+        updateIndicators(findIndexOfSlide(prevSlide));
+    }); // Add click events to indicators  
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            const currentSlide = track.querySelector('.current-slide');
+            const targetSlide = slides[index];
+            moveToSlide(track, currentSlide, targetSlide);
+            updateIndicators(index);
+        });
+    }); // Start auto sliding  
+    slideInterval = setInterval(autoSlide, intervalTime); // Optional: pause auto-slide when hovering over carousel  
+    track.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    track.addEventListener('mouseleave', () => slideInterval = setInterval(autoSlide, intervalTime));
 </script>
 
 <script>
-let brownCurrentSlide = 0;
-const brownSlides = document.querySelectorAll('.brown-carousel-slide');
-const brownTotalSlides = brownSlides.length;
+    function showContent(section) {
+        const contents = document.querySelectorAll('.content-section');
+        const indicators = document.querySelectorAll('.indicator');
 
-function brownShowSlide(index) {
-    brownSlides.forEach((slide, i) => {
-        slide.classList.remove('brown-slide-active');
-        slide.style.left = '100%';
-        if (i === index) {
-            slide.classList.add('brown-slide-active');
-            slide.style.left = '0';
-        }
-    });
-}
+        contents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === section) {
+                content.classList.add('active');
+            }
+        });
 
-function brownNextSlide() {
-    brownCurrentSlide = (brownCurrentSlide + 1) % brownTotalSlides;
-    brownShowSlide(brownCurrentSlide);
-}
-
-setInterval(brownNextSlide, 3000); // Automatically switch slides every 3 seconds
-</script>
-
-<script>
-var container = document.getElementById('container')
-var slider = document.getElementById('slider');
-var slides = document.getElementsByClassName('slide').length;
-var buttons = document.getElementsByClassName('btn');
-
-
-var currentPosition = 0;
-var currentMargin = 0;
-var slidesPerPage = 0;
-var slidesCount = slides - slidesPerPage;
-var containerWidth = container.offsetWidth;
-var prevKeyActive = false;
-var nextKeyActive = true;
-
-window.addEventListener("resize", checkWidth);
-
-function checkWidth() {
-    containerWidth = container.offsetWidth;
-    setParams(containerWidth);
-}
-
-function setParams(w) {
-    if (w < 551) {
-        slidesPerPage = 1;
-    } else {
-        if (w < 901) {
-            slidesPerPage = 2;
-        } else {
-            if (w < 1101) {
-                slidesPerPage = 3;
+        // Update indicators based on the section
+        const index = Array.from(contents).findIndex(content => content.id === section);
+        indicators.forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.add('active');
             } else {
-                slidesPerPage = 4;
+                indicator.classList.remove('active');
+            }
+        });
+    }
+
+    // Set the default active content
+    document.addEventListener("DOMContentLoaded", function() {
+        showContent('numerology');
+    });
+</script>
+
+<script>
+    let brownCurrentSlide = 0;
+    const brownSlides = document.querySelectorAll('.brown-carousel-slide');
+    const brownTotalSlides = brownSlides.length;
+
+    function brownShowSlide(index) {
+        brownSlides.forEach((slide, i) => {
+            slide.classList.remove('brown-slide-active');
+            slide.style.left = '100%';
+            if (i === index) {
+                slide.classList.add('brown-slide-active');
+                slide.style.left = '0';
+            }
+        });
+    }
+
+    function brownNextSlide() {
+        brownCurrentSlide = (brownCurrentSlide + 1) % brownTotalSlides;
+        brownShowSlide(brownCurrentSlide);
+    }
+
+    setInterval(brownNextSlide, 3000); // Automatically switch slides every 3 seconds
+</script>
+
+<script>
+    var container = document.getElementById('container')
+    var slider = document.getElementById('slider');
+    var slides = document.getElementsByClassName('slide').length;
+    var buttons = document.getElementsByClassName('btn');
+
+
+    var currentPosition = 0;
+    var currentMargin = 0;
+    var slidesPerPage = 0;
+    var slidesCount = slides - slidesPerPage;
+    var containerWidth = container.offsetWidth;
+    var prevKeyActive = false;
+    var nextKeyActive = true;
+
+    window.addEventListener("resize", checkWidth);
+
+    function checkWidth() {
+        containerWidth = container.offsetWidth;
+        setParams(containerWidth);
+    }
+
+    function setParams(w) {
+        if (w < 551) {
+            slidesPerPage = 1;
+        } else {
+            if (w < 901) {
+                slidesPerPage = 2;
+            } else {
+                if (w < 1101) {
+                    slidesPerPage = 3;
+                } else {
+                    slidesPerPage = 4;
+                }
             }
         }
+        slidesCount = slides - slidesPerPage;
+        if (currentPosition > slidesCount) {
+            currentPosition -= slidesPerPage;
+        };
+        currentMargin = -currentPosition * (100 / slidesPerPage);
+        slider.style.marginLeft = currentMargin + '%';
+        if (currentPosition > 0) {
+            buttons[0].classList.remove('inactive');
+        }
+        if (currentPosition < slidesCount) {
+            buttons[1].classList.remove('inactive');
+        }
+        if (currentPosition >= slidesCount) {
+            buttons[1].classList.add('inactive');
+        }
     }
-    slidesCount = slides - slidesPerPage;
-    if (currentPosition > slidesCount) {
-        currentPosition -= slidesPerPage;
-    };
-    currentMargin = -currentPosition * (100 / slidesPerPage);
-    slider.style.marginLeft = currentMargin + '%';
-    if (currentPosition > 0) {
-        buttons[0].classList.remove('inactive');
-    }
-    if (currentPosition < slidesCount) {
-        buttons[1].classList.remove('inactive');
-    }
-    if (currentPosition >= slidesCount) {
-        buttons[1].classList.add('inactive');
-    }
-}
 
-setParams();
+    setParams();
 
-function slideRight() {
-    if (currentPosition != 0) {
-        slider.style.marginLeft = currentMargin + (100 / slidesPerPage) + '%';
-        currentMargin += (100 / slidesPerPage);
-        currentPosition--;
+    function slideRight() {
+        if (currentPosition != 0) {
+            slider.style.marginLeft = currentMargin + (100 / slidesPerPage) + '%';
+            currentMargin += (100 / slidesPerPage);
+            currentPosition--;
+        };
+        if (currentPosition === 0) {
+            buttons[0].classList.add('inactive');
+        }
+        if (currentPosition < slidesCount) {
+            buttons[1].classList.remove('inactive');
+        }
     };
-    if (currentPosition === 0) {
-        buttons[0].classList.add('inactive');
-    }
-    if (currentPosition < slidesCount) {
-        buttons[1].classList.remove('inactive');
-    }
-};
 
-function slideLeft() {
-    if (currentPosition != slidesCount) {
-        slider.style.marginLeft = currentMargin - (100 / slidesPerPage) + '%';
-        currentMargin -= (100 / slidesPerPage);
-        currentPosition++;
+    function slideLeft() {
+        if (currentPosition != slidesCount) {
+            slider.style.marginLeft = currentMargin - (100 / slidesPerPage) + '%';
+            currentMargin -= (100 / slidesPerPage);
+            currentPosition++;
+        };
+        if (currentPosition == slidesCount) {
+            buttons[1].classList.add('inactive');
+        }
+        if (currentPosition > 0) {
+            buttons[0].classList.remove('inactive');
+        }
     };
-    if (currentPosition == slidesCount) {
-        buttons[1].classList.add('inactive');
+</script>
+
+{{-- youtube --}}
+
+<script>
+    const YOUTUBE_CHANNEL_ID = "UCo5W6ujSrguqO80idd5Gkyg"; // Replace with your channel ID
+    const RSS2JSON_API_URL =
+        `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+
+    let videos = [];
+    let currentVideoIndex = 0;
+    let player;
+    let recommendedVideosDiv = document.getElementById('recommendedVideosOverlay');
+    let sliderContent = document.getElementById('sliderContent');
+    const customPlayButton = document.getElementById('customPlayButton');
+    const playText = document.getElementById('playText');
+    const leftButton = document.getElementById('leftButton');
+    const rightButton = document.getElementById('rightButton');
+    const blurredBackground = document.getElementById('blurredBackground');
+    let sliderPosition = 0;
+
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+        fetchLatestVideos();
     }
-    if (currentPosition > 0) {
-        buttons[0].classList.remove('inactive');
+
+    const fetchLatestVideos = async () => {
+        try {
+            const response = await fetch(RSS2JSON_API_URL);
+            const data = await response.json();
+
+            videos = data.items.map(item => ({
+                id: item.link.split("v=")[1],
+                title: item.title
+            }));
+
+            loadVideo(videos[0].id);
+            updateSliderPosition(); // Update slider position based on loaded videos
+        } catch (error) {
+            console.error("Error fetching videos:", error);
+        }
+    };
+
+    const loadVideo = (videoId) => {
+        if (!player) {
+            player = new YT.Player('player', {
+                height: '340',
+                width: '600',
+                videoId: videoId,
+                playerVars: {
+                    'controls': 1,
+                    'showinfo': 0, // Hides the title and uploader info
+                    'rel': 0 // Prevents showing related videos at the end
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        } else {
+            player.loadVideoById(videoId);
+        }
+
+        hideRecommendations();
+        blurredBackground.style.display = 'none'; // Hide blur effect when loading a new video
+    };
+
+    const showRecommendations = () => {
+        recommendedVideosDiv.style.display = 'flex';
+        sliderContent.innerHTML = '';
+
+        videos.forEach((video, index) => {
+            if (index !== currentVideoIndex) {
+                const videoThumbnail = document.createElement('img');
+                videoThumbnail.src = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                videoThumbnail.alt = video.title;
+                videoThumbnail.onclick = () => {
+                    currentVideoIndex = index;
+                    loadVideo(video.id);
+                    hideRecommendations(); // Hide recommendations when a video is selected
+                };
+                sliderContent.appendChild(videoThumbnail);
+            }
+        });
+
+        updateSliderPosition();
+    };
+
+    const hideRecommendations = () => {
+        recommendedVideosDiv.style.display = 'none';
+    };
+
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PAUSED) {
+            showRecommendations();
+            blurredBackground.style.display = 'block'; // Show blur background when paused
+            customPlayButton.classList.remove('hidden');
+            playText.classList.remove('hidden'); // Show play text when paused
+        } else if (event.data === YT.PlayerState.PLAYING) {
+            hideRecommendations();
+            blurredBackground.style.display = 'none'; // Hide blur background when playing
+            customPlayButton.classList.add('hidden');
+            playText.classList.add('hidden'); // Hide play text when playing
+            document.getElementById('videoEndMessage').style.display = 'none'; // Hide end message when video plays
+        } else if (event.data === YT.PlayerState.ENDED) {
+            showRecommendations(); // Show recommendations at the end
+            blurredBackground.style.display = 'block'; // Show blur effect when video ends
+            customPlayButton.style.display = 'none';
+            playText.style.display = 'none'; // Hide play text at the end
+
+            // Show end message
+            const videoEndMessage = document.getElementById('videoEndMessage');
+            videoEndMessage.style.display = 'block'; // Show the message
+        }
     }
-};
+
+    customPlayButton.addEventListener('click', () => {
+        player.playVideo();
+        customPlayButton.classList.add('hidden');
+        playText.classList.add('hidden'); // Hide play text when clicked
+    });
+
+    leftButton.addEventListener('click', () => {
+        // Prevent scrolling if at the beginning
+        if (sliderPosition < 0) {
+            sliderPosition += 210; // Adjust based on image width + gap
+            updateSliderPosition();
+        }
+    });
+
+    rightButton.addEventListener('click', () => {
+        // Calculate maximum position based on the number of videos
+        const maxSliderPosition = Math.max(0, (videos.length - 5) * 210); // Assuming 5 visible items
+        if (sliderPosition > -maxSliderPosition) {
+            sliderPosition -= 210; // Adjust based on image width + gap
+            updateSliderPosition();
+        }
+    });
+
+    function updateSliderPosition() {
+        sliderContent.style.transform = `translateX(${sliderPosition}px)`;
+    }
+
+    // Initialize video slider visibility on load
+    window.onload = () => {
+        recommendedVideosDiv.style.display = 'none';
+    };
 </script>

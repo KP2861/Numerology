@@ -142,7 +142,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="dob"> Date of Birth</label>
+                                        <label class="custom-form-label" for="dob">D.O.B</label>
                                         <input class="numerology-service-labels" type="date" name="dob" required>
                                         <div class="invalid-feedback"></div>
                                     </div>
@@ -224,8 +224,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>Name</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Name</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Empower Yourself:</strong> Knowing your name's vibrational frequency can help you align
                             with your true path.
@@ -303,7 +303,7 @@
                                     </div>
                                     <div class="col-lg-6 col-12">
 
-                                        <label class="custom-form-label" for="dob"> Date of Birth</label>
+                                        <label class="custom-form-label" for="dob">D.O.B</label>
                                         <input type="date" class="numerology-service-labels" id="dob"
                                             name="dob" value="dob" required>
                                         <div class="invalid-feedback"></div>
@@ -388,8 +388,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>Mobile</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Mobile</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Discover Your Life Path:</strong> Each digit in your mobile number carries unique
                             vibrations and characteristics that can shape your experiences and opportunities.
@@ -441,19 +441,13 @@
                                     <div class="col-lg-6 col-12">
                                         <label class="custom-form-label" for="name">First Name </label>
                                         <input class="numerology-service-labels" type="text" name="first_name"
-                                            id="first_name" required onblur="capitalizeFirstLetter(this)"
-                                            pattern="[A-Za-z]+"
-                                            title="First name must contain only letters (no numbers or special characters)."
-                                            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');">
+                                            id="first_name" required onblur="capitalizeFirstLetter(this)">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <label class="custom-form-label" for="name">Last Name</label>
                                         <input class="numerology-service-labels" type="text" name="last_name"
-                                            id="last_name" pattern="[A-Za-z]+"
-                                            title="Last name must contain only letters (no numbers or special characters)."
-                                            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');"
-                                            onblur="capitalizeFirstLetter(this)">
+                                            id="last_name" onblur="capitalizeFirstLetter(this)">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <div class="col-lg-6 col-12">
@@ -470,8 +464,8 @@
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                         <div class="invalid-feedback"></div>
                                     </div>
-                                    <div class="col-lg-6 col-12"> <label class="custom-form-label" for=""> Date
-                                            of Birth</label>
+                                    <div class="col-lg-6 col-12"> <label class="custom-form-label"
+                                            for="">D.O.B</label>
                                         <input type="date" class="numerology-service-labels" id="dob"
                                             name="dob" value="{{ old('dob') }}" required>
                                         <div class="invalid-feedback"></div>
@@ -558,8 +552,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>Advanced</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Advanced</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Explore the Depths of Your Soul:</strong> Advanced Numerology delves into your core
                             numbers, including Life Path, Expression, and Soul Urge numbers, providing a complete picture of
@@ -616,20 +610,17 @@
                                 <div class="row mt-4">
                                     <div class="col-lg-6 col-12">
                                         <label class="custom-form-label" for="first_name">First Name</label>
-                                        <input class="numerology-service-labels" type="text" name="first_name"
-                                            id="first_name" required onblur="capitalizeFirstLetter(this)"
-                                            pattern="[A-Za-z]+"
-                                            title="First name must contain only letters (no numbers or special characters)."
-                                            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');">
+                                        <input type="text" pattern="[A-Za-z\s]+"
+                                            class="numerology-service-labels @error('first_name') is-invalid @enderror"
+                                            id="first_name" name="first_name" required
+                                            oninput="capitalizeFirstLetter(this)">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <label class="custom-form-label" for="last_name">Last Name</label>
-                                        <input class="numerology-service-labels" type="text" name="last_name"
-                                            id="last_name" pattern="[A-Za-z]+"
-                                            title="Last name must contain only letters (no numbers or special characters)."
-                                            oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');"
-                                            onblur="capitalizeFirstLetter(this)">
+                                        <input type="text" pattern="[A-Za-z\s]+"
+                                            class="numerology-service-labels @error('last_name') is-invalid @enderror"
+                                            id="last_name" name="last_name" oninput="capitalizeFirstLetter(this)">
                                         <div class="invalid-feedback"></div>
                                     </div>
                                     <div class="col-lg-6 col-12">
@@ -649,7 +640,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="dob"> Date of Birth</label>
+                                        <label class="custom-form-label" for="dob">D.O.B</label>
                                         <input type="date"
                                             class="numerology-service-labels @error('dob') is-invalid @enderror"
                                             id="dob" name="dob" required>
@@ -884,8 +875,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span>Business</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Business</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Align with Universal Energies:</strong> Every name carries a vibrational frequency that
                             can influence your business's growth and success. Our Business Name Numerology analyses these
@@ -987,104 +978,104 @@
     {{-- partner section --}}
 
     {{-- <script>
-       let partnerCount = 0; // Track the number of partners added
+        let partnerCount = 0; // Track the number of partners added
 
-       function togglePartnerDetails() {
-           const select = document.getElementById("partner-selection");
-           const partnerDetails = document.getElementById("partner-details");
-           const addButton = document.getElementById("add-partner-btn"); // Get Add Partner button
+        function togglePartnerDetails() {
+            const select = document.getElementById("partner-selection");
+            const partnerDetails = document.getElementById("partner-details");
+            const addButton = document.getElementById("add-partner-btn"); // Get Add Partner button
 
-           // Show partner details based on selection
-           partnerDetails.style.display = select.value === "1" ? "block" : "none";
+            // Show partner details based on selection
+            partnerDetails.style.display = select.value === "1" ? "block" : "none";
 
-           // If "No" is selected, reset and clear partner details
-           if (select.value === "0") {
-               partnerCount = 0;
-               document.getElementById("partners-container").innerHTML = ''; // Clear container
-               document.getElementById("partner-warning").style.display = "none"; // Hide warning
-               addButton.style.display = "none"; // Hide Add Partner button
-           } else if (select.value === "1" && partnerCount === 0) {
-               // Automatically add the first partner details if first time Yes is selected
-               addPartnerFields();
-               addButton.style.display = "block"; // Show Add Partner button
-           }
-       }
+            // If "No" is selected, reset and clear partner details
+            if (select.value === "0") {
+                partnerCount = 0;
+                document.getElementById("partners-container").innerHTML = ''; // Clear container
+                document.getElementById("partner-warning").style.display = "none"; // Hide warning
+                addButton.style.display = "none"; // Hide Add Partner button
+            } else if (select.value === "1" && partnerCount === 0) {
+                // Automatically add the first partner details if first time Yes is selected
+                addPartnerFields();
+                addButton.style.display = "block"; // Show Add Partner button
+            }
+        }
 
-       function addPartnerFields() {
-           if (partnerCount < 5) { // Limit to 5 partners
-               partnerCount++;
-               const partnerHtml = `
-               <div class="row partner-details mb-1" id="partner-${partnerCount}">
-                   <h6>Partner ${partnerCount}</h6>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label">Partner First Name</label>
-                       <input class="numerology-service-labels" type="text" name="partner_first_name_${partnerCount}" required>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label">Partner Last Name</label>
-                       <input class="numerology-service-labels" type="text" name="partner_last_name_${partnerCount}" required>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label">D.O.B</label>
-                       <input class="numerology-service-labels" type="date" name="partner_dob_${partnerCount}" required>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label">Phone Number</label>
-                       <input class="numerology-service-labels" type="tel" name="partner_mobile_${partnerCount}" required>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label">Email</label>
-                       <input class="numerology-service-labels" type="email" name="partner_email_${partnerCount}" required>
-                   </div>
-                   <div class="col-12">
-                       <button class="btn btn-danger btn-sm float-end" onclick="removePartner(${partnerCount})" ${partnerCount === 1 ? 'style="display:none;"' : ''}>Delete</button>
-                   </div>
-               </div>
-           `;
-               document.getElementById("partners-container").insertAdjacentHTML('beforeend', partnerHtml);
-               document.getElementById("partner-warning").style.display = "none"; // Hide warning if under limit
+        function addPartnerFields() {
+            if (partnerCount < 5) { // Limit to 5 partners
+                partnerCount++;
+                const partnerHtml = `
+                <div class="row partner-details mb-1" id="partner-${partnerCount}">
+                    <h6>Partner ${partnerCount}</h6>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label">Partner First Name</label>
+                        <input class="numerology-service-labels" type="text" name="partner_first_name_${partnerCount}" required>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label">Partner Last Name</label>
+                        <input class="numerology-service-labels" type="text" name="partner_last_name_${partnerCount}" required>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label">D.O.B</label>
+                        <input class="numerology-service-labels" type="date" name="partner_dob_${partnerCount}" required>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label">Phone Number</label>
+                        <input class="numerology-service-labels" type="tel" name="partner_mobile_${partnerCount}" required>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label">Email</label>
+                        <input class="numerology-service-labels" type="email" name="partner_email_${partnerCount}" required>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-danger btn-sm float-end" onclick="removePartner(${partnerCount})" ${partnerCount === 1 ? 'style="display:none;"' : ''}>Delete</button>
+                    </div>
+                </div>
+            `;
+                document.getElementById("partners-container").insertAdjacentHTML('beforeend', partnerHtml);
+                document.getElementById("partner-warning").style.display = "none"; // Hide warning if under limit
 
-               // If the partner is the first entry, hide the delete button
-               if (partnerCount === 1) {
-                   document.querySelector(`#partner-${partnerCount} .btn-danger`).style.display = 'none';
-               }
-           } else {
-               document.getElementById("partner-warning").style.display = "block"; // Show warning
-           }
-       }
+                // If the partner is the first entry, hide the delete button
+                if (partnerCount === 1) {
+                    document.querySelector(`#partner-${partnerCount} .btn-danger`).style.display = 'none';
+                }
+            } else {
+                document.getElementById("partner-warning").style.display = "block"; // Show warning
+            }
+        }
 
-       function removePartner(partnerId) {
-           const partnerDiv = document.getElementById(`partner-${partnerId}`);
-           if (partnerDiv) {
-               partnerDiv.remove();
-               partnerCount--; // Decrease count when a partner is removed
-               adjustDeleteButtons(); // Update visibility of delete buttons
-               checkForPartnerFields(); // Update warning visibility
-           }
-       }
+        function removePartner(partnerId) {
+            const partnerDiv = document.getElementById(`partner-${partnerId}`);
+            if (partnerDiv) {
+                partnerDiv.remove();
+                partnerCount--; // Decrease count when a partner is removed
+                adjustDeleteButtons(); // Update visibility of delete buttons
+                checkForPartnerFields(); // Update warning visibility
+            }
+        }
 
-       function adjustDeleteButtons() {
-           // Hide the delete button for the first partner if it's still there
-           if (partnerCount === 1) {
-               document.querySelector(`#partner-1 .btn-danger`).style.display = 'none';
-           } else if (partnerCount === 0) {
-               document.getElementById("add-partner-btn").style.display =
-                   "none"; // Hide the Add Partner button if no partners left
-           }
-       }
+        function adjustDeleteButtons() {
+            // Hide the delete button for the first partner if it's still there
+            if (partnerCount === 1) {
+                document.querySelector(`#partner-1 .btn-danger`).style.display = 'none';
+            } else if (partnerCount === 0) {
+                document.getElementById("add-partner-btn").style.display =
+                    "none"; // Hide the Add Partner button if no partners left
+            }
+        }
 
-       function checkForPartnerFields() {
-           // Hide warning if the partner count is less than the maximum
-           if (partnerCount < 5) {
-               document.getElementById("partner-warning").style.display = "none";
-           }
-       }
+        function checkForPartnerFields() {
+            // Hide warning if the partner count is less than the maximum
+            if (partnerCount < 5) {
+                document.getElementById("partner-warning").style.display = "none";
+            }
+        }
 
-       // Attach event listener to the "Add More Partner" button
-       document.getElementById('add-partner-btn').addEventListener('click', function() {
-           addPartnerFields(); // Add more partner fields when the button is clicked
-       });
-   </script> --}}
+        // Attach event listener to the "Add More Partner" button
+        document.getElementById('add-partner-btn').addEventListener('click', function() {
+            addPartnerFields(); // Add more partner fields when the button is clicked
+        });
+    </script> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('form').reset(); // This will reset the form fields on page load
@@ -1092,444 +1083,444 @@
     </script>
 
     {{-- <script>
-       function togglePartnerFields() {
-           const havePartner = document.getElementById('have_partner').value;
-           const partnerFieldsContainer = document.getElementById('partner-fields-container');
-           const timeInputContainer = document.getElementById('time-input-container');
+        function togglePartnerFields() {
+            const havePartner = document.getElementById('have_partner').value;
+            const partnerFieldsContainer = document.getElementById('partner-fields-container');
+            const timeInputContainer = document.getElementById('time-input-container');
 
-           if (havePartner === '1') {
-               partnerFieldsContainer.style.display = 'block';
-               timeInputContainer.style.display = 'block'; // Show time input
-           } else {
-               partnerFieldsContainer.style.display = 'none';
-               timeInputContainer.style.display = 'none'; // Hide time input
-               resetPartnerFields(); // Clear partner fields if "No" is selected
-           }
-       }
+            if (havePartner === '1') {
+                partnerFieldsContainer.style.display = 'block';
+                timeInputContainer.style.display = 'block'; // Show time input
+            } else {
+                partnerFieldsContainer.style.display = 'none';
+                timeInputContainer.style.display = 'none'; // Hide time input
+                resetPartnerFields(); // Clear partner fields if "No" is selected
+            }
+        }
 
-       let partnerIndex = 0; // Start from 0 for the first partner
-       const maxPartners = 5;
+        let partnerIndex = 0; // Start from 0 for the first partner
+        const maxPartners = 5;
 
-       function addPartner() {
-           const container = document.getElementById('partner-fields');
-           const errorMessage = document.getElementById('error-message');
+        function addPartner() {
+            const container = document.getElementById('partner-fields');
+            const errorMessage = document.getElementById('error-message');
 
-           // Show error message if the maximum number of partners is reached
-           if (partnerIndex >= maxPartners) {
-               errorMessage.style.display = 'block';
-               return;
-           } else {
-               errorMessage.style.display = 'none';
-           }
+            // Show error message if the maximum number of partners is reached
+            if (partnerIndex >= maxPartners) {
+                errorMessage.style.display = 'block';
+                return;
+            } else {
+                errorMessage.style.display = 'none';
+            }
 
-           // Create a new partner field section
-           const partnerField = document.createElement('div');
-           partnerField.classList.add('row', 'partner-details', 'mb-2');
+            // Create a new partner field section
+            const partnerField = document.createElement('div');
+            partnerField.classList.add('row', 'partner-details', 'mb-2');
 
-           partnerField.innerHTML = `
-           <div class="col-lg-6 col-12">
-               <div class="form-group">
-                   <label for="partner_first_name_${partnerIndex}" class="custom-form-label">Partner First Name:</label>
-                   <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
-                   <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
-               </div>
-           </div>
-           <div class="col-lg-6 col-12">
-               <div class="form-group">
-                   <label for="partner_last_name_${partnerIndex}" class="custom-form-label">Partner Last Name:</label>
-                   <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_last_name_${partnerIndex}" name="partner_last_names[]" required oninput="capitalizeFirstLetter(this)">
-                   <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
-               </div>
-           </div>
-           <div class="col-lg-6 col-12">
-               <div class="form-group">
-                   <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
-                   <input type="date" class="form-control" id="dob_${partnerIndex}" name="partner_dobs[]" required>
-                   <div class="invalid-feedback">Please enter a valid date of birth.</div>
-               </div>
-           </div>
-           <div class="col-lg-6 col-12">
-               <div class="form-group">
-                   <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
-                   <input type="tel" class="form-control" id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" required pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                   <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
-               </div>
-           </div>
-           <div class="col-lg-6 col-12">
-               <div class="form-group">
-                   <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
-                   <input type="email" class="form-control" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
-                   <div class="invalid-feedback">Please enter a valid email address.</div>
-               </div>
-           </div>
-           <div class="col-lg-6 col-12">
-               <label class="custom-form-label" for="time">Time</label>
-               <div class="time-input d-flex align-items-start">
-                   <input class="numerology-service-labels" type="text" name="partner_hours[]" placeholder="HH" required pattern="[0-1][0-9]|[2][0-3]">
-                   <input class="numerology-service-labels" type="text" name="partner_minutes[]" placeholder="MM" required pattern="[0-5][0-9]">
-                   <div class="am-pm d-flex gap-2">
-                       <input class="numerology-service-labels" type="radio" name="partner_ampm_${partnerIndex}" value="am" checked> 
-                       <label class="select-radio-custom">AM</label>
-                       <input class="numerology-service-labels" type="radio" name="partner_ampm_${partnerIndex}" value="pm"> 
-                       <label class="select-radio-custom">PM</label>
-                   </div>
-                   <div class="invalid-feedback"></div>
-               </div>
-           </div>
-           <div class="col-12">
-               <button type="button" class="btn btn-danger btn-sm float-end" onclick="removePartner(this)">Remove</button>
-           </div>
-       `;
+            partnerField.innerHTML = `
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="partner_first_name_${partnerIndex}" class="custom-form-label">Partner First Name:</label>
+                    <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
+                    <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="partner_last_name_${partnerIndex}" class="custom-form-label">Partner Last Name:</label>
+                    <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_last_name_${partnerIndex}" name="partner_last_names[]" required oninput="capitalizeFirstLetter(this)">
+                    <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
+                    <input type="date" class="form-control" id="dob_${partnerIndex}" name="partner_dobs[]" required>
+                    <div class="invalid-feedback">Please enter a valid date of birth.</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
+                    <input type="tel" class="form-control" id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" required pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                    <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="form-group">
+                    <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
+                    <input type="email" class="form-control" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <label class="custom-form-label" for="time">Time</label>
+                <div class="time-input d-flex align-items-start">
+                    <input class="numerology-service-labels" type="text" name="partner_hours[]" placeholder="HH" required pattern="[0-1][0-9]|[2][0-3]">
+                    <input class="numerology-service-labels" type="text" name="partner_minutes[]" placeholder="MM" required pattern="[0-5][0-9]">
+                    <div class="am-pm d-flex gap-2">
+                        <input class="numerology-service-labels" type="radio" name="partner_ampm_${partnerIndex}" value="am" checked> 
+                        <label class="select-radio-custom">AM</label>
+                        <input class="numerology-service-labels" type="radio" name="partner_ampm_${partnerIndex}" value="pm"> 
+                        <label class="select-radio-custom">PM</label>
+                    </div>
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="button" class="btn btn-danger btn-sm float-end" onclick="removePartner(this)">Remove</button>
+            </div>
+        `;
 
-           // Bind real-time validation events
-           bindRealTimeValidation(partnerField);
+            // Bind real-time validation events
+            bindRealTimeValidation(partnerField);
 
-           // Append the newly created partner fields to the container
-           container.appendChild(partnerField);
-           partnerIndex++; // Increment the partner index for the next partner
-       }
+            // Append the newly created partner fields to the container
+            container.appendChild(partnerField);
+            partnerIndex++; // Increment the partner index for the next partner
+        }
 
-       function bindRealTimeValidation(partnerField) {
-           const firstNameInput = partnerField.querySelector(`input[id^='partner_first_name_']`);
-           const lastNameInput = partnerField.querySelector(`input[id^='partner_last_name_']`);
-           const phoneNumberInput = partnerField.querySelector(`input[id^='partner_phone_number_']`);
-           const emailInput = partnerField.querySelector(`input[id^='partner_email_']`);
-           const hourInput = partnerField.querySelector(`input[name='partner_hours[]']`);
-           const minuteInput = partnerField.querySelector(`input[name='partner_minutes[]']`);
+        function bindRealTimeValidation(partnerField) {
+            const firstNameInput = partnerField.querySelector(`input[id^='partner_first_name_']`);
+            const lastNameInput = partnerField.querySelector(`input[id^='partner_last_name_']`);
+            const phoneNumberInput = partnerField.querySelector(`input[id^='partner_phone_number_']`);
+            const emailInput = partnerField.querySelector(`input[id^='partner_email_']`);
+            const hourInput = partnerField.querySelector(`input[name='partner_hours[]']`);
+            const minuteInput = partnerField.querySelector(`input[name='partner_minutes[]']`);
 
-           // Validate name fields
-           firstNameInput.addEventListener('input', function() {
-               validateName(this);
-           });
-           lastNameInput.addEventListener('input', function() {
-               validateName(this);
-           });
+            // Validate name fields
+            firstNameInput.addEventListener('input', function() {
+                validateName(this);
+            });
+            lastNameInput.addEventListener('input', function() {
+                validateName(this);
+            });
 
-           // Validate phone number field
-           phoneNumberInput.addEventListener('input', function() {
-               validatePhoneNumber(this);
-           });
+            // Validate phone number field
+            phoneNumberInput.addEventListener('input', function() {
+                validatePhoneNumber(this);
+            });
 
-           // Validate email field
-           emailInput.addEventListener('input', function() {
-               validateEmail(this);
-           });
+            // Validate email field
+            emailInput.addEventListener('input', function() {
+                validateEmail(this);
+            });
 
-           // Validate time fields
-           hourInput.addEventListener('input', function() {
-               validateTime(this);
-           });
-           minuteInput.addEventListener('input', function() {
-               validateTime(this);
-           });
-       }
+            // Validate time fields
+            hourInput.addEventListener('input', function() {
+                validateTime(this);
+            });
+            minuteInput.addEventListener('input', function() {
+                validateTime(this);
+            });
+        }
 
-       function validateName(input) {
-           const re = /^[A-Za-z\s]+$/; // Only allow letters and spaces
-           if (!re.test(input.value)) {
-               input.classList.add('is-invalid');
-               input.nextElementSibling.style.display = 'block';
-           } else {
-               input.classList.remove('is-invalid');
-               input.nextElementSibling.style.display = 'none';
-           }
-       }
+        function validateName(input) {
+            const re = /^[A-Za-z\s]+$/; // Only allow letters and spaces
+            if (!re.test(input.value)) {
+                input.classList.add('is-invalid');
+                input.nextElementSibling.style.display = 'block';
+            } else {
+                input.classList.remove('is-invalid');
+                input.nextElementSibling.style.display = 'none';
+            }
+        }
 
-       function validatePhoneNumber(input) {
-           const re = /^[0-9]{10}$/; // Ensure exactly 10 digits
-           if (!re.test(input.value)) {
-               input.classList.add('is-invalid');
-               input.nextElementSibling.style.display = 'block';
-           } else {
-               input.classList.remove('is-invalid');
-               input.nextElementSibling.style.display = 'none';
-           }
-       }
+        function validatePhoneNumber(input) {
+            const re = /^[0-9]{10}$/; // Ensure exactly 10 digits
+            if (!re.test(input.value)) {
+                input.classList.add('is-invalid');
+                input.nextElementSibling.style.display = 'block';
+            } else {
+                input.classList.remove('is-invalid');
+                input.nextElementSibling.style.display = 'none';
+            }
+        }
 
-       function validateEmail(input) {
-           const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
-           if (!re.test(input.value)) {
-               input.classList.add('is-invalid');
-               input.nextElementSibling.style.display = 'block';
-           } else {
-               input.classList.remove('is-invalid');
-               input.nextElementSibling.style.display = 'none';
-           }
-       }
+        function validateEmail(input) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
+            if (!re.test(input.value)) {
+                input.classList.add('is-invalid');
+                input.nextElementSibling.style.display = 'block';
+            } else {
+                input.classList.remove('is-invalid');
+                input.nextElementSibling.style.display = 'none';
+            }
+        }
 
-       function validateTime(input) {
-           const isValidTime = input.placeholder === "HH" ? /^(0[0-9]|1[0-9]|2[0-3])$/.test(input.value) :
-               /^(0[0-9]|[1-5][0-9])$/.test(input.value);
-           if (!isValidTime) {
-               input.classList.add('is-invalid');
-               input.nextElementSibling.style.display = 'block';
-           } else {
-               input.classList.remove('is-invalid');
-               input.nextElementSibling.style.display = 'none';
-           }
-       }
+        function validateTime(input) {
+            const isValidTime = input.placeholder === "HH" ? /^(0[0-9]|1[0-9]|2[0-3])$/.test(input.value) :
+                /^(0[0-9]|[1-5][0-9])$/.test(input.value);
+            if (!isValidTime) {
+                input.classList.add('is-invalid');
+                input.nextElementSibling.style.display = 'block';
+            } else {
+                input.classList.remove('is-invalid');
+                input.nextElementSibling.style.display = 'none';
+            }
+        }
 
-       function removePartner(button) {
-           // Remove the corresponding partner field
-           const partnerField = button.closest('.partner-details');
-           partnerField.remove();
-           partnerIndex--; // Decrease the partner index
-       }
+        function removePartner(button) {
+            // Remove the corresponding partner field
+            const partnerField = button.closest('.partner-details');
+            partnerField.remove();
+            partnerIndex--; // Decrease the partner index
+        }
 
-       function resetPartnerFields() {
-           const partnerFields = document.getElementById('partner-fields');
-           while (partnerFields.firstChild) {
-               partnerFields.removeChild(partnerFields.firstChild);
-           }
-           partnerIndex = 0; // Reset partner index to allow adding partners from scratch
-       }
+        function resetPartnerFields() {
+            const partnerFields = document.getElementById('partner-fields');
+            while (partnerFields.firstChild) {
+                partnerFields.removeChild(partnerFields.firstChild);
+            }
+            partnerIndex = 0; // Reset partner index to allow adding partners from scratch
+        }
 
-       function capitalizeFirstLetter(input) {
-           const words = input.value.split(' ');
-           for (let i = 0; i < words.length; i++) {
-               if (words[i].length > 0) {
-                   words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
-               }
-           }
-           input.value = words.join(' ');
-       }
-   </script> --}}
+        function capitalizeFirstLetter(input) {
+            const words = input.value.split(' ');
+            for (let i = 0; i < words.length; i++) {
+                if (words[i].length > 0) {
+                    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+                }
+            }
+            input.value = words.join(' ');
+        }
+    </script> --}}
 
     {{-- <script>
-       document.addEventListener('DOMContentLoaded', function() {
-           // Handle partner fields visibility
-           document.getElementById('have_partner').addEventListener('change', togglePartnerFields);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle partner fields visibility
+            document.getElementById('have_partner').addEventListener('change', togglePartnerFields);
 
-           // Initialize partner index for dynamic fields
-           let partnerIndex = 1; // Start from 1 for the first additional partner
-           const maxPartners = 5; // Set maximum partners
+            // Initialize partner index for dynamic fields
+            let partnerIndex = 1; // Start from 1 for the first additional partner
+            const maxPartners = 5; // Set maximum partners
 
-           // Add event listener for the Add Partner button
-           document.getElementById('add_partner_button').addEventListener('click', addPartner);
+            // Add event listener for the Add Partner button
+            document.getElementById('add_partner_button').addEventListener('click', addPartner);
 
-           // Form submission event
-           document.querySelector('form').addEventListener('submit', function(event) {
-               let isValid = true;
+            // Form submission event
+            document.querySelector('form').addEventListener('submit', function(event) {
+                let isValid = true;
 
-               if (document.getElementById('have_partner').value === '1') {
-                   // Validate partner fields only if "Yes" is selected
-                   const partnerFields = document.querySelectorAll('.partner-details');
+                if (document.getElementById('have_partner').value === '1') {
+                    // Validate partner fields only if "Yes" is selected
+                    const partnerFields = document.querySelectorAll('.partner-details');
 
-                   partnerFields.forEach(partnerField => {
-                       const firstName = partnerField.querySelector(
-                           `input[id^='partner_first_name_']`);
-                       const lastName = partnerField.querySelector(
-                           `input[id^='partner_last_name_']`);
-                       const dob = partnerField.querySelector(`input[id^='dob_']`);
-                       const phone = partnerField.querySelector(
-                           `input[id^='partner_phone_number_']`);
-                       const email = partnerField.querySelector(`input[id^='partner_email_']`);
-                       const hourInput = partnerField.querySelector('.hoursInput');
-                       const minuteInput = partnerField.querySelector('.minutesInput');
+                    partnerFields.forEach(partnerField => {
+                        const firstName = partnerField.querySelector(
+                            `input[id^='partner_first_name_']`);
+                        const lastName = partnerField.querySelector(
+                            `input[id^='partner_last_name_']`);
+                        const dob = partnerField.querySelector(`input[id^='dob_']`);
+                        const phone = partnerField.querySelector(
+                            `input[id^='partner_phone_number_']`);
+                        const email = partnerField.querySelector(`input[id^='partner_email_']`);
+                        const hourInput = partnerField.querySelector('.hoursInput');
+                        const minuteInput = partnerField.querySelector('.minutesInput');
 
-                       // Reset custom error messages
-                       firstName.setCustomValidity('');
-                       lastName.setCustomValidity('');
-                       dob.setCustomValidity('');
-                       phone.setCustomValidity('');
-                       email.setCustomValidity('');
-                       hourInput.setCustomValidity('');
-                       minuteInput.setCustomValidity('');
+                        // Reset custom error messages
+                        firstName.setCustomValidity('');
+                        lastName.setCustomValidity('');
+                        dob.setCustomValidity('');
+                        phone.setCustomValidity('');
+                        email.setCustomValidity('');
+                        hourInput.setCustomValidity('');
+                        minuteInput.setCustomValidity('');
 
-                       // Validate each input field and set custom validity message if there's an error
-                       // Validate each input field and set custom validity message if there's an error
-                       if (!validateNameInput(firstName.value)) {
-                           firstName.setCustomValidity(
-                               'Please enter a valid first name (only letters).');
-                           isValid = false;
-                           firstName.reportValidity(); // Show the error if invalid
-                       }
-                       if (!validateNameInput(lastName.value)) {
-                           lastName.setCustomValidity(
-                               'Please enter a valid last name (only letters).');
-                           isValid = false;
-                           lastName.reportValidity(); // Show the error if invalid
-                       }
-                       if (!dob.value) {
-                           dob.setCustomValidity('Please enter a valid date of birth.');
-                           isValid = false;
-                           dob.reportValidity(); // Show the error if invalid
-                       }
-                       if (!validatePhoneNumberInput(phone.value)) {
-                           phone.setCustomValidity(
-                               'Please enter a valid phone number (exactly 10 digits).');
-                           isValid = false;
-                           phone.reportValidity(); // Show the error if invalid
-                       }
-                       if (!validateEmailInput(email.value)) {
-                           email.setCustomValidity('Please enter a valid email address.');
-                           isValid = false;
-                           email.reportValidity(); // Show the error if invalid
-                       }
-                       if (!hourInput.checkValidity()) {
-                           hourInput.setCustomValidity('Enter valid hours (1-12)');
-                           isValid = false;
-                           hourInput.reportValidity(); // Show the error if invalid
-                       }
-                       if (!minuteInput.checkValidity()) {
-                           minuteInput.setCustomValidity('Enter valid minutes (0-59)');
-                           isValid = false;
-                           minuteInput.reportValidity(); // Show the error if invalid
-                       }
-                   });
-               }
+                        // Validate each input field and set custom validity message if there's an error
+                        // Validate each input field and set custom validity message if there's an error
+                        if (!validateNameInput(firstName.value)) {
+                            firstName.setCustomValidity(
+                                'Please enter a valid first name (only letters).');
+                            isValid = false;
+                            firstName.reportValidity(); // Show the error if invalid
+                        }
+                        if (!validateNameInput(lastName.value)) {
+                            lastName.setCustomValidity(
+                                'Please enter a valid last name (only letters).');
+                            isValid = false;
+                            lastName.reportValidity(); // Show the error if invalid
+                        }
+                        if (!dob.value) {
+                            dob.setCustomValidity('Please enter a valid date of birth.');
+                            isValid = false;
+                            dob.reportValidity(); // Show the error if invalid
+                        }
+                        if (!validatePhoneNumberInput(phone.value)) {
+                            phone.setCustomValidity(
+                                'Please enter a valid phone number (exactly 10 digits).');
+                            isValid = false;
+                            phone.reportValidity(); // Show the error if invalid
+                        }
+                        if (!validateEmailInput(email.value)) {
+                            email.setCustomValidity('Please enter a valid email address.');
+                            isValid = false;
+                            email.reportValidity(); // Show the error if invalid
+                        }
+                        if (!hourInput.checkValidity()) {
+                            hourInput.setCustomValidity('Enter valid hours (1-12)');
+                            isValid = false;
+                            hourInput.reportValidity(); // Show the error if invalid
+                        }
+                        if (!minuteInput.checkValidity()) {
+                            minuteInput.setCustomValidity('Enter valid minutes (0-59)');
+                            isValid = false;
+                            minuteInput.reportValidity(); // Show the error if invalid
+                        }
+                    });
+                }
 
-               // Prevent default form submission if there is a validation error
-               if (!isValid) {
-                   event.preventDefault();
-                   alert("Please fill out all required fields correctly.");
-                   // Optionally show validation messages for visibility
-                   partnerFields.forEach(partnerField => {
-                       partnerField.querySelectorAll('input').forEach(input => {
-                           input
-                               .reportValidity(); // This will show the error message if any field is invalid
-                       });
-                   });
-               }
-           });
+                // Prevent default form submission if there is a validation error
+                if (!isValid) {
+                    event.preventDefault();
+                    alert("Please fill out all required fields correctly.");
+                    // Optionally show validation messages for visibility
+                    partnerFields.forEach(partnerField => {
+                        partnerField.querySelectorAll('input').forEach(input => {
+                            input
+                                .reportValidity(); // This will show the error message if any field is invalid
+                        });
+                    });
+                }
+            });
 
-           // Event listener for partner fields container to handle clicks on remove buttons
-           document.getElementById('partner-fields').addEventListener('click', function(event) {
-               if (event.target.classList.contains('btn-danger')) {
-                   removePartner(event.target);
-               }
-           });
+            // Event listener for partner fields container to handle clicks on remove buttons
+            document.getElementById('partner-fields').addEventListener('click', function(event) {
+                if (event.target.classList.contains('btn-danger')) {
+                    removePartner(event.target);
+                }
+            });
 
-           // Toggle partner fields visibility based on selection
-           function togglePartnerFields() {
-               const havePartnerValue = document.getElementById('have_partner').value;
-               const partnerFieldsContainer = document.getElementById('partner-fields-container');
-               if (havePartnerValue === '1') {
-                   partnerFieldsContainer.style.display = 'block';
-               } else {
-                   partnerFieldsContainer.style.display = 'none';
-                   resetPartnerFields(); // Clear partner fields if "No" is selected
-               }
-           }
+            // Toggle partner fields visibility based on selection
+            function togglePartnerFields() {
+                const havePartnerValue = document.getElementById('have_partner').value;
+                const partnerFieldsContainer = document.getElementById('partner-fields-container');
+                if (havePartnerValue === '1') {
+                    partnerFieldsContainer.style.display = 'block';
+                } else {
+                    partnerFieldsContainer.style.display = 'none';
+                    resetPartnerFields(); // Clear partner fields if "No" is selected
+                }
+            }
 
-           function addPartner() {
-               const container = document.getElementById('partner-fields');
-               const errorMessage = document.getElementById('error-msg');
+            function addPartner() {
+                const container = document.getElementById('partner-fields');
+                const errorMessage = document.getElementById('error-msg');
 
-               if (partnerIndex >= maxPartners) {
-                   errorMessage.style.display = 'block';
-                   return;
-               } else {
-                   errorMessage.style.display = 'none';
-               }
+                if (partnerIndex >= maxPartners) {
+                    errorMessage.style.display = 'block';
+                    return;
+                } else {
+                    errorMessage.style.display = 'none';
+                }
 
-               // Create a new partner field section
-               const partnerField = document.createElement('div');
-               partnerField.classList.add('row', 'partner-details', 'mb-2');
-               partnerField.innerHTML = `
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                   <label for="partner_first_name_${partnerIndex}" class="custom-form-label">Partner First Name:</label>
-                   <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
-                   <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
-               </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_last_name_${partnerIndex}" class="custom-form-label">Partner Last Name:</label>
-                           <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_last_name_${partnerIndex}" name="partner_last_names[]" oninput="capitalizeFirstLetter(this)">
-                           <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
-                           <input type="date" class="form-control" id="dob_${partnerIndex}" name="partner_dobs[]" required>
-                           <div class="invalid-feedback">Please enter a valid date of birth.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
-                           <input type="tel" class="form-control" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                           <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
-                           <input type="email" class="form-control" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
-                           <div class="invalid-feedback">Please enter a valid email address.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label" for="time">Time</label>
-                       <div class="time-input d-flex align-items-start">
-                           <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" 
-                                  placeholder="HH" pattern="^(0?[1-9]|1[0-2])$" title="Enter hours (1-12)">
-                           <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" 
-                                  placeholder="MM"  pattern="^(0?[0-9]|[1-5][0-9])$" title="Enter minutes (0-59)">
-                           <div class="am-pm d-flex gap-2">
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
-                               <label class="select-radio-custom">AM</label>
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
-                               <label class="select-radio-custom">PM</label>
-                           </div>
-                           <div class="invalid-feedback"></div>
-                       </div>
-                   </div>
-                   <div class="col-12">
-                       <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
-                   </div>
-               `;
+                // Create a new partner field section
+                const partnerField = document.createElement('div');
+                partnerField.classList.add('row', 'partner-details', 'mb-2');
+                partnerField.innerHTML = `
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                    <label for="partner_first_name_${partnerIndex}" class="custom-form-label">Partner First Name:</label>
+                    <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
+                    <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
+                </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_last_name_${partnerIndex}" class="custom-form-label">Partner Last Name:</label>
+                            <input type="text" pattern="[A-Za-z\s]+" class="form-control" id="partner_last_name_${partnerIndex}" name="partner_last_names[]" oninput="capitalizeFirstLetter(this)">
+                            <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
+                            <input type="date" class="form-control" id="dob_${partnerIndex}" name="partner_dobs[]" required>
+                            <div class="invalid-feedback">Please enter a valid date of birth.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
+                            <input type="tel" class="form-control" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
+                            <input type="email" class="form-control" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label" for="time">Time</label>
+                        <div class="time-input d-flex align-items-start">
+                            <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" 
+                                   placeholder="HH" pattern="^(0?[1-9]|1[0-2])$" title="Enter hours (1-12)">
+                            <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" 
+                                   placeholder="MM"  pattern="^(0?[0-9]|[1-5][0-9])$" title="Enter minutes (0-59)">
+                            <div class="am-pm d-flex gap-2">
+                                <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
+                                <label class="select-radio-custom">AM</label>
+                                <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
+                                <label class="select-radio-custom">PM</label>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
+                    </div>
+                `;
 
-               // Append the newly created partner fields to the container
-               container.appendChild(partnerField);
-               partnerIndex++; // Increment the partner index for the next partner
-           }
+                // Append the newly created partner fields to the container
+                container.appendChild(partnerField);
+                partnerIndex++; // Increment the partner index for the next partner
+            }
 
-           function removePartner(button) {
-               const partnerField = button.closest('.partner-details');
-               if (partnerField) {
-                   partnerField.remove();
-                   partnerIndex--; // Decrease the partner index
-               }
-           }
+            function removePartner(button) {
+                const partnerField = button.closest('.partner-details');
+                if (partnerField) {
+                    partnerField.remove();
+                    partnerIndex--; // Decrease the partner index
+                }
+            }
 
-           function resetPartnerFields() {
-               const partnerFields = document.getElementById('partner-fields');
-               while (partnerFields.firstChild) {
-                   partnerFields.removeChild(partnerFields.firstChild);
-               }
-               partnerIndex = 1; // Reset partner index to allow adding partners from scratch
-           }
+            function resetPartnerFields() {
+                const partnerFields = document.getElementById('partner-fields');
+                while (partnerFields.firstChild) {
+                    partnerFields.removeChild(partnerFields.firstChild);
+                }
+                partnerIndex = 1; // Reset partner index to allow adding partners from scratch
+            }
 
-           function validateNameInput(value) {
-               const re = /^[A-Za-z\s]+$/; // Regex to validate names
-               return re.test(value);
-           }
+            function validateNameInput(value) {
+                const re = /^[A-Za-z\s]+$/; // Regex to validate names
+                return re.test(value);
+            }
 
-           function validatePhoneNumberInput(value) {
-               const re = /^[0-9]{10}$/; // Validate phone must be exactly 10 digits
-               return re.test(value);
-           }
+            function validatePhoneNumberInput(value) {
+                const re = /^[0-9]{10}$/; // Validate phone must be exactly 10 digits
+                return re.test(value);
+            }
 
-           function validateEmailInput(value) {
-               const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
-               return re.test(value);
-           }
+            function validateEmailInput(value) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
+                return re.test(value);
+            }
 
-           function capitalizeFirstLetter(input) {
-               const words = input.value.split(' ');
-               for (let i = 0; i < words.length; i++) {
-                   if (words[i].length > 0) {
-                       words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
-                   }
-               }
-               input.value = words.join(' ');
-           }
-       });
-   </script> --}}
+            function capitalizeFirstLetter(input) {
+                const words = input.value.split(' ');
+                for (let i = 0; i < words.length; i++) {
+                    if (words[i].length > 0) {
+                        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+                    }
+                }
+                input.value = words.join(' ');
+            }
+        });
+    </script> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Handle partner fields visibility
@@ -1548,28 +1539,29 @@
                 if (input.id.startsWith("partner_first_name_")) {
                     if (!validateNameInput(input.value)) {
                         input.setCustomValidity('Please enter a valid first name (only letters).');
-                        input.style.borderColor = 'red'; // Inline CSS for border color
-                        // input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)'; // Light red background
+                        input.style.borderColor = 'red';
+                        input.value = ''; // Clear invalid input
                     } else {
                         input.setCustomValidity('');
                         input.style.borderColor = ''; // Reset border color
-                        input.style.backgroundColor = ''; // Reset background color
                     }
                 } else if (input.id.startsWith("partner_phone_number_")) {
                     if (!validatePhoneNumberInput(input.value)) {
                         input.setCustomValidity('Please enter a valid phone number (exactly 10 digits).');
                         input.style.borderColor = 'red';
+                        // input.value = ''; // Clear invalid input
                     } else {
                         input.setCustomValidity('');
-                        input.style.borderColor = '';
+                        input.style.borderColor = ''; // Reset border color
                     }
                 } else if (input.id.startsWith("partner_email_")) {
                     if (!validateEmailInput(input.value)) {
                         input.setCustomValidity('Please enter a valid email address.');
                         input.style.borderColor = 'red';
+                        // input.value = ''; // Clear invalid input
                     } else {
                         input.setCustomValidity('');
-                        input.style.borderColor = '';
+                        input.style.borderColor = ''; // Reset border color
                     }
                 } else if (input.id.startsWith("dob_")) {
                     if (!input.value) {
@@ -1577,14 +1569,10 @@
                         input.style.borderColor = 'red';
                     } else {
                         input.setCustomValidity('');
-                        input.style.borderColor = '';
+                        input.style.borderColor = ''; // Reset border color
                     }
-                } else if (input.id.startsWith("partner_hours") || input.id.startsWith("partner_minutes")) {
-                    input.setCustomValidity(''); // Clear custom error
-                    // input.style.borderColor = '';
                 }
                 input.reportValidity(); // Shows the error message if invalid
-                // input.style.borderColor = 'red';
             }
 
 
@@ -1663,61 +1651,61 @@
                 const partnerField = document.createElement('div');
                 partnerField.classList.add('row', 'partner-details', 'mb-2');
                 partnerField.innerHTML = `
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_first_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner First Name:</label>
-                           <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
-                           <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_last_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner Last Name:</label>
-                           <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_last_name_${partnerIndex}" name="partner_last_names[]"  oninput="capitalizeFirstLetter(this)">
-                           <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
-                           <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" required>
-                           <div class="invalid-feedback">Please enter a valid date of birth.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
-                           <input type="tel" class="numerology-service-labels" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                           <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
-                           <input type="email" class="numerology-service-labels" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
-                           <div class="invalid-feedback">Please enter a valid email address.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label" for="time">Time</label>
-                       <div class="time-input d-flex align-items-start">
-                           <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" 
-                                  placeholder="HH"  pattern="^(0?[1-9]|1[0-2])$" title="Enter hours (1-12)">
-                           <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" 
-                                  placeholder="MM"  pattern="^(0?[0-9]|[1-5][0-9])$" title="Enter minutes (0-59)">
-                           <div class="am-pm d-flex gap-2">
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
-                               <label class="select-radio-custom">AM</label>
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
-                               <label class="select-radio-custom">PM</label>
-                           </div>
-                           <div class="invalid-feedback"></div>
-                       </div>
-                   </div>
-                   <div class="col-12">
-                       <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
-                   </div>
-               `;
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_first_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner First Name:</label>
+                            <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
+                            <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_last_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner Last Name:</label>
+                            <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_last_name_${partnerIndex}" name="partner_last_names[]"  oninput="capitalizeFirstLetter(this)">
+                            <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
+                            <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" required>
+                            <div class="invalid-feedback">Please enter a valid date of birth.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
+                            <input type="tel" class="numerology-service-labels" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                            <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
+                            <input type="email" class="numerology-service-labels" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <label class="custom-form-label" for="time">Time</label>
+                        <div class="time-input d-flex align-items-start">
+                            <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" 
+                                   placeholder="HH"  pattern="^(0?[1-9]|1[0-2])$" title="Enter hours (1-12)">
+                            <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" 
+                                   placeholder="MM"  pattern="^(0?[0-9]|[1-5][0-9])$" title="Enter minutes (0-59)">
+                            <div class="am-pm d-flex gap-2">
+                                <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
+                                <label class="select-radio-custom">AM</label>
+                                <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
+                                <label class="select-radio-custom">PM</label>
+                            </div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
+                    </div>
+                `;
 
                 // Append the newly created partner fields to the container
                 container.appendChild(partnerField);
@@ -1771,7 +1759,7 @@
             // Real-time validation for name fields
             function validateName(field) {
                 const re = /^[A-Za-z\s]*$/; // Regex to only allow letters and spaces
-                if (!re.test($(field).val())) {
+                if (!re.test($(field).val()) && $(field).val().trim() !== '') {
                     $(field).addClass('is-invalid');
                     $(field).next('.invalid-feedback').text('Only letters and spaces are allowed.').show();
                 } else {
@@ -1783,7 +1771,7 @@
             // Real-time validation for phone number fields
             function validatePhoneNumber(field) {
                 const re = /^[0-9]*$/; // Regex to only allow numbers
-                if (!re.test($(field).val())) {
+                if (!re.test($(field).val()) && $(field).val().trim() !== '') {
                     $(field).addClass('is-invalid');
                     $(field).next('.invalid-feedback').text('Only numbers are allowed.').show();
                 } else {
@@ -1806,7 +1794,7 @@
             });
 
             // Attach input validation for name fields
-            $('.partner-name-field,#first_name, #last_name, #business_name, #partner_first_name_0, #partner_last_name_0,')
+            $('.partner-name-field, #first_name, #last_name, #business_name, #partner_first_name_0, #partner_last_name_0')
                 .on('input', function() {
                     validateName(this);
                 });
@@ -1839,8 +1827,17 @@
                 $('.partner-fields').hide();
                 $('.partner-fields input').prop('required', false);
             }
+
+            // Clear validation errors when the input is cleared
+            $('input').on('input', function() {
+                if ($(this).val().trim() === '') {
+                    $(this).removeClass('is-invalid');
+                    $(this).next('.invalid-feedback').hide();
+                }
+            });
         });
     </script>
+
 
     {{-- aoc --}}
 
@@ -1965,7 +1962,7 @@
             // Function to validate names
             function validateName(input) {
                 const re = /^[A-Za-z\s]*$/; // Regex to only allow letters and spaces
-                if (!re.test($(input).val())) {
+                if (!re.test($(input).val()) && $(input).val().trim() !== '') {
                     $(input).addClass('is-invalid');
                     $(input).next('.invalid-feedback').text('Only letters and spaces are allowed.').show();
                     return false;
@@ -1979,7 +1976,7 @@
             // Function to validate phone numbers
             function validatePhoneNumber(input) {
                 const re = /^\d{10}$/; // Regex to check for exactly 10 digits
-                if (!re.test($(input).val())) {
+                if (!re.test($(input).val()) && $(input).val().trim() !== '') {
                     $(input).addClass('is-invalid');
                     $(input).next('.invalid-feedback').text('Phone number must be exactly 10 digits.').show();
                     return false;
@@ -1993,7 +1990,7 @@
             // Function to validate emails
             function validateEmail(input) {
                 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple regex for validating email format
-                if (!re.test($(input).val())) {
+                if (!re.test($(input).val()) && $(input).val().trim() !== '') {
                     $(input).addClass('is-invalid');
                     $(input).next('.invalid-feedback').text('Please enter a valid email address.').show();
                     return false;
@@ -2030,8 +2027,17 @@
                     $(this).next('.invalid-feedback').hide();
                 }
             });
+
+            // Clear validation errors when the input is cleared
+            $('input').on('input', function() {
+                if ($(this).val().trim() === '') {
+                    $(this).removeClass('is-invalid');
+                    $(this).next('.invalid-feedback').hide();
+                }
+            });
         });
     </script>
+
     {{-- time --}}
     <script>
         // Function to validate hour inputs
@@ -2072,45 +2078,45 @@
     </script>
     {{-- city --}}
     {{-- <script>
-       $(document).ready(function() {
-           // Function to populate the city dropdown
-           function populateCities(selectElement) {
-               $.ajax({
-                   url: '{{ route('get.cities') }}',
-                   method: 'GET',
-                   success: function(data) {
-                       var select = $(selectElement);
-                       select.empty(); // Clear existing options
-                       select.append('<option value="">Select</option>'); // Default option
+        $(document).ready(function() {
+            // Function to populate the city dropdown
+            function populateCities(selectElement) {
+                $.ajax({
+                    url: '{{ route('get.cities') }}',
+                    method: 'GET',
+                    success: function(data) {
+                        var select = $(selectElement);
+                        select.empty(); // Clear existing options
+                        select.append('<option value="">Select</option>'); // Default option
 
-                       $.each(data, function(index, city) {
-                           select.append('<option value="' + city.name + '">' + city.name +
-                               '</option>');
-                       });
-                   },
-                   error: function(xhr) {
-                       console.error('Error fetching cities:', xhr);
-                   }
-               });
-           }
+                        $.each(data, function(index, city) {
+                            select.append('<option value="' + city.name + '">' + city.name +
+                                '</option>');
+                        });
+                    },
+                    error: function(xhr) {
+                        console.error('Error fetching cities:', xhr);
+                    }
+                });
+            }
 
-           // Event listener for tab button clicks
-           $('[data-tab-target]').on('click', function(evt) {
-               var target = $(this).data('tab-target');
-               openService(evt, target.substring(1)); // Open the service tab
+            // Event listener for tab button clicks
+            $('[data-tab-target]').on('click', function(evt) {
+                var target = $(this).data('tab-target');
+                openService(evt, target.substring(1)); // Open the service tab
 
-               // Populate cities when the tab is shown
-               var selectElement = $(target).find(
-                   '#town_city'); // Look for the town_city select in the target tab
-               if (selectElement.length) {
-                   populateCities(selectElement); // Call the function to populate cities
-               }
-           });
+                // Populate cities when the tab is shown
+                var selectElement = $(target).find(
+                    '#town_city'); // Look for the town_city select in the target tab
+                if (selectElement.length) {
+                    populateCities(selectElement); // Call the function to populate cities
+                }
+            });
 
-           // Trigger click on the first tab on page load
-           $('[data-tab-target]').first().trigger('click');
-       });
-   </script> --}}
+            // Trigger click on the first tab on page load
+            $('[data-tab-target]').first().trigger('click');
+        });
+    </script> --}}
 
     {{-- validation --}}
     <script>

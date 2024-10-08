@@ -164,37 +164,37 @@ class MobileNumerologyController extends Controller
         try {
             // Remove dashes and split DOB into individual digits
             $dobDigits = str_split(str_replace('-', '', $dob));
-
-            // Count occurrences of each digit, ignoring leading zeros
-            $dobDigitCounts = array_count_values(array_map(function ($digit) {
-                return $digit === '0' ? '0' : ltrim($digit, '0');
-            }, $dobDigits));
-
+    
+            // Filter out zeroes and count occurrences of each remaining digit
+            $dobDigitCounts = array_count_values(array_filter($dobDigits, function ($digit) {
+                return $digit !== '0';
+            }));
+    
             // Get the maximum occurrence
             $maxCount = max($dobDigitCounts);
             $largestDigits = array_keys($dobDigitCounts, $maxCount);
-
+    
             // Initialize largestDigit
             $largestDigit = '';
-
-            // Check if there are any largest digits
+    
+            // Check if there are any largest digits and take the first one
             if (!empty($largestDigits)) {
-                // If the largest digit is '0', keep it, otherwise take the first largest
-                $largestDigit = in_array('0', $largestDigits) ? '0' : $largestDigits[0];
+                $largestDigit = $largestDigits[0];
             }
-
+    
             // Fetch records from MultiCountDOB for the digits found in the DOB
             $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
-
+    
             // If no matching records found, return a message
             if ($multiDateCount->isEmpty()) {
                 return 'No matching records found.';
             }
-
+    
             // Find the corresponding record for the largest occurring digit and its count
             $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
                 return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
             });
+    
             // Return the relevant information
             return [
                 'multiDateCount' => $multiDateCount,
@@ -213,7 +213,6 @@ class MobileNumerologyController extends Controller
                 ] : null,
             ];
         } catch (\Exception $e) {
-            // Log the error for debugging
             Log::error('Error in getMultiDateCount: ' . $e->getMessage(), [
                 'dob' => $dob,
                 'dobDigits' => $dobDigits ?? null,
@@ -221,8 +220,7 @@ class MobileNumerologyController extends Controller
                 'largestDigit' => $largestDigit ?? null,
                 'maxCount' => $maxCount ?? null,
             ]);
-
-            // Return a user-friendly error message
+    
             return 'An error occurred while processing the date of birth.';
         }
     }

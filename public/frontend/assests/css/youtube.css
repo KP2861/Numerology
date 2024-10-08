@@ -1,0 +1,163 @@
+.video-container {
+    position: relative;
+    width: 100%; /* Make it responsive */
+    max-width: 1250px; /* Set a maximum width */
+    height: 500px; /* Increased height for better viewing */
+    margin: 20px auto;
+    background-color: #000;
+    overflow: hidden; /* Prevent overflow of child elements */
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.recommendation-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    z-index: 5; /* Above the blur */
+}
+
+.slider-container {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 130px;
+}
+
+.slider-content {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 10px;
+}
+
+.slider-content img {
+    width: 200px;
+    height: 130px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s;
+    border: 5px solid goldenrod;
+    box-shadow: 0 0 10px brown;
+}
+
+.slider-content img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px brown;
+}
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(48, 47, 47, 0.842);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    border: none;
+    z-index: 10;
+}
+
+.slider-button.left {
+    left: 10px;
+}
+
+.slider-button.right {
+    right: 10px;
+}
+
+.play-button {
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.911);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.play-button.hidden {
+    display: none;
+}
+
+.play-text {
+    position: absolute;
+    top: calc(39% - 40px); /* Position above the play button */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the text */
+    font-size: 16px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px 10px; /* Add padding to the bottom */
+    border-radius: 8px;
+    z-index: 10;
+    text-align: center; 
+}
+
+
+.video-end-message {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(15, 15, 15, 0.8); /* Slight background for visibility */
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 10; /* Make sure it's on top */
+}
+
+.play-text.hidden {
+    display: none;
+}
+
+/* New class for the blurred background */
+.blurred-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.904); /* Darker color for the blur effect */
+    filter: blur(50px);
+    z-index: 0; /* Behind other elements */
+    display: none; /* Initially hidden */
+    -webkit-filter: blur(60px);
+    -webkit-filter: blur(20px);
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .video-container {
+        max-width: 100%; /* Allow full width on small screens */
+        height: 400px; /* Adjust height for smaller screens */
+    }
+
+    .slider-content img {
+        width: 120px; /* Adjust image size for smaller screens */
+        height: 72px; /* Adjust height for smaller screens */
+    }
+
+    .recommendation-overlay {
+        height: 100px; /* Adjust height for smaller screens */
+    }
+}

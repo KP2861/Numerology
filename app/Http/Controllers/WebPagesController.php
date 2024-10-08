@@ -187,5 +187,9 @@ class WebPagesController extends Controller
     {
         return view('Website.pages.refundPolicy');
     }
+    public function orderPlaced()
+    {
+        return view('Website.pages.orderPlaced');
+    }
 
 }

@@ -481,6 +481,8 @@ class AdvanceNumerologyController extends Controller
         // Render the indexing content and add it after the greet page
         $indexingContent = view('pdf.advance_numerology.advanceNumerologyIndex', ['result' => $result])->render();
         $mpdf->AddPage();
+        $mpdf->SetFooter($footerHtmlCommon);
+
         $mpdf->WriteHTML('<div class="content">' . $indexingContent . '</div>');
 
         // Add content for the middle pages (common footer)

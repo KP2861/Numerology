@@ -9,6 +9,8 @@
             font-family: 'Noto Sans Devanagari';
             src: url('{{ public_path(' fonts/NotoSansDevanagari-VariableFont_wdth, wght.ttf') }}');
         }
+        
+
 
         body {
             /* margin: 0;

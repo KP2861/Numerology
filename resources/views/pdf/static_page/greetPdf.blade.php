@@ -1,27 +1,25 @@
 @php
-    // Get the path to the images
     $imagePath = public_path('frontend/assests/images/pdf/ganesha-new.png');
     $raviMundraImagePath = public_path('frontend/assests/images/pdf/ravi-mundrra-img-min.png');
-    $imageWatermark = public_path('frontend/assests/images/pdf/ravi-mundrra-watermark2.png');
     $imageBannerOne = public_path('frontend/assests/images/pdf/banner1.png');
     $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
-    // $imageQRPath = public_path('frontend/assests/images/pdf/footer-scanner-img.png');
+    $innerBackgroundGreet = public_path('frontend/assests/images/pdf/greet-inner-img.png');
 
     // Read the file contents and encode them
     $imageData = base64_encode(file_get_contents($imagePath));
     $raviMundrraImageData = base64_encode(file_get_contents($raviMundraImagePath));
-    $raviMundrraWatermark = base64_encode(file_get_contents($imageWatermark));
+
     $raviMundrraBannerOne = base64_encode(file_get_contents($imageBannerOne));
     $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
-    // $imageQRData = base64_encode(file_get_contents($imageQRPath));
+    $innerBackgroundGreetData = base64_encode(file_get_contents($innerBackgroundGreet));
 
     // Format the images as base64 data URIs
     $imageSrc = 'data:image/png;base64,' . $imageData;
     $raviMundrraImageSrc = 'data:image/png;base64,' . $raviMundrraImageData;
-    $raviMundrraWatermarkSrc = 'data:image/png;base64,' . $raviMundrraWatermark;
+
     $raviMundrraBannerOneSrc = 'data:image/png;base64,' . $raviMundrraBannerOne;
     $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
-    // $imageQR = 'data:image/png;base64,' . $imageQRData;
+    $innerBackgroundGreetSrc = 'data:image/png;base64,' . $innerBackgroundGreetData;
 
 @endphp
 @php
@@ -49,6 +47,18 @@
                     <img src="{{ $imageSrc }}" alt="ganpati" style="margin:10px 0px; width:200px">
                 </td>
             </tr>
+
+
+            {{-- <tr>
+                <td>
+                     <div style="background:url('{{ $innerBackgroundGreetSrc }}');
+                ">
+                        uereoijw    hkjnnn
+                     </div>
+                </td>
+            </tr> --}}
+
+
             <tr>
                 <td style=" text-align:center; width:100%">
                     <div style=" width:100%; text-align:center;">
@@ -65,17 +75,6 @@
                 </td>
             </tr>
 
-            {{-- <tr>
-                <td style="padding-top:10px; text-align:center;">
-                    <div style="text-align: center;">
-                        <h5 style="color:#000; font-size:16px; font-weight:600;  ">
-                            Hi {{ $displayUsername . ' Ji' }}, <span style="font-weight: bold">Swati Mundrra</span> is
-                            here for your life
-                            prediction.
-                        </h5>
-                    </div>
-                </td>
-            </tr> --}}
             <tr>
                 <td style="padding-top:10px; text-align:center;">
                     <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
@@ -98,7 +97,7 @@
                 <td style="padding-top:0px; text-align:center;">
                     <div style="text-align: center;">
                         <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
-                          By analysing your details deeply, I will offer tailored 
+                            By analysing your details deeply, I will offer tailored
                         </h5>
                     </div>
                 </td>
@@ -108,9 +107,9 @@
                 <td style="padding-top:0px; text-align:center;">
                     <div style="text-align: center;">
                         <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
-                       predictions
+                            predictions
                             and
-                            remedies to enhance your 
+                            remedies to enhance your
                         </h5>
                     </div>
                 </td>
@@ -119,28 +118,11 @@
                 <td style="padding-top:0px; text-align:center;">
                     <div style="text-align: center;">
                         <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
-                 growth, harmony, and success.
+                            growth, harmony, and success.
                         </h5>
                     </div>
                 </td>
             </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <tr>
                 <td style="padding-top:10px; text-align:center;">

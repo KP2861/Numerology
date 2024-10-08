@@ -51,7 +51,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/scss/consultant.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assests/css/comingsoon.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/assests/css/error404.css') }}" />
-
+    {{-- public/frontend/assests/css/youtube.css --}}
+    <link rel="stylesheet" href="{{ asset('/frontend/assests/css/youtube.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/scss/style.css') }}">
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <link rel="shortcut icon" type="image/png" href="images/header/favicon.ico" />

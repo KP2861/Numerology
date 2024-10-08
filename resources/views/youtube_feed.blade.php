@@ -6,12 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Video with Full-Frame Recommendations</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            /* Dark background for contrast */
+        }
+
         .video-container {
             position: relative;
             width: 600px;
             height: 340px;
-            margin-bottom: 20px;
+            margin: 20px auto;
             background-color: #000;
+            overflow: hidden;
+            /* Prevent overflow of child elements */
         }
 
         iframe {
@@ -22,24 +32,24 @@
 
         .recommendation-overlay {
             position: absolute;
-            top: 0;
             bottom: 0;
             left: 0;
             right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            height: 120px;
             display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
+            z-index: 5;
+            /* Above the blur */
         }
 
         .slider-container {
             display: flex;
             overflow: hidden;
             width: 100%;
+            height: 120px;
         }
 
         .slider-content {
@@ -48,12 +58,9 @@
             gap: 10px;
         }
 
-        /* Increase thumbnail size */
         .slider-content img {
-            width: 200px;
-            /* Increased width */
-            height: 112px;
-            /* Increased height */
+            width: 180px;
+            height: 108px;
             cursor: pointer;
             border-radius: 5px;
             transition: transform 0.3s;
@@ -88,20 +95,20 @@
 
         .play-button {
             position: absolute;
-            top: 50%;
+            top: 49%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 60px;
             color: white;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.911);
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 1000;
+            z-index: 10;
         }
 
         .play-button.hidden {
@@ -118,11 +125,27 @@
             background-color: rgba(0, 0, 0, 0.7);
             padding: 5px 10px;
             border-radius: 8px;
-            z-index: 1000;
+            z-index: 10;
         }
 
         .play-text.hidden {
             display: none;
+        }
+
+        /* New class for the blurred background */
+        .blurred-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Darker color for the blur effect */
+            filter: blur(10px);
+            z-index: 0;
+            /* Behind other elements */
+            display: none;
+            /* Initially hidden */
         }
     </style>
 </head>
@@ -136,6 +159,9 @@
         </div>
         <div class="play-text" id="playText">Click to Start Video</div>
 
+        <!-- Blurred background for the recommendations -->
+        <div class="blurred-background" id="blurredBackground"></div>
+
         <div class="recommendation-overlay" id="recommendedVideosOverlay">
             <button class="slider-button left" id="leftButton">&#9664;</button>
             <div class="slider-container">
@@ -146,7 +172,7 @@
     </div>
 
     <script>
-        const YOUTUBE_CHANNEL_ID = "UCo5W6ujSrguqO80idd5Gkyg";
+        const YOUTUBE_CHANNEL_ID = "UCo5W6ujSrguqO80idd5Gkyg"; // Replace with your channel ID
         const RSS2JSON_API_URL =
             `https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
 
@@ -159,6 +185,7 @@
         const playText = document.getElementById('playText');
         const leftButton = document.getElementById('leftButton');
         const rightButton = document.getElementById('rightButton');
+        const blurredBackground = document.getElementById('blurredBackground');
         let sliderPosition = 0;
 
         const tag = document.createElement('script');
@@ -170,25 +197,21 @@
             fetchLatestVideos();
         }
 
-        // Function to fetch the latest videos from the YouTube channel
         const fetchLatestVideos = async () => {
             try {
                 const response = await fetch(RSS2JSON_API_URL);
                 const data = await response.json();
 
-                // Extract video IDs and create an array for videos
                 videos = data.items.map(item => ({
                     id: item.link.split("v=")[1],
                     title: item.title
                 }));
 
-                // Load the first video using the YouTube Player API
                 loadVideo(videos[0].id);
             } catch (error) {
                 console.error("Error fetching videos:", error);
             }
         };
-
 
         const loadVideo = (videoId) => {
             if (!player) {
@@ -208,6 +231,8 @@
             }
 
             hideRecommendations();
+            // Hide blur effect when loading a new video
+            blurredBackground.style.display = 'none';
         };
 
         const showRecommendations = () => {
@@ -222,6 +247,7 @@
                     videoThumbnail.onclick = () => {
                         currentVideoIndex = index;
                         loadVideo(video.id);
+                        hideRecommendations(); // Hide recommendations when a video is selected
                     };
                     sliderContent.appendChild(videoThumbnail);
                 }
@@ -236,39 +262,46 @@
 
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PAUSED) {
-                hideRecommendations();
+                showRecommendations();
+                blurredBackground.style.display = 'block'; // Show blur background when paused
                 customPlayButton.classList.remove('hidden');
-                playText.classList.remove('hidden');
+                playText.classList.remove('hidden'); // Show play text when paused
             } else if (event.data === YT.PlayerState.PLAYING) {
                 hideRecommendations();
+                blurredBackground.style.display = 'none'; // Hide blur background when playing
                 customPlayButton.classList.add('hidden');
-                playText.classList.add('hidden');
+                playText.classList.add('hidden'); // Hide play text when playing
             } else if (event.data === YT.PlayerState.ENDED) {
-                showRecommendations();
+                showRecommendations(); // Show recommendations at the end
+                blurredBackground.style.display = 'block'; // Show blur effect when video ends
                 customPlayButton.style.display = 'none';
-                playText.style.display = 'none';
+                playText.style.display = 'none'; // Hide play text at the end
             }
         }
 
-        customPlayButton.addEventListener('click', function() {
+        customPlayButton.addEventListener('click', () => {
             player.playVideo();
             customPlayButton.classList.add('hidden');
-            playText.classList.add('hidden');
+            playText.classList.add('hidden'); // Hide play text when clicked
         });
 
-        leftButton.addEventListener('click', function() {
-            sliderPosition = Math.min(sliderPosition + 1, 0);
+        leftButton.addEventListener('click', () => {
+            sliderPosition += 210; // Adjust based on image width + gap
             updateSliderPosition();
         });
 
-        rightButton.addEventListener('click', function() {
-            sliderPosition = Math.max(sliderPosition - 1, -(videos.length - 1));
+        rightButton.addEventListener('click', () => {
+            sliderPosition -= 210; // Adjust based on image width + gap
             updateSliderPosition();
         });
 
-        const updateSliderPosition = () => {
-            const offset = sliderPosition * 210; // Adjust this value if you change the thumbnail size further
-            sliderContent.style.transform = `translateX(${offset}px)`;
+        function updateSliderPosition() {
+            sliderContent.style.transform = `translateX(${sliderPosition}px)`;
+        }
+
+        // Initialize video slider visibility on load
+        window.onload = () => {
+            recommendedVideosDiv.style.display = 'none';
         };
     </script>
 </body>

@@ -78,7 +78,7 @@
             </tr>
             <tr>
                 <td style=" padding: 30px 0 0 0;">
-                    <p style="color:#000; font-size:18px; font-weight:bold ">
+                    <p style="color:#E97132;  font-size:18px; font-weight:bold ">
                         To receive your personalized consultation, please book your appointment now.
                     </p>
                 </td>

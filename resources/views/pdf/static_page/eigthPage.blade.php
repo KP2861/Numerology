@@ -822,7 +822,7 @@
             </tr>
             <tr>
                 <td style=" text-align: start; padding: 30px 0 0 0;">
-                    <h5 style="color:#000; font-size:16px ">
+                    <h5 style="color:#EC4400; font-size:16px ">
                         These services cater to individuals seeking guidance and remedies based
                         on astrological and numerological interpretations, offering personalized
                         recommendations to improve various aspects of life based on these
