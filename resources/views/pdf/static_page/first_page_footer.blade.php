@@ -151,7 +151,7 @@
                     </td>
                     <td rowspan="1" style=" vertical-align:bottom; ">
                         @if (!empty($raviMundrraImageSrcFooter))
-                            <img src="{{ $raviMundrraImageSrcFooter }}" alt="Footer Image" style="width: 130px">
+                            <img src="{{ $raviMundrraImageSrcFooter }}" alt="Footer Image" style="width: 150px">
                         @endif
                     </td>
 

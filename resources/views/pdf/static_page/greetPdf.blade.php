@@ -3,7 +3,7 @@
     $raviMundraImagePath = public_path('frontend/assests/images/pdf/ravi-mundrra-img-min.png');
     $imageBannerOne = public_path('frontend/assests/images/pdf/banner1.png');
     $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
-    $innerBackgroundGreet = public_path('frontend/assests/images/pdf/greet-inner-img.png');
+    $innerBackgroundGreet = public_path('frontend/assests/images/pdf/greet-inner-img1.png');
 
     // Read the file contents and encode them
     $imageData = base64_encode(file_get_contents($imagePath));
@@ -26,6 +26,20 @@
     // Prioritize which field to display first
     $displayUsername = $result['Username'] ?? ($result['Name'] ?? $result['name']);
 @endphp
+
+<style>
+    .background-table {
+        background-image: url('{{ $innerBackgroundGreetSrc }}');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        max-height: 20px;
+        max-width: 100%;
+        margin: 0 auto;
+        /* background: pink */
+    }
+</style>
 
 {{-- <div
     style="background-image: url('{{ $backgroundImagePath }}'); background-size: cover; background-position: center; margin:auto; margin-top:20px; width:100%; height:100%;"> --}}
@@ -51,15 +65,25 @@
 
             {{-- <tr>
                 <td>
-                     <div style="background:url('{{ $innerBackgroundGreetSrc }}');
+                    <div
+                        style="
+                    position: absolute;
+                    top: 500px;   /* Adjust the margin from the top */
+                    left: 0;
+                    width: 200px;  /* Set the width */
+                    height: 150px; /* Set the height */
+                    background: url('{{ $imageSrc }}') no-repeat;
+                    background-size: cover;
+                    z-index: 10;
                 ">
-                        uereoijw    hkjnnn
-                     </div>
+                cccccccccccc
+                   
+                    </div>
                 </td>
             </tr> --}}
 
 
-            <tr>
+            {{-- <tr>
                 <td style=" text-align:center; width:100%">
                     <div style=" width:100%; text-align:center;">
                         <h1 style="font-size:32px; color:#000; font-weight:normal; text-align:center;">
@@ -159,7 +183,7 @@
                         </h5>
                     </div>
                 </td>
-            </tr>
+            </tr> --}}
 
             {{-- <tr>
                 <td>
@@ -171,11 +195,114 @@
             </tr> --}}
         </tbody>
     </table>
+
+    <table class="background-table">
+        <tbody>
+            <tr>
+                <td style=" text-align:center; width:100%; padding-top:90px">
+                    <div style=" width:100%; text-align:center;">
+                        <h1 style="font-size:32px; color:#000; font-weight:normal; text-align:center;">
+                            Welcome To
+                            <span style="color:#EC4400; font-weight:bold">Swrahan</span>
+                            </span>
+
+                        </h1>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:10px; text-align:center;">
+                    <p style="color:#000; font-size:14px; font-weight:normal;">
+                        (Discover Your Path with Astro, Vastu and Numerology )
+                    </p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="padding-top:10px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:14px; font-weight:600;  ">
+                            Daily Practice for Unleashing Good Fortune. Uncover The Stars
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:0px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:14px; font-weight:600; padding: 60px;">
+                            and Digits to Transform Your Life. Personalized Numerological
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:0px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:14px; font-weight:600; padding: 60px;">
+                            and Astrological Insights Contribute to Enhanced, Love & Luck
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-top:20px; text-align:center;">
+                    <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
+                        I am <span style="font-weight:bold">Swati Mundra,</span> here to provide
+                    </h5>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:0px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
+                            personalized insights
+                            into your life through Astrology,
+
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top:0px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
+                            Numerology, and Vastu. By analysing your details deeply, I
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-top:0px; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
+                            will offer tailored predictions
+                            and
+                            remedies to enhance
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:0px 0 50px 0; text-align:center;">
+                    <div style="text-align: center;">
+                        <h5 style="color:#000; font-size:16px; font-weight:600; padding: 60px;">
+                            your growth, harmony, and success.
+                        </h5>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
-</div>
+
 {{-- <div style="height: 300px; ">
         @include('pdf.static_page.footer')
     </div> --}}
+
 
 
 
