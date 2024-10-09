@@ -52,8 +52,11 @@
     }
 </style>
 
+
 <div class="container">
+
     <h1>जीवन में परिवर्तन के लिए ग्रहों के उपाय</h1>
+    <a name="lifeChangesHindi"></a>
 
     <div class="section">
         <h2>• सूर्य ग्रह:</h2>

@@ -71,32 +71,43 @@
 
 <body>
     @php
-        $hasMalefic = collect($result['Combinations'])->contains('type', 'Malefic');
-        $containsSix = strpos($result['Mobile Number'], '6') !== false;
+    $hasMalefic = collect($result['Combinations'])->contains('behaviour_of_combination', 'Malefic');
+    $containsSix = strpos($result['Mobile Number'], '6') !== false;
 
-        $recommendationMessage = $containsSix || $hasMalefic
-            ? 'Recommendation: Change your mobile number as it has multiple Malefic combinations which create routine life issues with Health, Wealth & Relationship.'
-            : 'Your Number is suitable for you, if you want to check compatibility with your business and job, please book a consultation.';
-    @endphp
+    $recommendationMessage = $containsSix || $hasMalefic
+        ? 'Recommendation: Change your mobile number as it has multiple Malefic combinations which create routine life issues with Health, Wealth & Relationship.'
+        : 'Your Number is suitable for you. If you want to check compatibility with your business and job, please book a consultation.';
+@endphp
 
     <div class="container mt-5">
         <h1 class="text-center brown-text fw-bold">Advance Numerology Result</h1>
         @php
- //   dd(session('advance_numerology_data'));
-@endphp
+            //   dd(session('advance_numerology_data'));
+        @endphp
 
         <div class="card mt-4 inner-wrapper">
             <div class="card-body">
                 <!-- Displaying Mobile Number, Total, Single Digit, and Personalized Message -->
                 <h2 class="card-title">Mobile Number: {{ $result['Mobile Number'] }}</h2>
+             
+                 <!-- New: Displaying Date of Birth (DOB) -->
                 <p class="card-text"><strong>Total:</strong> {{ $result['Total'] }}</p>
-                <p class="card-text"><strong>Single Digit:</strong> {{ $result['Single Digit'] }}</p>
-                <p class="card-text"><strong>Personalized Message:</strong> {{ $result['Personalized Message'] }}</p>
-                
+                <p class="card-text"><strong>Compound:</strong> {{ $result['Single Digit'] }}</p>
+                @php
+                // Split the message into words
+                $messageWords = explode(' ', $result['Personalized Message']);
+                // Get the first 15 words
+                $limitedMessage = implode(' ', array_slice($messageWords, 0, 15));
+            @endphp
+            
+            <p class="card-text">
+                <strong>Personalized Message:</strong> <span
+                        class="blurred">{{ $limitedMessage }}{{ count($messageWords) > 15 ? '...' : '' }}</span>
+            </p>                             
              
                 <p class="card-text"><strong>Largest Recurring Digit:</strong> {{ $result['Largest Recurring Digit'] }}</p>
                 <p class="card-text"><strong>Occurrence Count:</strong> {{ $result['Occurrence Count'] }}</p>
-                <p class="card-text"><strong>Message for Max Digit:</strong> {{ $result['Message for Max Digit'] }}</p>
+                {{-- <p class="card-text"><strong>Message for Max Digit:</strong> {{ $result['Message for Max Digit'] }}</p> --}}
 
                    {{-- <!-- New: Displaying Date of Birth (DOB) -->
                    <p class="card-text"><strong>Date of Birth:</strong> {{ $result['DOB'] }}</p> <!-- Ensure DOB is passed here from backend -->
@@ -105,19 +116,27 @@
                    <p><strong>Behavior:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['behaviour'] }}</p>
                     --}}
                 <!-- Conditional Recommendation -->
-                <div class="alert alert-warning">
+                @if ($hasMalefic)
+                <div class="alert alert-danger">
                     <mark style="background: transparent">{{ $recommendationMessage }}</mark>
                 </div>
+            @else
+                <div class="alert alert-success">
+                    <mark style="background: transparent">{{ $recommendationMessage }}</mark>
+                </div>
+            @endif
 
                 <!-- Combinations Table -->
                 <h3 class="mt-4 blurred">Combinations:</h3>
                 <div class="table-responsive w-50 mx-auto brown-border-table">
-                    <table class="table m-0">
+                    <table class="table m-0 blurred">
                         <tbody>
                             @foreach ($result['Combinations'] as $combination => $data)
-                                <tr class="{{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text blurred' }}">
+                                <tr
+                                    class="{{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text blurred' }}">
                                     <td scope="row" class="py-2 px-5">{{ $combination }}</td>
-                                    <td class="py-2 px-5 {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text' }}">
+                                    <td
+                                        class="py-2 px-5 {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text' }}">
                                         {{ $data->behaviour_of_combination }}
                                     </td>
                                 </tr>
@@ -132,7 +151,8 @@
                     <ul>
                         @foreach ($result['Combinations'] as $data)
                             <li>
-                                <div class="message-box brown px-1 {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text blurred' }}" style="font-size: 14px">
+                                <div class="message-box brown px-1 blurred {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text blurred' }}"
+                                    style="font-size: 14px">
                                     {{ $data->details }}
                                 </div>
                             </li>
@@ -153,9 +173,10 @@
                 <input type="hidden" name="personalized_message" value="{{ $result['Personalized Message'] }}">
                 <input type="hidden" name="dob" value="{{ $result['DOB'] }}"> <!-- New: Passing DOB to backend -->
                 <input type="hidden" name="combinations" value="{{ json_encode($result['Combinations']) }}">
-                
+
                 <div class="d-flex justify-content-center align-items-center">
-                    <a href="{{ url('/') }}" class="btn filled-btn px-4 py-2 d-inline-block">Calculate Another Number</a>
+                    <a href="{{ url('/') }}" class="btn filled-btn px-4 py-2 d-inline-block">Calculate Another
+                        Number</a>
                     <a href="{{ route('payment.get') }}" class="btn outline-btn px-4 py-2">Proceed to Payment</a>
                 </div>
             </form>

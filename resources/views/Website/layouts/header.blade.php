@@ -4,7 +4,7 @@
             <div class="col-12">
                 <nav class="hs_main_menu_n hidden-md hidden-sm hidden-xs d-flex justify-content-between flex-row align-items-center">
                     <div class="header-logo d-flex gap-1">
-                        <a class="menu-button" href="{{ url('/') }}">
+                        <a class="menu-button ps-0" href="{{ url('/') }}">
                         <img src="{{ asset('frontend/assests/images/hero-section/logo-symbol.svg') }}" alt="img">
                         <img src="{{ asset('frontend/assests/images/hero-section/name-logo.svg') }}" alt="">
                     </a>
@@ -35,7 +35,7 @@
 
                         </ul>
                         <div class="d-flex align-items-center justify-content-center ms-3">
-                            <a href="{{ url('/products') }}" style="">
+                            <a href="{{ url('/products') }}" style="" class="pe-0">
                                 <button class="outline-button">Get your Report Now</button>
                             </a>
                         </div>
@@ -49,14 +49,14 @@
                 <header class="mobail_menu visible-md visible-sm visible-xs">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 p-0">
                                 <div class="hs_logo-wrapper">
-                                    <a href="index.html"><img
+                                    <a href="index.html" class="pe-0"><img
                                             src="{{ asset('frontend/assests/images/hero-section/name-logo.svg') }}"
                                             alt="Logo" title="Logo"></a>
                                 </div>
                             </div>
-                            <div class="col-xs-6 col-sm-6">
+                            <div class="col-xs-6 col-sm-6 p-0">
                                 <div class="cd-dropdown-wrapper">
                                     <a class="new-menu-toggle" href="#0">
                                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"

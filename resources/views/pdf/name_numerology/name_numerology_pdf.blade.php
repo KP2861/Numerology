@@ -52,17 +52,28 @@
                     </td>
                 </tr>
                 <!-- First Name Analysis Section -->
+          
                 <tr>
-                    <td style="padding:10px 0">
+                    <td style="padding:0px 0">
                         <table
                             style="border: 1px solid #000; border-collapse: collapse; margin-bottom:5px; width:100%; height:100%;"
                             class="mobile-table">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center; border: 1px solid #000; border-collapse: collapse; font-size:16px; padding:5px"
-                                        colspan="3">
-                                        Total of First Name: <span style="color:#EC4400">{{ $result['FirstName'] }}</span>
-                                    </th>
+                                    @if (strlen($result['First Name Interpretation']) <= 10)
+                                        <th style="text-align: center; border: 1px solid #000; border-collapse: collapse; font-size:16px; padding:5px"
+                                            colspan="3">
+                                            Total of First Name : <span
+                                                style="color:#EC4400">{{ $result['FirstName'] }}</span>
+                                        </th>
+                                    @else
+                                        <th style="text-align: center; border: 1px solid #000; border-collapse: collapse; font-size:16px; padding:5px"
+                                            colspan="2">
+                                            Total of First Name : <span
+                                            style="color:#EC4400">{{ $result['FirstName'] }}</span>
+                                        </th>
+                                    @endif
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,24 +84,38 @@
                                     <td style="border:1px solid #000; text-align:center; font-size:14px; padding:5px">
                                         {{ $result['First Name Total'] }}
                                     </td>
-                                    <td style="border:1px solid #000; text-align:center; font-size:14px; padding:5px"
-                                        rowspan="2">
-                                        {{ $result['First Name Interpretation'] }}
-                                    </td>
+                                    @if (strlen($result['First Name Interpretation']) <= 10)
+                                        <!-- If the interpretation is more than 15 characters, do not use rowspan -->
+                                        <td style="border:1px solid #000; text-align:center; font-size:14px;"
+                                            rowspan="2">
+                                            {{ $result['First Name Interpretation'] }}
+                                        </td>
+                                    @endif
                                 </tr>
+
                                 <tr>
-                                    <td style="border:1px solid #000; text-align:start; font-size:14px; padding:5px">
+                                    <td style="border:1px solid #000; text-align:start; padding:5px; font-size:14px;">
                                         First Name Compound
                                     </td>
-                                    <td style="border:1px solid #000; text-align:center; font-size:14px; padding:5px">
+                                    <td style="border:1px solid #000; text-align:center; padding:5px; font-size:14px;">
                                         {{ $result['First Name Single Digit'] }}
                                     </td>
                                 </tr>
+
+                                @if (strlen($result['First Name Interpretation']) > 10)
+                                    <!-- If the interpretation is more than 15 characters, do not use rowspan -->
+                                    <tr style="border:1px solid #000; text-align:center; font-size:14px; ">
+                                        <td style="border:1px solid #000; text-align:center; font-size:14px;padding:5px"
+                                            colspan="2">
+                                            {{ $result['First Name Interpretation'] }}
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </td>
-                </tr>
 
+                <tr>
                 <!-- Full Name Analysis Section -->
                 <tr>
                     <td style="padding:0px 0">
@@ -108,7 +133,8 @@
                                     @else
                                         <th style="text-align: center; border: 1px solid #000; border-collapse: collapse; font-size:16px; padding:5px"
                                             colspan="2">
-                                            Total of Full Name : <span>{{ $result['Username'] }}</span>
+                                            Total of Full Name :<span
+                                            style="color:#EC4400">{{ $result['Username'] }}</span>
                                         </th>
                                     @endif
 
@@ -249,7 +275,8 @@
                                     <tr>
                                         <td
                                             style="padding: 3px 0; font-size:14px; color: #EC4400; font-weight:bold; font-size:18px">
-                                            <strong>Your Full Name Total Details ( {{ $result['Full Name Total']}} ):</strong>
+                                            <strong>Your Full Name Total Details ( {{ $result['Full Name Total'] }}
+                                                ):</strong>
                                         </td>
                                     </tr>
                                     @if (!empty($detailItems))
@@ -348,102 +375,104 @@
                 {{-- Word and combinations --}}
                 @if (isset($result['Name Details']) && !empty($result['Name Details']))
 
-                <tr>
-                    <td>
-                        <table style="width: 100%">
-                            <tbody>
-                                {{-- Word and combinations --}}
-                                @if (isset($result['Name Details']) && !empty($result['Name Details']))
-                                    <tr>
-                                        <td
-                                            style="padding: 20px 0 0 0; width:100%;color: #000; font-weight:bold; font-size:18px">
-                                            Unlock the Hidden Energy in Your Name: Does Your Name Hold the Key to Wealth,
-                                            Success,
-                                            or
-                                            Struggles?
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding: 5px 0 0 0;  width:100%; color: #000; font-size:14px; ">
-                                            Discover how the sound vibrations in your name shape your destiny! Whether
-                                            you're
-                                            curious about
-                                            your
-                                            financial future, personal growth, or potential challenges, let your name reveal
-                                            its
-                                            secrets.
-                                        </td>
-                                    </tr>
-                                    @foreach ($result['Name Details']['full_name_matches'] as $match)
+                    <tr>
+                        <td>
+                            <table style="width: 100%">
+                                <tbody>
+                                    {{-- Word and combinations --}}
+                                    @if (isset($result['Name Details']) && !empty($result['Name Details']))
                                         <tr>
                                             <td
-                                                style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
-                                                <h4>Your Name Sound:</h4> <span
-                                                    style="font-weight: normal">{{ $match['name'] ?? 'N/A' }}</span>
-                                            </td>
-                                        </tr>
+                                                style="padding: 20px 0 0 0; width:100%;color: #000; font-weight:bold; font-size:18px">
+                                                Unlock the Hidden Energy in Your Name: Does Your Name Hold the Key to
+                                                Wealth,
+                                                Success,
+                                                or
+                                                Struggles?
 
-                                        <tr>
-                                            <td
-                                                style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
-                                                <h4>Positive or Negative Energy? (Benefic/Malefic/Natural)</h4>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>
-                                                <p>{{ $match['type'] ?? 'N/A' }}</p>
+                                            <td style="padding: 5px 0 0 0;  width:100%; color: #000; font-size:14px; ">
+                                                Discover how the sound vibrations in your name shape your destiny! Whether
+                                                you're
+                                                curious about
+                                                your
+                                                financial future, personal growth, or potential challenges, let your name
+                                                reveal
+                                                its
+                                                secrets.
                                             </td>
                                         </tr>
+                                        @foreach ($result['Name Details']['full_name_matches'] as $match)
+                                            <tr>
+                                                <td
+                                                    style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
+                                                    <h4>Your Name Sound:</h4> <span
+                                                        style="font-weight: normal">{{ $match['name'] ?? 'N/A' }}</span>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td
-                                                style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
-                                                <h4>Life Challenges or Success You Might Experience:</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>{{ $match['issues_faced_in_life'] ?? 'N/A' }}</p>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td
+                                                    style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
+                                                    <h4>Positive or Negative Energy? (Benefic/Malefic/Natural)</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>{{ $match['type'] ?? 'N/A' }}</p>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td
-                                                style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
-                                                <h4>What Does This Mean for You?:</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>{{ $match['details'] ?? 'N/A' }}</p>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td
+                                                    style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
+                                                    <h4>Life Challenges or Success You Might Experience:</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>{{ $match['issues_faced_in_life'] ?? 'N/A' }}</p>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                            <td
-                                                style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
-                                                <h4>Famous Names (Do You Share Their Energy?)</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p>{{ $match['famous_names'] ?? 'N/A' }}</p>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-@endif
+                                            <tr>
+                                                <td
+                                                    style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
+                                                    <h4>What Does This Mean for You?:</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>{{ $match['details'] ?? 'N/A' }}</p>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td
+                                                    style="padding: 10px 0 0 0;  width:100%; color: #000; font-size:14px; font-weight:bold">
+                                                    <h4>Famous Names (Do You Share Their Energy?)</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p>{{ $match['famous_names'] ?? 'N/A' }}</p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                @endif
 
 
 
                 {{-- alphabetIssues --}}
-                @if (isset($result['alphabetIssues']) && !empty($result['alphabetIssues']))               
-                     <tr>
+                @if (isset($result['alphabetIssues']) && !empty($result['alphabetIssues']))
+                    <tr>
                         <td style="padding:20px 0 0 0">
                             <table style="width: 100%">
                                 <tbody>
@@ -490,7 +519,7 @@
                             </table>
                         </td>
                     </tr>
-                    @endif
+                @endif
                 {{--                 
              <tr>
                     <td style="padding:10px 0">

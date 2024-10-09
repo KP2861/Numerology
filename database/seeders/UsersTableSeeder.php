@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
     {
 
         User::create([
-            'id' => 0,
+         
             'name' => 'guest',
             'role' => '0',
             'email' => 'guest@example.com',

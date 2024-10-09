@@ -120,7 +120,7 @@
                         be redirected in <span class="fw-bold fs-2" id="countdown">10</span>
                         seconds...</p>
                     <form id="downloadForm" action="{{ route('numerology.mobile_numerology_auto-download') }}"
-                        method="POST" class="d-none" >
+                        method="POST" class="d-none">
                         @csrf
                     </form>
                     <div class="spinner-border text-success" role="status">
@@ -134,23 +134,22 @@
                     </p>
 
 
-                    <p class="mb-1"><span>Client Email :
-                        </span>{{ session('numerology_payment.phone_numerology_data.email', 'N/A') }}</p>
-
-
-                    <p class="mb-1"><span>Client Phone
-                            :</span>{{ session('numerology_payment.phone_numerology_data.phone_number', 'N/A') }}</p>
+                    <p class="mb-1"><span> Email :
+                        </span>support@swrahan.com</p>
+                    <p class="mb-1"><span>Phone :
+                        </span>7096331505</p>
                 </div>
 
-                <div
-                    class="whatsapp-details justify-content-center align-items-center p-3 my-5  mx-auto whatsapp-block-auto-width">
-                    <div class="d-flex justify-content-center align-items-center w-auto">
-                        <div class="me-2"><img src="{{ asset('frontend/assests/images/hero-section/whatsapp.svg') }}"
-                                alt="">
-                        </div>
-                        <p class="whatsapp-num "><span class="">Whats App :</span> 9883342145</p>
+                <div class="whatsapp-qr-outer-wrapper justify-content-lg-end justify-content-start mt-lg-0 mt-5">
+                    <div class="qr-wrapper p-3 text-center mx-auto rounded">
+                        <img src="{{ asset('frontend/assests/images/content/whatsaap-qr-img.png') }}" alt="footer_logo"
+                            class="img-fluid img-thumbnail" style="width: 150px; height: 150px;" />
+                        <p class="text-dark mt-3 fw-bold mb-0">
+                            Connect on WhatsApp
+                        </p>
                     </div>
                 </div>
+
                 {{-- <p class="mt-3 mb-3 client-order-details text-black">
                     You will be redirected in <span class="fw-bold fs-2">10</span> seconds...
                 </p> --}}

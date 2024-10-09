@@ -51,6 +51,9 @@ ul {
 
 
 
+
+
+
 @media screen and (max-width:1920px) {
     .custom-container-width {
         width: 90%;
@@ -64,7 +67,6 @@ ul {
         width: 100%;
     }
 }
-
 
 .moon-bg-absolute {
     background-image: url('../assests/images/hero-section/moon-bg.png');
@@ -247,7 +249,7 @@ ul {
     font-weight: 400;
     line-height: 28px;
     color: #ffffff;
-    width: 75%
+    width: 85%
 }
 
 @media screen and (max-width:1399px) {
@@ -274,6 +276,13 @@ ul {
 
 .footer-ellipse {
     width: 100%;
+}
+
+.person-title-outer{
+    position:absolute;
+    bottom:-60px;
+    left: auto;
+    right:auto;
 }
 
 .footer-ellipse img {
@@ -559,9 +568,9 @@ ul {
 }
 
 .pre-footer .paragraph {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 28px;
+    line-height: 22px;
     color: #666666;
 }
 
@@ -613,6 +622,10 @@ ul {
     position: absolute;
     top: -50px;
     left: 25px;
+    max-width: 101px;
+    max-height: 101px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .client-cards-row {
@@ -900,19 +913,21 @@ ul {
 }
 
 .combining-astrology h2 {
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 400;
-    line-height: 78px;
+    line-height: 60px;
     color: #ffffff;
 
 }
 
 .combining-astrology h2 span {
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 78px;
+    line-height: 60px;
     color: #ffffff;
 }
+
+
 
 .combining-astrology h3 {
     font-size: 32px;
@@ -951,23 +966,23 @@ ul {
 
 @media (max-width: 1399px) {
     .combining-astrology h2 span {
-        font-size: 48px;
+        font-size: 32px;
         font-weight: 700;
-        line-height: 58px;
+        line-height: 42px;
         color: #ffffff;
     }
 
     .combining-astrology h2 {
-        font-size: 48px;
+        font-size: 32px;
         font-weight: 400;
-        line-height: 58px;
+        line-height: 42px;
         color: #ffffff;
     }
 
     .combining-astrology h3 {
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 600;
-        line-height: 48px;
+        line-height: 38px;
         color: #ffffff;
     }
 
@@ -1607,9 +1622,9 @@ p.carousel-content-descriprtion {
 }
 
 h4.person-title {
-    font-size: 32px;
-    font-weight: 900;
-    line-height: 56.7px;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 54px;
     color: #21212C;
 
 }
@@ -1681,10 +1696,10 @@ h4.person-title {
     position: relative;
 }
 
-.card-row-card:hover+.hidden-text-block .hidden-text {
+/* .card-row-card:hover+.hidden-text-block .hidden-text {
     display: block;
 
-}
+} */
 
 .hidden-text-block {
     /* display: none; */
@@ -1693,25 +1708,38 @@ h4.person-title {
     left: auto;
     right: auto; */
     text-align: center;
-    width: auto;
+    width: 100%;
     height: 60px;
+    /* max-width: 200px; */
 
 
 }
 
 .hidden-text {
-    display: none;
-    font-size: 26px;
-    font-weight: 600;
-    line-height: 30px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 26px;
     color: #21212C;
     text-align: center;
+    width:100%;
+    /* max-width: 190px; */
+    
 
 }
 
 .main-section-extended {
     background-color: #ffffff;
 }
+.brown-cards-width-ctrl .tab{
+    max-width:230px;
+}
+
+@media screen and (max-width:1500px){
+    .brown-cards-width-ctrl .tab{
+        max-width:192px;
+    }
+}
+
 
 /* .showing-on-top-left{
     position:absolute;
@@ -1745,7 +1773,7 @@ h4.person-title {
 }
 
 .main-section-extended .tab .card-row-card img {
-    height: 85px;
+    height: 60px;
 }
 
 .top-tab-slide .col-auto.p-0 {
@@ -1790,7 +1818,7 @@ h3.carousel-content-title span {
     margin-bottom: 10px;
 }
 
-.combining-astrology-bg h2 {
+/* .combining-astrology-bg h2 {
     font-family: Poppins;
     font-size: 32px;
     font-weight: 400;
@@ -1802,7 +1830,7 @@ h3.carousel-content-title span {
     font-size: 32px;
     font-weight: 700;
     line-height: 45px;
-}
+} */
 .noh-outer{
     background-image: url('../assests/images/hero-section/brown-crescent.png');
     background-repeat: no-repeat;
@@ -1964,9 +1992,9 @@ h3.carousel-content-title span {
     }
 
     .pre-footer .paragraph {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 400;
-        line-height: 24px;
+        line-height: 20px;
         color: #666666;
     }
 
@@ -2213,5 +2241,34 @@ h3.carousel-content-title span {
 .min-button-height{
     min-height: 43px;
 }
+
+.custom-para-padding-end{
+    padding-right:200px;
+}
+
+@media screen and (max-width:1600px){
+    .custom-para-padding-end{
+        padding-right: 0px;
+    }
+}
+
+.custom-para-padding-end-xl{
+    padding-right:330px;
+}
+
+@media screen and (max-width:1600px){
+    .custom-para-padding-end-xl{
+        padding-right: 0px;
+    }
+}
+.image-background-color{
+    background-color: #f7f7f7;
+}
+
+.context-wrapper{
+    width:auto;
+}
+
+
 
  

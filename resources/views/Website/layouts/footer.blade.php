@@ -3,12 +3,13 @@
     <div class="noh-wrapper">
         <div class="need-our-help-cta max-width-cta">
             <div>
-                <h3 class="mb-3">Get Expert Help with Astrology, Numerology, and Vastu</h3>
-<p class="lead text-muted">Our experienced team combines astrology, numerology, and Vastu Shastra to guide you toward success, balance, and happiness. We offer personalized solutions to improve your life, health, relationships, and career by aligning your space and energies.</p>
-
+                <h2>Get Expert Help with Astrology, Numerology, and Vastu</h2>
+                <p>Our experienced team combines astrology, numerology, and Vastu Shastra to guide you toward success,
+                    balance, and happiness. We offer personalized solutions to improve your life, health, relationships,
+                    and career by aligning your space and energies.</p>
             </div>
             <div class="text-start">
-                <button class="fill-button fill-button-body">CONSULTATION
+                <a href="{{ url('/consultant') }}"><button class="fill-button fill-button-body">CONSULTATION</button></a>
             </div>
         </div>
     </div>
@@ -29,8 +30,9 @@
                     <a href="{{url('/')}}"><img
                             src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-logo.svg') }}"
                             alt="footer_logo" class="img-fluid" /></a>
-                    <p class="me-lg-5 me-md-3 me-0 footer-text">Donec id elit non mi porta gravida at eget metus.
-                        Donec id elit non Vestibulum id ligula porta felis euism od semper. Nulla vitae elit libero
+                    <p class="me-lg-5 me-md-3 me-0 footer-text"><b>Swrahan</b> is your go-to place for all your
+                        problems, providing <b>effective remedies</b> that offer <b>lasting results</b>. Change your
+                        life with <b>personalized guidance</b> and support today!
                     </p>
                     <!-- <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4> -->
                     <ul class="social-links ">
@@ -188,22 +190,22 @@
     })
 </script>
 <script>
-    const content = [{
-            title: "Career Problems",
-            issue: "Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit onsequat hello Aenean world.nibh vel velit auctor aliquet lorem quis bibendum auctor auctor aliquet.",
-            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-        },
-        {
-            title: "Marital Life Problems",
-            issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
-            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-        },
-        {
-            title: "Work-Life Balance Struggles",
-            issue: "Balancing career demands with personal life can be tough. For instance, a driven Capricorn (Astrology) with a Life Path 8 (Numerology) may find it challenging to switch off from work, leading to burnout.",
-            solution: "Use your Capricorn's ambition to set clear boundaries and use your life path 8's organizational skills to create a well-structured routine. Integrate relaxation practices like meditation and time management strategies aligned with your numerology to achieve a healthier balance."
-        }
-    ];
+const content = [{
+        title: "Get Help with Conception Issues: Find Hope and Support!",
+        issue: "<b>Life Issue:</b>Couples may face difficulties with conception, leading to feelings of <b>frustration</b>, <b>sadness</b>, and <b>strain</b> in their relationship. <b>Are you frustrated with IVF and other remedies, with no solution working?</b> The stress of trying to start a family can overshadow other parts of married life, making it hard to connect.",
+        solution: "<b>Solution:</b> You can get help by booking a <b>10-minute session with us</b> to explore personalized guidance on your journey to parenthood. We have received many positive <b>feedback from parents</b> who have benefited from our support."
+    },
+    {
+        title: "Finding Work-Life Balance Struggle",
+        issue: "<b>Issue Faced :</b> Managing work and personal life can be hard for someone who works a lot, like a Capricorn with Life Path 8. They might focus too much on their job, making it tough to relax, which causes stress and tiredness",
+        solution: "<b>You can get solutions by:</b> Booking a <b>10-minute session with us</b> to learn more about improving your marital life.<br>To find balance, set clear boundaries between work and personal time. Schedule breaks to relax and recharge. Practicing mindfulness or hobbies can help reduce stress. Capricorns with Life Path 8 should prioritize self-care to avoid burnout and stay energized."
+    },
+    {
+        title: "Strengthen Your Marriage: Find Balance and Harmony Today!",
+        issue: " <b>Daily Life Issue:</b> Balancing work and home can be tough for married couples.One partner may focus too much on work, leaving little time for each other. This can lead to feelings of neglect, misunderstandings, and increased tension in the marriage.",
+        solution: "You can get solutions by booking a <b>10-minute session</b> with us to learn more about improving your marital life."
+    }
+];
 
     let currentIndex = 0;
 

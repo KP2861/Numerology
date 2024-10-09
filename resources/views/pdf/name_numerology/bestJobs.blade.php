@@ -3,6 +3,8 @@
     $bestJobs = array_map('trim', $bestJobs); // Trim whitespace from each job title
 @endphp
 
+<a name="BestJobsForYou"></a>
+
 <div style="height: 780px; width:70%; margin:0 auto;  ">
     <a name="section1"></a> 
 

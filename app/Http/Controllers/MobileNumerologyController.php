@@ -359,7 +359,7 @@ class MobileNumerologyController extends Controller
         // Get DOB and multi-date details
         $dob = $this->getDOB($mobileNumber);
         // Call getMultiDateCount to get DOB related numerology details
-        $multiDateCountDetails = $this->getMultiDateCount($dob);
+        // $multiDateCountDetails = $this->getMultiDateCount($dob);
         // $dateDetail = $this->getDateDetails($dob);
 
 
@@ -367,9 +367,9 @@ class MobileNumerologyController extends Controller
 
         // Adding DOB-related information to the result
         $result['DOB'] = $dob;
-        $result['MultiDate Count'] = $multiDateCountDetails;
+        // $result['MultiDate Count'] = $multiDateCountDetails;
         // $result['Date Detail'] = $dateDetail;
-        //  dd($result);
+        //   dd($result);
         return view('numerology.mobile_numerology_result', [
             'result' => $result,
         ]);
@@ -483,9 +483,7 @@ class MobileNumerologyController extends Controller
             'footerData' => $footerData,
         ];
 
-
-
-        //  dd($result);
+    //  dd($result);
         // Initialize mPDF instance with margins
         $mpdf = new \Mpdf\Mpdf([
             'tempDir' => '/tmp',
@@ -510,7 +508,7 @@ class MobileNumerologyController extends Controller
 
 
         // Get the path to the background image and encode it
-        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
         $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
         $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
 

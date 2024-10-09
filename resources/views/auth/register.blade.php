@@ -134,7 +134,7 @@
                                             <input type="password" id="password" name="password"
                                                 class="form-control py-2 h-auto password-input @error('password') is-invalid @enderror"
                                                 placeholder="Password" required minlength="8">
-                                            <div class="invalid-feedback password-error error">
+                                            <div class="invalid-feedback password-error error error-position">
                                                 <!-- Dynamic error messages for password validation will be inserted here -->
                                             </div>
                                             @error('password')
@@ -159,7 +159,7 @@
                                                 class="form-control py-2 h-auto password-input @error('password_confirmation') is-invalid @enderror"
                                                 placeholder="Confirm Password" required>
                                             @error('password_confirmation')
-                                            <div class="invalid-feedback error">{{ $message }}</div>
+                                            <div class="invalid-feedback error error-position">{{ $message }}</div>
                                             @enderror
                                             <!-- Eye Icon for Toggle -->
                                             <i class="eye-icon fas fa-eye position-absolute"

@@ -112,7 +112,7 @@ class StoreNameNumerologyController extends Controller
             ]);
 
             // Step 2: Add 'user_id' and any other necessary fields
-            $validated['user_id'] = auth()->check() ? auth()->id() : 0;
+            $validated['user_id'] = auth()->check() ? auth()->id() : 1;
 
             // Combine the time inputs into a single time string
             $time = sprintf('%02d:%02d %s', $validated['hours'], $validated['minutes'], $validated['ampm']);

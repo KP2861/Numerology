@@ -85,6 +85,7 @@ return [
 
     'locale' => 'en',
 
+    'available_locales' => ['en', 'hi'],
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -167,9 +168,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        ])->toArray(),
+    ])->toArray(),
 
 
     /*

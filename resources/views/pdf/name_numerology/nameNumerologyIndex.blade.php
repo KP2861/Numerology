@@ -1,5 +1,24 @@
 <div id="index-page" style="height: 780px; width:70%; margin:0 auto; ">
-    <a name="index"></a> 
+    <a name="index"></a>
+    {{-- @php
+       $fullNameDetails = $result['full_name_details']; // Assuming this variable contains your data
+    $countFullName = count($fullNameDetails);
+    $pagesFullName = ceil($countFullName / 2); // Two entries per page
+// dd($fullNameDetails);
+    @endphp --}}
+    @php
+    $fullNameDetails = $result['full_name_details']; // Assuming this variable contains your data
+    $countFullName = count($fullNameDetails);
+    $pagesFullName = ceil($countFullName / 2); // Two entries per page
+
+    // Check if alphabetIssues has data
+    $alphabetIssues = $result['alphabetIssues']; // Assuming this variable contains alphabet issues data
+    $additionalPage = !empty($alphabetIssues) ? 1 : 0; // Set to 1 if not empty, else 0
+
+    // Add additional page if alphabetIssues has data
+    $pagesFullName += $additionalPage; 
+@endphp
+
 
     <table style="width: 100%">
         <thead>
@@ -30,6 +49,7 @@
                 <td style="padding: 40px 0; text-align:left; width:100%; color: #000">
                     <table style="width: 100%">
                         <tbody>
+                            {{-- Index --}}
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <a href="#index" style="text-decoration:none; color:#8B6C56;">
@@ -37,12 +57,32 @@
                                     </a>
                                 </td>
 
-                                <td style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
                                     <a href="#index" style="text-decoration:none; color:#8B6C56;">
                                         <p style="font-size: 16px;">2</p>
                                     </a>
                                 </td>
                             </tr>
+
+                            {{-- Index --}}
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#unlockYourFreeGifts" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Unlock Your Free Gifts from Swrahan Transform Your
+                                            Daily Life!</p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#unlockYourFreeGifts" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">4</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- predictions --}}
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <a href="#predictions" style="text-decoration:none; color:#8B6C56;">
@@ -50,12 +90,268 @@
                                     </a>
                                 </td>
 
-                                <td style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
                                     <a href="#predictions" style="text-decoration:none; color:#8B6C56;">
-                                        <p style="font-size: 16px;">7</p>
+                                        <p style="font-size: 16px;">8</p>
                                     </a>
                                 </td>
                             </tr>
+
+
+                            {{-- Character Detail --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#fullNameCharacter" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Full Name Character Detail</p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#fullNameCharacter" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{10+$additionalPage}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            {{-- Best Jobs for You --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#BestJobsForYou" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Best Jobs for You</p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#BestJobsForYou" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{10 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Date Of Birth Prediction --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#dobPredictions" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Date Of Birth Prediction ( {{ $result['DOB'] }})
+                                        </p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#dobPredictions" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{11 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            {{-- जीवन में परिवर्तन के लिए ग्रहों के उपाय (हिंदी) --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#lifeChangesHindi" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">जीवन में परिवर्तन के लिए ग्रहों के उपाय (हिंदी)
+                                        </p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#lifeChangesHindi" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{14 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Planetary Remedies for Life Changes (English)  --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#planetaryRemedies" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Planetary Remedies for Life Changes (English) </p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#planetaryRemedies" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{16 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Creating Affirmation  --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#creatingAffirmation" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Creating Affirmation</p>
+                                    </a>
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#creatingAffirmation" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{18 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Prosperity Cheque Ritual for Abundance  --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#prosperityCheque" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Prosperity Cheque Ritual for Abundance
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#prosperityCheque" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{19 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            {{-- Why We Recommend Crystals, Rudraksha, and Vedic Remedies Over Gemstones?  --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#whyRecomendedRemedies" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Why We Recommend Crystals, Rudraksha, and Vedic
+                                            Remedies Over Gemstones?
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#whyRecomendedRemedies" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{22 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding: 40px 0; text-align:left; width:100%; color: #000">
+                    <table style="width: 100%">
+                        <tbody>
+
+
+                            {{-- Lakshmi Beej Mantra Practice --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#lakshmiBeejMantra" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Lakshmi Beej Mantra Practice
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#lakshmiBeejMantra" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{23 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            {{-- Rudraksha --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#rudraksha" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Rudraksha
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#rudraksha" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{24 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Crystals Enhance Personal growth --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#crystalsEnhancePersonalgrowth"
+                                        style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Crystals Enhance Personal growth
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#crystalsEnhancePersonalgrowth"
+                                        style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{27 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Sanjeevani Cards --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#sanjeevaniCards" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Sanjeevani Cards
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#sanjeevaniCards" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{28 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                            {{-- Transform Your Space, Elevate Your Life with Vastu --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#transformYourSpace" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Transform Your Space, Elevate Your Life with Vastu
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#transformYourSpace" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{31 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Switch words has it's own power --}}
+
+                            <tr>
+                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
+                                    <a href="#switchwordsPower" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">Switch words has it's own power
+                                </td>
+
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                    <a href="#switchwordsPower" style="text-decoration:none; color:#8B6C56;">
+                                        <p style="font-size: 16px;">{{33 + $pagesFullName}}</p>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{-- Services Offered --}}
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <a href="#serviceOffered" style="text-decoration:none; color:#8B6C56;">
@@ -63,28 +359,29 @@
                                     </a>
                                 </td>
 
-                                <td style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
                                     <a href="#serviceOffered" style="text-decoration:none; color:#8B6C56;">
-                                        <p style="font-size: 16px;">42</p>
-                                    </a>                                
+                                        <p style="font-size: 16px;">{{36 + $pagesFullName}}</p>
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <a href="#termsAndConditions" style="text-decoration:none; color:#8B6C56;">
                                         <p style="font-size: 16px;">Terms and Conditions</p>
-                                    </a>  
+                                    </a>
                                 </td>
 
-                                <td style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
+                                <td
+                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
                                     <a href="#termsAndConditions" style="text-decoration:none; color:#8B6C56;">
-                                        <p style="font-size: 16px;">47</p>
-                                    </a>  
+                                        <p style="font-size: 16px;">{{41 + $pagesFullName}}</p>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                </td>
             </tr>
         </tbody>
     </table>

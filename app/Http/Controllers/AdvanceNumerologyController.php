@@ -465,7 +465,7 @@ class AdvanceNumerologyController extends Controller
 
 
         // Get the path to the background image and encode it
-        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
         $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
         $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
 

@@ -49,14 +49,6 @@
             background: #F1EBE0;
             border: 1px solid #BA9A63;
         }
-
-        .red-text {
-            color: red;
-        }
-
-        .black-text {
-            color: black;
-        }
     </style>
 
 </head>
@@ -70,17 +62,17 @@
             <div class="card mb-4 inner-wrapper">
                 <div class="card-body">
 
-                    <h2 class="brown-text">{{ $result['name'] }} (DOB: {{ $result['dob'] }})</h2>
-                    <p class="card-text"><strong>Full Name Total:</strong> <span class="blurred">
-                            {{ $result['full_name_total'] }}</span></p>
-                    <p class="card-text"><strong>Single Digit:</strong> <span
-                            class="blurred">{{ $result['full_name_single_digit'] }}</span></p>
-                    <p class="card-text"><strong>Personal Year:</strong> <span
-                            class="blurred">{{ $result['personal_year'] }}</span></p>
-                    <p class="card-text"><strong>Personal Month:</strong> <span class="blurred">
-                            {{ $result['personal_month'] }}</span></p>
-                    <p class="card-text"><strong>Personal Day:</strong> <span
-                            class="blurred">{{ $result['personal_day'] }}</span></p>
+                    @php
+                        // Convert the date format using Carbon
+                        $formattedDate = \Carbon\Carbon::parse($result['dob'])->format('d-m-Y');
+                    @endphp
+
+                    <h2 class="brown-text">{{ $result['name'] }} (DOB: {{ $formattedDate }})</h2>
+                    <p class="card-text"><strong>Full Name Total:</strong> {{ $result['full_name_total'] }}</p>
+                    <p class="card-text"><strong>Compound:</strong> {{ $result['full_name_single_digit'] }}</p>
+                    <p class="card-text"><strong>Personal Year:</strong> {{ $result['personal_year'] }}</p>
+                    <p class="card-text"><strong>Personal Month:</strong> {{ $result['personal_month'] }}</p>
+                    <p class="card-text"><strong>Personal Day:</strong> {{ $result['personal_day'] }}</p>
 
                     {{-- <h4 class="brown-text mt-4">Dasha Periods:</h4>
                     <ul class="list-unstyled">
@@ -96,92 +88,105 @@
                     </ul> --}}
 
                     @if (isset($result['mobile_numerology']))
-                        <h4 class="brown-text mt-4">Mobile Numerology:</h4>
+                        <span class="blurred">
+                            <h4 class="brown-text mt-4">Mobile Numerology:</h4>
 
-                        <p class="card-text"><strong>Total:</strong> <span
-                                class="blurred">{{ $result['mobile_numerology']['total'] }}</span></p>
-                        <p class="card-text"><strong>Single Digit:</strong>
-                            <span class="blurred"> {{ $result['mobile_numerology']['single_digit'] }}</span>
-                        </p>
-                        <p><strong>Detail:</strong> <span
-                                class="blurred">{{ $result['mobile_numerology']['detail'] }}</span></p>
+                            <p class="card-text"><strong>Total:</strong> {{ $result['mobile_numerology']['total'] }}</p>
+                            <p class="card-text"><strong>Single Digit:</strong>
+                                {{ $result['mobile_numerology']['single_digit'] }}</p>
+                            @php
+                                // Split the detail text into words
+                                $detailWords = explode(' ', $result['mobile_numerology']['detail']);
+                                // Get the first 15 words
+                                $limitedDetail = implode(' ', array_slice($detailWords, 0, 15));
+                            @endphp
 
-                        <p class="card-text"><strong>Combinations:</strong></p>
+                            <p><strong>Detail:</strong> {{ $limitedDetail }}{{ count($detailWords) > 15 ? '...' : '' }}
+                            </p>
+                            <p class="card-text"><strong>Combinations:</strong></p>
 
-                        <!-- Table for Combinations and Type -->
-                        <div class="brown-border-table">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Combination</th>
-                                        <th>Type</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <!-- Table for Combinations and Type -->
+                            <div class="brown-border-table">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Combination</th>
+                                            <th>Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($result['mobile_numerology']['combination_data'] as $data)
+                                            @php
+                                                // Decode the JSON string
+                                                $decodedData = json_decode($data, true);
+                                            @endphp
+                                            @if ($decodedData)
+                                                <tr>
+                                                    <td
+                                                        style="color: {{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red' : 'black' }};">
+                                                        {{ $decodedData['combination_number'] }}
+                                                    </td>
+                                                    <td
+                                                        style="color: {{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red' : 'black' }};">
+                                                        {{ $decodedData['behaviour_of_combination'] }}
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- New table for the Max Count and Max Digit -->
+                            <div class="brown-border-table mt-4">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Max Recurring Digit</th>
+                                            <th>Count</th>
+                                            <th style="width: 700px; min-width:700px; max-width:700px;">Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $result['mobile_numerology']['max_digit'] }}</td>
+                                            <td>{{ $result['mobile_numerology']['max_count'] }}</td>
+                                            @php
+                                                // Split the message into words
+                                                $messageWords = explode(
+                                                    ' ',
+                                                    $result['mobile_numerology']['message_for_max_digit'],
+                                                );
+                                                // Get the first 15 words
+                                                $limitedMessage = implode(' ', array_slice($messageWords, 0, 15));
+                                            @endphp
+
+                                            <td>{{ $limitedMessage }}{{ count($messageWords) > 15 ? '...' : '' }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div>
+                                <h1>Description:</h1>
+                                <ul>
                                     @foreach ($result['mobile_numerology']['combination_data'] as $data)
-                                        @php
-                                            // Decode the JSON string
-                                            $decodedData = json_decode($data, true);
-                                        @endphp
-                                        @if ($decodedData)
-                                            <tr>
-                                                <td
-                                                    class="{{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red-text' : 'black-text blurred' }}">
-                                                    {{ $decodedData['combination_number'] }}
-                                                </td>
-                                                <td
-                                                    class="{{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red-text' : 'black-text blurred' }}">
-                                                    {{ $decodedData['behaviour_of_combination'] }}
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                        <li>
+                                            @php
+                                                // Decode the JSON string
+                                                $decodedData = json_decode($data, true);
+                                            @endphp
 
-                        <!-- New table for the Max Count and Max Digit -->
-                        <div class="brown-border-table mt-4">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Max Recurring Digit</th>
-                                        <th>Count</th>
-                                        <th style="width: 700px; min-width:700px; max-width:700px;">Message</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="blurred">
-                                        <td>{{ $result['mobile_numerology']['max_digit'] }}</td>
-                                        <td>{{ $result['mobile_numerology']['max_count'] }}</td>
-                                        <td>{{ $result['mobile_numerology']['message_for_max_digit'] }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div>
-                            <h1>Description:</h1>
-                            <ul>
-                                @foreach ($result['mobile_numerology']['combination_data'] as $data)
-                                    <li>
-                                        @php
-                                            // Decode the JSON string
-                                            $decodedData = json_decode($data, true);
-                                        @endphp
-                                        @if ($decodedData)
-                                            <div class="message-box brown px-1 blurred">
-                                                <span
-                                                    class="{{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red-text' : 'black-text blurred' }}">
+                                            @if ($decodedData)
+                                                <div class="message-box brown px-1"
+                                                    style="font-size: 14px; color: {{ $decodedData['behaviour_of_combination'] == 'Malefic' ? 'red' : 'black' }};">
                                                     {{ $decodedData['details'] }}
-                                                </span>
-                                            </div>
-                                        @endif
-
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </span>
                     @endif
                 </div>

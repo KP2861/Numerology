@@ -1,8 +1,6 @@
-{{-- @php
+@php
     // Initialize an array to hold wallpaper data for each area of concern
-    $wallpapers = [];
-    $htmlChunks = [];
-@endphp --}}
+@endphp
 
 <div style="height: auto; width:70%; margin:0 auto;">
     <table style="width: 100%">
@@ -29,61 +27,48 @@
                     $wallpaperSrc = storage_path($concern['Wallpaper']);
                     // Check if the file exists and encode it to base64 if it does
                     $wallpaper = file_exists($wallpaperSrc) ? 'data:image/png;base64,' . base64_encode(file_get_contents($wallpaperSrc)) : null;
-
-                    // Start building the HTML chunk
-                    $chunk = '<tr style="width: 100%; padding-top:30px">
-                                <td style="text-align: start; vertical-align:top; padding:20px 0 0 0; width:100%">
-                                    <h5 style="color:#000; font-size:16px">Problem: <span style="font-size:16px; font-weight:normal">' . 
-                                    ($concern['Problem'] ?? 'N/A') . 
-                                    '</span></h5>
-                                </td>
-                            </tr>
-                            <tr style="width: 100%; padding-top:30px">
-                                <td style="vertical-align:top; text-align:justify; padding: 5px 0 0 0; width:100%">
-                                    <h5 style="color:#000; font-size:16px">Affirmation:</h5>
-                                </td>
-                            </tr>
-                            <tr style="width: 100%; padding-top:30px">
-                                <td style="vertical-align:top; text-align:justify; padding: 5px 0 0 0; width:100%">
-                                    <p style="color: #000; font-size:16px">' . 
-                                    ($concern['Affirmation'] ?? 'N/A') . 
-                                    '</p>
-                                </td>
-                            </tr>
-                            <tr style="width: 100%; padding-top:30px">
-                                <td>
-                                    <table style="width: 100%">
-                                        <tbody>
-                                            <tr>
-                                                <td style="text-align: start; vertical-align:top; padding: 15px 0 0 0; width:100%">
-                                                    <h5 style="color:#000; font-size:16px">Wallpaper:</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="vertical-align:top; text-align:justify; padding: 20px 0 0 0; width:100%">';
-
-                    // if ($wallpaper) {
-                    //     $chunk .= '<p><img src="' . $wallpaper . '" alt="wallpaper" style="margin:0px 0px; width:400px"></p>';
-                    // } else {
-                    //     $chunk .= '<p>N/A</p>';
-                    // }
-
-                    $chunk .= '</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="height: 30px;"></td> 
-                            </tr>';
-                    
-                    // Add the chunk to the array
-                    $htmlChunks[] = $chunk;
                 @endphp
+                <tr style="width: 100%; padding-top:30px">
+                    <td style="text-align: start; vertical-align:top; padding:20px 0 0 0; width:100%">
+                        <h5 style="color:#000; font-size:16px">Problem: <span style="font-size:16px; font-weight:normal">{{ $concern['Problem'] ?? 'N/A' }}</span></h5>
+                    </td>
+                </tr>
+                <tr style="width: 100%; padding-top:30px">
+                    <td style="vertical-align:top; text-align:justify; padding: 5px 0 0 0; width:100%">
+                        <h5 style="color:#000; font-size:16px">Affirmation:</h5>
+                    </td>
+                </tr>
+                <tr style="width: 100%; padding-top:30px">
+                    <td style="vertical-align:top; text-align:justify; padding: 5px 0 0 0; width:100%">
+                        <p style="color: #000; font-size:16px">{{ $concern['Affirmation'] ?? 'N/A' }}</p>
+                    </td>
+                </tr>
+                <tr style="width: 100%; padding-top:30px">
+                    <td>
+                        <table style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: start; vertical-align:top; padding: 15px 0 0 0; width:100%">
+                                        <h5 style="color:#000; font-size:16px">Wallpaper:</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:top; text-align:justify; padding: 20px 0 0 0; width:100%">
+                                        @if ($wallpaper)
+                                            <p><img src="{{ $wallpaper }}" alt="wallpaper" style="margin:0px 0px; width:400px"></p>
+                                        @else
+                                            <p>N/A</p>
+                                        @endif
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 30px;"></td> 
+                </tr>
             @endforeach
-            {{-- Output the combined HTML chunks --}}
-            {!! implode('', $htmlChunks) !!}
         </tbody>
     </table>
 </div>

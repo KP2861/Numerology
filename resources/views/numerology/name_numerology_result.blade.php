@@ -105,19 +105,27 @@
                     <div class="partition-header">
                         <h5 class="mb-0"> Name Analysis</h5>
                     </div>
-                    <div class="fist-name">
+                    @php
+                    $firstNameInterpretation = $result['first_name_interpretation'];
+                    $firstNameWords = explode(' ', $firstNameInterpretation);
+                @endphp
+                    <div class="first-name">
                         <h5 class="brown-text">First Name Total: <span
                                 class="fw-bold">{{ $result['first_name_total'] }}</span></h5>
-                        <p>First Name Single Digit: <span
-                                class="fw-bold ">{{ $result['first_name_single_digit'] }}</span>
-                            <span class="text-muted ">({{ $result['first_name_interpretation'] }})</span>
+                        <p>First Name Single Digit: <span class="fw-bold ">{{ $result['first_name_single_digit'] }}</span>
+                            <span class="text-muted ">  {{ count($firstNameWords) > 15 ? implode(' ', array_slice($firstNameWords, 0, 15)) . ' ...' : $firstNameInterpretation }}</span>
                         </p>
                     </div>
+
+                    @php
+                        $fullNameInterpretation = $result['full_name_interpretation'];
+                        $fullNameWords = explode(' ', $fullNameInterpretation);
+                    @endphp
                     <div class="full-name">
                         <h5 class="brown-text">Full Name Total: <span
                                 class="fw-bold">{{ $result['full_name_total'] }}</span></h5>
                         <p>Full Name Single Digit: <span class="fw-bold ">{{ $result['full_name_single_digit'] }}</span>
-                            <span class="text-muted ">({{ $result['full_name_interpretation'] }})</span>
+                            <span class="text-muted ">  {{ count($fullNameWords) > 15 ? implode(' ', array_slice($fullNameWords, 0, 15)) . ' ...' : $fullNameInterpretation }}</span>
                         </p>
                     </div>
                     <!-- First Name Letters Details -->
@@ -132,51 +140,49 @@
                         <div class="col-md-6">
                             <div>
                                 <h5 class="brown-text mt-3">First Name Letter Breakdown:</h5>
-                                @foreach ($result['first_name_details'] as $detail)
-                                    <div class="partition border-secondary ">
-                                        <p><strong>Letter:</strong> <span
-                                            class="blurred">{{ $detail['letter'] }}</span></p>
-                                        <p><strong>Strengths:</strong><span
-                                                class="blurred">{{ $detail['strengths'] }}</span>
-                                        </p>
-                                        <p><strong>Weaknesses:</strong> <span
-                                                class="blurred">{{ $detail['weaknesses'] }}</span>
-                                        </p>
-                                        <p><strong>Best Jobs:</strong> <span
-                                                class="blurred">{{ $detail['best_jobs'] }}</span>
-                                        </p>
-                                        <p><strong>Nature:</strong> <span
-                                                class="blurred">{{ $detail['nature'] }}</span></p>
-                                    </div>
-                                @endforeach
+                                @if (count($result['first_name_details']) > 0)
+                                @php
+                                    $detail = $result['first_name_details'][0]; // Get the first detail directly
+                                @endphp
+                                <div class="partition border-secondary">
+                                    <p><strong>Letter:</strong> <span class="blurred">{{ $detail['letter'] }}</span></p>
+                                    <p><strong>Strengths:</strong><span class="blurred">{{ $detail['strengths'] }}</span></p>
+                                    <p><strong>Weaknesses:</strong> <span class="blurred">{{ $detail['weaknesses'] }}</span></p>
+                                    <p><strong>Best Jobs:</strong> <span class="blurred">{{ $detail['best_jobs'] }}</span></p>
+                                    <p><strong>Nature:</strong> <span class="blurred">{{ $detail['nature'] }}</span></p>
+                                </div>
+                            @endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div>
                                 <h5 class="brown-text mt-3">Last Name Letter Breakdown:</h5>
-                                @foreach ($result['last_name_details'] as $detail)
-                                    <div class="partition border-secondary ">
-                                        <p><strong>Letter:</strong> <span
-                                                class="blurred">{{ $detail['letter'] }}</span></p>
-                                        <p><strong>Strengths:</strong> <span
-                                                class="blurred">{{ $detail['strengths'] }}</span>
-                                        </p>
-                                        <p><strong>Weaknesses:</strong> <span
-                                                class="blurred">{{ $detail['weaknesses'] }}</span></p>
-                                        <p><strong>Best Jobs:</strong> <span
-                                                class="blurred">{{ $detail['best_jobs'] }}</span>
-                                        </p>
-                                        <p><strong>Nature:</strong> <span
-                                                class="blurred">{{ $detail['nature'] }}</span></p>
-                                    </div>
-                                @endforeach
+                                @if (count($result['last_name_details']) > 0)
+                                @php
+                                    $detail = $result['last_name_details'][0]; // Get the first detail directly
+                                @endphp
+                                <div class="partition border-secondary">
+                                    <p><strong>Letter:</strong> <span class="blurred">{{ $detail['letter'] }}</span></p>
+                                    <p><strong>Strengths:</strong> <span class="blurred">{{ $detail['strengths'] }}</span></p>
+                                    <p><strong>Weaknesses:</strong> <span class="blurred">{{ $detail['weaknesses'] }}</span></p>
+                                    <p><strong>Best Jobs:</strong> <span class="blurred">{{ $detail['best_jobs'] }}</span></p>
+                                    <p><strong>Nature:</strong> <span class="blurred">{{ $detail['nature'] }}</span></p>
+                                </div>
+                            @endif
                             </div>
                         </div>
                     </div>
+                    <p class="text-center red-text">Pay and see full report for additional detail</p>
+
                 </div>
             </div>
         </div>
 
+        {{-- <div class="col-12"> 
+            <div class="partition border-secondary mt-3">
+                <p class="text-center red-text">Pay and see full report for additional detail</p>
+            </div>
+        </div> --}}
         <!-- Special Message Display -->
         <div class="row">
             <div class="col-12">
@@ -184,10 +190,21 @@
                     <div class="partition-header bg-secondary">
                         <h5 class="mb-0">Special Message</h5>
                     </div>
-                    <span class='blurred'>
-                        <p class="text-muted">{{ $result['first_name_interpretation'] }}</p>
-                        <p class="text-muted">{{ $result['full_name_interpretation'] }}</p>
-                    </span>
+                    @php
+                    // Limit first name interpretation to 15 words
+                    $firstNameWords = explode(' ', $result['first_name_interpretation']);
+                    $limitedFirstName = implode(' ', array_slice($firstNameWords, 0, 15));
+                
+                    // Limit full name interpretation to 15 words
+                    $fullNameWords = explode(' ', $result['full_name_interpretation']);
+                    $limitedFullName = implode(' ', array_slice($fullNameWords, 0, 15));
+                @endphp
+                
+                <span class='blurred'>
+                    <p class="text-muted">{{ $limitedFirstName }}{{ count($firstNameWords) > 15 ? '...' : '' }}</p>
+                    <p class="text-muted">{{ $limitedFullName }}{{ count($fullNameWords) > 15 ? '...' : '' }}</p>
+                </span>
+                
                     <p class="red-text text-center">Pay and see full report</p>
                 </div>
             </div>

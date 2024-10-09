@@ -49,12 +49,15 @@
 
                 <div
                     class="whatsapp-details justify-content-center align-items-center p-3 my-5  mx-auto whatsapp-block-auto-width">
-                    <div class="d-flex justify-content-center align-items-center w-auto">
-                        <div class="me-2"><img src="{{ asset('frontend/assests/images/hero-section/whatsapp.svg') }}"
-                                alt="">
+                    <a href="https://wa.me/message/NQ3T7FSSHN76F1" target="_blank"
+                        class="d-flex justify-content-center align-items-center w-auto text-decoration-none">
+                        <div class="d-flex justify-content-center align-items-center w-auto">
+                            <div class="me-2"><img src="{{ asset('frontend/assests/images/hero-section/whatsapp.svg') }}"
+                                    alt="">
+                            </div>
+                            <p class="whatsapp-num "><span class="">Whats App :</span> 9883342145</p>
                         </div>
-                        <p class="whatsapp-num "><span class="">Whats App :</span> 9883342145</p>
-                    </div>
+                    </a>
                 </div>
               
 
@@ -127,27 +130,28 @@
                 </div>
 
                 <div class="client-order-details mt-md-0 pt-md-1">
-                    <p class="mb-2">Your Report will be shared within 48 hours </p>
-                    <p class="mb-2">OR</p>
-
-                    <p class="mb-2">You can consult us through:</p>
+                    <p class="mb-2">Your Report will be shared within <span class="font-weight-bold">48 hours </span></p>
+                    {{-- <p class="mb-2">you can directly contact with us</p> --}}
+                    <p class="mb-2">You can directly consult us through:</p>
                     {{-- <p class="mb-1"><span>Order ID : </span>{{ session('numerology_payment.order.id', 'N/A') }}
                     </p> --}}
-                    <p class="mb-1"><span>Client Email :
-                        </span>{{ session('numerology_payment.advance_numerology_data.email', 'N/A') }}</p>
-                    <p class="mb-1"><span>Client Phone :
-                        </span>{{ session('numerology_payment.advance_numerology_data.phone_number', 'N/A') }}</p>
+                    <p class="mb-1"><span> Email :
+                        </span>support@swrahan.com</p>
+                    <p class="mb-1"><span>Phone :
+                        </span>7096331505</p>
                 </div>
 
-                <div
-                    class="whatsapp-details justify-content-center align-items-center p-3 mt-5  mx-auto whatsapp-block-auto-width mb-5">
-                    <div class="d-flex justify-content-center align-items-center w-auto">
-                        <div class="me-2"><img src="{{ asset('frontend/assests/images/hero-section/whatsapp.svg') }}"
-                                alt="">
-                        </div>
-                        <p class="whatsapp-num"><span class="">Whats App :</span> 9883342145</p>
+                <div class="whatsapp-qr-outer-wrapper justify-content-lg-end justify-content-start mt-lg-0 mt-5">
+                    <div class="qr-wrapper p-3 text-center mx-auto rounded">
+                        <img src="{{ asset('frontend/assests/images/content/whatsaap-qr-img.png') }}" alt="footer_logo"
+                            class="img-fluid img-thumbnail" style="width: 150px; height: 150px;" />
+                        <p class="text-dark mt-3 fw-bold mb-0">
+                            Connect on WhatsApp
+                        </p>
                     </div>
                 </div>
+
+
 
 
 

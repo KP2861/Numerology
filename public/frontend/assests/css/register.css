@@ -49,6 +49,14 @@
     font-size: 12px;
 }
 
+.error-position{
+    position: absolute;
+    left: 0;
+    bottom: -20px!important;
+    font-size: 12px;
+}
+
+
 h1.main-heading {
     font-size: 30px;
     color: #21212C;

@@ -15,7 +15,7 @@
         $imagePath = public_path('frontend/assests/images/pdf/ganpati-ji-min.png');
         $raviMundraImagePath = public_path('frontend/assests/images/pdf/ravi-mundrra-img-min.png');
         $imageWatermark = public_path('frontend/assests/images/pdf/ravi-mundrra-watermark2.png');
-        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg1.png');
+        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
 
         // Read the file contents and encode them
         $imageData = base64_encode(file_get_contents($imagePath));

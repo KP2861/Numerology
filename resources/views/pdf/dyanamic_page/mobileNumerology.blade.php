@@ -68,8 +68,8 @@
 
                     <tr>
                         <td style="padding: 20px 0">
-                            <p style=" color:#FE1750; font-size:16px;">
-                                <mark>{{ $recommendationMessage }}</mark>
+                            <p style="color: #EC4400; font-size:16px; font-weight:bold">
+                                {{ $recommendationMessage }}
                             </p>
                         </td>
                     </tr>

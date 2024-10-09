@@ -367,7 +367,7 @@ Route::get('/download-mpdf', [PDFController::class, 'downloadPDF']);
 Route::get('/report-header', [WebPagesController::class, 'reportHeader']);
 Route::get('/report-footer', [WebPagesController::class, 'reportFooter']);
 
-Route::get('/new-home-page', [WebPagesController::class, 'newHomePage']);
+// Route::get('/new-home-page', [WebPagesController::class, 'newHomePage']);
 Route::get('/order-confirm', [WebPagesController::class, 'confirmOrder']);
 
 Route::get('/get-cities', [WebPagesController::class, 'getCities'])->name('get.cities');

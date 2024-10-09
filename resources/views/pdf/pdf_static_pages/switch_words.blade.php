@@ -15,6 +15,8 @@
     $imageChequeSrc = 'data:image/png;base64,' . $imageChequeContent;
 @endphp
 
+<a name="switchwordsPower"></a>
+
 
 {{-- <div
     style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}

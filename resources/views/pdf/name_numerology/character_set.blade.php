@@ -13,6 +13,7 @@
     $raviMundrraImageSrc = 'data:image/png;base64,' . $raviMundrraImageData;
     $raviMundrraWatermarkSrc = 'data:image/png;base64,' . $raviMundrraWatermark;
 @endphp
+<a name="fullNameCharacter"></a>
 
 <div style="height: 900px; width:70%; margin:0 auto;">
     <table style="width: 100%">

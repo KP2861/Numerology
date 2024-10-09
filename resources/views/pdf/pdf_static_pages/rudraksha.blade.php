@@ -14,6 +14,7 @@
     $raviMundrraBannerTwoSrc = 'data:image/png;base64,' . $raviMundrraBannerTwo;
     $imageChequeSrc = 'data:image/png;base64,' . $imageChequeContent;
 @endphp
+<a name="rudraksha"></a>
 
 
 {{-- <div

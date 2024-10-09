@@ -11,7 +11,7 @@
     $raviMundrraBannerOneSrc = 'data:image/png;base64,' . $raviMundrraBannerOne;
     $raviMundrraBannerTwoSrc = 'data:image/png;base64,' . $raviMundrraBannerTwo;
 @endphp
-
+<a name="whyRecomendedRemedies"></a>
 
 {{-- <div
     style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}
