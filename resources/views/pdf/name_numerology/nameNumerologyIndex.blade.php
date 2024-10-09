@@ -14,7 +14,7 @@
     // Check if alphabetIssues has data
     $alphabetIssues = $result['alphabetIssues']; // Assuming this variable contains alphabet issues data
     $additionalPage = !empty($alphabetIssues) ? 1 : 0; // Set to 1 if not empty, else 0
-
+// dd($additionalPage);
     // Add additional page if alphabetIssues has data
     $pagesFullName += $additionalPage; 
 @endphp

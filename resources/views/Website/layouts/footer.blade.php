@@ -34,6 +34,14 @@
                         problems, providing <b>effective remedies</b> that offer <b>lasting results</b>. Change your
                         life with <b>personalized guidance</b> and support today!
                     </p>
+                    <div class="d-flex align-items-start mt-4 me-md-3 me-0">
+                            <div class="h-100"><img
+                                    src="{{ asset('frontend/assests/images/hero-section/reach-us-icon.svg') }}"
+                                    alt="icon"></div>
+                            <div class=" ms-2">
+                                <p class=" footer-text mt-0">F-1002 Gala Haven Opp. Balaji Wind Park Near Vaishnodevi Circle, Ahmedabad, Gujarat</p>
+                            </div>
+                        </div>
                     <!-- <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4> -->
                     <ul class="social-links ">
                         <li><a href="https://www.facebook.com/RaviMundrraNumerology?mibextid=ZbWKwL"><i

@@ -85,7 +85,7 @@
                                 <!-- DOB Field -->
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 
-                                    <label for="dob">DOB</label>
+                                    <label for="dob">Date of Birth</label>
                                     <input type="date" id="dob" class="form-control" name="dob"
                                         value="{{ old('dob') }}" required>
                                     <div class="invalid-feedback text-danger small-error" id="dobError"></div>

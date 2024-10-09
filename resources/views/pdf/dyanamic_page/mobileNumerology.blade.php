@@ -29,6 +29,7 @@
                 : 'Your Number is suitable for you, if you want to get check compatibility with your business and job please get book your consultation';
     @endphp
 
+<a name="predictions"></a>
     {{-- <div
         style="background-image: url('{{ $backgroundPdfSrc }}'); background-size: cover; background-position: center; margin:auto; width:100%; height:100%;"> --}}
         <div style="height: 780px; width:70%; margin:0 auto;  ">

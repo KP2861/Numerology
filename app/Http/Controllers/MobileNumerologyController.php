@@ -129,7 +129,7 @@ class MobileNumerologyController extends Controller
         // Check if the max digit is valid
         if ($maxDigit !== null) {
             $multiCountRecord = MultiCount::where('digit', $maxDigit)->first();
-            return $multiCountRecord ? $multiCountRecord->message : 'No message found for this digit';
+            return $multiCountRecord ? $multiCountRecord->behaviour : 'No message found for this digit';
         }
 
         return 'No digit occurred more than twice.';

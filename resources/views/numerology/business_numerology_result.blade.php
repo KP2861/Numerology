@@ -49,6 +49,12 @@
             background: #F1EBE0;
             border: 1px solid #BA9A63;
         }
+
+        .large-text {
+            font-size: 18px;
+            color: red;
+            font-weight: bold;
+        }
     </style>
 
 </head>
@@ -190,6 +196,9 @@
                         </span>
                     @endif
                 </div>
+                <a href="{{ route('payment.get') }}" class="text-decoration-none">
+                    <p class="red-text text-center large-text">Pay and see full report</p>
+                </a>
             </div>
         @endforeach
 
@@ -200,9 +209,9 @@
                 <input type="hidden" name="results" value="{{ json_encode($results) }}">
 
                 <div class="d-flex justify-content-center align-items-center">
-                    <a href="{{ route('Website.pages.numerology') }}" class="btn filled-btn px-4 py-2">Calculate
+                    <a href="{{ route('Website.pages.numerology') }}" class="btn outline-btn px-4 py-2">Calculate
                         Again</a>
-                    <a href="{{ route('payment.get') }}" class="btn outline-btn px-4 py-2">Proceed to Payment</a>
+                    <a href="{{ route('payment.get') }}" class="btn filled-btn px-4 py-2">Proceed to Payment</a>
                 </div>
             </form>
         </div>

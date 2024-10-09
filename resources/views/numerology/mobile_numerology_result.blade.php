@@ -59,12 +59,17 @@
         .malefic-bg {
             color: #fff;
             background-color: rgb(180, 5, 5);
-            filter: blur(0.2px);
+
             font: 14px;
         }
 
         .malefic-message {
             background-color: rgba(255, 0, 0, 0.2);
+        }
+
+        .large-text {
+            font-size: 18px;
+
         }
     </style>
 </head>
@@ -88,8 +93,7 @@
                 <h2 class="card-title">Mobile Number: {{ $result['Mobile Number'] }}</h2>
 
                 <p class="card-text"><strong>Total:</strong> {{ $result['Total'] }}</p>
-                <p class="card-text"><strong>Compound:</strong> <span
-                       > {{ $result['Single Digit'] }}</span></p>
+                <p class="card-text"><strong>Compound:</strong> <span> {{ $result['Single Digit'] }}</span></p>
                 @php
                 // Split the message into words
                 $messageWords = explode(' ', $result['Personalized Message']);
@@ -101,16 +105,15 @@
                 <strong>Personalized Message:</strong> <span class="blurred">{{ $limitedMessage }}{{ count($messageWords) > 15 ? '...' : '' }}</span>
             </p>                
              
-                {{-- <p class="card-text"><strong>Largest Recurring Digit:</strong> {{ $result['Largest Recurring Digit'] }}</p>
-                <p class="card-text"><strong>Occurrence Count:</strong> {{ $result['Occurrence Count'] }}</p>
-                <p class="card-text"><strong>Message for Max Digit:</strong> {{ $result['Message for Max Digit'] }}</p> --}}
+            @if(isset($result['Largest Recurring Digit']) && isset($result['Occurrence Count']) && isset($result['Message for Max Digit']))
 
-                {{-- <!-- New: Displaying Date of Birth (DOB) -->
-                   <p class="card-text"><strong>Date of Birth:</strong> {{ $result['DOB'] }}</p> <!-- Ensure DOB is passed here from backend -->
-                   <h4 class="mt-4">Largest Digit Details:</h4>
-                   <p><strong>Trait:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['trate'] }}</p>
-                   <p><strong>Behavior:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['behaviour'] }}</p>
-                    --}}
+            <p class="card-text"><strong>Largest Recurring Digit:</strong> {{ $result['Largest Recurring Digit'] }}</p>
+            <p class="card-text"><strong>Occurrence Count:</strong> {{ $result['Occurrence Count'] }}</p>
+            <p class="card-text">
+                <strong>Message for Max Digit:</strong> 
+                {{ implode(' ', array_slice(explode(' ', $result['Message for Max Digit']), 0, 15)) }}...
+            </p>
+            @endif
                 <!-- Conditional Recommendation -->
                 @if ($hasMalefic)
                     <div class="alert alert-danger">
@@ -142,19 +145,22 @@
                 </div>
 
                 <!-- Messages Section -->
-                <div class="message-section mt-4">
+                <div class="message-section mt-4 ">
                     <h4 class="blurred">Messages</h4>
                     <ul>
                         @foreach ($result['Combinations'] as $data)
                             <li>
-                                <div class="message-box brown px-1 {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg' : 'malefic-text blurred' }}"
+                                <div class="message-box brown px-1 {{ $data->behaviour_of_combination == 'Malefic' ? 'malefic-bg blurred' : 'malefic-text blurred' }}"
                                     style="font-size: 14px">
                                     {{ $data->details }}
                                 </div>
                             </li>
                         @endforeach
                     </ul>
-                    <p class="red-text text-center">Pay and see full report</p>
+                    <a href="{{ route('payment.get') }}" class="text-decoration-none">
+                        <p class="red-text large-text text-center">Pay and see full report</p>
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -171,9 +177,9 @@
                 <input type="hidden" name="combinations" value="{{ json_encode($result['Combinations']) }}">
 
                 <div class="d-flex justify-content-center align-items-center">
-                    <a href="{{ url('/') }}" class="btn filled-btn px-4 py-2 d-inline-block">Calculate Another
+                    <a href="{{ url('/') }}" class="btn outline-btn px-4 py-2 d-inline-block">Calculate Another
                         Number</a>
-                    <a href="{{ route('payment.get') }}" class="btn outline-btn px-4 py-2">Proceed to Payment</a>
+                    <a href="{{ route('payment.get') }}" class="btn filled-btn px-4 py-2">Proceed to Payment</a>
                 </div>
             </form>
         </div>

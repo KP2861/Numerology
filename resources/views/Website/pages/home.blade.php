@@ -3,25 +3,25 @@
 <section class="intro-hero-section custom-hero-padding moon-bg-absolute">
     <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
         <div class="row">
-            <div class="reach-us-section pt-3 pb-xxl-2 mb-5 gap-3 pb-lg-2">
+            <div class="reach-us-section pt-3 pb-xxl-2 mb-4 gap-3 pb-lg-2">
                 <div>
                     <div class="contact-us-sub-section  gap-3">
                         <div class="reach-us subtitle">
-                            <div class="d-flex align-items-center justify-content-center h-100"><img
+                            <div class="mt-1"><img
                                     src="{{ asset('frontend/assests/images/hero-section/reach-us-icon.svg') }}"
                                     alt="icon"></div>
                             <div class="subtitle-inner ms-2">
                                 <p class="subtitle-heading mb-0">Reach Us</p>
-                                <p class="subtitle-para">601, Ram Nagar Dewas</p>
+                                <p class="subtitle-para fix-address-width">F-1002 Gala Haven, Ahmedabad, Gujarat.</p>
                             </div>
                         </div>
                         <div class="reach-us subtitle ms-md-4">
-                            <div class="d-flex align-items-center justify-content-center h-100"><img
+                            <div class="mt-1"><img
                                     src="{{ asset('frontend/assests/images/hero-section/call-icon.svg') }}" alt="icon">
                             </div>
                             <div class="subtitle-inner ms-2">
                                 <p class="subtitle-heading mb-0">Contact Us</p>
-                                <p class="subtitle-para">+91-6359455599</p>
+                                <p class="subtitle-para">+91-7096331505</p>
                             </div>
                         </div>
                     </div>
@@ -77,14 +77,14 @@
                             to
                             help you live your best life.
                         </p>
-                        <button class="hero-section-button fill-button fill-button-hero">
+                        <!-- <button class="hero-section-button fill-button fill-button-hero">
                             <p class="mb-0">Read More</p>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-5 order-md-2 order-1">
-                <div class=" h-100 mt-xxl-5 mt-2 py-lg-0 py-md-5 py-0">
+                <div class=" h-100 mt-xxl-5 mt-2 py-lg-0 py-md-5 py-0 pe-xxl-5">
                     <div class="pattern-outer h-100" id="heroanimate">
                         <img src="{{ asset('frontend/assests/images/hero-section/random-pattern.png') }}" alt=""
                             class="img-fluid web">
@@ -109,9 +109,9 @@
                 </div>
                 <div class="carousel-inner p-0">
                     <div class="carousel-item active">
-                        <div class="row align-items-center justify-content-center tabs gap-md-3 gap-1">
-                            <div class="col-auto  p-0">
-                                <div class="tab" onclick="showContent('astrology')">
+                        <div class="row align-items-center justify-content-center tabs gap-xxl-0 gap-1">
+                            <div class="col-auto  p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('astrology')">
                                     <div class="card-row-card"><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-1.svg') }}"
                                             alt="">
@@ -124,8 +124,8 @@
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('numerology')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('numerology')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-2.svg') }}"
                                             alt="">
@@ -138,25 +138,22 @@
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('vastu')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('vastu')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-3.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Vastu
-                                        </p>
-                                        <p class="hidden-text">
-                                            Shastra
+                                            Vastu Shastra
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('manifestation')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('manifestation')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-4.svg') }}"
                                             alt="">
@@ -169,18 +166,15 @@
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('prediction')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('prediction')">
                                     <div class="card-row-card"><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-5.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Event
-                                        </p>
-                                        <p class="hidden-text">
-                                            Prediction
+                                            Event Prediction
                                         </p>
                                     </div>
 
@@ -189,53 +183,44 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="row align-items-center justify-content-center tabs gap-md-3 gap-1">
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('scientific')">
+                        <div class="row align-items-center justify-content-center tabs gap-xxl-0 gap-1">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('scientific')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-6.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Scientific
-                                        </p>
-                                        <p class="hidden-text">
-                                            Designing
+                                            Scientific Designing
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('signature')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('signature')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-7.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Analysis Of
-                                        </p>
-                                        <p class="hidden-text">
-                                            Signature
+                                            Analysis Of Signature
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-auto  p-0">
-                                <div class="tab" onclick="showContent('watch')">
+                            <div class="col-auto  p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('watch')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-8.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Analysis Of
-                                        </p>
-                                        <p class="hidden-text">
-                                            Watch
+                                            Analysis Of Watch
                                         </p>
                                     </div>
 
@@ -243,32 +228,29 @@
                                 </div>
                             </div>
 
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('remedies')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('remedies')">
                                     <div class="card-row-card "><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-9.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
                                         <p class="hidden-text">
-                                            Remedies
+                                            Remedies vedic Rudraksha Crystals
                                         </p>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-auto p-0">
-                                <div class="tab" onclick="showContent('energy')">
+                            <div class="col-auto p-0 brown-cards-width-ctrl">
+                                <div class="tab mx-auto" onclick="showContent('energy')">
                                     <div class="card-row-card"><img
                                             src="{{ asset('frontend/assests/images/hero-section/card-row-10.svg') }}"
                                             alt="">
                                     </div>
                                     <div class="hidden-text-block">
-                                        <p class="hidden-text">
-                                            Energy
-                                        </p>
-                                        <p class="hidden-text">
-                                            Circle
+                                        <p class="hidden-text text-center">
+                                            Energy Circle
                                         </p>
                                     </div>
 
@@ -301,7 +283,7 @@
         <div class="content-brown-cards ">
             <div id="astrology" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About<span> Astrology</span>
                     </h2>
 
@@ -321,7 +303,7 @@
                     </div>
                     <div class="col-lg-7">
 
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Discover the transformative power of astrology with Swrahan! We don’t just
                                 predict your future; we guide you toward your best life. Our personalized readings,
                                 scientific approach, and deep insights help you understand your strengths, overcome
@@ -336,7 +318,7 @@
                         </div>
 
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -344,7 +326,7 @@
             </div>
             <div id="numerology" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About<span> Numerology</span>
                     </h2>
 
@@ -367,7 +349,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Unlock the secrets of your life with Swrahan’s expert numerology guidance!
                                 Our scientific approach to numerology helps you understand your unique numbers,
                                 empowering you to make better decisions and embrace your true potential. Whether you’re
@@ -381,7 +363,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -389,7 +371,7 @@
             </div>
             <div id="vastu" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About<span> Vastu Shastra</span>
                     </h2>
 
@@ -411,7 +393,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Transform your living and working spaces with Swrahan’s expert Vastu Shastra
                                 guidance! At Swrahan, we blend ancient Vastu principles with modern insights to create
                                 harmonious environments that promote health, prosperity, and happiness. Whether it’s
@@ -426,7 +408,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -434,7 +416,7 @@
             </div>
             <div id="manifestation" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About<span> Manifestation</span>
                     </h2>
 
@@ -454,7 +436,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Manifest your dreams into reality with Swrahan’s powerful manifestation
                                 techniques! At Swrahan, we help you tap into your inner power and align your energy with
                                 your desires, whether it’s wealth, health, love, or success. Our proven manifestation
@@ -468,7 +450,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -476,7 +458,7 @@
             </div>
             <div id="prediction" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span> Event Prediction</span>
                     </h2>
 
@@ -498,7 +480,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Gain clarity and insight into your future with Swrahan’s expert Event
                                 Prediction services! Our tailored predictions provide you with a comprehensive
                                 understanding of significant upcoming events in your life, from career shifts to
@@ -511,7 +493,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -519,7 +501,7 @@
             </div>
             <div id="scientific" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span>Scientific Designing</span>
                     </h2>
 
@@ -541,7 +523,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">At Swrahan, we specialize in creating scientific logo designs that embody
                                 innovation, precision, and professionalism while ensuring a strong brand identity. Our
                                 logos are tailored to reflect your unique vision and resonate with your audience.
@@ -555,7 +537,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -563,7 +545,7 @@
             </div>
             <div id="signature" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span>Analysis of Signature</span>
                     </h2>
 
@@ -585,7 +567,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Unlock the secrets of your success with Swrahan’s Signature Analysis! Your
                                 signature isn’t just a name; it’s a powerful expression of your personality, energy, and
                                 destiny. At Swrahan, our expert analysis reveals how the style, flow, and elements of
@@ -599,7 +581,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -607,7 +589,7 @@
             </div>
             <div id="watch" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span>Analysis of Watch</span>
                     </h2>
 
@@ -629,7 +611,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Discover the impact of your watch with Swrahan’s unique Watch Analysis! At
                                 Swrahan, we believe that your watch is more than just a timepiece—it’s an extension of
                                 your energy and personal style. Our expert analysis delves into the type, design, and
@@ -643,7 +625,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -651,7 +633,7 @@
             </div>
             <div id="remedies" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span>Remedies</span>
                     </h2>
 
@@ -673,7 +655,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Experience the power of simple, effective remedies with Swrahan! Our
                                 expertly curated remedies are designed to balance planetary influences and bring
                                 positive changes into your life. Whether you’re facing personal challenges, career
@@ -687,7 +669,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -695,7 +677,7 @@
             </div>
             <div id="energy" class="content-section">
                 <div class="row">
-                    <h2 class=" heading mb-3 mt-0 text-center">
+                    <h2 class=" heading mb-3 mt-sm-3 text-center">
                         About <span>Energy Circle</span>
                     </h2>
 
@@ -717,7 +699,7 @@
                         </div>
                     </div>
                     <div class="col-lg-7">
-                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3">
+                        <div class="brown-cards-content mt-5 mb-lg-5 mb-3 custom-para-padding-end-xl">
                             <p class="mb-2">Enhance your life with Swrahan’s powerful Energy Circles! Our expertly
                                 crafted Energy Circles are designed to harness positive vibrations and align your energy
                                 with your goals, whether for health, wealth, relationships, or overall well-being. By
@@ -731,7 +713,7 @@
 
                         </div>
 
-                        <button class="fill-button fill-button-body mb-5">Read More</button>
+                        <!-- <button class="fill-button fill-button-body mb-5">Read More</button> -->
                     </div>
 
 
@@ -743,26 +725,43 @@
 
 </section>
 
-<section class="prediction-section py-lg-5 pb-4 pt-2 ">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-
-            <div class="col-12">
-                <div class="video-player pb-3 mt-5">
-                    <iframe height="400" src="https://www.youtube.com/embed/D5WbLG82-gw" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-
+<section class="prediction-section py-lg-5 pb-4 pt-2">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12">
+                    <div class="video-player pb-3 mt-5">
+                        <!-- Here is the newly added player code -->
+                        <div class="video-container" id="videoContainer">
+                            <div id="player"></div>
+                            <!-- Move play text above the play button -->
+                            <div class="play-text" id="playText">Click to Start Video</div>
+                            <div class="play-button" id="customPlayButton">
+                                <i class="fa-regular fa-circle-play"></i>
+                            </div>
+                            <div class="blurred-background" id="blurredBackground"></div>
+                            <div class="recommendation-overlay" id="recommendedVideosOverlay">
+                                <button class="slider-button left p-1" id="leftButton"><i
+                                        class="fa-solid fa-chevron-left"></i></button>
+                                <div class="slider-container">
+                                    <div class="slider-content" id="sliderContent"></div>
+                                </div>
+                                <button class="slider-button right p-1" id="rightButton"><i
+                                        class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                            <!-- Message displayed when the video ends -->
+                            <div class="video-end-message" id="videoEndMessage">
+                                <p>⇩ Select Video to Play ⇩</p>
+                            </div>
+                        </div>
+                        <!-- End of newly added player code -->
+                    </div>
                 </div>
+                <h2 class="secondary-heading mt-3 mb-2">
+                    Prediction for Expression, and <span>Personality Numbers</span>
+                </h2>
             </div>
-
-            <h2 class="secondary-heading  mt-3 mb-2">
-                Prediction for Expression, and <span>Personality Numbers</span>
-            </h2>
         </div>
-    </div>
-</section>
+    </section>
 
 <section class="py-5 what-we-do-section">
     <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
@@ -770,50 +769,98 @@
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="row gy-4">
+                        <div class="row gy-5 pb-5">
                             <!-- Image Section -->
-                            <div class="col-lg-4 text-center"> <img
+                            <div class="col-lg-4 text-center p-0 position-relative h-100 mb-3"> <img
                                     src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-profile.png') }}"
-                                    alt="Ravi Mundra" class="carousel-img">
-                                <h4 class="mt-3 person-title">Ravi Mundra</h4>
-                            </div> <!-- Text Section -->
-                            <div class="col-lg-8 custom-carousel-content">
-                                <h3 class="mb-2 carousel-content-title">What <span>Do We Do?</span></h3>
-                                <p class="mb-3 carousel-content-descriprtion">Ravi Mundra is a seasoned Astrology and Numerology expert with over 15 years of experience. His expertise spans Vedic Astrology, KP Astrology, Bhrigu Nadi, and Nandi systems, along with a keen proficiency in numerology, including mobile numbers, personal names, and business names. With over 500+ lucky SIMs provided across India, Ravi’s work in enhancing fortunes is proven and impactful.
-                                    In addition to this, Ravi is a scientific logo designer, crafting logos that channel energy for success. As a visiting Vastu expert, he helps harmonize spaces to foster balance and positive energy flow. His hallmark is instant predictions for situational challenges, whether business or personal, offering practical remedies using Vedic traditions, Rudraksha therapy, Ravan Samhita, and more.
-                                    With his comprehensive approach and personalized solutions, Ravi Mundra is a go-to professional for those seeking growth, balance, and success.</p>
-                                <div class="experience-years d-flex gap-1 mb-4">
-                                    <p class="years mb-0">15+</p>
-                                    <div>
-                                        <p class="mb-0 years-of">Years of</p>
-                                        <p class="experience mt-0">Experience</p>
-                                    </div>
+                                    alt="Ravi Mundra" class="carousel-img img-fluid image-background-color">
+                                <div class="w-100 text-center person-title-outer">
+                                    <h4 class="mt-3 person-title">Ravi Mundra</h4>
                                 </div>
-                                <button class="fill-button fill-button-body">Read More</button>
+
+                            </div> <!-- Text Section -->
+                            <div class="col-lg-8 custom-carousel-content ">
+                                <div class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
+                                    <div>
+                                        <h3 class="mb-2 carousel-content-title">What <span>Do We Do?</span></h3>
+                                        <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Ravi
+                                            Mundra is a
+                                            seasoned Astrology and Numerology expert with over 15 years of experience.
+                                            His
+                                            expertise spans Vedic Astrology, KP Astrology, Bhrigu Nadi, and Nandi
+                                            systems, along
+                                            with a keen proficiency in numerology, including mobile numbers, personal
+                                            names, and
+                                            business names. With over 500+ lucky SIMs provided across India, Ravi’s work
+                                            in
+                                            enhancing fortunes is proven and impactful.
+                                            In addition to this, Ravi is a scientific logo designer, crafting logos that
+                                            channel
+                                            energy for success. As a visiting Vastu expert, he helps harmonize spaces to
+                                            foster
+                                            balance and positive energy flow. His hallmark is instant predictions for
+                                            situational challenges, whether business or personal, offering practical
+                                            remedies
+                                            using Vedic traditions, Rudraksha therapy, Ravan Samhita, and more.
+                                            With his comprehensive approach and personalized solutions, Ravi Mundra is a
+                                            go-to
+                                            professional for those seeking growth, balance, and success.</p>
+                                        <div class="experience-years d-flex gap-1 mb-4">
+                                            <p class="years mb-0">15+</p>
+                                            <div>
+                                                <p class="mb-0 years-of">Years of</p>
+                                                <p class="experience mt-0">Experience</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <button class="fill-button fill-button-body">Read More</button> -->
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="row gy-4">
+                        <div class="row gy-5 pb-5 ">
                             <!-- Image Section -->
-                            <div class="col-lg-4 text-center">
-                                <div class="unedited-image"> <img
-                                        src="{{ asset('frontend/assests/images/hero-section/swati-mundra.png') }}"
-                                        alt="swati Mundra" class="carousel-img"></div>
-                                <h4 class="mt-3 person-title">Swati Mundra</h4>
+                            <div class="col-lg-4 text-center p-0 h-100 position-relative mb-3">
+                                <img src="{{ asset('frontend/assests/images/hero-section/swati-mundra.png') }}"
+                                    alt="swati Mundra" class="carousel-img img-fluid image-background-color">
+                                <div class="w-100 text-center person-title-outer">
+                                    <h4 class="mt-3 person-title">Swati Mundra</h4>
+                                </div>
                             </div> <!-- Text Section -->
                             <div class="col-lg-8 custom-carousel-content">
-                                <h3 class="mb-2 carousel-content-title">What <span> We Do?</span></h3>
-                                <p class="mb-3 carousel-content-descriprtion">Swati Mundra is a seasoned Vastu consultant with over 10 years of expertise, excelling in optimizing spaces for homes, offices, and shops. She has also mastered industrial Vastu, driving significant growth and success for businesses. In addition, Swati is a skilled numerologist, specializing in mobile numerology, name numerology, and advising parents on auspicious baby names. Her remedies have delivered results in financial growth, relationships, business expansion, marriage harmony, and career advancements.
-                                    With a unique blend of Rudraksha and crystal therapies, Swati’s holistic approach ensures transformative changes, making her a trusted guide for those seeking personal and professional success.</p>
-                                <div class="experience-years d-flex gap-1 mb-4">
-                                    <p class="years mb-0">10+</p>
+                                <div class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
                                     <div>
-                                        <p class="mb-0 years-of">Years of</p>
-                                        <p class="experience mt-0">Experience</p>
+                                        <h3 class="mb-2 carousel-content-title">What <span> We Do?</span></h3>
+                                        <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Swati
+                                            Mundra is a
+                                            seasoned Vastu consultant with over 10 years of expertise, excelling in
+                                            optimizing
+                                            spaces for homes, offices, and shops. She has also mastered industrial
+                                            Vastu,
+                                            driving significant growth and success for businesses. In addition, Swati is
+                                            a
+                                            skilled numerologist, specializing in mobile numerology, name numerology,
+                                            and
+                                            advising parents on auspicious baby names. Her remedies have delivered
+                                            results in
+                                            financial growth, relationships, business expansion, marriage harmony, and
+                                            career
+                                            advancements.
+                                            With a unique blend of Rudraksha and crystal therapies, Swati’s holistic
+                                            approach
+                                            ensures transformative changes, making her a trusted guide for those seeking
+                                            personal and professional success.</p>
+                                        <div class="experience-years d-flex gap-1 mb-4">
+                                            <p class="years mb-0">10+</p>
+                                            <div>
+                                                <p class="mb-0 years-of">Years of</p>
+                                                <p class="experience mt-0">Experience</p>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- <button class="fill-button fill-button-body">Read More</button> -->
                                 </div>
-                                <button class="fill-button fill-button-body">Read More</button>
                             </div>
                         </div>
                     </div>
@@ -1148,7 +1195,7 @@
                 </p>
             </div>
         </div>
-        <div class="row gx-2 align-items-center">
+        <div class="row gx-2 align-items-stretch pt-2 gy-4">
             <div class="col-lg-6">
                 <div class="h-100">
                     <img src="{{ asset('frontend/assests/images/hero-section/work-life-balance.png') }}" alt=""
@@ -1186,7 +1233,7 @@
 </section>
 
 <!------------------------------------------------------------ testing -->
-<section class="latest-news prediction-section">
+<!-- <section class="latest-news prediction-section">
     <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
         <div class="row">
             <h2 class="nested-span mb-2 mt-0">
@@ -1231,18 +1278,11 @@
 
             </div>
         </div>
-        <!-- <a class="carousel-control-prev bg-transparent w-aut d-none" href="#recipeCarousel" role="button"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon d-none" aria-hidden="true"></span>
-        </a> -->
-        <!-- <a class="carousel-control-next bg-transparent w-aut d-none" href="#recipeCarousel" role="button"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon  d-none" aria-hidden="true"></span>
-        </a> -->
+       
     </div>
 
 
-</section>
+</section> -->
 
 
 

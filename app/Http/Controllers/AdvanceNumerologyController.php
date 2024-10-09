@@ -94,20 +94,29 @@ class AdvanceNumerologyController extends Controller
     }
 
     // Method to get Largest Recurring Digit
+ 
     private function getLargestRecurringDigit($phoneNumber)
     {
+        // Count the occurrences of each digit in the phone number
         $digits = array_count_values(str_split($phoneNumber));
 
+        // Find the digit with the maximum occurrences
         $maxDigit = array_keys($digits, max($digits))[0];
         $maxCount = $digits[$maxDigit];
 
-        return [$maxDigit, $maxCount];
+        // Return the digit and its count only if it occurs more than 2 times
+        return $maxCount > 2 ? [$maxDigit, $maxCount] : null;
     }
 
     private function getMessageForMaxDigit($maxDigit)
     {
-        $multiCountRecord = MultiCount::where('digit', $maxDigit)->first();
-        return $multiCountRecord ? $multiCountRecord->message : 'No message found for this digit';
+        // Check if the max digit is valid
+        if ($maxDigit !== null) {
+            $multiCountRecord = MultiCount::where('digit', $maxDigit)->first();
+            return $multiCountRecord ? $multiCountRecord->behaviour : 'No message found for this digit';
+        }
+
+        return 'No digit occurred more than twice.';
     }
 
     // New method to get Date of Birth (DOB) from PhoneNumerology model
@@ -334,7 +343,7 @@ class AdvanceNumerologyController extends Controller
         $result['DOB'] = $dob;
         $result['MultiDate Count'] = $multiDateCountDetails;
         // $result['Date Detail'] = $dateDetail;
-        // dd($result);
+        //  dd($result);
         return view('numerology.advance_numerology_result', [
             'result' => $result,
         ]);

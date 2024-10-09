@@ -56,7 +56,7 @@
         .malefic-bg {
             color: #fff;
             background-color: rgb(180, 5, 5);
-            filter: blur(0.2px);
+
             font: 14px;
         }
 
@@ -92,6 +92,11 @@
         .border-secondary {
             border-color: rgb(68, 56, 56) !important;
         }
+
+        .large-text {
+            font-size: 18px;
+
+        }
     </style>
 </head>
 
@@ -106,14 +111,16 @@
                         <h5 class="mb-0"> Name Analysis</h5>
                     </div>
                     @php
-                    $firstNameInterpretation = $result['first_name_interpretation'];
-                    $firstNameWords = explode(' ', $firstNameInterpretation);
-                @endphp
+                        $firstNameInterpretation = $result['first_name_interpretation'];
+                        $firstNameWords = explode(' ', $firstNameInterpretation);
+                    @endphp
                     <div class="first-name">
                         <h5 class="brown-text">First Name Total: <span
                                 class="fw-bold">{{ $result['first_name_total'] }}</span></h5>
-                        <p>First Name Single Digit: <span class="fw-bold ">{{ $result['first_name_single_digit'] }}</span>
-                            <span class="text-muted ">  {{ count($firstNameWords) > 15 ? implode(' ', array_slice($firstNameWords, 0, 15)) . ' ...' : $firstNameInterpretation }}</span>
+                        <p>First Name Single Digit: <span
+                                class="fw-bold ">{{ $result['first_name_single_digit'] }}</span>
+                            <span class="text-muted ">
+                                {{ count($firstNameWords) > 15 ? implode(' ', array_slice($firstNameWords, 0, 15)) . ' ...' : $firstNameInterpretation }}</span>
                         </p>
                     </div>
 
@@ -125,7 +132,8 @@
                         <h5 class="brown-text">Full Name Total: <span
                                 class="fw-bold">{{ $result['full_name_total'] }}</span></h5>
                         <p>Full Name Single Digit: <span class="fw-bold ">{{ $result['full_name_single_digit'] }}</span>
-                            <span class="text-muted ">  {{ count($fullNameWords) > 15 ? implode(' ', array_slice($fullNameWords, 0, 15)) . ' ...' : $fullNameInterpretation }}</span>
+                            <span class="text-muted ">
+                                {{ count($fullNameWords) > 15 ? implode(' ', array_slice($fullNameWords, 0, 15)) . ' ...' : $fullNameInterpretation }}</span>
                         </p>
                     </div>
                     <!-- First Name Letters Details -->
@@ -141,39 +149,50 @@
                             <div>
                                 <h5 class="brown-text mt-3">First Name Letter Breakdown:</h5>
                                 @if (count($result['first_name_details']) > 0)
-                                @php
-                                    $detail = $result['first_name_details'][0]; // Get the first detail directly
-                                @endphp
-                                <div class="partition border-secondary">
-                                    <p><strong>Letter:</strong> <span class="blurred">{{ $detail['letter'] }}</span></p>
-                                    <p><strong>Strengths:</strong><span class="blurred">{{ $detail['strengths'] }}</span></p>
-                                    <p><strong>Weaknesses:</strong> <span class="blurred">{{ $detail['weaknesses'] }}</span></p>
-                                    <p><strong>Best Jobs:</strong> <span class="blurred">{{ $detail['best_jobs'] }}</span></p>
-                                    <p><strong>Nature:</strong> <span class="blurred">{{ $detail['nature'] }}</span></p>
-                                </div>
-                            @endif
+                                    @php
+                                        $detail = $result['first_name_details'][0]; // Get the first detail directly
+                                    @endphp
+                                    <div class="partition border-secondary">
+                                        <p><strong>Letter:</strong> <span class="blurred">{{ $detail['letter'] }}</span>
+                                        </p>
+                                        <p><strong>Strengths:</strong><span
+                                                class="blurred">{{ $detail['strengths'] }}</span></p>
+                                        <p><strong>Weaknesses:</strong> <span
+                                                class="blurred">{{ $detail['weaknesses'] }}</span></p>
+                                        <p><strong>Best Jobs:</strong> <span
+                                                class="blurred">{{ $detail['best_jobs'] }}</span></p>
+                                        <p><strong>Nature:</strong> <span
+                                                class="blurred">{{ $detail['nature'] }}</span></p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div>
                                 <h5 class="brown-text mt-3">Last Name Letter Breakdown:</h5>
                                 @if (count($result['last_name_details']) > 0)
-                                @php
-                                    $detail = $result['last_name_details'][0]; // Get the first detail directly
-                                @endphp
-                                <div class="partition border-secondary">
-                                    <p><strong>Letter:</strong> <span class="blurred">{{ $detail['letter'] }}</span></p>
-                                    <p><strong>Strengths:</strong> <span class="blurred">{{ $detail['strengths'] }}</span></p>
-                                    <p><strong>Weaknesses:</strong> <span class="blurred">{{ $detail['weaknesses'] }}</span></p>
-                                    <p><strong>Best Jobs:</strong> <span class="blurred">{{ $detail['best_jobs'] }}</span></p>
-                                    <p><strong>Nature:</strong> <span class="blurred">{{ $detail['nature'] }}</span></p>
-                                </div>
-                            @endif
+                                    @php
+                                        $detail = $result['last_name_details'][0]; // Get the first detail directly
+                                    @endphp
+                                    <div class="partition border-secondary">
+                                        <p><strong>Letter:</strong> <span
+                                                class="blurred">{{ $detail['letter'] }}</span></p>
+                                        <p><strong>Strengths:</strong> <span
+                                                class="blurred">{{ $detail['strengths'] }}</span></p>
+                                        <p><strong>Weaknesses:</strong> <span
+                                                class="blurred">{{ $detail['weaknesses'] }}</span></p>
+                                        <p><strong>Best Jobs:</strong> <span
+                                                class="blurred">{{ $detail['best_jobs'] }}</span></p>
+                                        <p><strong>Nature:</strong> <span
+                                                class="blurred">{{ $detail['nature'] }}</span></p>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <p class="text-center red-text">Pay and see full report for additional detail</p>
-
+                    <a href="{{ route('payment.get') }}" class="text-decoration-none">
+                        <p class="text-center red-text large-text">Pay and see full report for additional detail</p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -191,28 +210,31 @@
                         <h5 class="mb-0">Special Message</h5>
                     </div>
                     @php
-                    // Limit first name interpretation to 15 words
-                    $firstNameWords = explode(' ', $result['first_name_interpretation']);
-                    $limitedFirstName = implode(' ', array_slice($firstNameWords, 0, 15));
-                
-                    // Limit full name interpretation to 15 words
-                    $fullNameWords = explode(' ', $result['full_name_interpretation']);
-                    $limitedFullName = implode(' ', array_slice($fullNameWords, 0, 15));
-                @endphp
-                
-                <span class='blurred'>
-                    <p class="text-muted">{{ $limitedFirstName }}{{ count($firstNameWords) > 15 ? '...' : '' }}</p>
-                    <p class="text-muted">{{ $limitedFullName }}{{ count($fullNameWords) > 15 ? '...' : '' }}</p>
-                </span>
-                
-                    <p class="red-text text-center">Pay and see full report</p>
+                        // Limit first name interpretation to 15 words
+                        $firstNameWords = explode(' ', $result['first_name_interpretation']);
+                        $limitedFirstName = implode(' ', array_slice($firstNameWords, 0, 15));
+
+                        // Limit full name interpretation to 15 words
+                        $fullNameWords = explode(' ', $result['full_name_interpretation']);
+                        $limitedFullName = implode(' ', array_slice($fullNameWords, 0, 15));
+                    @endphp
+
+                    <span class='blurred'>
+                        <p class="text-muted">{{ $limitedFirstName }}{{ count($firstNameWords) > 15 ? '...' : '' }}
+                        </p>
+                        <p class="text-muted">{{ $limitedFullName }}{{ count($fullNameWords) > 15 ? '...' : '' }}</p>
+                    </span>
+                    <a href="{{ route('payment.get') }}" class="text-decoration-none">
+                        <p class="red-text text-center large-text">Pay and see full report</p>
+                    </a>
                 </div>
             </div>
         </div>
 
         <div class="text-center mt-2">
             <div class="text-center my-4">
-                <a href="{{ route('Website.pages.numerology') }}" class="btn filled-btn px-4 py-2">Calculate Again</a>
-                <a href="{{ route('payment.get') }}" class="btn outline-btn px-4 py-2">Proceed to Payment</a>
+                <a href="{{ route('Website.pages.numerology') }}" class="btn outline-btn  px-4 py-2">Calculate
+                    Again</a>
+                <a href="{{ route('payment.get') }}" class="btn  filled-btn px-4 py-2">Proceed to Payment</a>
             </div>
         </div>

@@ -1622,9 +1622,9 @@ p.carousel-content-descriprtion {
 }
 
 h4.person-title {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 54px;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 50px;
     color: #21212C;
 
 }
@@ -1715,6 +1715,12 @@ h4.person-title {
 
 }
 
+@media  screen and (max-width:999px) {
+    .hidden-text-block{
+        display: none;
+    }    
+}
+
 .hidden-text {
     font-size: 18px;
     font-weight: 500;
@@ -1737,6 +1743,37 @@ h4.person-title {
 @media screen and (max-width:1500px){
     .brown-cards-width-ctrl .tab{
         max-width:192px;
+    }
+}
+
+@media screen and (max-width:1300px){
+    .brown-cards-width-ctrl .tab{
+        max-width:150px;
+    }
+}
+@media screen and (max-width:1100px){
+    .brown-cards-width-ctrl .tab{
+        max-width:110px;
+    }
+}
+@media screen and (max-width:999px){
+    .brown-cards-width-ctrl .tab{
+        max-width:100px;
+    }
+}
+@media screen and (max-width:786px){
+    .brown-cards-width-ctrl .tab{
+        max-width:70px;
+        height:70px;
+    }
+    .card-row-card{
+        padding:20px 20px;
+    }
+}
+@media screen and (max-width:576px){
+    .brown-cards-width-ctrl .tab{
+        max-width:50px;
+        height:50px;
     }
 }
 
@@ -1918,9 +1955,9 @@ h3.carousel-content-title span {
     }
 
     h4.person-title {
-        font-size: 24px;
-        line-height: 38px;
-        font-weight: 700;
+        font-size: 22px;
+        line-height: 36px;
+        font-weight: 600;
     }
 
     .content-brown-cards {
@@ -2027,6 +2064,7 @@ h3.carousel-content-title span {
 
     .combining-astrology h3 {
         font-size: 22px;
+        line-height: 28px;
     }
 
     .combining-astrology p {
@@ -2089,9 +2127,9 @@ h3.carousel-content-title span {
     }
 
     h4.person-title {
-        font-size: 24px;
-        line-height: 38px;
-        font-weight: 700;
+        font-size: 22px;
+        line-height: 36px;
+        font-weight: 600;
     }
 
     .secondary-heading {
@@ -2141,7 +2179,7 @@ h3.carousel-content-title span {
     }
 
     .card-row-card {
-        padding: 15px;
+        padding:20px 35px;
     }
 
     /* .reach-us-section{
@@ -2194,9 +2232,15 @@ h3.carousel-content-title span {
 }
 
 
+@media screen and (max-width:470px) {
+    .card-row-card {
+        padding: 15px 30px;
+    }
+}
+
 @media screen and (max-width:375px) {
     .card-row-card {
-        padding: 10px;
+        padding: 15px 25px;
     }
 }
 
@@ -2265,8 +2309,29 @@ h3.carousel-content-title span {
     background-color: #f7f7f7;
 }
 
-.context-wrapper{
-    width:auto;
+
+.fix-address-width{
+max-width: 300px;
+}
+
+.custom-para-padding-end-xl{
+    padding-right:330px;
+}
+
+@media screen and (max-width:1600px){
+    .custom-para-padding-end-xl{
+        padding-right: 0px;
+    }
+}
+
+.custom-para-padding-end{
+    padding-right:200px;
+}
+
+@media screen and (max-width:1600px){
+    .custom-para-padding-end{
+        padding-right: 0px;
+    }
 }
 
 

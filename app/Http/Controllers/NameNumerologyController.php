@@ -165,41 +165,40 @@ class NameNumerologyController extends Controller
 
     // DOB Multi digit and its detail
     private function getMultiDateCount($dob)
-    {
-        try {
-            // Remove dashes and split DOB into individual digits
-            $dobDigits = str_split(str_replace('-', '', $dob));
+{
+    try {
+        // Remove dashes and split DOB into individual digits
+        $dobDigits = str_split(str_replace('-', '', $dob));
 
-            // Count occurrences of each digit, ignoring leading zeros
-            $dobDigitCounts = array_count_values(array_map(function ($digit) {
-                return $digit === '0' ? '0' : ltrim($digit, '0');
-            }, $dobDigits));
+        // Count occurrences of each digit, including zeros
+        $dobDigitCounts = array_count_values($dobDigits);
 
-            // Get the maximum occurrence
-            $maxCount = max($dobDigitCounts);
-            $largestDigits = array_keys($dobDigitCounts, $maxCount);
+        // Get the maximum occurrence
+        $maxCount = max($dobDigitCounts);
+        $largestDigits = array_keys($dobDigitCounts, $maxCount);
 
-            // Initialize largestDigit
-            $largestDigit = '';
+        // Initialize largestDigit
+        $largestDigit = '';
 
-            // Check if there are any largest digits
-            if (!empty($largestDigits)) {
-                // If the largest digit is '0', keep it, otherwise take the first largest
-                $largestDigit = in_array('0', $largestDigits) ? '0' : $largestDigits[0];
-            }
+        // Check if there are any largest digits
+        if (!empty($largestDigits)) {
+            // Select the first largest digit
+            $largestDigit = $largestDigits[0];
+        }
 
-            // Fetch records from MultiCountDOB for the digits found in the DOB
-            $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
+        // Fetch records from MultiCountDOB for the digits found in the DOB
+        $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
 
-            // If no matching records found, return a message
-            if ($multiDateCount->isEmpty()) {
-                return 'No matching records found.';
-            }
+        // If no matching records found, return a message
+        if ($multiDateCount->isEmpty()) {
+            return 'No matching records found.';
+        }
 
-            // Find the corresponding record for the largest occurring digit and its count
-            $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
-                return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
-            });
+        // Find the corresponding record for the largest occurring digit and its count
+        $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
+            return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
+        });
+
             // Return the relevant information
             return [
                 'multiDateCount' => $multiDateCount,
@@ -789,7 +788,7 @@ class NameNumerologyController extends Controller
             if (!in_array($name, $nameParts)) {
                 $nameParts[] = $name;
             }
-
+// dd($nameParts);
             return $nameParts;
         }
 
@@ -829,10 +828,12 @@ class NameNumerologyController extends Controller
 
             // Find the largest full name match if available
             if ($fullNameMatches->isNotEmpty()) {
+                // dd($fullNameMatches);
                 $largestFullNameMatch = $fullNameMatches->sortByDesc(function ($match) {
                     return strlen($match->name); // Sort by the length of the name in descending order
                 })->first(); // Get the first (largest) match
                 $result['full_name_matches'] = $largestFullNameMatch; // Store the largest match
+        //   dd($largestFullNameMatch);
             }
 
             // Check if any matches were found and return accordingly
@@ -988,12 +989,22 @@ class NameNumerologyController extends Controller
             $nameMatches = $this->checkNameParts($firstName, $lastName, $username);
             $alphabetIssues = $this->getMostFrequentAlphabetIssues($username);
             $nameDetails = [];
-
+            //    dd( $charAndMultiples);
             // Prepare name details
             if ($nameMatches) {
                 // First Name Matches
                 if (isset($nameMatches['first_name_matches'])) {
-                    if ($nameMatches['first_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
+                    if ($nameMatches['first_name_matches'] instanceof \Illuminate\Database\Eloquent\Model) {
+                        $match = $nameMatches['first_name_matches'];
+                        $nameDetails['first_name_matches'][] = [
+                            'id' => $match->id,
+                            'name' => $match->name_sound,
+                            'type' => $match->energy_type,
+                            'issues_faced_in_life' => $match->life_challenges_or_success,
+                            'details' => $match->meaning,
+                            'famous_names' => $match->famous_names
+                        ];
+                    } elseif ($nameMatches['first_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
                         $nameDetails['first_name_matches'] = $nameMatches['first_name_matches']->map(function ($match) {
                             return [
                                 'id' => $match->id,
@@ -1006,26 +1017,20 @@ class NameNumerologyController extends Controller
                         })->toArray();
                     }
                 }
-
-                // Last Name Matches
-                if (isset($nameMatches['last_name_matches'])) {
-                    if ($nameMatches['last_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
-                        $nameDetails['last_name_matches'] = $nameMatches['last_name_matches']->map(function ($match) {
-                            return [
-                                'id' => $match->id,
-                                'name' => $match->name_sound,
-                                'type' => $match->energy_type,
-                                'issues_faced_in_life' => $match->life_challenges_or_success,
-                                'details' => $match->meaning,
-                                'famous_names' => $match->famous_names
-                            ];
-                        })->toArray();
-                    }
-                }
-
+            
                 // Full Name Matches
                 if (isset($nameMatches['full_name_matches'])) {
-                    if ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
+                    if ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Model) {
+                        $match = $nameMatches['full_name_matches'];
+                        $nameDetails['full_name_matches'][] = [
+                            'id' => $match->id,
+                            'name' => $match->name_sound,
+                            'type' => $match->energy_type,
+                            'issues_faced_in_life' => $match->life_challenges_or_success,
+                            'details' => $match->meaning,
+                            'famous_names' => $match->famous_names
+                        ];
+                    } elseif ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Collection) {
                         $nameDetails['full_name_matches'] = $nameMatches['full_name_matches']->map(function ($match) {
                             return [
                                 'id' => $match->id,
@@ -1039,6 +1044,7 @@ class NameNumerologyController extends Controller
                     }
                 }
             }
+            
 
             // Process DOB for compound details
             if ($dob) {
@@ -1092,7 +1098,7 @@ class NameNumerologyController extends Controller
                 'getBasicDetail' => $getBasicDetail,
                 'bestJobs' => $bestJobs
             ];
-            //   dd($data);
+        //    dd($data);
             // Initialize mPDF instance with margins
             $mpdf = new \Mpdf\Mpdf([
                 'tempDir' => '/tmp',
