@@ -154,8 +154,8 @@ class AdvanceNumerologyController extends Controller
         }, $dobDigits));
         // dd($dobDigitCounts);
         // Get the maximum occurrence
-        $maxCount = max($dobDigitCounts);
-        $largestDigits = array_keys($dobDigitCounts, $maxCount);
+        // $maxCount = max($dobDigitCounts);
+        // $largestDigits = array_keys($dobDigitCounts, $maxCount);
         // dd($maxCount);
         // Initialize largestDigit
         $largestDigit = '';
