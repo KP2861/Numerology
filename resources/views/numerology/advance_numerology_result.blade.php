@@ -167,7 +167,6 @@
                 <input type="hidden" name="total" value="{{ $result['Total'] }}">
                 <input type="hidden" name="single_digit" value="{{ $result['Single Digit'] }}">
                 <input type="hidden" name="personalized_message" value="{{ $result['Personalized Message'] }}">
-                <input type="hidden" name="dob" value="{{ $result['DOB'] }}"> <!-- New: Passing DOB to backend -->
                 <input type="hidden" name="combinations" value="{{ json_encode($result['Combinations']) }}">
 
                 <div class="d-flex justify-content-center align-items-center">
