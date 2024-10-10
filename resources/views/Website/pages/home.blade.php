@@ -33,7 +33,9 @@
                             </button></div>
                         <div class="d-flex">
                             <div class="button-outer">
-                                @if (!Auth::check())
+                                @if (!Auth::check() || !session()->has('user_login'))
+
+
                                     <!-- User is not logged in -->
                                     <a href="{{ url('/login') }}">
                                         <button class="fill-button fill-button-hero">
@@ -44,7 +46,7 @@
                                 @endif
                             </div>
                             <div class="mt-1 ms-3">
-                                @if (Auth::check())
+                                @if (Auth::check() && session()->has('user_login'))
                                     <!-- Show this only if the user is logged in -->
                                     <a href="{{ url('/profile') }}">
                                         <img src="{{ asset('frontend/assests/images/hero-section/user-logged-in.svg') }}"

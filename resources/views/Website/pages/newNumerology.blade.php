@@ -224,8 +224,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Name</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Name</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Empower Yourself:</strong> Knowing your name's vibrational frequency can help you align
                             with your true path.
@@ -388,8 +388,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Mobile</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Mobile</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Discover Your Life Path:</strong> Each digit in your mobile number carries unique
                             vibrations and characteristics that can shape your experiences and opportunities.
@@ -558,8 +558,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Advanced</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Advanced</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Explore the Depths of Your Soul:</strong> Advanced Numerology delves into your core
                             numbers, including Life Path, Expression, and Soul Urge numbers, providing a complete picture of
@@ -884,8 +884,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span>Business</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Business</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Align with Universal Energies:</strong> Every name carries a vibrational frequency that
                             can influence your business's growth and success. Our Business Name Numerology analyses these
@@ -936,10 +936,13 @@
             // Show the specific tab content
             $('#' + serviceName).show();
             $(evt.currentTarget).addClass('active');
+
+            // Update the URL hash without reloading the page
+            window.location.hash = serviceName;
         }
 
         $(document).ready(function() {
-            // Hide all tab content except for the first tab
+            // Hide all tab content except for the first tab on page load
             $('.tabcontent-num').hide();
             $('.tabcontent-num').first().show();
 
@@ -947,23 +950,24 @@
             $('[data-tab-target]').on('click', function(evt) {
                 var target = $(this).data('tab-target');
                 var type = $(this).data('type');
-                openService(evt, target.substring(1)); // Open the service tab
 
-                // Set value for numerology_type to type
+                // Open the service tab and update the URL hash
+                openService(evt, target.substring(1));
+
+                // Set the value for the numerology_type
                 $('.numerology_type').val(type);
+
+                // AJAX call to fetch numerology type data
                 $.ajax({
                     url: '/numerology/type/' + type,
                     method: 'GET',
                     success: function(data) {
-                        console.log('Fetched data:', data);
                         if (data && data.numerology) {
+                            // Update the package amount if available
                             $('.package_amount').val(data.numerology.packages_amount || '');
-                            console.warn('Package Amount (from data):', data.numerology
-                                .packages_amount);
                         } else {
-                            console.warn(
-                                'No numerology data found or data structure is incorrect');
-                            $('.package_amount').text('');
+                            // Clear package amount if no data is found
+                            $('.package_amount').val('');
                         }
                     },
                     error: function(xhr, status, error) {
@@ -972,17 +976,18 @@
                 });
             });
 
-            // Trigger click on the first tab on page load
-            $('[data-tab-target]').first().trigger('click');
+            // Check if there is a hash in the URL (e.g., #MobileNumerology)
+            var hash = window.location.hash;
+            if (hash) {
+                // Trigger the click event on the tab that matches the hash
+                $('[data-tab-target="' + hash + '"]').trigger('click');
+            } else {
+                // If no hash, trigger click on the first tab on page load
+                $('[data-tab-target]').first().trigger('click');
+            }
         });
-
-        // Toggle Partner Details Visibility
-        // function togglePartnerDetails() {
-        //     var select = document.getElementById("partner-selection");
-        //     var partnerDetails = document.getElementById("partner-details");
-        //     partnerDetails.style.display = select.value === "yes" ? "block" : "none";
-        // }
     </script>
+
 
     {{-- partner section --}}
 

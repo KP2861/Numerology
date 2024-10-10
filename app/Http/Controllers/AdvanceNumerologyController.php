@@ -331,18 +331,17 @@ class AdvanceNumerologyController extends Controller
         $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
 
         // Get DOB and multi-date details
-        //  $dob = $this->getDOB($mobileNumber);
-        //  dd($dob);
+        $dob = $this->getDOB($mobileNumber);
         // Call getMultiDateCount to get DOB related numerology details
-        // $multiDateCountDetails = $this->getMultiDateCount($dob);
+        $multiDateCountDetails = $this->getMultiDateCount($dob);
         // $dateDetail = $this->getDateDetails($dob);
 
 
         $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxDigit, $maxCount, $messageForMaxDigit);
 
         // Adding DOB-related information to the result
-        // $result['DOB'] = $dob;
-        // $result['MultiDate Count'] = $multiDateCountDetails;
+        $result['DOB'] = $dob;
+        $result['MultiDate Count'] = $multiDateCountDetails;
         // $result['Date Detail'] = $dateDetail;
         //  dd($result);
         return view('numerology.advance_numerology_result', [
