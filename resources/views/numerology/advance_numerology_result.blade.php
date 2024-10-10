@@ -76,15 +76,7 @@
 </head>
 
 <body>
-    @php
-        $hasMalefic = collect($result['Combinations'])->contains('behaviour_of_combination', 'Malefic');
-        $containsSix = strpos($result['Mobile Number'], '6') !== false;
-
-        $recommendationMessage =
-            $containsSix || $hasMalefic
-                ? 'Recommendation: Change your mobile number as it has multiple Malefic combinations which create routine life issues with Health, Wealth & Relationship.'
-                : 'Your Number is suitable for you. If you want to check compatibility with your business and job, please book a consultation.';
-    @endphp
+  
 
     <div class="container mt-5">
         <h1 class="text-center brown-text fw-bold">Advance Numerology Result</h1>
@@ -126,16 +118,7 @@
                    <p><strong>Trait:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['trate'] }}</p>
                    <p><strong>Behavior:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['behaviour'] }}</p>
                     --}}
-                <!-- Conditional Recommendation -->
-                @if ($hasMalefic)
-                    <div class="alert alert-danger">
-                        <mark style="background: transparent">{{ $recommendationMessage }}</mark>
-                    </div>
-                @else
-                    <div class="alert alert-success">
-                        <mark style="background: transparent">{{ $recommendationMessage }}</mark>
-                    </div>
-                @endif
+              
 
                 <!-- Combinations Table -->
                 <h3 class="mt-4 blurred">Combinations:</h3>

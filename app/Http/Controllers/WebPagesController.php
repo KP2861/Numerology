@@ -123,8 +123,19 @@ class WebPagesController extends Controller
 
     public function profile()
     {
-        return view('Website.pages.profile');
+        // if (!Auth::check() && !session()->has('user_login')) {
+        //     // Redirect to the login page if the user is not authenticated and the session 'user_login' is not set
+        //     return redirect()->route('login');
+        // }
+        if (Auth::check() && session()->has('user_login')) {
+
+            // If the user is authenticated or the 'user_login' session is set, show the profile page
+            return view('Website.pages.profile');
+        } else {
+            return redirect()->route('login');
+        }
     }
+
     //profile fetch 
 
     //numero
@@ -191,5 +202,4 @@ class WebPagesController extends Controller
     {
         return view('Website.pages.orderPlaced');
     }
-
 }

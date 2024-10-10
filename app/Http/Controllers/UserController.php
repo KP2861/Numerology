@@ -19,12 +19,15 @@ class UserController extends Controller
 {
     public function showRegistrationForm()
     {
-        if (Auth::check()) {
-
+        if (Auth::check() && session()->has('user_login')) {
+            // Redirect to home if the user is logged in and session 'user_login' is set
             return redirect()->intended('/');
         }
+
+        // If not authenticated or session 'user_login' is not set, show the registration form
         return view('auth.register');
     }
+
 
 
     public function register(Request $request)
@@ -99,12 +102,15 @@ class UserController extends Controller
 
     public function showLoginForm()
     {
-        if (Auth::check()) {
-            // Redirect to home if the user is logged in
+        if (Auth::check() && session()->has('user_login')) {
+            // Redirect to home if the user is logged in and session 'user_login' is set
             return redirect()->intended('/');
         }
+
+        // If not authenticated or session 'user_login' is not set, show the login form
         return view('auth.login');
     }
+
 
     //user login
     public function login(Request $request)
@@ -322,15 +328,15 @@ class UserController extends Controller
 
     //new forgot password
 
-       // Forget password page view
-       public function showNewForgetPasswordForm()
-       {
-           return view('auth.newForgotPassword');
-       }
+    // Forget password page view
+    public function showNewForgetPasswordForm()
+    {
+        return view('auth.newForgotPassword');
+    }
 
-       //update password
-       public function showUpdatePasswordForm() {
+    //update password
+    public function showUpdatePasswordForm()
+    {
         return view('auth.newUpdatePassword');
     }
-   
 }

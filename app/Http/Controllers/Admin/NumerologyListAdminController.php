@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Exception;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 
 class NumerologyListAdminController extends Controller
 {
@@ -30,18 +31,37 @@ class NumerologyListAdminController extends Controller
                     'name_numerology.gender',
                     'users.name as user_name',
                     'users.email as user_email',
-                    'name_numerology.id' // Keep this for the action column
+                    'name_numerology.id',
+                    'name_numerology.created_at' // Only select created_at for potential future use, not needed for expiration now
                 );
 
             return FacadesDataTables::of($query)
                 ->addIndexColumn() // Add index column for row numbers
                 ->addColumn('action', function ($row) {
-                    // $encryptedId = Crypt::encryptString($row->id);
                     $encryptedId = $row->id;
-                    return '<a href="' . url('admin/name-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>
-                      <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>';
+                    $actionButtons = '<a href="' . url('admin/name-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>';
+
+                    // Construct the download file path
+                    $fileName = "{$row->first_name}_{$row->id}.pdf"; // Construct the file name
+                    $filePath = 'public/uploads/nameNumerology/' . $fileName; // Storage path
+
+                    // Check if file exists in storage
+                    if (Storage::exists($filePath)) {
+                        // Show download button if file exists
+                        $downloadUrl = asset('storage/uploads/nameNumerology/' . $fileName); // Construct the download link
+                        $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
+                    } else {
+                        // Show the button with the download icon and success color (without "Expired" text)
+                        $actionButtons .= '
+        <button class="btn btn-success expired-download-btn" data-id="' . $encryptedId . '">
+            <i class="fa-solid fa-download"></i>
+        </button>';
+                    }
+
+                    // Add delete button
+                    $actionButtons .= ' <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '"><i class="fa-solid fa-trash"></i></button>';
+
+                    return $actionButtons;
                 })
                 ->filterColumn('user_name', function ($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
@@ -53,20 +73,23 @@ class NumerologyListAdminController extends Controller
         }
 
         try {
-            // Fetch data for the view (not used in DataTables AJAX)
+            // Fetch data for non-AJAX view rendering
             $nameNumerologies = DB::table('name_numerology')
                 ->leftJoin('users', 'name_numerology.user_id', '=', 'users.id')
+                ->leftJoin('numerology', 'name_numerology.numerology_type', '=', 'numerology.numerology_type') // Join to get expiry days
                 ->select(
                     'name_numerology.first_name',
                     'name_numerology.last_name',
                     'name_numerology.dob',
                     'name_numerology.gender',
                     'users.name as user_name',
-                    'users.email as user_email'
+                    'users.email as user_email',
+                    'name_numerology.created_at'
                 )
                 ->get();
 
             $nameNumerologyCount = $nameNumerologies->count();
+
             return view('Admin.numerology.list', [
                 'nameNumerologies' => $nameNumerologies,
                 'nameNumerologyCount' => $nameNumerologyCount
@@ -77,6 +100,10 @@ class NumerologyListAdminController extends Controller
             return response()->view('errors.general', [], 500);
         }
     }
+
+
+
+
     //end
 
     // public function phoneNumerologyList(Request $request)
@@ -155,16 +182,30 @@ class NumerologyListAdminController extends Controller
             return FacadesDataTables::of($query)
                 ->addIndexColumn() // Add index column for row numbers
                 ->addColumn('action', function ($row) {
-                    // $encryptedId = Crypt::encrypt($row->id);
                     $encryptedId = $row->id;
-                    return '
-                    <a href="' . url('admin/phone-numerology/detail/' . $encryptedId) . '" class="btn btn-primary">
-                        <i class="fa-solid fa-eye"></i>
-                    </a>
-                    <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                ';
+                    $actionButtons = '<a href="' . url('admin/phone-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
+
+                    // Construct the download file path
+                    $fileName = "mobile_{$row->phone_number}_{$row->id}.pdf"; // Construct the file name
+                    $filePath = 'public/uploads/mobileNumerology/' . $fileName; // Storage path
+
+                    // Check if file exists in storage
+                    if (Storage::exists($filePath)) {
+                        // Show download button if file exists
+                        $downloadUrl = asset('storage/uploads/mobileNumerology/' . $fileName); // Construct the download link
+                        $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
+                    } else {
+                        // Show the button with the download icon and success color (without "Expired" text)
+                        $actionButtons .= '
+                            <button class="btn btn-success expired-download-btn" data-id="' . $encryptedId . '">
+                                <i class="fa-solid fa-download"></i>
+                            </button>';
+                    }
+
+                    // Add delete button
+                    $actionButtons .= ' <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '"><i class="fa-solid fa-trash"></i></button>';
+
+                    return $actionButtons;
                 })
                 ->filterColumn('user_name', function ($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");

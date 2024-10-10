@@ -17,6 +17,7 @@ use App\Models\PdfTemplate;
 use App\Models\WordAndCombination;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class NameNumerologyController extends Controller
 {
@@ -165,39 +166,49 @@ class NameNumerologyController extends Controller
 
     // DOB Multi digit and its detail
     private function getMultiDateCount($dob)
-{
-    try {
-        // Remove dashes and split DOB into individual digits
-        $dobDigits = str_split(str_replace('-', '', $dob));
+    {
+        try {
+            // Remove dashes and split DOB into individual digits
+            $dobDigits = str_split(str_replace('-', '', $dob));
 
-        // Count occurrences of each digit, including zeros
-        $dobDigitCounts = array_count_values($dobDigits);
+            // Filter out zeros from the DOB digits
+            $dobDigits = array_filter($dobDigits, function ($digit) {
+                return $digit != '0';
+            });
 
-        // Get the maximum occurrence
-        $maxCount = max($dobDigitCounts);
-        $largestDigits = array_keys($dobDigitCounts, $maxCount);
+            // Count occurrences of each digit
+            $dobDigitCounts = array_count_values($dobDigits);
 
-        // Initialize largestDigit
-        $largestDigit = '';
+            // If no valid digits are left after filtering, return an error message
+            if (empty($dobDigitCounts)) {
+                return 'No valid digits to process.';
+            }
 
-        // Check if there are any largest digits
-        if (!empty($largestDigits)) {
-            // Select the first largest digit
-            $largestDigit = $largestDigits[0];
-        }
+            // Get the maximum occurrence
+            $maxCount = max($dobDigitCounts);
+            $largestDigits = array_keys($dobDigitCounts, $maxCount);
 
-        // Fetch records from MultiCountDOB for the digits found in the DOB
-        $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
+            // Initialize largestDigit
+            $largestDigit = '';
 
-        // If no matching records found, return a message
-        if ($multiDateCount->isEmpty()) {
-            return 'No matching records found.';
-        }
+            // Check if there are any largest digits
+            if (!empty($largestDigits)) {
+                // Select the first largest digit
+                $largestDigit = $largestDigits[0];
+            }
 
-        // Find the corresponding record for the largest occurring digit and its count
-        $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
-            return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
-        });
+            // Fetch records from MultiCountDOB for the digits found in the DOB
+            $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
+
+            // If no matching records found, return a message
+            if ($multiDateCount->isEmpty()) {
+                return 'No matching records found.';
+            }
+
+            // Find the corresponding record for the largest occurring digit and its count
+            $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
+                return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
+            });
 
             // Return the relevant information
             return [
@@ -230,9 +241,6 @@ class NameNumerologyController extends Controller
             return 'An error occurred while processing the date of birth.';
         }
     }
-
-
-
 
 
     // New method to get specific details from DateDetail model based on DOB
@@ -439,7 +447,7 @@ class NameNumerologyController extends Controller
         }
     }
 
-           
+
     private function interpretSingleDigit($singleDigit, $totalNumber, $dob)
     {
         try {
@@ -788,7 +796,7 @@ class NameNumerologyController extends Controller
             if (!in_array($name, $nameParts)) {
                 $nameParts[] = $name;
             }
-// dd($nameParts);
+            // dd($nameParts);
             return $nameParts;
         }
 
@@ -833,7 +841,7 @@ class NameNumerologyController extends Controller
                     return strlen($match->name); // Sort by the length of the name in descending order
                 })->first(); // Get the first (largest) match
                 $result['full_name_matches'] = $largestFullNameMatch; // Store the largest match
-        //   dd($largestFullNameMatch);
+                //   dd($largestFullNameMatch);
             }
 
             // Check if any matches were found and return accordingly
@@ -1017,7 +1025,7 @@ class NameNumerologyController extends Controller
                         })->toArray();
                     }
                 }
-            
+
                 // Full Name Matches
                 if (isset($nameMatches['full_name_matches'])) {
                     if ($nameMatches['full_name_matches'] instanceof \Illuminate\Database\Eloquent\Model) {
@@ -1044,7 +1052,7 @@ class NameNumerologyController extends Controller
                     }
                 }
             }
-            
+
 
             // Process DOB for compound details
             if ($dob) {
@@ -1098,7 +1106,7 @@ class NameNumerologyController extends Controller
                 'getBasicDetail' => $getBasicDetail,
                 'bestJobs' => $bestJobs
             ];
-        //    dd($data);
+            //    dd($data);
             // Initialize mPDF instance with margins
             $mpdf = new \Mpdf\Mpdf([
                 'tempDir' => '/tmp',
@@ -1121,7 +1129,7 @@ class NameNumerologyController extends Controller
             $firstPageContent = view('pdf.static_page.greetPdf', ['result' => $data])->render(); // Greet PDF content
             $middlePagesContent = view('pdf.name_numerology.name_numerology_pdf', ['result' => $data])->render(); // Name Numerology content
             $lastPageContent = view('pdf.static_page.termAndConditionRemaining', ['result' => $data])->render(); // Free Gifts content
-         
+
             // Get the path to the background image and encode it
             $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
             $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
@@ -1154,10 +1162,17 @@ class NameNumerologyController extends Controller
             $mpdf->SetFooter($footerHtmlfirstandLast);
             $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
 
-     
-            // Output the PDF (inline display in browser)
-            $fileName = $result['username'] . '.pdf';
-            return response($mpdf->Output($fileName, 'I'), 200)
+            $directoryPath = storage_path('app/public/uploads/nameNumerology');
+            if (!File::exists($directoryPath)) {
+                File::makeDirectory($directoryPath, 0755, true);
+            }
+
+            // Output PDF
+            $fileName = $data['FirstName'] . '_' . $id . '.pdf';
+            $filePath = storage_path('app/public/uploads/nameNumerology/' . $fileName);
+            $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
+
+            return response($mpdf->Output($fileName, 'D'), 200)
                 ->header('Content-Type', 'application/pdf');
         } catch (\Exception $e) {
             // Log the error and return an error response
@@ -1165,38 +1180,27 @@ class NameNumerologyController extends Controller
             return response()->json(['error' => 'Could not generate PDF. Please try again later.'], 500);
         }
     }
-    // private function calculatePages($htmlContent)
-    // {
-    //     // Create a new mPDF instance
-    //     $mpdf = new \Mpdf\Mpdf([
-    //         'tempDir' => '/tmp',
-    //         'format' => 'A4',
-    //         'margin_left' => 0,
-    //         'margin_right' => 0,
-    //         'margin_top' => 20,
-    //         'margin_bottom' => 70, // Ensure space for footer
-    //     ]);
-    
-    //     // Write the HTML content to mPDF
-    //     $mpdf->WriteHTML($htmlContent);
-    
-    //     // Get the total number of pages after writing the content
-    //     $pageCount = $mpdf->page;
-    
-    //     // Clean up and close the mPDF instance
-    //     $mpdf->Output('', 'S'); // This prevents output to the browser and allows cleanup
-    
-    //     return $pageCount;
-    // }
-    
 
     public function calculateNumerology(Request $request)
     {
         try {
-            // Fetch user data with payment status as 'success'
-            $getUserData = NameNumerology::where('payment_status', 'success')
-                ->latest('created_at')
-                ->first(['first_name', 'last_name', 'dob', 'id']);
+            // Validate the incoming request
+            $request->validate([
+                'id' => 'nullable|integer|exists:name_numerology,id',
+            ]);
+
+            // Check if ID is provided; if not, fetch the latest user data with successful payment
+            if ($request->id) {
+                // Fetch user data by ID
+                $getUserData = NameNumerology::where('id', $request->id)
+                    ->where('payment_status', 'success')
+                    ->first(['first_name', 'last_name', 'dob', 'id']);
+            } else {
+                // Fetch latest user data with payment status as 'success'
+                $getUserData = NameNumerology::where('payment_status', 'success')
+                    ->latest('created_at')
+                    ->first(['first_name', 'last_name', 'dob', 'id']);
+            }
 
             if (!$getUserData) {
                 throw new \Exception('No user data found with successful payment.');

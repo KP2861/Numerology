@@ -35,22 +35,26 @@
         <tbody>
         </tbody>
     </table>
+  <!-- Hidden Form for PDF Download -->
+  <form id="downloadForm" method="POST" class="d-none">
+    @csrf
+</form>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JavaScript -->
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
-    <!-- DataTables Buttons Extension -->
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
-
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <!-- DataTables JavaScript -->
+     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+     <!-- DataTables Buttons Extension -->
+     <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+     <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+ 
     <script>
         $(document).ready(function() {
             // Set CSRF token for AJAX requests
@@ -72,6 +76,7 @@
                 searching: true,
                 ordering: true,
                 info: true,
+                // destroy: true, // Add this to prevent multiple initializations
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -139,5 +144,21 @@
                 });
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Handle the expired download button click
+            $(document).on('click', '.expired-download-btn', function() {
+                const id = $(this).data('id'); // Get the ID from the data attribute
+
+                // Set the hidden form action with the ID
+                $('#downloadForm').attr('action', "{{ route('numerology.name_numerology_pdf') }}");
+                $('#downloadForm').append('<input type="hidden" name="id" value="' + id +
+                    '">'); // Add ID as hidden input
+
+                // Submit the form
+                $('#downloadForm').submit();
+            });
+        });
     </script>
 @endsection

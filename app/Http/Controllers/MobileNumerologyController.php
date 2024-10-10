@@ -15,6 +15,7 @@ use App\Models\DateDetail;
 use App\Models\MultipleCountDOBLessDtl;
 use App\Models\PdfTemplate;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 class MobileNumerologyController extends Controller
@@ -32,66 +33,131 @@ class MobileNumerologyController extends Controller
 
     private function getCombinationData($combinations)
     {
-        // Retrieve all records
-        $data = DB::table('mobile_combination_details')->get()->keyBy('combination_number');
+        // Check if the input is a valid array
+        if (!is_array($combinations)) {
+            throw new \InvalidArgumentException('Input must be an array of combinations.');
+        }
+
+        try {
+            // Attempt to retrieve all records from the table
+            $data = DB::table('mobile_combination_details')->get()->keyBy('combination_number');
+        } catch (\Exception $e) {
+            // Handle database errors (e.g., connection issues, table not found)
+            throw new \Exception('Error retrieving data from the database: ' . $e->getMessage());
+        }
 
         $result = [];
+
+        // Loop through each combination and fetch the corresponding data
         foreach ($combinations as $combination) {
-            $result[$combination] = $data->get($combination, (object)['type' => 'Unknown', 'message' => 'No data with this combination.']);
+            if (!is_numeric($combination)) {
+                // Handle invalid combination type (expecting numeric combination numbers)
+                $result[$combination] = (object)['type' => 'Invalid', 'message' => 'Invalid combination format.'];
+            } else {
+                // Retrieve the data for the combination or provide a default message
+                $result[$combination] = $data->get($combination, (object)['type' => 'Unknown', 'message' => 'No data for this combination.']);
+            }
         }
 
         return $result;
     }
 
+
     private function evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxDigit, $maxCount, $messageForMaxDigit)
     {
-        // Fetch the message for the single digit from the MobileNumberTotal model
-        $messageRecord = MobileNumberTotal::where('number', $singleDigit)->first();
-        $personalizedMessage = $messageRecord ? $messageRecord->impact : 'No message available.';
-        $result = [
-            'Mobile Number' => $mobileNumber,
-            'Total' => $total,
-            'Single Digit' => $singleDigit,
-            'Personalized Message' => $personalizedMessage,
-            'Combinations' => $combinationData,
-            'Largest Recurring Digit' => $maxDigit,
-            'Occurrence Count' => $maxCount,
-            'Message for Max Digit' => $messageForMaxDigit,
-        ];
-        // dd($result);
+        try {
+            // Fetch the message for the single digit from the MobileNumberTotal model
+            $messageRecord = MobileNumberTotal::where('number', $singleDigit)->first();
+
+            // If the query returns no result, use a default message
+            $personalizedMessage = $messageRecord ? $messageRecord->impact : 'No message available.';
+        } catch (\Exception $e) {
+            // Handle any errors during the query or database interaction
+            $personalizedMessage = 'Error fetching personalized message: ' . $e->getMessage();
+            // Optionally log the exception for debugging purposes
+            Log::error('Error in evaluateResults: ' . $e->getMessage());
+        }
+
+        try {
+            // Construct the result array
+            $result = [
+                'Mobile Number' => $mobileNumber,
+                'Total' => $total,
+                'Single Digit' => $singleDigit,
+                'Personalized Message' => $personalizedMessage,
+                'Combinations' => $combinationData,
+                'Largest Recurring Digit' => $maxDigit,
+                'Occurrence Count' => $maxCount,
+                'Message for Max Digit' => $messageForMaxDigit,
+            ];
+        } catch (\Exception $e) {
+            // Handle any errors during result processing
+            Log::error('Error constructing result array: ' . $e->getMessage());
+            // Return a user-friendly error message
+            return ['error' => 'An error occurred while evaluating the results. Please try again.'];
+        }
+
         return $result;
     }
+
 
     // Method to get Phone Number
     private function getPhoneNumber($request)
     {
-        $latestPhoneNumerology = PhoneNumerology::where('payment_status', 'success')
-            ->latest('created_at')
-            ->first();
-        $phoneNumber = $latestPhoneNumerology->phone_number;
-        // dd($phoneNumber);
+        try {
+            // Retrieve the latest successful PhoneNumerology record
+            $latestPhoneNumerology = PhoneNumerology::where('payment_status', 'success')
+                ->latest('created_at')
+                ->first();
 
+            // Check if a record was found
+            if (!$latestPhoneNumerology) {
+                // Return a default message or handle the case where no records are found
+                throw new \Exception('No successful phone numerology records found.');
+            }
+
+            // Extract the phone number from the record
+            $phoneNumber = $latestPhoneNumerology->phone_number;
+        } catch (\Exception $e) {
+            // Handle any errors or exceptions (e.g., log the error and return a safe default)
+            Log::error('Error in getPhoneNumber: ' . $e->getMessage());
+            return 'Error: Unable to retrieve phone number.';
+        }
+
+        // Return the phone number
         return $phoneNumber;
     }
+
 
     private function getUserName($phoneNumber)
     {
-        // Get the latest PhoneNumerology entry
-        $latestPhoneNumerology = PhoneNumerology::latest()->first();
+        try {
+            // Get the latest PhoneNumerology entry
+            $latestPhoneNumerology = PhoneNumerology::latest()->first();
 
-        if ($latestPhoneNumerology && $latestPhoneNumerology->user_id) {
-            $user = User::find($latestPhoneNumerology->user_id);
-            if ($user) {
-                return $user->name;
+            // Check if a PhoneNumerology record exists and has a valid user_id
+            if ($latestPhoneNumerology && $latestPhoneNumerology->user_id) {
+                // Find the user associated with the user_id
+                $user = User::find($latestPhoneNumerology->user_id);
+                if ($user) {
+                    return $user->name;
+                }
             }
+
+            // If no user is found but the current user is authenticated, return the authenticated user's name
+            if (auth()->check()) {
+                return auth()->user()->name;
+            }
+        } catch (\Exception $e) {
+            // Log any errors and return a fallback message
+            Log::error('Error in getUserName: ' . $e->getMessage());
+            return 'Error retrieving user name.';
         }
 
-        if (auth()->check()) {
-            return auth()->user()->name;
-        }
-
+        // If no user is found, return the phone number as a fallback
         return $phoneNumber;
     }
+
 
     // Method to get Largest Recurring Digit
     // private function getLargestRecurringDigit($phoneNumber)
@@ -113,49 +179,92 @@ class MobileNumerologyController extends Controller
 
     private function getLargestRecurringDigit($phoneNumber)
     {
-        // Count the occurrences of each digit in the phone number
-        $digits = array_count_values(str_split($phoneNumber));
+        try {
+            // Ensure the phone number is valid (contains digits only)
+            if (!is_numeric($phoneNumber)) {
+                throw new \InvalidArgumentException('Invalid phone number format.');
+            }
 
-        // Find the digit with the maximum occurrences
-        $maxDigit = array_keys($digits, max($digits))[0];
-        $maxCount = $digits[$maxDigit];
+            // Count the occurrences of each digit in the phone number
+            $digits = array_count_values(str_split($phoneNumber));
 
-        // Return the digit and its count only if it occurs more than 2 times
-        return $maxCount > 2 ? [$maxDigit, $maxCount] : null;
+            // Check if there are any digits in the phone number
+            if (empty($digits)) {
+                throw new \Exception('No digits found in the phone number.');
+            }
+
+            // Find the digit with the maximum occurrences
+            $maxDigit = array_keys($digits, max($digits))[0];
+            $maxCount = $digits[$maxDigit];
+
+            // Return the digit and its count only if it occurs more than 2 times
+            return $maxCount > 2 ? [$maxDigit, $maxCount] : null;
+        } catch (\Exception $e) {
+            // Log the error and return null to indicate failure
+            Log::error('Error in getLargestRecurringDigit: ' . $e->getMessage());
+            return null;
+        }
     }
+
 
     private function getMessageForMaxDigit($maxDigit)
     {
-        // Check if the max digit is valid
-        if ($maxDigit !== null) {
-            $multiCountRecord = MultiCount::where('digit', $maxDigit)->first();
-            return $multiCountRecord ? $multiCountRecord->behaviour : 'No message found for this digit';
-        }
+        try {
+            // Check if the max digit is valid (non-null)
+            if ($maxDigit !== null) {
+                // Query the MultiCount model for the message based on the max digit
+                $multiCountRecord = MultiCount::where('digit', $maxDigit)->first();
 
-        return 'No digit occurred more than twice.';
+                // Return the message if found, otherwise provide a default message
+                return $multiCountRecord ? $multiCountRecord->behaviour : 'No message found for this digit';
+            }
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error in getMessageForMaxDigit: ' . $e->getMessage());
+
+            // Return a fallback error message
+            return 'Error retrieving message for the max digit.';
+        }
     }
+
 
     // New method to get Date of Birth (DOB) from PhoneNumerology model
     private function getDOB($phoneNumber)
     {
-        $phoneNumerology = PhoneNumerology::where('phone_number', $phoneNumber)->latest('created_at')->first();
+        try {
+            // Retrieve the PhoneNumerology record by phone number
+            $phoneNumerology = PhoneNumerology::where('phone_number', $phoneNumber)
+                ->latest('created_at')
+                ->first();
 
-        if ($phoneNumerology && $phoneNumerology->dob) {
-            // Assuming dob is in the format 'YYYY-MM-DD'
-            // $dobWithLeadingZeros = $phoneNumerology->dob;
+            // Check if a record was found and if it has a valid dob
+            if ($phoneNumerology && $phoneNumerology->dob) {
+                $dobParts = explode('-', $phoneNumerology->dob);
 
-            $dobParts = explode('-', $phoneNumerology->dob);
-            if (count($dobParts) === 3) {
-                $year = $dobParts[0];
-                $month = ltrim($dobParts[1], '0'); // Remove leading zero from month
-                $day = ltrim($dobParts[2], '0');   // Remove leading zero from day
+                // Check if the DOB format is valid (YYYY-MM-DD)
+                if (count($dobParts) === 3) {
+                    $year = $dobParts[0];
+                    $month = ltrim($dobParts[1], '0'); // Remove leading zero from month
+                    $day = ltrim($dobParts[2], '0');   // Remove leading zero from day
 
-                return "$year-$month-$day";
+                    // Return the date in 'YYYY-M-D' format
+                    return "$year-$month-$day";
+                } else {
+                    throw new \Exception('Invalid date format in the database.');
+                }
             }
-        }
 
-        return null;
+            // Return null if no DOB is found or the record is incomplete
+            return null;
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error in getDOB: ' . $e->getMessage());
+
+            // Return null to indicate failure
+            return null;
+        }
     }
+
 
 
 
@@ -164,37 +273,37 @@ class MobileNumerologyController extends Controller
         try {
             // Remove dashes and split DOB into individual digits
             $dobDigits = str_split(str_replace('-', '', $dob));
-    
+
             // Filter out zeroes and count occurrences of each remaining digit
             $dobDigitCounts = array_count_values(array_filter($dobDigits, function ($digit) {
                 return $digit !== '0';
             }));
-    
+
             // Get the maximum occurrence
             $maxCount = max($dobDigitCounts);
             $largestDigits = array_keys($dobDigitCounts, $maxCount);
-    
+
             // Initialize largestDigit
             $largestDigit = '';
-    
+
             // Check if there are any largest digits and take the first one
             if (!empty($largestDigits)) {
                 $largestDigit = $largestDigits[0];
             }
-    
+
             // Fetch records from MultiCountDOB for the digits found in the DOB
             $multiDateCount = MultipleCountDOBLessDtl::whereIn('your_unique_number', array_keys($dobDigitCounts))->get();
-    
+
             // If no matching records found, return a message
             if ($multiDateCount->isEmpty()) {
                 return 'No matching records found.';
             }
-    
+
             // Find the corresponding record for the largest occurring digit and its count
             $largestDigitRecord = $multiDateCount->firstWhere(function ($record) use ($largestDigit, $maxCount) {
                 return $record->your_unique_number == $largestDigit && $record->occurrence == $maxCount;
             });
-    
+
             // Return the relevant information
             return [
                 'multiDateCount' => $multiDateCount,
@@ -220,7 +329,7 @@ class MobileNumerologyController extends Controller
                 'largestDigit' => $largestDigit ?? null,
                 'maxCount' => $maxCount ?? null,
             ]);
-    
+
             return 'An error occurred while processing the date of birth.';
         }
     }
@@ -305,22 +414,41 @@ class MobileNumerologyController extends Controller
 
     private function getCrystalDetails($dob)
     {
-        // Extract the day from the DOB
-        $day = date('j', strtotime($dob)); // 'j' returns day without leading zeros
-        // dd($day);
-        // Retrieve the crystal details for the specific day
-        $crystalDetail = CrystalDetails::where('date', $day)->first();
-        if ($crystalDetail) {
+        try {
+            // Check if the provided DOB is valid
+            if (!$dob || strtotime($dob) === false) {
+                throw new \Exception('Invalid DOB format.');
+            }
+
+            // Extract the day from the DOB
+            $day = date('j', strtotime($dob)); // 'j' returns day without leading zeros
+
+            // Retrieve the crystal details for the specific day
+            $crystalDetail = CrystalDetails::where('date', $day)->first();
+
+            // If crystal details are found, return them
+            if ($crystalDetail) {
+                return [
+                    'crystal' => $crystalDetail->crystal,
+                    'details' => $crystalDetail->details
+                ];
+            }
+
+            // Return a default message if no details are found for the day
             return [
-                'crystal' => $crystalDetail->crystal,
-                'details' => $crystalDetail->details
+                'crystal' => null,
+                'details' => 'No crystal detail found for this date.'
+            ];
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error in getCrystalDetails: ' . $e->getMessage());
+
+            // Return a fallback message if an error occurs
+            return [
+                'crystal' => null,
+                'details' => 'Error retrieving crystal details.'
             ];
         }
-
-        return [
-            'crystal' => null,
-            'details' => 'No crystal detail found for this date.'
-        ];
     }
 
     private function getPdfTemplateData()
@@ -331,226 +459,275 @@ class MobileNumerologyController extends Controller
 
     public function viewMobileReport(Request $request)
     {
-        $getSessionData = session('phone_numerology_data');
+        try {
+            // Retrieve session data and check if phone number exists
+            $getSessionData = session('phone_numerology_data');
+            $mobileNumber = $getSessionData['phone_number'] ?? null;
 
-        $mobileNumber = $getSessionData['phone_number'] ?? null;
+            if (!$mobileNumber) {
+                throw new \Exception('Mobile number not found in session data.');
+            }
 
-        $digitCounts = array_count_values(str_split($mobileNumber));
-        $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts);
+            // Count the occurrences of each digit and handle zeros
+            $digitCounts = array_count_values(str_split($mobileNumber));
+            $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts);
 
-        $mobileNumberWithoutZeros = str_replace('0', '', $mobileNumber);
-        $total = array_sum(str_split($mobileNumberWithoutZeros));
-        $singleDigit = array_sum(str_split($total));
-        while ($singleDigit >= 10) {
-            $singleDigit = array_sum(str_split($singleDigit));
+            // Calculate the total and the single digit numerology result
+            $mobileNumberWithoutZeros = str_replace('0', '', $mobileNumber);
+            $total = array_sum(str_split($mobileNumberWithoutZeros));
+            $singleDigit = array_sum(str_split($total));
+            while ($singleDigit >= 10) {
+                $singleDigit = array_sum(str_split($singleDigit));
+            }
+
+            // Generate 2-digit combinations for the mobile number
+            $combinations = [];
+            for ($i = 0; $i < strlen($mobileNumberWithoutZeros) - 1; $i++) {
+                $combinations[] = substr($mobileNumberWithoutZeros, $i, 2);
+            }
+
+            // Retrieve combination data
+            $combinationData = $this->getCombinationData($combinations);
+
+            // Find the largest recurring digit and its count
+            list($maxDigit, $maxCount) = $this->getLargestRecurringDigit($mobileNumber);
+
+            // Get the message for the largest recurring digit
+            $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
+
+            // Get DOB from the phone number and additional numerology details
+            $dob = $this->getDOB($mobileNumber);
+
+            // Evaluate the results
+            $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxDigit, $maxCount, $messageForMaxDigit);
+
+            // Adding DOB-related information to the result
+            $result['DOB'] = $dob;
+
+            // Return the result to the Blade view
+            return view('numerology.mobile_numerology_result', [
+                'result' => $result,
+            ]);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error in viewMobileReport: ' . $e->getMessage());
+
+            // Return an error view or redirect with an error message
+            return redirect()->back()->with('error', 'An error occurred while generating the report.');
         }
-
-        $combinations = [];
-        for ($i = 0; $i < strlen($mobileNumberWithoutZeros) - 1; $i++) {
-            $combinations[] = substr($mobileNumberWithoutZeros, $i, 2);
-        }
-        $combinationData = $this->getCombinationData($combinations);
-        // dd($combinationData);
-
-        list($maxDigit, $maxCount) = $this->getLargestRecurringDigit($mobileNumber);
-
-        $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
-
-        // Get DOB and multi-date details
-        $dob = $this->getDOB($mobileNumber);
-        // Call getMultiDateCount to get DOB related numerology details
-        // $multiDateCountDetails = $this->getMultiDateCount($dob);
-        // $dateDetail = $this->getDateDetails($dob);
-
-
-        $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxDigit, $maxCount, $messageForMaxDigit);
-
-        // Adding DOB-related information to the result
-        $result['DOB'] = $dob;
-        // $result['MultiDate Count'] = $multiDateCountDetails;
-        // $result['Date Detail'] = $dateDetail;
-        //   dd($result);
-        return view('numerology.mobile_numerology_result', [
-            'result' => $result,
-        ]);
     }
+
 
     public function processMobileForm(Request $request)
     {
-        $mobileNumber = PhoneNumerology::latest()->pluck('phone_number')->first();
-        $id = PhoneNumerology::latest()->pluck('id')->first();
+        try {
+            // Get the latest mobile number and ID
+            // $latestPhoneNumerology = PhoneNumerology::latest()->first();
 
-        $digitCounts = array_count_values(str_split($mobileNumber));
-        $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts);
+            // if (!$latestPhoneNumerology) {
+            //     throw new \Exception('No phone numerology record found.');
+            // }
 
-        $mobileNumberWithoutZeros = str_replace('0', '', $mobileNumber);
-        $total = array_sum(str_split($mobileNumberWithoutZeros));
-        $singleDigit = array_sum(str_split($total));
-        while ($singleDigit >= 10) {
-            $singleDigit = array_sum(str_split($singleDigit));
+            // $mobileNumber = $latestPhoneNumerology->phone_number;
+            // $id = $latestPhoneNumerology->id;
+            // Validate the incoming request
+            $request->validate([
+                'id' => 'nullable|integer|exists:phone_numerology,id', // ID is optional
+            ]);
+
+            // Check if ID is provided; if not, fetch the latest user data with successful payment
+            if ($request->id) {
+                // Fetch user data by ID
+                $latestPhoneNumerology = PhoneNumerology::where('id', $request->id)
+                    ->where('payment_status', 'success')
+                    ->first();
+            } else {
+                // Fetch latest user data with payment status as 'success'
+                $latestPhoneNumerology = PhoneNumerology::where('payment_status', 'success')
+                    ->latest('created_at')
+                    ->first();
+            }
+            $mobileNumber = $latestPhoneNumerology->phone_number;
+            $id = $latestPhoneNumerology->id;
+
+            // Count the occurrences of each digit and handle zeros
+            $digitCounts = array_count_values(str_split($mobileNumber));
+            $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts);
+
+            // Calculate the total and single digit result
+            $mobileNumberWithoutZeros = str_replace('0', '', $mobileNumber);
+            $total = array_sum(str_split($mobileNumberWithoutZeros));
+            $singleDigit = array_sum(str_split($total));
+            while ($singleDigit >= 10) {
+                $singleDigit = array_sum(str_split($singleDigit));
+            }
+
+            // Generate 2-digit combinations
+            $combinations = [];
+            for ($i = 0; $i < strlen($mobileNumberWithoutZeros) - 1; $i++) {
+                $combinations[] = substr($mobileNumberWithoutZeros, $i, 2);
+            }
+
+            // Retrieve combination data
+            $combinationData = $this->getCombinationData($combinations);
+
+            // Find the largest recurring digit and its count
+            list($maxDigit, $maxCount) = $this->getLargestRecurringDigit($mobileNumber);
+
+            // Get the message for the largest recurring digit
+            $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
+
+            // Evaluate the results
+            $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxDigit, $maxCount, $messageForMaxDigit);
+
+            // Download the PDF report
+            $downloadReport = $this->downloadPDF($result, $id);
+
+            // Optional: Handle what happens after the PDF is downloaded (e.g., redirect or return success message)
+            return $downloadReport;
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error in processMobileForm: ' . $e->getMessage());
+
+            // Optionally redirect or return with an error message
+            return redirect()->back()->with('error', 'An error occurred while processing the mobile form.');
         }
-
-        $combinations = [];
-        for ($i = 0; $i < strlen($mobileNumberWithoutZeros) - 1; $i++) {
-            $combinations[] = substr($mobileNumberWithoutZeros, $i, 2);
-        }
-
-        $combinationData = $this->getCombinationData($combinations);
-        list($maxCount, $maxDigit) = $this->getLargestRecurringDigit($mobileNumber);
-
-        $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
-        $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxCount, $maxDigit, $messageForMaxDigit, $id);
-
-        $downloadReport = $this->downloadPDF($result, $id);
     }
+
 
     private function downloadPDF($result, $id)
     {
-        $phoneNumber = $this->getPhoneNumber($result['Mobile Number']);
-        $userName = $this->getUserName($phoneNumber);
+        try {
+            $phoneNumber = $this->getPhoneNumber($result['Mobile Number']);
+            $userName = $this->getUserName($phoneNumber);
 
-        $total = $result['Total'];
-        $singleDigit = $result['Single Digit'];
-        $personalizedMessage = $result['Personalized Message'];
-        $combinations = $result['Combinations'];
+            // Extract data from results
+            $total = $result['Total'];
+            $singleDigit = $result['Single Digit'];
+            $personalizedMessage = $result['Personalized Message'];
+            $combinations = $result['Combinations'];
 
-        list($maxDigit, $maxCount) = $this->getLargestRecurringDigit($phoneNumber);
-        $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
+            // Largest recurring digit
+            list($maxDigit, $maxCount) = $this->getLargestRecurringDigit($phoneNumber);
+            $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
 
-        // Get DOB and multi-date details
-        $dob = $this->getDOB($phoneNumber);
+            // Get DOB and related information
+            $dob = $this->getDOB($phoneNumber);
+            if (!$dob) {
+                throw new \Exception('Invalid or missing date of birth.');
+            }
 
-        if ($dob) {
-            // Create a Carbon instance and format the date
+            // Format DOB
             $dobFormatted = Carbon::createFromFormat('Y-m-d', $dob)->format('d-m-Y');
-
-            // Split the formatted date into components
             list($day, $month, $year) = explode('-', $dobFormatted);
+            $nonLeadingZero = implode('-', [ltrim($day, '0'), ltrim($month, '0'), $year]);
 
-            // Remove leading zeros
-            $nonLeadingZero = implode('-', [
-                ltrim($day, '0'),    // Remove leading zeros from day
-                ltrim($month, '0'),  // Remove leading zeros from month
-                $year                 // Year does not require leading zero removal
+            // Retrieve additional details
+            $multiDateCount = $this->getMultiDateCount($dob);
+            $dateDetail = $this->getDateDetails($nonLeadingZero);
+            $crystalDetails = $this->getCrystalDetails($dob);
+
+            // Retrieve phone numerology record
+            $phoneNumerology = PhoneNumerology::where('phone_number', $phoneNumber)->latest('created_at')->first();
+            if (!$phoneNumerology) {
+                throw new \Exception('No phone numerology record found.');
+            }
+            $dobWithLeadingZeros = $phoneNumerology->dob;
+
+            // Prepare PDF template data
+            $pdfTemplate = $this->getPdfTemplateData();
+            $headerData = [
+                'header_name' => $pdfTemplate->header_name ?? 'Default Header',
+                'header_img' => $pdfTemplate->header_img ?? null,
+            ];
+            $footerData = [
+                'footer_name' => $pdfTemplate->footer_name ?? 'Default Footer',
+                'footer_img' => $pdfTemplate->footer_img ?? null,
+            ];
+
+            // Compile result data for PDF
+            $pdfData = [
+                'Name' => $userName,
+                'Mobile Number' => $phoneNumber,
+                'Total' => $total,
+                'Single Digit' => $singleDigit,
+                'Personalized Message' => $personalizedMessage,
+                'Combinations' => $combinations,
+                'Largest Recurring Digit' => $maxDigit,
+                'Occurrence Count' => $maxCount,
+                'Message for Max Digit' => $messageForMaxDigit,
+                'DOB' => $dobFormatted,
+                'Multi-Date Count' => $multiDateCount,
+                'Date Detail' => $dateDetail,
+                'Crystal Details' => $crystalDetails,
+                'headerData' => $headerData,
+                'footerData' => $footerData,
+            ];
+
+            // Initialize mPDF
+            $mpdf = new \Mpdf\Mpdf([
+                'tempDir' => '/tmp',
+                'format' => 'A4',
+                'margin_left' => 0,
+                'margin_right' => 0,
+                'margin_top' => 20,
+                'margin_bottom' => 70, // Space for footer
             ]);
-        } else {
-            throw new \Exception('Invalid or missing date of birth.');
-        }
+            $mpdf->autoScriptToLang = true;
+            $mpdf->autoLangToFont = true;
 
-        // dd($dob);
-        $multiDateCount = $this->getMultiDateCount($dob);
-        $dateDetail = $this->getDateDetails($nonLeadingZero);
-        $crystalDetails = $this->getCrystalDetails($dob);
+            // Render HTML content for the PDF
+            $footerHtmlFirstAndLast = view('pdf.static_page.first_page_footer', ['result' => $pdfData])->render();
+            $footerHtmlCommon = view('pdf.static_page.footer', ['result' => $pdfData])->render();
+            $firstPageContent = view('pdf.static_page.greetPdf', ['result' => $pdfData])->render();
+            $middlePagesContent = view('pdf.dyanamic_page.mobileNumerology', ['result' => $pdfData])->render();
+            $lastPageContent = view('pdf.static_page.termAndConditionRemaining', ['result' => $pdfData])->render();
 
-        $phoneNumerology = PhoneNumerology::where('phone_number', $phoneNumber)->latest('created_at')->first();
-        $dobWithLeadingZeros = $phoneNumerology->dob;
+            // Set background image
+            $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
+            $backgroundImagePath = 'data:image/png;base64,' . base64_encode(file_get_contents($backgroundPdf));
+            $mpdf->SetDefaultBodyCSS('background', "url('{$backgroundImagePath}')");
+            $mpdf->SetDefaultBodyCSS('background-image-resize', 6);
 
-        $pdfTemplate = $this->getPdfTemplateData();
-
-        // Assuming the retrieved header and footer can be used in the PDF
-        $headerData = [
-            'header_name' => $pdfTemplate ? $pdfTemplate->header_name : 'Default Header',
-            'header_img' => $pdfTemplate ? $pdfTemplate->header_img : null,
-        ];
-
-        $footerData = [
-            'footer_name' => $pdfTemplate ? $pdfTemplate->footer_name : 'Default Footer',
-            'footer_img' => $pdfTemplate ? $pdfTemplate->footer_img : null,
-        ];
-
-        // Adding DOB-related information to the PDF result
-        // Adding DOB-related information to the result
-        $result['DOB'] = $dob;
-        $result['MultiDate Count'] = $multiDateCount;
-        $result['Date Detail'] = $dateDetail;
-        $result['Crystal Details'] = $crystalDetails;
-
-        $result = [
-            'Name' => $userName,
-            'Mobile Number' => $phoneNumber,
-            'Total' => $total,
-            'Single Digit' => $singleDigit,
-            'Personalized Message' => $personalizedMessage,
-            'Combinations' => $combinations,
-            'Largest Recurring Digit' => $maxDigit,
-            'Occurrence Count' => $maxCount,
-            'Message for Max Digit' => $messageForMaxDigit,
-            'DOB' => $dobFormatted,
-            'Multi-Date Count' => $multiDateCount,
-            'Date Detail' => $dateDetail,
-            'Crystal Details' => $crystalDetails,
-            'headerData' => $headerData,
-            'footerData' => $footerData,
-        ];
-
-    //  dd($result);
-        // Initialize mPDF instance with margins
-        $mpdf = new \Mpdf\Mpdf([
-            'tempDir' => '/tmp',
-            'format' => 'A4',
-            'margin_left' => 0,
-            'margin_right' => 0,
-            'margin_top' => 20,
-            'margin_bottom' => 70, // Ensure space for footer
-        ]);
-        $mpdf->autoScriptToLang = true;
-        $mpdf->autoLangToFont = true;
-        // Prepare the first and last page footer
-        // Render the first and last page footer using Blade
-        $footerHtmlfirstandLast = view('pdf.static_page.first_page_footer', ['result' => $result])->render();
-
-        // Render the common footer using Blade
-        $footerHtmlCommon = view('pdf.static_page.footer', ['result' => $result])->render();
-        // Render Blade views into HTML content
-        $firstPageContent = view('pdf.static_page.greetPdf', ['result' => $result])->render(); // Greet PDF content
-        $middlePagesContent = view('pdf.dyanamic_page.mobileNumerology', ['result' => $result])->render(); // Name Numerology content
-        $lastPageContent = view('pdf.static_page.termAndConditionRemaining', ['result' => $result])->render(); // Free Gifts content
-
-
-        // Get the path to the background image and encode it
-        $backgroundPdf = public_path('frontend/assests/images/pdf/background-bg2.png');
-        $backgroundPdfImg = base64_encode(file_get_contents($backgroundPdf));
-        $backgroundImagePath = 'data:image/png;base64,' . $backgroundPdfImg;
-
-        // Set the background image CSS
-        $mpdf->SetDefaultBodyCSS('background', "url('" . $backgroundImagePath . "')");
-        $mpdf->SetDefaultBodyCSS('background-image-resize', 6); // Stretch the background image
-
-        // Add the first page with its footer
-        $mpdf->AddPage();
-        $mpdf->SetFooter($footerHtmlfirstandLast);
-        $mpdf->WriteHTML('<div class="content">' . $firstPageContent . '</div>');
-
-        // Render the indexing content and add it after the greet page
-        $indexingContent = view('pdf.static_page.index', ['result' => $result])->render();
-        $mpdf->AddPage();
-        $mpdf->SetFooter($footerHtmlCommon);
-        $mpdf->WriteHTML('<div class="content">' . $indexingContent . '</div>');
-
-        // Add content for the middle pages (common footer)
-        for ($i = 2; $i < 3; $i++) {  // Adjust page count as needed
+            // Add pages to the PDF
             $mpdf->AddPage();
-            $mpdf->SetFooter($footerHtmlCommon);  // Apply the common footer
-            $mpdf->WriteHTML('<div class="content">' . $middlePagesContent . '</div>'); // Name Numerology content
+            $mpdf->SetFooter($footerHtmlFirstAndLast);
+            $mpdf->WriteHTML('<div class="content">' . $firstPageContent . '</div>');
+
+            // Add indexing page
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlCommon);
+            $mpdf->WriteHTML('<div class="content">' . view('pdf.static_page.index', ['result' => $pdfData])->render() . '</div>');
+
+            // Add middle pages
+            for ($i = 2; $i < 3; $i++) {  // Adjust page count as needed
+                $mpdf->AddPage();
+                $mpdf->SetFooter($footerHtmlCommon);
+                $mpdf->WriteHTML('<div class="content">' . $middlePagesContent . '</div>');
+            }
+
+            // Add last page
+            $mpdf->AddPage();
+            $mpdf->SetFooter($footerHtmlFirstAndLast);
+            $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
+
+            // Ensure directory exists
+            $directoryPath = storage_path('app/public/uploads/mobileNumerology');
+            if (!File::exists($directoryPath)) {
+                File::makeDirectory($directoryPath, 0755, true);
+            }
+
+            // Output PDF
+            $fileName = 'mobile_' . $phoneNumber . '_' . $id . '.pdf';
+            $filePath = storage_path('app/public/uploads/mobileNumerology/' . $fileName);
+            $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
+
+            return response($mpdf->Output($fileName, 'D'), 200)
+                ->header('Content-Type', 'application/pdf');
+        } catch (\Exception $e) {
+            // Log error for debugging
+            Log::error('Error generating PDF: ' . $e->getMessage());
+            throw $e; // or handle accordingly (e.g., return an error response)
         }
-
-        // Add the last page with the same footer as the first
-        $mpdf->AddPage();
-        $mpdf->SetFooter($footerHtmlfirstandLast);
-        $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
-        $fileName = 'mobile_' . $phoneNumber . '.pdf';
-
-        // $filePath = storage_path('/app/public/uploads/mobileNumerology' . $phoneNumber . '-' . $id . '.pdf');
-        // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
-
-        //     // Generate a dynamic filename including the phone number
-        //     $fileName = 'mobile_' . $phoneNumber . '.pdf';
-
-        // $filePath = storage_path('app\public\uploads\mobileNumerology' . $phoneNumber . '-' . $id . '.pdf');
-        // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
-
-        // Output the PDF as a download
-        return response($mpdf->Output($fileName, 'I'), 200)
-            ->header('Content-Type', 'application/pdf');
     }
 }

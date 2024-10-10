@@ -1,5 +1,4 @@
 <div id="index-page" style="height: 780px; width:70%; margin:0 auto; ">
-    <a name="index"></a>
     {{-- @php
        $fullNameDetails = $result['full_name_details']; // Assuming this variable contains your data
     $countFullName = count($fullNameDetails);
@@ -49,23 +48,10 @@
                 <td style="padding: 40px 0; text-align:left; width:100%; color: #000">
                     <table style="width: 100%">
                         <tbody>
-                            {{-- Index --}}
-                            <tr>
-                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
-                                    <a href="#index" style="text-decoration:none; color:#8B6C56;">
-                                        <p style="font-size: 16px;">index</p>
-                                    </a>
-                                </td>
+                           
 
-                                <td
-                                    style="vertical-align:end; width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
-                                    <a href="#index" style="text-decoration:none; color:#8B6C56;">
-                                        <p style="font-size: 16px;">2</p>
-                                    </a>
-                                </td>
-                            </tr>
-
-                            {{-- Index --}}
+                            {{-- Unlock Your Free Gifts from Swrahan Transform Your
+                                            Daily Life! --}}
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <a href="#unlockYourFreeGifts" style="text-decoration:none; color:#8B6C56;">

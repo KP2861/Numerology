@@ -2,12 +2,13 @@
     <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
         <div class="row">
             <div class="col-12">
-                <nav class="hs_main_menu_n hidden-md hidden-sm hidden-xs d-flex justify-content-between flex-row align-items-center">
+                <nav
+                    class="hs_main_menu_n hidden-md hidden-sm hidden-xs d-flex justify-content-between flex-row align-items-center">
                     <div class="header-logo d-flex gap-1">
                         <a class="menu-button ps-0" href="{{ url('/') }}">
-                        <img src="{{ asset('frontend/assests/images/hero-section/logo-symbol.svg') }}" alt="img">
-                        <img src="{{ asset('frontend/assests/images/hero-section/name-logo.svg') }}" alt="">
-                    </a>
+                            <img src="{{ asset('frontend/assests/images/hero-section/logo-symbol.svg') }}" alt="img">
+                            <img src="{{ asset('frontend/assests/images/hero-section/name-logo.svg') }}" alt="">
+                        </a>
                     </div>
                     <div class="d-flex align-items-baseline h-100">
                         <ul class="d-flex">
@@ -17,7 +18,8 @@
                                 </div>
                             </li>
                             <li>
-                                <a class="menu-button" href="{{ url('#what-we-do-section') }}">About Us</a>
+                                <a class="menu-button scroll-link"
+                                    href="{{ route('Website.pages.home') }}#what-we-do-section">About Us</a>
                             </li>
 
                             <li>
@@ -39,7 +41,7 @@
                                 <button class="outline-button">Get your Report Now</button>
                             </a>
                         </div>
-                       
+
 
 
                     </div>

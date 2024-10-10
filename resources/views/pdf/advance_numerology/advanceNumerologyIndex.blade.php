@@ -30,18 +30,7 @@
                 <td style="padding: 40px 0; text-align:left; width:100%; color: #000">
                     <table style="width: 100%">
                         <tbody>
-                            <tr>
-                                <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
-                                    <p style="font-size: 16px;">Index</p>
-                                </td>
-
-                                <td
-                                    style="vertical-align:end;  width:40%; text-align:right; border-bottom: 0.5px solid #000; padding:10px 0">
-                                    <p style="font-size: 16px;">
-                                        2
-                                    </p>
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td style="border-bottom: 0.5px solid #000; color:#8B6C56; padding:10px 0">
                                     <p style="font-size: 16px;">Mobile Number Predictions 9879610118

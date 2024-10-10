@@ -669,8 +669,8 @@
                                 }
 
                                 let fileName = item.first_name ?
-                                    `/${item.first_name}-${item.id}.pdf` :
-                                    `/${item.phone_number}-${item.id}.pdf`;
+                                    `/${item.first_name}_${item.id}.pdf` :
+                                    `/mobile_${item.phone_number}_${item.id}.pdf`;
 
                                 let downloadUrl = isExpired ? '' :
                                     `{{ asset('storage/uploads/${type}/') }}${fileName}`;

@@ -17,6 +17,11 @@
         </tbody>
     </table>
 
+    <!-- Hidden Form for PDF Download -->
+    <form id="downloadForm" method="POST" class="d-none">
+        @csrf
+    </form>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- jQuery -->
@@ -111,5 +116,22 @@
                 });
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Handle the expired download button click
+            $(document).on('click', '.expired-download-btn', function() {
+                const id = $(this).data('id'); // Get the ID from the data attribute
+
+                // Set the hidden form action with the ID
+                $('#downloadForm').attr('action',
+                    "{{ route('numerology.mobile_numerology_auto-download') }}");
+                $('#downloadForm').append('<input type="hidden" name="id" value="' + id +
+                    '">'); // Add ID as hidden input
+
+                // Submit the form
+                $('#downloadForm').submit();
+            });
+        });
     </script>
 @endsection
