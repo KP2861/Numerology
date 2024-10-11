@@ -153,36 +153,36 @@ class BusinessNumerologyController extends Controller
         );
 
         // Check if partners data exists and is not empty
-        if (!empty($partners)) {
-            // Calculate each partner’s numerology details
-            foreach ($partners as $partner) {
-                if (!empty($partner['phone_number'])) {
-                    $mobileNumber = $partner['phone_number']; // Assuming partners have a phone_number field
-                    $mobileNumberResult = $this->calculateMobileNumberNumerology($mobileNumber);
+        // if (!empty($partners)) {
+        //     // Calculate each partner’s numerology details
+        //     foreach ($partners as $partner) {
+        //         if (!empty($partner['phone_number'])) {
+        //             $mobileNumber = $partner['phone_number']; // Assuming partners have a phone_number field
+        //             $mobileNumberResult = $this->calculateMobileNumberNumerology($mobileNumber);
 
-                    list($maxCount, $maxDigit) = $this->getLargestRecurringDigit($mobileNumber);
+        //             list($maxCount, $maxDigit) = $this->getLargestRecurringDigit($mobileNumber);
 
-                    // Get the corresponding message for the largest digit from the MultiCount model
-                    $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
-                    $results[] = array_merge(
-                        $this->getNumerologyResults($partner, $currentDate),
-                        [
-                            'mobile_numerology' => [
-                                'total' => (string) $mobileNumberResult['total'],
-                                'single_digit' => (string) $mobileNumberResult['single_digit'],
-                                'detail' => nl2br(trim((string) $mobileNumberResult['detail'])),
-                                'combinations' => array_map('strval', $mobileNumberResult['combinations']),
-                                'combination_data' => array_map('strval', $mobileNumberResult['combination_data']),
-                                'max_count' => $maxCount,
-                                'max_digit' => $maxDigit,
-                                'message_for_max_digit' => $messageForMaxDigit
-                            ],
-                        ]
-                    );
-                }
-            }
-        }
-        //  dd($results);
+        //             // Get the corresponding message for the largest digit from the MultiCount model
+        //             $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
+        //             $results[] = array_merge(
+        //                 $this->getNumerologyResults($partner, $currentDate),
+        //                 [
+        //                     'mobile_numerology' => [
+        //                         'total' => (string) $mobileNumberResult['total'],
+        //                         'single_digit' => (string) $mobileNumberResult['single_digit'],
+        //                         'detail' => nl2br(trim((string) $mobileNumberResult['detail'])),
+        //                         'combinations' => array_map('strval', $mobileNumberResult['combinations']),
+        //                         'combination_data' => array_map('strval', $mobileNumberResult['combination_data']),
+        //                         'max_count' => $maxCount,
+        //                         'max_digit' => $maxDigit,
+        //                         'message_for_max_digit' => $messageForMaxDigit
+        //                     ],
+        //                 ]
+        //             );
+        //         }
+        //     }
+        // }
+//   dd($results);
         return view('numerology.business_numerology_result', ['results' => $results]);
     }
 

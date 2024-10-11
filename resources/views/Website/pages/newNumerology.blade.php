@@ -155,7 +155,7 @@
                                     </div>
 
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="time">Time</label>
+                                        <label class="custom-form-label" for="time">Birth Time</label>
                                         <div class="time-input d-flex align-items-start">
                                             <input class="numerology-service-labels hoursInput" type="text"
                                                 name="hours" placeholder="HH">
@@ -224,8 +224,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Name</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Name</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Empower Yourself:</strong> Knowing your name's vibrational frequency can help you align
                             with your true path.
@@ -316,7 +316,7 @@
                                         <div class="invalid-feedback">Please enter a valid town/city name.</div>
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="time">Time</label>
+                                        <label class="custom-form-label" for="time">Birth Time</label>
                                         <div class="time-input d-flex align-items-start">
                                             <input class="numerology-service-labels hoursInput" type="text"
                                                 name="hours" placeholder="HH">
@@ -388,8 +388,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Mobile</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Mobile</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Discover Your Life Path:</strong> Each digit in your mobile number carries unique
                             vibrations and characteristics that can shape your experiences and opportunities.
@@ -484,7 +484,7 @@
                                         <div class="invalid-feedback">Please enter a valid town/city name.</div>
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="time">Time</label>
+                                        <label class="custom-form-label" for="time">Birth Time</label>
                                         <div class="time-input d-flex align-items-start">
                                             <input class="numerology-service-labels hoursInput" type="text"
                                                 name="hours" placeholder="HH">
@@ -558,8 +558,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Advanced</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Advanced</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Explore the Depths of Your Soul:</strong> Advanced Numerology delves into your core
                             numbers, including Life Path, Expression, and Soul Urge numbers, providing a complete picture of
@@ -663,7 +663,7 @@
                                         <div class="invalid-feedback">Please enter a valid town/city name.</div>
                                     </div>
                                     <div class="col-lg-6 col-12">
-                                        <label class="custom-form-label" for="time">Time</label>
+                                        <label class="custom-form-label" for="time">Birth Time</label>
                                         <div class="time-input d-flex align-items-start">
                                             <input class="numerology-service-labels hoursInput" type="text"
                                                 name="hours" placeholder="HH">
@@ -817,23 +817,23 @@
                                                         <label for="dob_0" class="custom-form-label">Partner Date of
                                                             Birth:</label>
                                                         <input type="date" class="numerology-service-labels"
-                                                            id="dob_0" name="partner_dobs[]" required>
+                                                            id="dob_0" name="partner_dobs[]">
                                                         <div class="invalid-feedback">Please enter a valid date of birth.
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6 col-12">
-                                                    <label class="custom-form-label" for="town_city_0">Birth
+                                                    <label class="custom-form-label" for="town_city_0">Partner Birth
                                                         Town/City</label>
                                                     <input type="text" name="partner_town_cities[]" id="town_city_0"
-                                                        class="numerology-service-labels mb-4" required
+                                                        class="numerology-service-labels mb-4"
                                                         placeholder="Enter your birth town/city" />
                                                     <div class="invalid-feedback">Please enter a valid town/city name.
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-12">
-                                                    <label class="custom-form-label">Gender</label>
+                                                    <label class="custom-form-label">Partner Gender</label>
                                                     <div class="radio-group-custom d-flex gap-1 custom-mb-gender">
                                                         <input class="numerology-service-labels" type="radio"
                                                             id="gender_male_0" name="partner_genders[]" value="Male"
@@ -849,7 +849,8 @@
                                                     <div class="invalid-feedback"></div>
                                                 </div>
                                                 <div class="col-lg-6 col-12">
-                                                    <label class="custom-form-label" for="time">Time</label>
+                                                    <label class="custom-form-label" for="time">Partner Birth
+                                                        Time</label>
                                                     <div class="time-input d-flex align-items-start">
                                                         <input class="numerology-service-labels hoursInput" type="text"
                                                             name="partner_hours[]" placeholder="HH"
@@ -911,8 +912,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Business</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Business</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Align with Universal Energies:</strong> Every name carries a vibrational frequency that
                             can influence your business's growth and success. Our Business Name Numerology analyses these
@@ -1739,17 +1740,17 @@
                <div class="col-lg-6 col-12">
                    <div class="form-group">
                        <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
-                       <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" required>
+                       <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" >
                        <div class="invalid-feedback">Please enter a valid date of birth.</div>
                    </div>
                </div>
                <div class="col-lg-6 col-12">
-                   <label class="custom-form-label" for="town_city_${partnerIndex}">Birth Town/City</label>
-                   <input type="text" name="partner_town_cities[]" id="town_city_${partnerIndex}" class="numerology-service-labels mb-4" required placeholder="Enter your birth town/city" />
+                   <label class="custom-form-label" for="town_city_${partnerIndex}">Partner Birth Town/City</label>
+                   <input type="text" name="partner_town_cities[]" id="town_city_${partnerIndex}" class="numerology-service-labels mb-4"  placeholder="Enter your birth town/city" />
                    <div class="invalid-feedback">Please enter a valid town/city name.</div>
                </div>
                <div class="col-lg-6 col-12">
-                   <label class="custom-form-label">Gender</label>
+                   <label class="custom-form-label">Partner Gender</label>
                    <div class="radio-group-custom d-flex gap-1 custom-mb-gender">
                        <input class="numerology-service-labels" type="radio" id="gender_male_${partnerIndex}" name="partner_genders[${partnerIndex}]" value="Male" required>
                        <label class="select-radio-custom" for="gender_male_${partnerIndex}">Male</label>
@@ -1759,7 +1760,7 @@
                    <div class="invalid-feedback">Please select a gender.</div>
                </div>
                <div class="col-lg-6 col-12">
-                   <label class="custom-form-label" for="time">Time</label>
+                   <label class="custom-form-label" for="time">Partner Birth Time</label>
                    <div class="time-input d-flex align-items-start">
                        <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" placeholder="HH" pattern="^(0[0-9]|1[0-9]|2[0-3]|[0-9])$" title="Hours must be between 00 and 23.">
                        <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" placeholder="MM" pattern="^(0[0-9]|[1-5][0-9])$" title="Minutes must be between 00 and 59.">

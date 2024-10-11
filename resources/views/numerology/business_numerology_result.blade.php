@@ -55,6 +55,19 @@
             color: red;
             font-weight: bold;
         }
+
+        .dialog-box {
+            background: #F8E9D0;
+            border: 1px solid #BA9A63;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 40px 10px 40px;
+            color: rgb(233, 71, 30);
+            font-size: 20px;
+            font-weight: 800;
+
+        }
     </style>
 
 </head>
@@ -197,7 +210,12 @@
                         </span>
                     @endif
                 </div>
-                <a href="{{ route('payment.get') }}" class="text-decoration-none">
+                <!-- Added message box -->
+                <div class="dialog-box">
+                    <p>Unlock your business name and partner compatibility. Complete your payment to access the
+                        complete report and discover all the insights waiting for you.</p>
+                </div>
+                 <a href="{{ route('payment.get') }}" class="text-decoration-none">
                     <p class="red-text text-center large-text">Pay and see full report</p>
                 </a>
             </div>

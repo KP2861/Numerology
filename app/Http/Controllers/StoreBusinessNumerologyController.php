@@ -60,18 +60,18 @@ class StoreBusinessNumerologyController extends Controller
                 $request->validate([
                     'partner_first_names.*' => 'required|string|regex:/^[\pL\s]+$/u|max:10',
                     'partner_last_names.*' => 'nullable|string|regex:/^[\pL\s]+$/u|max:10',
-                    'partner_dobs.*' => 'required|date',
+                    'partner_dobs.*' => 'nullable|date',
                     'partner_phone_numbers.*' => 'required|string|regex:/\d{10}/',
                     'partner_emails.*' => 'required|email|max:255',
                     'partner_hours.*' => 'nullable|string|between:0,12',
                     'partner_minutes.*' => 'nullable|string|between:0,59',
                     'partner_ampm.*' => 'required|in:am,pm',
                     'partner_genders.*' => 'required|in:Male,Female',  // Gender: required, must be either Male or Female
-                    'partner_town_cities.*' => 'required|string|max:255',  // Town/City: required, string, max 255 chars
+                    'partner_town_cities.*' => 'nullable|string|max:255',  // Town/City: required, string, max 255 chars
                 ], [
                     'partner_first_names.*.required' => 'Each partner\'s first name is required.',
                     // 'partner_last_names.*.required' => 'Each partner\'s last name is required.',
-                    'partner_dobs.*.required' => 'Each partner\'s date of birth is required.',
+                    // 'partner_dobs.*.required' => 'Each partner\'s date of birth is required.',
                     'partner_phone_numbers.*.required' => 'Each partner\'s phone number is required.',
                     'partner_emails.*.required' => 'Each partner\'s email address is required.',
                     'partner_hours.*.between' => 'Partner hours must be between 0 and 12.',
@@ -79,14 +79,14 @@ class StoreBusinessNumerologyController extends Controller
                     'partner_ampm.*.required' => 'Each partner\'s am/pm indication is required.',
                     'partner_genders.*.required' => 'Each partner\'s gender is required.',
                     'partner_genders.*.in' => 'Each partner\'s gender must be either Male or Female.',
-                    'partner_town_cities.*.required' => 'Each partner\'s town/city is required.',
+                    // 'partner_town_cities.*.required' => 'Each partner\'s town/city is required.',
                     // 'partner_town_cities.*.string' => 'Each partner\'s town/city must be a valid string.',
                     'partner_town_cities.*.max' => 'Each partner\'s town/city must not exceed 255 characters.',
                 ]);
             }
 
             // Step 3: Store main validated data and set user_id
-            $validated['user_id'] = auth()->check() ? auth()->id() : 0;
+            $validated['user_id'] = auth()->check() ? auth()->id() : 1;
             // Combine the time inputs into a single time string
             $time = sprintf('%02d:%02d %s', $validated['hours'], $validated['minutes'], $validated['ampm']);
             $validated['time'] = $time; // Store the combined time here

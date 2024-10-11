@@ -88,7 +88,7 @@ class StoreSimpleNumerologyController extends Controller
             ]);
 
             // Set user_id to the authenticated user or 0
-            $validated['user_id'] = auth()->check() ? auth()->id() : 0;
+            $validated['user_id'] = auth()->check() ? auth()->id() : 1;
 
             // Add payment_id as null and payment_status as 2 (Assuming '2' is the desired status)
             // $validated['payment_id'] = "null";

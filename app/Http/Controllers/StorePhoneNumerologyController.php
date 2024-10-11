@@ -52,7 +52,7 @@ class StorePhoneNumerologyController extends Controller
             // Combine the time inputs into a single time string
             $time = sprintf('%02d:%02d %s', $validated['hours'], $validated['minutes'], $validated['ampm']);
             $validated['time'] = $time; // Store the combined time here
-            $validated['user_id'] = auth()->check() ? auth()->id() : 0;
+            $validated['user_id'] = auth()->check() ? auth()->id() : 1;
             $validated['area_of_concern'] = 'null';  // Set default value for 'area_of_concern'
 
             // dd($validated);
