@@ -14,6 +14,7 @@ use App\Models\User;
 use Database\Seeders\AreaOfStrugle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class AdvanceNumerologyController extends Controller
 {
@@ -123,7 +124,7 @@ class AdvanceNumerologyController extends Controller
     private function getDOB($phoneNumber)
     {
         $phoneNumerology = PhoneNumerology::where('phone_number', $phoneNumber)->latest('created_at')->first();
-
+        // dd($phoneNumber);
         if ($phoneNumerology && $phoneNumerology->dob) {
             // Assuming dob is in the format 'YYYY-MM-DD'
             // $dobWithLeadingZeros = $phoneNumerology->dob;
@@ -333,7 +334,7 @@ class AdvanceNumerologyController extends Controller
         // Get DOB and multi-date details
         $dob = $this->getDOB($mobileNumber);
         // Call getMultiDateCount to get DOB related numerology details
-        $multiDateCountDetails = $this->getMultiDateCount($dob);
+        // $multiDateCountDetails = $this->getMultiDateCount($dob);
         // $dateDetail = $this->getDateDetails($dob);
 
 
@@ -341,7 +342,7 @@ class AdvanceNumerologyController extends Controller
 
         // Adding DOB-related information to the result
         $result['DOB'] = $dob;
-        $result['MultiDate Count'] = $multiDateCountDetails;
+        // $result['MultiDate Count'] = $multiDateCountDetails;
         // $result['Date Detail'] = $dateDetail;
         //  dd($result);
         return view('numerology.advance_numerology_result', [
@@ -351,9 +352,28 @@ class AdvanceNumerologyController extends Controller
 
     public function processAdvanceForm(Request $request)
     {
-        $mobileNumber = PhoneNumerology::latest()->pluck('phone_number')->first();
-        $id = PhoneNumerology::latest()->pluck('id')->first();
+        // Validate the incoming request
+        $request->validate([
+            'id' => 'nullable|integer|exists:phone_numerology,id', // ID is optional
+        ]);
 
+        // Check if ID is provided; if not, fetch the latest user data with successful payment
+        if ($request->id) {
+            // Fetch user data by ID
+            $latestPhoneNumerology = PhoneNumerology::where('id', $request->id)
+                ->where('payment_status', 'success')
+                ->first();
+        } else {
+            // Fetch latest user data with payment status as 'success'
+            $latestPhoneNumerology = PhoneNumerology::where('payment_status', 'success')
+                ->latest('created_at')
+                ->first();
+        }
+        // dd($latestPhoneNumerology);
+        $mobileNumber = $latestPhoneNumerology->phone_number;
+        $id = $latestPhoneNumerology->id;
+
+        // dd($mobileNumber);
         $digitCounts = array_count_values(str_split($mobileNumber));
         $digitCounts = array_replace(array_fill(0, 10, 0), $digitCounts);
 
@@ -375,12 +395,12 @@ class AdvanceNumerologyController extends Controller
         $messageForMaxDigit = $this->getMessageForMaxDigit($maxDigit);
         $result = $this->evaluateResults($singleDigit, $total, $combinationData, $mobileNumber, $maxCount, $maxDigit, $messageForMaxDigit, $id);
 
-        $downloadReport = $this->downloadPDF($result, $id);
+        $downloadReport = $this->downloadPDF($result, $id,  $mobileNumber);
     }
 
-    private function downloadPDF($result, $id)
+    private function downloadPDF($result, $id,  $phoneNumber)
     {
-        $phoneNumber = $this->getPhoneNumber($result['Mobile Number']);
+        // $phoneNumber = $this->getPhoneNumber($result['Mobile Number']);
         $userName = $this->getUserName($phoneNumber);
 
         $total = $result['Total'];
@@ -393,7 +413,7 @@ class AdvanceNumerologyController extends Controller
 
         // Get DOB and multi-date details
         $dob = $this->getDOB($phoneNumber);
-        // dd($dob);
+        // dd($phoneNumber);
         $multiDateCount = $this->getMultiDateCount($dob);
         $dateDetail = $this->getDateDetails($dob);
         $crystalDetails = $this->getCrystalDetails($dob);
@@ -506,11 +526,16 @@ class AdvanceNumerologyController extends Controller
         $mpdf->SetFooter($footerHtmlfirstandLast);
         $mpdf->WriteHTML('<div class="content">' . $lastPageContent . '</div>');
 
-        // Generate a dynamic filename including the phone number
-        $fileName = 'advance_' . $phoneNumber . '.pdf';
+        $directoryPath = storage_path('app/public/uploads/advanceNumerology');
+        if (!File::exists($directoryPath)) {
+            File::makeDirectory($directoryPath, 0755, true);
+        }
+        // dd($results);
+        // Output PDF
+        $fileName = 'advance_Mobile_' . $phoneNumber . '_' . $id . '.pdf';
+        $filePath = storage_path('app/public/uploads/advanceNumerology/' . $fileName);
+        $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
 
-        // $filePath = storage_path('app\public\uploads\mobileNumerology' . $phoneNumber . '-' . $id . '.pdf');
-        // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
 
         // Output the PDF as a download
         return response($mpdf->Output($fileName, 'I'), 200)

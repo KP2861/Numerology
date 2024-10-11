@@ -173,8 +173,8 @@ class NumerologyListAdminController extends Controller
                 ->select(
                     'phone_numerology.phone_number',
                     'phone_numerology.dob',
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'phone_numerology.first_name  as user_name',
+                    'phone_numerology.email as user_email',
                     'phone_numerology.id'
                 )
                 ->where('phone_numerology.numerology_type', 2);
@@ -223,8 +223,8 @@ class NumerologyListAdminController extends Controller
                 ->select(
                     'phone_numerology.phone_number',
                     'phone_numerology.dob',
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'phone_numerology.first_name  as user_name',
+                    'phone_numerology.email as user_email',
                     'phone_numerology.id'
                 )
                 ->where('phone_numerology.numerology_type', 2)
@@ -254,8 +254,8 @@ class NumerologyListAdminController extends Controller
                     'phone_numerology.phone_number',
                     'phone_numerology.dob',
                     'area_of_struggles.problem as area_of_concern', // Select the problem instead of area_of_concern ID
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'phone_numerology.first_name  as user_name',
+                    'phone_numerology.email as user_email',
                     'phone_numerology.id'
                 )
                 ->where('phone_numerology.numerology_type', 3);
@@ -265,10 +265,27 @@ class NumerologyListAdminController extends Controller
                 ->addColumn('action', function ($row) {
                     // $encryptedId = Crypt::encrypt($row->id);
                     $encryptedId = ($row->id);
-                    return '<a href="' . url('admin/advance-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>
-                    <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>';
+                    $actionButtons = '<a href="' . url('admin/advance-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
+
+                    // Construct the download file path
+                    $fileName = "advance_{$row->phone_number}_{$row->id}.pdf";
+                    $filePath = 'public/uploads/mobileNumerology/' . $fileName;
+
+                    // Check if file exists in storage
+                    if (Storage::exists($filePath)) {
+                        $downloadUrl = asset('storage/uploads/mobileNumerology/' . $fileName);
+                        $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
+                    } else {
+                        $actionButtons .= '
+                            <button class="btn btn-success expired-download-btn" data-id="' . $encryptedId . '">
+                                <i class="fa-solid fa-download"></i>
+                            </button>';
+                    }
+
+                    // Add delete button
+                    $actionButtons .= ' <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '"><i class="fa-solid fa-trash"></i></button>';
+
+                    return $actionButtons;
                 })
                 ->filterColumn('user_name', function ($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
@@ -291,8 +308,8 @@ class NumerologyListAdminController extends Controller
                     'phone_numerology.phone_number',
                     'phone_numerology.dob',
                     'area_of_struggles.problem as area_of_concern', // Select the problem instead of area_of_concern ID
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'phone_numerology.first_name  as user_name',
+                    'phone_numerology.email as user_email',
                     'phone_numerology.id'
                 )
                 ->where('phone_numerology.numerology_type', 3)
@@ -322,8 +339,8 @@ class NumerologyListAdminController extends Controller
                     'business_numerology.dob',
                     'business_numerology.phone_number',
                     'business_numerology.type_of_business',
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'business_numerology.first_name as user_name',
+                    'business_numerology.email as user_email',
                     'business_numerology.id'
                 );
 
@@ -332,10 +349,29 @@ class NumerologyListAdminController extends Controller
                 ->addColumn('action', function ($row) {
                     // $encryptedId = Crypt::encrypt($row->id);
                     $encryptedId = ($row->id);
-                    return '<a href="' . url('admin/bussiness-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"> <i class="fa-solid fa-eye"></i></a>
-                    <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>';
+
+                    // Initialize action buttons with the detail link
+                    $actionButtons = '<a href="' . url('admin/business-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
+
+                    // Construct the download file path
+                    $fileName = "business_{$row->phone_number}_{$row->id}.pdf";
+                    $filePath = 'public/uploads/businessNumerology/' . $fileName;
+
+                    // Check if the file exists in storage
+                    if (Storage::exists($filePath)) {
+                        $downloadUrl = asset('storage/uploads/businessNumerology/' . $fileName);
+                        $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
+                    } else {
+                        $actionButtons .= '
+                            <button class="btn btn-success expired-download-btn" data-id="' . $encryptedId . '">
+                                <i class="fa-solid fa-download"></i>
+                            </button>';
+                    }
+
+                    // Add the delete button
+                    $actionButtons .= ' <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '"><i class="fa-solid fa-trash"></i></button>';
+
+                    return $actionButtons;
                 })
                 ->filterColumn('user_name', function ($query, $keyword) {
                     $query->where('users.name', 'like', "%{$keyword}%");
@@ -356,8 +392,8 @@ class NumerologyListAdminController extends Controller
                     'business_numerology.dob',
                     'business_numerology.phone_number',
                     'business_numerology.type_of_business',
-                    'users.name as user_name',
-                    'users.email as user_email',
+                    'business_numerology.first_name as user_name',
+                    'business_numerology.email as user_email',
                     'business_numerology.id'
                 )
                 ->get();

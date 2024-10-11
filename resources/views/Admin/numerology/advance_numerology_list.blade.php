@@ -21,7 +21,10 @@
         <tbody>
         </tbody>
     </table>
-
+    <!-- Hidden Form for PDF Download -->
+    <form id="downloadForm" method="POST" class="d-none">
+        @csrf
+    </form>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JavaScript -->
@@ -119,5 +122,22 @@
                 });
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Handle the expired download button click
+            $(document).on('click', '.expired-download-btn', function() {
+                const id = $(this).data('id'); // Get the ID from the data attribute
+
+                // Set the hidden form action with the ID
+                $('#downloadForm').attr('action',
+                    "{{ route('numerology.advance_numerology_auto-download') }}");
+                $('#downloadForm').append('<input type="hidden" name="id" value="' + id +
+                    '">'); // Add ID as hidden input
+
+                // Submit the form
+                $('#downloadForm').submit();
+            });
+        });
     </script>
 @endsection

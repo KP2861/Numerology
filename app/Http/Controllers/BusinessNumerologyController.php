@@ -38,10 +38,26 @@ class BusinessNumerologyController extends Controller
 
     public function calculate(Request $request)
     {
-        $getUserData = BusinessNumerology::where('payment_status', 'success')
-            ->latest('created_at')
-            ->with('partners')
-            ->first();
+        $request->validate([
+            'id' => 'nullable|integer|exists:phone_numerology,id', // ID is optional
+        ]);
+
+        // Check if ID is provided; if not, fetch the latest user data with successful payment
+        if ($request->id) {
+            // Fetch user data by ID
+            $getUserData = BusinessNumerology::where('id', $request->id)
+                ->where('payment_status', 'success')->with('partners')
+                ->first();
+        } else {
+            // Fetch latest user data with payment status as 'success'
+            $getUserData = BusinessNumerology::where('payment_status', 'success')
+                ->latest('created_at')->with('partners')
+                ->first();
+        }
+        // $getUserData = BusinessNumerology::where('payment_status', 'success')
+        //     ->latest('created_at')
+        //     ->with('partners')
+        //     ->first();
 
         $id =  $getUserData->id;
         $user = $getUserData;
@@ -642,7 +658,7 @@ class BusinessNumerologyController extends Controller
         if (!File::exists($directoryPath)) {
             File::makeDirectory($directoryPath, 0755, true);
         }
-// dd($results);
+        // dd($results);
         // Output PDF
         $fileName = 'bussiness_' . $results[0]['name'] . '_' . $id . '.pdf';
         $filePath = storage_path('app/public/uploads/bussinessNumerology/' . $fileName);
