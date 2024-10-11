@@ -77,10 +77,10 @@
                                     <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="{{ url('/products') }}">Name Numerology</a></li>
-                                    <li><a href="{{ url('/products') }}">Mobile Numerology</a></li>
-                                    <li><a href="{{ url('/products') }}">Advanced Numerology</a></li>
-                                    <li><a href="{{ url('/products') }}">Business Numerology</a></li>
+                                    <li><a href="{{ url('/products#NameNumerology') }}">Name Numerology</a></li>
+                                    <li><a href="{{ url('/products#MobileNumerology') }}">Mobile Numerology</a></li>
+                                    <li><a href="{{ url('/products#AdvancedNumerology') }}">Advanced Numerology</a></li>
+                                    <li><a href="{{ url('/products#BusinessNumerology') }}">Business Numerology</a></li>
                                     <!-- <li><a href="">Husband wife Dispute</a></li>
                                     <li><a href="">Powerful Mantras for Love Spell</a></li>
                                     <li><a href="">Business Back</a></li>
