@@ -27,7 +27,7 @@
         <div class="row justify-content-between">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
                 <div class="footer-subsection text-start">
-                    <a href="{{url('/')}}"><img
+                    <a href="{{ url('/') }}"><img
                             src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-logo.svg') }}"
                             alt="footer_logo" class="img-fluid" /></a>
                     <p class="me-lg-5 me-md-3 me-0 footer-text"><b>Swrahan</b> is your go-to place for all your
@@ -35,13 +35,14 @@
                         life with <b>personalized guidance</b> and support today!
                     </p>
                     <div class="d-flex align-items-start mt-4 me-md-3 me-0">
-                            <div class="h-100"><img
-                                    src="{{ asset('frontend/assests/images/hero-section/reach-us-icon.svg') }}"
-                                    alt="icon"></div>
-                            <div class=" ms-2">
-                                <p class=" footer-text mt-0">F-1002 Gala Haven Opp. Balaji Wind Park Near Vaishnodevi Circle, Ahmedabad, Gujarat</p>
-                            </div>
+                        <div class="h-100"><img
+                                src="{{ asset('frontend/assests/images/hero-section/reach-us-icon.svg') }}"
+                                alt="icon"></div>
+                        <div class=" ms-2">
+                            <p class=" footer-text mt-0">F-1002 Gala Haven Opp. Balaji Wind Park Near Vaishnodevi
+                                Circle, Ahmedabad, Gujarat</p>
                         </div>
+                    </div>
                     <!-- <h4><a href="#">Read More <i class="fa fa-long-arrow-right"></i></a></h4> -->
                     <ul class="social-links ">
                         <li><a href="https://www.facebook.com/RaviMundrraNumerology?mibextid=ZbWKwL"><i
@@ -67,7 +68,9 @@
                             <div class="services-bullet-list">
                                 <ul>
                                     <li><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a  href="{{ url('#what-we-do-section') }}">About us</a></li>
+                                    <li> <a class="menu-button scroll-link"
+                                            href="{{ route('Website.pages.home') }}#what-we-do-section">About Us</a>
+                                    </li>
                                     <li><a href="{{ url('/consultant') }}">Consultant</a></li>
                                     <li><a href="{{ url('/term-condition') }}">Terms of Service</a></li>
                                     <li><a href="{{ url('/refund-policy') }}">Refund Policy</a></li>
@@ -198,22 +201,22 @@
     })
 </script>
 <script>
-const content = [{
-        title: "Get Help with Conception Issues: Find Hope and Support!",
-        issue: "<b>Life Issue:</b>Couples may face difficulties with conception, leading to feelings of <b>frustration</b>, <b>sadness</b>, and <b>strain</b> in their relationship. <b>Are you frustrated with IVF and other remedies, with no solution working?</b> The stress of trying to start a family can overshadow other parts of married life, making it hard to connect.",
-        solution: "<b>Solution:</b> You can get help by booking a <b>10-minute session with us</b> to explore personalized guidance on your journey to parenthood. We have received many positive <b>feedback from parents</b> who have benefited from our support."
-    },
-    {
-        title: "Finding Work-Life Balance Struggle",
-        issue: "<b>Issue Faced :</b> Managing work and personal life can be hard for someone who works a lot, like a Capricorn with Life Path 8. They might focus too much on their job, making it tough to relax, which causes stress and tiredness",
-        solution: "<b>You can get solutions by:</b> Booking a <b>10-minute session with us</b> to learn more about improving your marital life.<br>To find balance, set clear boundaries between work and personal time. Schedule breaks to relax and recharge. Practicing mindfulness or hobbies can help reduce stress. Capricorns with Life Path 8 should prioritize self-care to avoid burnout and stay energized."
-    },
-    {
-        title: "Strengthen Your Marriage: Find Balance and Harmony Today!",
-        issue: " <b>Daily Life Issue:</b> Balancing work and home can be tough for married couples.One partner may focus too much on work, leaving little time for each other. This can lead to feelings of neglect, misunderstandings, and increased tension in the marriage.",
-        solution: "You can get solutions by booking a <b>10-minute session</b> with us to learn more about improving your marital life."
-    }
-];
+    const content = [{
+            title: "Get Help with Conception Issues: Find Hope and Support!",
+            issue: "<b>Life Issue:</b>Couples may face difficulties with conception, leading to feelings of <b>frustration</b>, <b>sadness</b>, and <b>strain</b> in their relationship. <b>Are you frustrated with IVF and other remedies, with no solution working?</b> The stress of trying to start a family can overshadow other parts of married life, making it hard to connect.",
+            solution: "<b>Solution:</b> You can get help by booking a <b>10-minute session with us</b> to explore personalized guidance on your journey to parenthood. We have received many positive <b>feedback from parents</b> who have benefited from our support."
+        },
+        {
+            title: "Finding Work-Life Balance Struggle",
+            issue: "<b>Issue Faced :</b> Managing work and personal life can be hard for someone who works a lot, like a Capricorn with Life Path 8. They might focus too much on their job, making it tough to relax, which causes stress and tiredness",
+            solution: "<b>You can get solutions by:</b> Booking a <b>10-minute session with us</b> to learn more about improving your marital life.<br>To find balance, set clear boundaries between work and personal time. Schedule breaks to relax and recharge. Practicing mindfulness or hobbies can help reduce stress. Capricorns with Life Path 8 should prioritize self-care to avoid burnout and stay energized."
+        },
+        {
+            title: "Strengthen Your Marriage: Find Balance and Harmony Today!",
+            issue: " <b>Daily Life Issue:</b> Balancing work and home can be tough for married couples.One partner may focus too much on work, leaving little time for each other. This can lead to feelings of neglect, misunderstandings, and increased tension in the marriage.",
+            solution: "You can get solutions by booking a <b>10-minute session</b> with us to learn more about improving your marital life."
+        }
+    ];
 
     let currentIndex = 0;
 

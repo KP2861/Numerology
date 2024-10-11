@@ -1175,7 +1175,7 @@ class NameNumerologyController extends Controller
             return response($mpdf->Output($fileName, 'D'), 200)
                 ->header('Content-Type', 'application/pdf');
         } catch (\Exception $e) {
-            // Log the error and return an error response
+            // Log the error and return an error responses
             Log::error('PDF generation error: ' . $e->getMessage());
             return response()->json(['error' => 'Could not generate PDF. Please try again later.'], 500);
         }

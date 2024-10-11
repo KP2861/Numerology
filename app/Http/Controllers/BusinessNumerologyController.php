@@ -630,7 +630,7 @@ class BusinessNumerologyController extends Controller
         // $backgroundImagePath = public_path('frontend/assests/images/pdf/background-bg.png');
         // $mpdf->SetWatermarkImage($backgroundImagePath, 0.8, 'P', 'C'); // Full opacity, centered
         // $mpdf->showWatermarkImage = true; // Ensure watermark is visible
-        //dd($results);
+        // dd($results);
         // Generate HTML content from the Blade view
         $html = view('pdf.business_numerology.businessnumerology', ['results' => $results])->render();
 

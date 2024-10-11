@@ -76,23 +76,27 @@ class AdvanceNumerologyController extends Controller
     }
 
     private function getUserName($phoneNumber)
-    {
-        // Get the latest PhoneNumerology entry
-        $latestPhoneNumerology = PhoneNumerology::latest()->first();
+{
+    // Get the latest PhoneNumerology entry
+    $latestPhoneNumerology = PhoneNumerology::latest()->first();
 
-        if ($latestPhoneNumerology && $latestPhoneNumerology->user_id) {
-            $user = User::find($latestPhoneNumerology->user_id);
-            if ($user) {
-                return $user->name;
-            }
-        }
-
-        if (auth()->check()) {
-            return auth()->user()->name;
-        }
-
+    // Check if the latest entry has user ID 1 or 2
+    if ($latestPhoneNumerology && in_array($latestPhoneNumerology->user_id, ['1', '2'])) {
+        // If the user ID is 1 or 2, return the phone number
         return $phoneNumber;
     }
+
+    // Check if the user is authenticated
+    if (auth()->check()) {
+        // If the authenticated user ID is not 1 or 2, return their name
+        if (!in_array(auth()->user()->id, ['1', '2'])) {
+            return auth()->user()->name;
+        }
+    }
+
+    // Return phone number if no user name is found or conditions are met
+    return $phoneNumber;
+}
 
     // Method to get Largest Recurring Digit
 
@@ -469,7 +473,7 @@ class AdvanceNumerologyController extends Controller
             'footerData' => $footerData,
         ];
 
-        // dd($result);
+        //  dd($result);
         // Initialize mPDF instance with margins
         $mpdf = new \Mpdf\Mpdf([
             'tempDir' => '/tmp',

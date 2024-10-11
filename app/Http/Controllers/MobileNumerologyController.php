@@ -134,29 +134,35 @@ class MobileNumerologyController extends Controller
         try {
             // Get the latest PhoneNumerology entry
             $latestPhoneNumerology = PhoneNumerology::latest()->first();
-
-            // Check if a PhoneNumerology record exists and has a valid user_id
-            if ($latestPhoneNumerology && $latestPhoneNumerology->user_id) {
+    
+            // Check if a PhoneNumerology record exists
+            if ($latestPhoneNumerology) {
+                // Check if the user_id is 1 or 2
+                if (in_array($latestPhoneNumerology->user_id, ['1', '2'])) {
+                    return $phoneNumber; // Return the phone number if user_id is 1 or 2
+                }
+    
                 // Find the user associated with the user_id
                 $user = User::find($latestPhoneNumerology->user_id);
                 if ($user) {
-                    return $user->name;
+                    return $user->name; // Return the user's name if found
                 }
             }
-
+    
             // If no user is found but the current user is authenticated, return the authenticated user's name
             if (auth()->check()) {
-                return auth()->user()->name;
+                return auth()->user()->name; // Return authenticated user's name
             }
         } catch (\Exception $e) {
             // Log any errors and return a fallback message
             Log::error('Error in getUserName: ' . $e->getMessage());
             return 'Error retrieving user name.';
         }
-
+    
         // If no user is found, return the phone number as a fallback
         return $phoneNumber;
     }
+    
 
 
     // Method to get Largest Recurring Digit

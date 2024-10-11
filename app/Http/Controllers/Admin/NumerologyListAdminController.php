@@ -351,7 +351,7 @@ class NumerologyListAdminController extends Controller
                     $encryptedId = ($row->id);
 
                     // Initialize action buttons with the detail link
-                    $actionButtons = '<a href="' . url('admin/business-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
+                    $actionButtons = '<a href="' . url('admin/bussiness-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
 
                     // Construct the download file path
                     $fileName = "business_{$row->phone_number}_{$row->id}.pdf";
