@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 p-0">
                                 <div class="hs_logo-wrapper">
-                                    <a href="index.html" class="pe-0"><img
+                                    <a href="/" class="pe-0"><img
                                             src="{{ asset('frontend/assests/images/hero-section/name-logo.svg') }}"
                                             alt="Logo" title="Logo"></a>
                                 </div>
@@ -118,7 +118,7 @@
                                         </svg>
                                     </a>
                                     <nav class="cd-dropdown">
-                                        <h2><a href="index.html">Numerology</a></h2>
+                                        <h2><a href="/">Numerology</a></h2>
                                         <a href="#0" class="cd-close">Close</a>
                                         <ul class="cd-dropdown-content">
                                             <li>
@@ -126,7 +126,7 @@
                                             </li>
 
                                             <li>
-                                                <a href="index.html">About US</a>
+                                                <a href="/#what-we-do-section">About US</a>
                                             </li>
                                             <li>
                                                 <a href="{{ url('/products') }}">Numerology</a>
