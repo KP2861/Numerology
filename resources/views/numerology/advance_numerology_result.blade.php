@@ -7,15 +7,15 @@
     <title>Numerology Result</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('/frontend/assests/css/popup.css') }}" />
     <style>
         /* Existing Styles */
         .brown-border-table {
-            border: 1px solid #BA9A63;
+            border: 1px solid #674735;
         }
 
         .brown-text {
-            color: #BA9A63;
+            color: #674735;
         }
 
         .brown-border-table table.table tbody tr td {
@@ -23,17 +23,17 @@
         }
 
         .brown-border-table table.table tbody tr td:first-child {
-            border-right: 1px solid #BA9A63;
+            border-right: 1px solid #674735;
         }
 
         .outline-btn {
             background: #fff;
-            border: 1px solid #BA9A63;
+            border: 1px solid #674735;
             color: #BA9A63;
         }
 
         .filled-btn {
-            background: #BA9A63;
+            background: #674735;
             border: 1px solid transparent;
             color: #fff;
             margin-right: 20px;
@@ -41,7 +41,7 @@
 
         .inner-wrapper {
             background: #F1EBE0;
-            border: 1px solid #BA9A63;
+            border: 1px solid #674735;
         }
 
         .blurred {
@@ -76,7 +76,7 @@
 </head>
 
 <body>
-  
+
 
     <div class="container mt-5">
         <h1 class="text-center brown-text fw-bold">Advance Numerology Result</h1>
@@ -102,23 +102,25 @@
                 <p class="card-text">
                     <strong>Personalized Message:</strong> <span
                         class="blurred">{{ $limitedMessage }}{{ count($messageWords) > 15 ? '...' : '' }}</span>
-            </p>                             
-            @if(isset($result['Largest Recurring Digit']) && isset($result['Occurrence Count']) && isset($result['Message for Max Digit']))
-
-                <p class="card-text"><strong>Largest Recurring Digit:</strong> {{ $result['Largest Recurring Digit'] }}</p>
-                <p class="card-text"><strong>Occurrence Count:</strong> {{ $result['Occurrence Count'] }}</p>
-                <p class="card-text">
-                    <strong>Message for Max Digit:</strong> 
-                    {{ implode(' ', array_slice(explode(' ', $result['Message for Max Digit']), 0, 15)) }}...
                 </p>
+                @if (isset($result['Largest Recurring Digit']) &&
+                        isset($result['Occurrence Count']) &&
+                        isset($result['Message for Max Digit']))
+                    <p class="card-text"><strong>Largest Recurring Digit:</strong>
+                        {{ $result['Largest Recurring Digit'] }}</p>
+                    <p class="card-text"><strong>Occurrence Count:</strong> {{ $result['Occurrence Count'] }}</p>
+                    <p class="card-text">
+                        <strong>Message for Max Digit:</strong>
+                        {{ implode(' ', array_slice(explode(' ', $result['Message for Max Digit']), 0, 15)) }}...
+                    </p>
                 @endif
-                   {{-- <!-- New: Displaying Date of Birth (DOB) -->
+                {{-- <!-- New: Displaying Date of Birth (DOB) -->
                    <p class="card-text"><strong>Date of Birth:</strong> {{ $result['DOB'] }}</p> <!-- Ensure DOB is passed here from backend -->
                    <h4 class="mt-4">Largest Digit Details:</h4>
                    <p><strong>Trait:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['trate'] }}</p>
                    <p><strong>Behavior:</strong> {{ $result['MultiDate Count']['largestDigitDetails']['behaviour'] }}</p>
                     --}}
-              
+
 
                 <!-- Combinations Table -->
                 <h3 class="mt-4 blurred">Combinations:</h3>
@@ -171,13 +173,110 @@
                 <input type="hidden" name="combinations" value="{{ json_encode($result['Combinations']) }}">
 
                 <div class="d-flex justify-content-center align-items-center">
-                    <a href="{{ url('/') }}" class="btn outline-btn  px-4 py-2 d-inline-block">Calculate Another
-                        Number</a>
+                    <a href="{{ url('products#AdvancedNumerology') }}"
+                        class="btn outline-btn px-4 py-2 d-inline-block">Calculate Another Number</a>
+
                     <a href="{{ route('payment.get') }}" class="btn filled-btn px-4 py-2">Proceed to Payment</a>
                 </div>
             </form>
         </div>
     </div>
+    <!-- Open Pop Button with an "X" icon -->
+    <button id="openPop" class="open-pop-btn">
+        <span id="buttonIcon"><img src="{{ asset('frontend/assests/images/hero-section/gift-modal-button.png') }}"
+                alt="img" class=""></span>
+    </button>
+
+    <!-- Popup Modal -->
+    <div id="popupModal" class="popup-modal">
+        <!--   <span id="closePopup" class="close-btn">&times;</span>  Close "X" icon -->
+
+        <div class="popup-content">
+
+            <div class="content-start">
+                <div class="modal-main-heading">
+                    <p class="gift-modal-heading gift-modal-heading-1">Unlock Spiritual Wisdom: Get All These
+                        Transformative 10 Tools Just Free
+                        With This Report</p>
+                    <p class="gift-modal-heading gift-modal-heading-2 ">Total Worth: 10,000+ INR</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="gift-bg-img">
+                            <img src="{{ asset('frontend/assests/images/hero-section/astrology-gifts.png') }}"
+                                alt="img" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 custom-col-p-0">
+                        <div class="gift-right-section">
+                            <div class="gift-list-outer">
+                                <ul class="gift-list">
+                                    <li>Planetary Remedies For Life Changes</li>
+                                    <li>Creating Affirmations</li>
+                                    <li>Lakshmi Beej Mantra</li>
+                                    <li>Discover the Power of Rudraksha</li>
+                                    <li>Crystals, Rudraksha, and Vedic Remedies</li>
+                                    <li>Find Your Perfect Crystal</li>
+                                    <li>Prosperity Cheque Ritual</li>
+                                    <li>Harness Sanjeevni Cards</li>
+                                    <li>Vastu for Harmonious Spaces</li>
+                                    <li>Unlock Power of Switch Words</li>
+                                </ul>
+                            </div>
+                            <div class="bottom-capsule">
+                                <p>*This limited-time offer includes everything you need to transform your life</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- JavaScript to handle popup functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var openPop = document.getElementById("openPop");
+            var popupModal = document.getElementById("popupModal");
+            var closePopup = document.getElementById("closePopup");
+            var buttonIcon = document.getElementById("buttonIcon");
+
+            // Open the popup when the button is clicked
+            openPop.addEventListener('click', function() {
+                popupModal.classList.toggle("show"); // Toggle show class to show/hide modal
+
+                // Change button icon based on modal state
+                buttonIcon.innerHTML = popupModal.classList.contains("show") ?
+                    '&times;' :
+                    '<img src="{{ asset('frontend/assests/images/hero-section/gift-modal-button.png') }}" alt="icon" class="your-class">';
+
+                // Change button background color based on modal state
+                openPop.style.backgroundColor = popupModal.classList.contains("show") ?
+                    '#EC4400' :
+                    '#BA9A63'; // Adjust color or image as needed
+            });
+
+
+            // Close the popup when the 'X' button is clicked
+            closePopup.addEventListener('click', function() {
+                popupModal.classList.remove("show"); // Remove show class to hide it
+                buttonIcon.innerHTML =
+                    '<img src="{{ asset('frontend/assests/images/hero-section/gift-modal-button.png') }}" alt="img" class="">'; // Reset button icon to "+"
+                openPop.style.backgroundColor = '#BA9A63'; // Reset button background color to blue
+            });
+
+            // Close the popup when clicking outside the popup content
+            window.addEventListener('click', function(event) {
+                if (event.target == popupModal) {
+                    popupModal.classList.remove("show"); // Remove show class to hide it
+                    buttonIcon.innerHTML =
+                        '<img src="{{ asset('frontend/assests/images/hero-section/gift-modal-button.png') }}" alt="img" class=""></span>'; // Reset button icon to "+"
+                    openPop.style.backgroundColor = '#BA9A63'; // Reset button background color to blue
+                }
+            });
+        });
+    </script>
 
     <!-- JavaScript to handle shortcuts and disabling right-click -->
     <script>

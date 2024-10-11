@@ -13,6 +13,7 @@ use App\Models\MultiCount;
 use App\Models\MultiCountDOB;
 use App\Models\PdfTemplate;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 
@@ -96,7 +97,7 @@ class BusinessNumerologyController extends Controller
                 }
             }
         }
-// dd($results);
+        // dd($results);
         // Pass the results to the private PDF generation method
         return $this->generatePDF($results, $firstName, $id);
     }
@@ -165,7 +166,7 @@ class BusinessNumerologyController extends Controller
                 }
             }
         }
-//  dd($results);
+        //  dd($results);
         return view('numerology.business_numerology_result', ['results' => $results]);
     }
 
@@ -530,7 +531,7 @@ class BusinessNumerologyController extends Controller
 
             // Find the planet details from the Dasha model
             $dashaData = Dasha::where('id', $number)->first();
-// dd($dashaData );
+            // dd($dashaData );
             // If data found, push to array
             if ($dashaData) {
                 $dashas[] = [
@@ -613,7 +614,7 @@ class BusinessNumerologyController extends Controller
         // $backgroundImagePath = public_path('frontend/assests/images/pdf/background-bg.png');
         // $mpdf->SetWatermarkImage($backgroundImagePath, 0.8, 'P', 'C'); // Full opacity, centered
         // $mpdf->showWatermarkImage = true; // Ensure watermark is visible
-       //dd($results);
+        //dd($results);
         // Generate HTML content from the Blade view
         $html = view('pdf.business_numerology.businessnumerology', ['results' => $results])->render();
 
@@ -636,11 +637,17 @@ class BusinessNumerologyController extends Controller
         $filePath = storage_path('/app/public/uploads/bussinessNumerology.pdf');
         $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
 
-        // Generate a dynamic filename including the phone number
-        $fileName = 'mobile_.pdf';
+        // Ensure directory exists
+        $directoryPath = storage_path('app/public/uploads/bussinessNumerology');
+        if (!File::exists($directoryPath)) {
+            File::makeDirectory($directoryPath, 0755, true);
+        }
+// dd($results);
+        // Output PDF
+        $fileName = 'bussiness_' . $results[0]['name'] . '_' . $id . '.pdf';
+        $filePath = storage_path('app/public/uploads/bussinessNumerology/' . $fileName);
+        $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
 
-        // $filePath = storage_path('app\public\uploads\mobileNumerology' . $phoneNumber . '-' . $id . '.pdf');
-        // $mpdf->Output($filePath, \Mpdf\Output\Destination::FILE);
 
         // Output the PDF as a download
         return response($mpdf->Output($fileName, 'I'), 200)
@@ -773,138 +780,135 @@ class BusinessNumerologyController extends Controller
     }
 
     private function getDOBCompound($dob)
+
     {
-    // Assuming $dob is in 'Y-m-d' format
-    $dateParts = explode('-', $dob);
-    // Step 1: Calculate compound number for full DOB (Queen)
-    $year = array_sum(array_map('intval', str_split($dateParts[0]))); // Sum digits of year
-    $month = array_sum(array_map('intval', str_split($dateParts[1]))); // Sum digits of month
-    $day = array_sum(array_map('intval', str_split($dateParts[2]))); // Sum digits of day
-    $queen = $year + $month + $day; // Compound number for full DOB (Queen)
-    $king = array_sum(array_map('intval', str_split($dateParts[2]))); // Compound number for day (King)
-    // Ensure queen and king are single-digit numbers
-    $queen = array_sum(array_map('intval', str_split($queen)));
-    $king = array_sum(array_map('intval', str_split($king)));
-    $queen = $this->reduceDOBSingleDigit($queen);
-    $king = $this->reduceDOBSingleDigit($king);
-    // Predefined data for matching
-    $predefinedData = [
-    1 => ['lucky' => [9, 2, 5, 1, 3], 'unlucky' => [], 'hardcore' => [8], 'neutral' => [6, 2, 7]],
-    2 => ['lucky' => [1, 5, 3], 'unlucky' => [9, 4], 'hardcore' => [8], 'neutral' => [6, 2, 7]],
-    3 => ['lucky' => [1, 5, 2, 3, 7], 'unlucky' => [], 'hardcore' => [6], 'neutral' => [7, 8, 9, 4]],
-    4 => ['lucky' => [7, 6, 8, 1, 4], 'unlucky' => [9, 2, 4, 8], 'hardcore' => [], 'neutral' => [3, 5]],
-    5 => ['lucky' => [1, 2, 3, 6, 5], 'unlucky' => [], 'hardcore' => [], 'neutral' => [7, 8, 9, 4]],
-    6 => ['lucky' => [4, 5, 6, 7], 'unlucky' => [3], 'hardcore' => [3], 'neutral' => [8, 9, 2, 1]],
-    7 => ['lucky' => [4, 5, 6, 1], 'unlucky' => [], 'hardcore' => [], 'neutral' => [3, 8, 9, 2, 7]],
-    8 => ['lucky' => [5, 6, 3, 4, 8], 'unlucky' => [1, 2, 4, 8], 'hardcore' => [1, 2], 'neutral' => [9, 7]],
-    9 => ['lucky' => [1, 5, 3], 'unlucky' => [2, 4], 'hardcore' => [], 'neutral' => [9, 8, 7, 6]],
-    ];
-    // Step 2: Match compound numbers with Srno
-    $queenSrno = $queen; // Use the queen's compound number directly as the Srno for lookup
-    $kingSrno = $king; // Use the king's compound number directly as the Srno for lookup
-    // Step 3: Get lucky numbers for both king and queen
-    $queenLuckyNumbers = $predefinedData[$queenSrno]['lucky'] ?? [];
-    $kingLuckyNumbers = $predefinedData[$kingSrno]['lucky'] ?? [];
-    // Get common lucky numbers in both king's and queen's lists
-    $commonLuckyNumbers = array_intersect($queenLuckyNumbers, $kingLuckyNumbers);
-    // Get hardcore numbers which are defined in the predefined data for both king and queen
-    $hardcoreNumbers = array_unique(array_merge(
-    $predefinedData[$queenSrno]['hardcore'],
-    $predefinedData[$kingSrno]['hardcore']
-    ));
-    // Get all numbers from both the king and queen that should be avoided (unlucky numbers)
-    $unluckyNumbers = array_unique(array_merge(
-    $predefinedData[$queenSrno]['unlucky'],
-    $predefinedData[$kingSrno]['unlucky']
-    ));
-    // Define all possible numbers from 1 to 9
-    $allNumbers = range(1, 9);
-    // Calculate the remaining lucky numbers
-    $remainingLuckyNumbers = array_diff($allNumbers, $commonLuckyNumbers, $hardcoreNumbers, $unluckyNumbers);
-    // Determine neutral numbers as those not included in lucky or hardcore numbers
-    $neutralNumbers = array_diff($allNumbers, $commonLuckyNumbers, $hardcoreNumbers);
-    return [
-    'queen' => $queen,
-    'king' => $king,
-    'lucky' => array_values($commonLuckyNumbers), // Returning the common lucky numbers
-    'hardcore' => array_values($hardcoreNumbers), // Returning only hardcore numbers defined in predefined data
-    'neutral' => array_values($neutralNumbers) // Returning the neutral numbers
-    ];
+
+        // Assuming $dob is in 'Y-m-d' format
+
+        $dateParts = explode('-', $dob);
+
+
+        // Step 1: Calculate compound number for full DOB (Queen)
+
+        $year = array_sum(array_map('intval', str_split($dateParts[0]))); // Sum digits of year
+
+        $month = array_sum(array_map('intval', str_split($dateParts[1]))); // Sum digits of month
+
+        $day = array_sum(array_map('intval', str_split($dateParts[2]))); // Sum digits of day
+
+
+        $queen = $year + $month + $day; // Compound number for full DOB (Queen)
+
+        $king = array_sum(array_map('intval', str_split($dateParts[2]))); // Compound number for day (King)
+
+
+        // Ensure queen and king are single-digit numbers
+
+        $queen = array_sum(array_map('intval', str_split($queen)));
+
+        $king = array_sum(array_map('intval', str_split($king)));
+
+
+        $queen = $this->reduceDOBSingleDigit($queen);
+
+        $king = $this->reduceDOBSingleDigit($king);
+
+
+        // Predefined data for matching
+
+        $predefinedData = [
+
+            1 => ['lucky' => [9, 2, 5, 1, 3], 'unlucky' => [], 'hardcore' => [8], 'neutral' => [6, 2, 7]],
+
+            2 => ['lucky' => [1, 5, 3], 'unlucky' => [9, 4], 'hardcore' => [8], 'neutral' => [6, 2, 7]],
+
+            3 => ['lucky' => [1, 5, 2, 3, 7], 'unlucky' => [], 'hardcore' => [6], 'neutral' => [7, 8, 9, 4]],
+
+            4 => ['lucky' => [7, 6, 8, 1, 4], 'unlucky' => [9, 2, 4, 8], 'hardcore' => [], 'neutral' => [3, 5]],
+
+            5 => ['lucky' => [1, 2, 3, 6, 5], 'unlucky' => [], 'hardcore' => [], 'neutral' => [7, 8, 9, 4]],
+
+            6 => ['lucky' => [4, 5, 6, 7], 'unlucky' => [3], 'hardcore' => [3], 'neutral' => [8, 9, 2, 1]],
+
+            7 => ['lucky' => [4, 5, 6, 1], 'unlucky' => [], 'hardcore' => [], 'neutral' => [3, 8, 9, 2, 7]],
+
+            8 => ['lucky' => [5, 6, 3, 4, 8], 'unlucky' => [1, 2, 4, 8], 'hardcore' => [1, 2], 'neutral' => [9, 7]],
+
+            9 => ['lucky' => [1, 5, 3], 'unlucky' => [2, 4], 'hardcore' => [], 'neutral' => [9, 8, 7, 6]],
+
+        ];
+
+
+        // Step 2: Match compound numbers with Srno
+
+        $queenSrno = $queen; // Use the queen's compound number directly as the Srno for lookup
+
+        $kingSrno = $king; // Use the king's compound number directly as the Srno for lookup
+
+
+        // Step 3: Get lucky numbers for both king and queen
+
+        $queenLuckyNumbers = $predefinedData[$queenSrno]['lucky'] ?? [];
+
+        $kingLuckyNumbers = $predefinedData[$kingSrno]['lucky'] ?? [];
+
+
+        // Get common lucky numbers in both king's and queen's lists
+
+        $commonLuckyNumbers = array_intersect($queenLuckyNumbers, $kingLuckyNumbers);
+
+
+        // Get hardcore numbers which are defined in the predefined data for both king and queen
+
+        $hardcoreNumbers = array_unique(array_merge(
+
+            $predefinedData[$queenSrno]['hardcore'],
+
+            $predefinedData[$kingSrno]['hardcore']
+
+        ));
+
+
+        // Get all numbers from both the king and queen that should be avoided (unlucky numbers)
+
+        $unluckyNumbers = array_unique(array_merge(
+
+            $predefinedData[$queenSrno]['unlucky'],
+
+            $predefinedData[$kingSrno]['unlucky']
+
+        ));
+
+
+        // Define all possible numbers from 1 to 9
+
+        $allNumbers = range(1, 9);
+
+
+        // Calculate the remaining lucky numbers
+
+        $remainingLuckyNumbers = array_diff($allNumbers, $commonLuckyNumbers, $hardcoreNumbers, $unluckyNumbers);
+
+
+        // Determine neutral numbers as those not included in lucky or hardcore numbers
+
+        $neutralNumbers = array_diff($allNumbers, $commonLuckyNumbers, $hardcoreNumbers);
+
+
+        return [
+
+            'queen' => $queen,
+
+            'king' => $king,
+
+            'lucky' => array_values($commonLuckyNumbers), // Returning the common lucky numbers
+
+            'hardcore' => array_values($hardcoreNumbers), // Returning only hardcore numbers defined in predefined data
+
+            'neutral' => array_values($neutralNumbers) // Returning the neutral numbers
+
+        ];
     }
-    
-  
-  
-  
-
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
 
     /////////////////
     /////Dasha///////

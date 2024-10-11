@@ -1486,37 +1486,17 @@
                                                     src="{{ asset('frontend/assests/images/hero-section/client-2.png') }}"
                                                     alt="" class="img-fluid"></div>
                                             <div>
-                                                <div class="client-profile"><img
-                                                        src="{{ asset('frontend/assests/images/hero-section/rajendra-chipa.jpeg') }}"
-                                                        alt="" class="img-fluid"></div>
-                                                <div>
-                                                    <div class="star-rating">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                    </div>
-                                                    <p class="paragraph mb-2">I want to express my gratitude for the
-                                                        remedies
-                                                        that
-                                                        have truly transformed my life and helped me develop a positive
-                                                        mindset.
-                                                        Thank you, Ravi Sir, for your suggestions and the pre-remedies you
-                                                        provided,
-                                                        which have made a significant difference in my life.</p>
-
-                                                    <p class="paragraph">I am now thinking very positively. Additionally,
-                                                        my
-                                                        sister
-                                                        had some personal relationship issues, and those are also being
-                                                        resolved.
-                                                        Your guidance has been invaluable!</p>
+                                                <div class="star-rating">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
                                                 </div>
                                                 <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat ipsum,
                                                     nec
@@ -1565,38 +1545,17 @@
                                                     src="{{ asset('frontend/assests/images/hero-section/client-1.png') }}"
                                                     alt="" class="img-fluid"></div>
                                             <div>
-                                                <div class="client-profile"><img
-                                                        src="{{ asset('frontend/assests/images/hero-section/ankit-kabra.jpg') }}"
-                                                        alt="" class="img-fluid"></div>
-                                                <div>
-                                                    <div class="star-rating">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                        <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
-                                                            alt="">
-                                                    </div>
-                                                    <p class="paragraph mb-2">Welcome! I’m glad to share my feedback about
-                                                        the
-                                                        consultation I had with Ravi regarding numerology. He provided
-                                                        valuable
-                                                        insights into my business and suggested remedies that really helped.
-                                                    </p>
-                                                    <p class="paragraph mb-2">I work with the government on various
-                                                        projects,
-                                                        including banking, loan funding, and finance. The remedies Ravi
-                                                        recommended
-                                                        and that I implemented led to outstanding progress and growth. My
-                                                        mindset
-                                                        has shifted positively, and I’m committed to moving forward with a
-                                                        positive
-                                                        attitude.</p>
-                                                    <p class="paragraph">I’m very thankful to Ravi for his guidance.</p>
+                                                <div class="star-rating">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
+                                                    <img src="{{ asset('frontend/assests/images/hero-section/star-rating.svg') }}"
+                                                        alt="">
                                                 </div>
                                                 <p class="paragraph">Lorem quis bibendum auctor, nisi elit consequat
                                                     ipsum,
@@ -1710,25 +1669,4 @@
     <!-- hs footer wrapper Start -->
 
     <!-- hs testi slider wrapper End -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.scroll-link').on('click', function(e) {
-                e.preventDefault(); // Prevent default behavior of jumping to the section
-
-                var target = $(this).attr('href'); // Get the href attribute value
-                var targetSection = target.split('#')[1]; // Extract the section ID
-
-                // Redirect to the target page and scroll smoothly to the section
-                window.location.href = target;
-
-                // Once the new page is loaded, scroll smoothly to the section
-                setTimeout(function() {
-                    $('html, body').animate({
-                        scrollTop: $('#' + targetSection).offset().top
-                    }, 1000); // Scroll duration (1000ms = 1 second)
-                }, 500); // Delay to allow page load (adjust as necessary)
-            });
-        });
-    </script>
 @endsection('content')

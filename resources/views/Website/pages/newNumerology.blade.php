@@ -224,8 +224,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Name</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Name</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Empower Yourself:</strong> Knowing your name's vibrational frequency can help you align
                             with your true path.
@@ -388,8 +388,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Mobile</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Mobile</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Discover Your Life Path:</strong> Each digit in your mobile number carries unique
                             vibrations and characteristics that can shape your experiences and opportunities.
@@ -558,8 +558,8 @@
                     </div>
                     <div class="col-lg-8 col-md-7 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Advanced</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Advanced</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Explore the Depths of Your Soul:</strong> Advanced Numerology delves into your core
                             numbers, including Life Path, Expression, and Soul Urge numbers, providing a complete picture of
@@ -790,14 +790,15 @@
                                                 </div>
                                                 <div class="col-lg-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="dob_0" class="custom-form-label">Partner Date of
-                                                            Birth:</label>
-                                                        <input type="date" class="numerology-service-labels"
-                                                            id="dob_0" name="partner_dobs[]" required>
-                                                        <div class="invalid-feedback">Please enter a valid date of birth.
+                                                        <label for="partner_email_0" class="custom-form-label">Partner
+                                                            Email:</label>
+                                                        <input type="email" class="numerology-service-labels"
+                                                            id="partner_email_0" name="partner_emails[]" required>
+                                                        <div class="invalid-feedback">Please enter a valid email address.
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="col-lg-6 col-12">
                                                     <div class="form-group">
                                                         <label for="partner_phone_number_0"
@@ -813,13 +814,39 @@
                                                 </div>
                                                 <div class="col-lg-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="partner_email_0" class="custom-form-label">Partner
-                                                            Email:</label>
-                                                        <input type="email" class="numerology-service-labels"
-                                                            id="partner_email_0" name="partner_emails[]" required>
-                                                        <div class="invalid-feedback">Please enter a valid email address.
+                                                        <label for="dob_0" class="custom-form-label">Partner Date of
+                                                            Birth:</label>
+                                                        <input type="date" class="numerology-service-labels"
+                                                            id="dob_0" name="partner_dobs[]" required>
+                                                        <div class="invalid-feedback">Please enter a valid date of birth.
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-12">
+                                                    <label class="custom-form-label" for="town_city_0">Birth
+                                                        Town/City</label>
+                                                    <input type="text" name="partner_town_cities[]" id="town_city_0"
+                                                        class="numerology-service-labels mb-4" required
+                                                        placeholder="Enter your birth town/city" />
+                                                    <div class="invalid-feedback">Please enter a valid town/city name.
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-12">
+                                                    <label class="custom-form-label">Gender</label>
+                                                    <div class="radio-group-custom d-flex gap-1 custom-mb-gender">
+                                                        <input class="numerology-service-labels" type="radio"
+                                                            id="gender_male_0" name="partner_genders[]" value="Male"
+                                                            required>
+                                                        <label class="select-radio-custom"
+                                                            for="gender_male_0">Male</label>
+                                                        <input class="numerology-service-labels" type="radio"
+                                                            id="gender_female_0" name="partner_genders[]" value="Female"
+                                                            required>
+                                                        <label class="select-radio-custom"
+                                                            for="gender_female_0">Female</label>
+                                                    </div>
+                                                    <div class="invalid-feedback"></div>
                                                 </div>
                                                 <div class="col-lg-6 col-12">
                                                     <label class="custom-form-label" for="time">Time</label>
@@ -884,8 +911,8 @@
                     </div>
                     <div class="col-md-8 col-12">
                         <!-- <h3 class="tab-info-heading mb-2">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Business</span> Numerology is an occult technology?
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span>Business</span> Numerology is an occult technology?
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </h3> -->
                         <p class="tab-info-content mb-1">
                             <strong>Align with Universal Energies:</strong> Every name carries a vibrational frequency that
                             can influence your business's growth and success. Our Business Name Numerology analyses these
@@ -987,7 +1014,12 @@
             }
         });
     </script>
-
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('have_partner');
+            selectElement.value = '1'; // Set "No" as the default selected option
+        });
+    </script> --}}
 
     {{-- partner section --}}
 
@@ -1093,6 +1125,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('form').reset(); // This will reset the form fields on page load
+
+            // // Set the select element to the "No" option
+            // const selectElement = form.querySelector('select');
+            // selectElement.value = '0'; // Select "No" option
+
+
         });
     </script>
 
@@ -1548,17 +1586,14 @@
             document.getElementById('add_partner_button').addEventListener('click', addPartner);
 
             // Function to validate input fields
-            // Validate input function
             function validateInput(input) {
                 if (input.id.startsWith("partner_first_name_")) {
                     if (!validateNameInput(input.value)) {
                         input.setCustomValidity('Please enter a valid first name (only letters).');
-                        input.style.borderColor = 'red'; // Inline CSS for border color
-                        // input.style.backgroundColor = 'rgba(255, 0, 0, 0.1)'; // Light red background
+                        input.style.borderColor = 'red';
                     } else {
                         input.setCustomValidity('');
-                        input.style.borderColor = ''; // Reset border color
-                        input.style.backgroundColor = ''; // Reset background color
+                        input.style.borderColor = '';
                     }
                 } else if (input.id.startsWith("partner_phone_number_")) {
                     if (!validatePhoneNumberInput(input.value)) {
@@ -1584,14 +1619,11 @@
                         input.setCustomValidity('');
                         input.style.borderColor = '';
                     }
-                } else if (input.id.startsWith("partner_hours") || input.id.startsWith("partner_minutes")) {
+                } else if (input.name.startsWith("partner_ampm")) {
                     input.setCustomValidity(''); // Clear custom error
-                    // input.style.borderColor = '';
                 }
-                input.reportValidity(); // Shows the error message if invalid
-                // input.style.borderColor = 'red';
+                input.reportValidity();
             }
-
 
             // Adding event listeners for real-time validation
             document.getElementById('partner-fields').addEventListener('input', function(event) {
@@ -1605,7 +1637,6 @@
                 let isValid = true;
 
                 if (document.getElementById('have_partner').value === '1') {
-                    // Validate partner fields only if "Yes" is selected
                     const partnerFields = document.querySelectorAll('.partner-details');
 
                     partnerFields.forEach(partnerField => {
@@ -1617,6 +1648,9 @@
                         const phone = partnerField.querySelector(
                             `input[id^='partner_phone_number_']`);
                         const email = partnerField.querySelector(`input[id^='partner_email_']`);
+                        const genderMale = partnerField.querySelector(`input[id^='gender_male_']`);
+                        const genderFemale = partnerField.querySelector(
+                            `input[id^='gender_female_']`);
 
                         // Validate each input before submitting
                         validateInput(firstName);
@@ -1624,6 +1658,12 @@
                         validateInput(phone);
                         validateInput(email);
                         validateInput(dob);
+
+                        // Check if gender is selected
+                        if (!genderMale.checked && !genderFemale.checked) {
+                            isValid = false;
+                            alert("Please select a gender for each partner.");
+                        }
                     });
                 }
 
@@ -1668,61 +1708,74 @@
                 const partnerField = document.createElement('div');
                 partnerField.classList.add('row', 'partner-details', 'mb-2');
                 partnerField.innerHTML = `
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_first_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner First Name:</label>
-                           <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
-                           <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
+               <div class="col-lg-6 col-12">
+                   <div class="form-group">
+                       <label for="partner_first_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner First Name:</label>
+                       <input type="text" pattern="[A-Za-z\\s]+" class="numerology-service-labels" id="partner_first_name_${partnerIndex}" name="partner_first_names[]" required oninput="capitalizeFirstLetter(this)">
+                       <div class="invalid-feedback">Please enter a valid first name (only letters).</div>
+                   </div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <div class="form-group">
+                       <label for="partner_last_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner Last Name:</label>
+                       <input type="text" pattern="[A-Za-z\\s]+" class="numerology-service-labels" id="partner_last_name_${partnerIndex}" name="partner_last_names[]" oninput="capitalizeFirstLetter(this)">
+                       <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
+                   </div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <div class="form-group">
+                       <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
+                       <input type="email" class="numerology-service-labels" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
+                       <div class="invalid-feedback">Please enter a valid email address.</div>
+                   </div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <div class="form-group">
+                       <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
+                       <input type="tel" class="numerology-service-labels" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                       <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
+                   </div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <div class="form-group">
+                       <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
+                       <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" required>
+                       <div class="invalid-feedback">Please enter a valid date of birth.</div>
+                   </div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <label class="custom-form-label" for="town_city_${partnerIndex}">Birth Town/City</label>
+                   <input type="text" name="partner_town_cities[]" id="town_city_${partnerIndex}" class="numerology-service-labels mb-4" required placeholder="Enter your birth town/city" />
+                   <div class="invalid-feedback">Please enter a valid town/city name.</div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <label class="custom-form-label">Gender</label>
+                   <div class="radio-group-custom d-flex gap-1 custom-mb-gender">
+                       <input class="numerology-service-labels" type="radio" id="gender_male_${partnerIndex}" name="partner_genders[${partnerIndex}]" value="Male" required>
+                       <label class="select-radio-custom" for="gender_male_${partnerIndex}">Male</label>
+                       <input class="numerology-service-labels" type="radio" id="gender_female_${partnerIndex}" name="partner_genders[${partnerIndex}]" value="Female" required>
+                       <label class="select-radio-custom" for="gender_female_${partnerIndex}">Female</label>
+                   </div>
+                   <div class="invalid-feedback">Please select a gender.</div>
+               </div>
+               <div class="col-lg-6 col-12">
+                   <label class="custom-form-label" for="time">Time</label>
+                   <div class="time-input d-flex align-items-start">
+                       <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" placeholder="HH" pattern="^(0[0-9]|1[0-9]|2[0-3]|[0-9])$" title="Hours must be between 00 and 23.">
+                       <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" placeholder="MM" pattern="^(0[0-9]|[1-5][0-9])$" title="Minutes must be between 00 and 59.">
+                       <div class="am-pm d-flex gap-2">
+                           <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
+                           <label class="select-radio-custom">AM</label>
+                           <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
+                           <label class="select-radio-custom">PM</label>
                        </div>
+                       <div class="invalid-feedback"></div>
                    </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_last_name_${partnerIndex}" class="custom-form-label partner-name-field">Partner Last Name:</label>
-                           <input type="text" pattern="[A-Za-z\s]+" class="numerology-service-labels" id="partner_last_name_${partnerIndex}" name="partner_last_names[]"  oninput="capitalizeFirstLetter(this)">
-                           <div class="invalid-feedback">Please enter a valid last name (only letters).</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="dob_${partnerIndex}" class="custom-form-label">Partner Date of Birth:</label>
-                           <input type="date" class="numerology-service-labels" id="dob_${partnerIndex}" name="partner_dobs[]" required>
-                           <div class="invalid-feedback">Please enter a valid date of birth.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_phone_number_${partnerIndex}" class="custom-form-label">Partner Phone Number:</label>
-                           <input type="tel" class="numerology-service-labels" required id="partner_phone_number_${partnerIndex}" name="partner_phone_numbers[]" pattern="[0-9]{10}" maxlength="10" minlength="10" title="Phone number must be exactly 10 digits and can only contain numbers." oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                           <div class="invalid-feedback">Phone number must be exactly 10 digits.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <div class="form-group">
-                           <label for="partner_email_${partnerIndex}" class="custom-form-label">Partner Email:</label>
-                           <input type="email" class="numerology-service-labels" id="partner_email_${partnerIndex}" name="partner_emails[]" required>
-                           <div class="invalid-feedback">Please enter a valid email address.</div>
-                       </div>
-                   </div>
-                   <div class="col-lg-6 col-12">
-                       <label class="custom-form-label" for="time">Time</label>
-                       <div class="time-input d-flex align-items-start">
-                           <input class="numerology-service-labels hoursInput" type="text" name="partner_hours[]" 
-                                  placeholder="HH"  pattern="^(0?[1-9]|1[0-2])$" title="Enter hours (1-12)">
-                           <input class="numerology-service-labels minutesInput" type="text" name="partner_minutes[]" 
-                                  placeholder="MM"  pattern="^(0?[0-9]|[1-5][0-9])$" title="Enter minutes (0-59)">
-                           <div class="am-pm d-flex gap-2">
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="am" checked> 
-                               <label class="select-radio-custom">AM</label>
-                               <input class="numerology-service-labels" type="radio" name="partner_ampm[${partnerIndex}]" value="pm"> 
-                               <label class="select-radio-custom">PM</label>
-                           </div>
-                           <div class="invalid-feedback"></div>
-                       </div>
-                   </div>
-                   <div class="col-12">
-                       <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
-                   </div>
-               `;
+               </div>
+               <div class="col-12">
+                   <button type="button" class="btn btn-danger btn-sm float-end">Remove</button>
+               </div>
+           `;
 
                 // Append the newly created partner fields to the container
                 container.appendChild(partnerField);

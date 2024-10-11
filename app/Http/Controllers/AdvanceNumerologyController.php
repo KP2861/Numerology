@@ -94,7 +94,7 @@ class AdvanceNumerologyController extends Controller
     }
 
     // Method to get Largest Recurring Digit
- 
+
     private function getLargestRecurringDigit($phoneNumber)
     {
         // Count the occurrences of each digit in the phone number
@@ -154,7 +154,7 @@ class AdvanceNumerologyController extends Controller
         }, $dobDigits));
         // dd($dobDigitCounts);
         // Get the maximum occurrence
-        // $maxCount = max($dobDigitCounts);
+        $maxCount = max($dobDigitCounts);
         // $largestDigits = array_keys($dobDigitCounts, $maxCount);
         // dd($maxCount);
         // Initialize largestDigit

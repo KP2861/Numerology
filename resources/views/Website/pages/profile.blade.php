@@ -532,7 +532,7 @@
 
                                 let downloadButton = isExpired ?
                                     `<span class="text-danger">Expired</span>` :
-                                    `<a href="${downloadUrl}" class="btn" style="background-color: #BA9A63; color: white;" target="_blank">Download</a>`;
+                                    `<a href="${downloadUrl}" class="btn" style="background-color: #674735; color: white;" target="_blank">Download</a>`;
 
                                 // Format the date and time
                                 let formattedDate = createdAt.toLocaleDateString('en-GB', {
@@ -680,7 +680,7 @@
 
                                 let downloadButton = isExpired ?
                                     `<span class="text-danger">Expired</span>` :
-                                    `<a href="${downloadUrl}" class="btn" style="background-color: #BA9A63; color: white;" target="_blank">Download</a>`;
+                                    `<a href="${downloadUrl}" class="btn" style="background-color: #674735; color: white;" target="_blank">Download</a>`;
 
                                 let formattedDate = createdAt.toLocaleDateString('en-GB', {
                                     day: '2-digit',

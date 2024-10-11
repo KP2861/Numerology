@@ -66,6 +66,8 @@ class StoreBusinessNumerologyController extends Controller
                     'partner_hours.*' => 'nullable|string|between:0,12',
                     'partner_minutes.*' => 'nullable|string|between:0,59',
                     'partner_ampm.*' => 'required|in:am,pm',
+                    'partner_genders.*' => 'required|in:Male,Female',  // Gender: required, must be either Male or Female
+                    'partner_town_cities.*' => 'required|string|max:255',  // Town/City: required, string, max 255 chars
                 ], [
                     'partner_first_names.*.required' => 'Each partner\'s first name is required.',
                     // 'partner_last_names.*.required' => 'Each partner\'s last name is required.',
@@ -75,6 +77,11 @@ class StoreBusinessNumerologyController extends Controller
                     'partner_hours.*.between' => 'Partner hours must be between 0 and 12.',
                     'partner_minutes.*.between' => 'Partner minutes must be between 0 and 59.',
                     'partner_ampm.*.required' => 'Each partner\'s am/pm indication is required.',
+                    'partner_genders.*.required' => 'Each partner\'s gender is required.',
+                    'partner_genders.*.in' => 'Each partner\'s gender must be either Male or Female.',
+                    'partner_town_cities.*.required' => 'Each partner\'s town/city is required.',
+                    // 'partner_town_cities.*.string' => 'Each partner\'s town/city must be a valid string.',
+                    'partner_town_cities.*.max' => 'Each partner\'s town/city must not exceed 255 characters.',
                 ]);
             }
 
@@ -108,6 +115,8 @@ class StoreBusinessNumerologyController extends Controller
                 $partnerDobs = $request->input('partner_dobs', []);
                 $partnerPhoneNumbers = $request->input('partner_phone_numbers', []);
                 $partnerEmails = $request->input('partner_emails', []);
+                $partnerGenders = $request->input('partner_genders', []);
+                $partnerTownCity = $request->input('partner_town_cities', []);
 
                 // dd($validated);
                 foreach ($partnerFirstNames as $index => $firstName) {
@@ -125,6 +134,8 @@ class StoreBusinessNumerologyController extends Controller
                         'phone_number' => $partnerPhoneNumbers[$index],
                         'time' => $partnerTime,
                         'email' => $partnerEmails[$index],
+                        'gender' => $partnerGenders[$index],
+                        'town_city' => $partnerTownCity[$index],
                     ];
                 }
 
@@ -375,6 +386,8 @@ class StoreBusinessNumerologyController extends Controller
                             'phone_number' => $partner['phone_number'],
                             'time' => $partner['time'],
                             'email' => $partner['email'],
+                            'gender' => $partner['gender'],
+                            'town_city' => $partner['town_city'],
                         ]);
                         // dd($partner);
                     }

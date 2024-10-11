@@ -17,6 +17,8 @@ class BusinessPartner extends Model
         'phone_number',
         'email',
         'time',
+        'town_city',
+        'gender',
     ];
 
     // BusinessPartner.php

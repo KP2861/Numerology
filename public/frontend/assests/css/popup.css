@@ -1,0 +1,209 @@
+ .body {
+            font-family: poppins;
+        }
+
+        
+        /* Open Pop Button styles - circular and centered */
+        /* Open Pop Button styles - circular and centered */
+        .open-pop-btn {
+            position: fixed;
+            right: -1px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            background-color: #674735;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            /* Make the button circular */
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1100;
+            /* Ensure it's above the modal */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        /* Modal background */
+        .popup-modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            /* Adjust to ensure behind the button */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Use rgba for a slight background */
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            /* Start invisible */
+            transition: opacity 0.3s ease;
+            /* Smooth transition for fade-in */
+        }
+
+        /* Show the modal */
+        .popup-modal.show {
+            display: flex;
+            /* Show modal */
+            opacity: 1;
+            overflow-y: auto;
+            /* Fully visible */
+        }
+
+        /* Popup content */
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            height: auto;
+            /* Adjusted width */
+            max-width: 999px;
+            /* Max width for larger screens */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            /* overflow-y:auto; */
+
+
+        }
+
+        /* Popup title */
+        .popup-title {
+            font-size: 24px;
+            /* Larger font size for title */
+            margin-bottom: 15px;
+            /* Space below title */
+            color: #333;
+            /* Dark text color */
+        }
+
+        /* Popup message */
+        .popup-message {
+            font-size: 16px;
+            /* Regular font size for message */
+            color: #555;
+            /* Gray text color */
+            margin-bottom: 20px;
+            /* Space below message */
+        }
+
+        /* Close button */
+        .close-btn {
+            position: fixed;
+            top: 10px;
+            right: 5px;
+            font-size: 30px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .gift-modal-heading {
+            font-size: 22px;
+            line-height: 32px;
+            font-weight: 500;
+            color: #674735;
+            text-align: center;
+        }
+
+        .gift-list {
+            padding-left: 30px;
+        }
+
+        .gift-list li {
+            font-size: 18px;
+            line-height: 32px;
+            font-weight: 500;
+            color: #674735;
+            list-style-type: disc !important;
+            text-align: left;
+        }
+
+        li.gift-list {
+            list-style-type: disc !important;
+        }
+
+        .bottom-capsule {
+            border-radius: 100px;
+            padding: 20px;
+            background-color: #EC4400;
+            margin-top: 25px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bottom-capsule p {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 22px;
+            font-weight: 300;
+        }
+
+        .gift-bg-img img {
+
+            max-width: 100% !important;
+            border-radius: 20px;
+        }
+
+        .custom-col-p-0 {
+            padding: 0;
+        }
+
+        .gift-right-section {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .gift-modal-heading-2 {
+            margin-bottom: 20px;
+        }
+
+        .gift-modal-heading-1 {
+            width: 75%;
+        }
+
+        .modal-main-heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .gift-bg-img {
+            max-height: 460px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .popup-content {
+                width: 99%;
+                height: 80vh;
+                overflow-y: scroll;
+            }
+
+            .gift-bg-img {
+                max-height: 260px;
+
+            }
+        }
