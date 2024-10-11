@@ -396,13 +396,8 @@
                                         alt="" class="img-fluid web-2">
                                 </div>
                                 <!-- <div class="hands-absolute"><img
-<<<<<<< HEAD
-                                    src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
-                                    class="img-fluid web-2b"></div> -->
-=======
                                         src="{{ asset('frontend/assests/images/hero-section/hands-globe.png') }}" alt=""
                                         class="img-fluid web-2b"></div> -->
->>>>>>> 37aa29f8bb929e57a1ece451cae3d4a6a15b3e44
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -786,55 +781,53 @@
         </div>
     </section>
 
-    <section id="what-we-do-section" class="py-5 what-we-do-section">
-        <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
-            <div class="row">
-                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row gy-5 pb-5">
-                                <!-- Image Section -->
-                                <div class="col-lg-4 text-center p-0 position-relative h-100 mb-3"> <img
-                                        src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-profile.png') }}"
-                                        alt="Ravi Mundra" class="carousel-img img-fluid image-background-color">
-                                    <div class="w-100 text-center person-title-outer">
-                                        <h4 class="mt-3 person-title">Ravi Mundra</h4>
-                                    </div>
+<section id="what-we-do-section" class="py-5 what-we-do-section">
+    <div class="container-fluid custom-padded-container custom-container-width custom-container-max-width">
+        <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row gy-5 pb-5">
+                            <!-- Image Section -->
+                            <div class="col-lg-4 text-center p-0 position-relative h-100 mb-3"> <img
+                                    src="{{ asset('frontend/assests/images/hero-section/ravi-mundra-profile.png') }}"
+                                    alt="Dr. Ravi Mundra" class="carousel-img img-fluid ">
+                                <div class="w-100 text-center person-title-outer">
+                                    <h4 class="mt-3 person-title">Dr. Ravi Mundra</h4>
+                                </div>
 
-                                </div> <!-- Text Section -->
-                                <div class="col-lg-8 custom-carousel-content ">
-                                    <div
-                                        class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
-                                        <div>
-                                            <h3 class="mb-2 carousel-content-title">What <span>Do We Do?</span></h3>
-                                            <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Ravi
-                                                Mundra is a
-                                                seasoned Astrology and Numerology expert with over 15 years of experience.
-                                                His
-                                                expertise spans Vedic Astrology, KP Astrology, Bhrigu Nadi, and Nandi
-                                                systems, along
-                                                with a keen proficiency in numerology, including mobile numbers, personal
-                                                names, and
-                                                business names. With over 500+ lucky SIMs provided across India, Ravi’s work
-                                                in
-                                                enhancing fortunes is proven and impactful.
-                                                In addition to this, Ravi is a scientific logo designer, crafting logos that
-                                                channel
-                                                energy for success. As a visiting Vastu expert, he helps harmonize spaces to
-                                                foster
-                                                balance and positive energy flow. His hallmark is instant predictions for
-                                                situational challenges, whether business or personal, offering practical
-                                                remedies
-                                                using Vedic traditions, Rudraksha therapy, Ravan Samhita, and more.
-                                                With his comprehensive approach and personalized solutions, Ravi Mundra is a
-                                                go-to
-                                                professional for those seeking growth, balance, and success.</p>
-                                            <div class="experience-years d-flex gap-1 mb-4">
-                                                <p class="years mb-0">15+</p>
-                                                <div>
-                                                    <p class="mb-0 years-of">Years of</p>
-                                                    <p class="experience mt-0">Experience</p>
-                                                </div>
+                            </div> <!-- Text Section -->
+                            <div class="col-lg-8 custom-carousel-content ">
+                                <div class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
+                                    <div>
+                                        <h3 class="mb-2 carousel-content-title">What <span>Do We Do?</span></h3>
+                                        <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Dr. Ravi
+                                            Mundra is a
+                                            seasoned Astrology and Numerology expert with over 15 years of experience.
+                                            His
+                                            expertise spans Vedic Astrology, KP Astrology, Bhrigu Nadi, and Nandi
+                                            systems, along
+                                            with a keen proficiency in numerology, including mobile numbers, personal
+                                            names, and
+                                            business names. With over 500+ lucky SIMs provided across India, Ravi’s work
+                                            in
+                                            enhancing fortunes is proven and impactful.
+                                            In addition to this, Dr. Ravi is a scientific logo designer, crafting logos that
+                                            channel
+                                            energy for success. As a visiting Vastu expert, he helps harmonize spaces to
+                                            foster
+                                            balance and positive energy flow. His hallmark is instant predictions for
+                                            situational challenges, whether business or personal, offering practical
+                                            remedies
+                                            using Vedic traditions, Rudraksha therapy, Ravan Samhita, and more.
+                                            With his comprehensive approach and personalized solutions, Dr. Ravi Mundra is a
+                                            go-to
+                                            professional for those seeking growth, balance, and success.</p>
+                                        <div class="experience-years d-flex gap-1 mb-4">
+                                            <p class="years mb-0">15+</p>
+                                            <div>
+                                                <p class="mb-0 years-of">Years of</p>
+                                                <p class="experience mt-0">Experience</p>
                                             </div>
                                         </div>
                                         <!-- <button class="fill-button fill-button-body">Read More</button> -->
@@ -842,46 +835,45 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="row gy-5 pb-5 ">
-                                <!-- Image Section -->
-                                <div class="col-lg-4 text-center p-0 h-100 position-relative mb-3">
-                                    <img src="{{ asset('frontend/assests/images/hero-section/swati-mundra.png') }}"
-                                        alt="swati Mundra" class="carousel-img img-fluid image-background-color">
-                                    <div class="w-100 text-center person-title-outer">
-                                        <h4 class="mt-3 person-title">Swati Mundra</h4>
-                                    </div>
-                                </div> <!-- Text Section -->
-                                <div class="col-lg-8 custom-carousel-content">
-                                    <div
-                                        class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
-                                        <div>
-                                            <h3 class="mb-2 carousel-content-title">What <span> We Do?</span></h3>
-                                            <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Swati
-                                                Mundra is a
-                                                seasoned Vastu consultant with over 10 years of expertise, excelling in
-                                                optimizing
-                                                spaces for homes, offices, and shops. She has also mastered industrial
-                                                Vastu,
-                                                driving significant growth and success for businesses. In addition, Swati is
-                                                a
-                                                skilled numerologist, specializing in mobile numerology, name numerology,
-                                                and
-                                                advising parents on auspicious baby names. Her remedies have delivered
-                                                results in
-                                                financial growth, relationships, business expansion, marriage harmony, and
-                                                career
-                                                advancements.
-                                                With a unique blend of Rudraksha and crystal therapies, Swati’s holistic
-                                                approach
-                                                ensures transformative changes, making her a trusted guide for those seeking
-                                                personal and professional success.</p>
-                                            <div class="experience-years d-flex gap-1 mb-4">
-                                                <p class="years mb-0">10+</p>
-                                                <div>
-                                                    <p class="mb-0 years-of">Years of</p>
-                                                    <p class="experience mt-0">Experience</p>
-                                                </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row gy-5 pb-5 ">
+                            <!-- Image Section -->
+                            <div class="col-lg-4 text-center p-0 h-100 position-relative mb-3">
+                                <img src="{{ asset('frontend/assests/images/hero-section/swati-mundra.png') }}"
+                                    alt="swati Mundra" class="carousel-img img-fluid ">
+                                <div class="w-100 text-center person-title-outer">
+                                    <h4 class="mt-3 person-title">Swati Mundra</h4>
+                                </div>
+                            </div> <!-- Text Section -->
+                            <div class="col-lg-8 custom-carousel-content">
+                                <div class="d-flex justify-content-between h-100 flex-column align-items-start ps-lg-5">
+                                    <div>
+                                        <h3 class="mb-2 carousel-content-title">What <span> We Do?</span></h3>
+                                        <p class="mb-3 carousel-content-descriprtion custom-para-padding-end">Swati
+                                            Mundra is a
+                                            seasoned Vastu consultant with over 10 years of expertise, excelling in
+                                            optimizing
+                                            spaces for homes, offices, and shops. She has also mastered industrial
+                                            Vastu,
+                                            driving significant growth and success for businesses. In addition, Swati is
+                                            a
+                                            skilled numerologist, specializing in mobile numerology, name numerology,
+                                            and
+                                            advising parents on auspicious baby names. Her remedies have delivered
+                                            results in
+                                            financial growth, relationships, business expansion, marriage harmony, and
+                                            career
+                                            advancements.
+                                            With a unique blend of Rudraksha and crystal therapies, Swati’s holistic
+                                            approach
+                                            ensures transformative changes, making her a trusted guide for those seeking
+                                            personal and professional success.</p>
+                                        <div class="experience-years d-flex gap-1 mb-4">
+                                            <p class="years mb-0">10+</p>
+                                            <div>
+                                                <p class="mb-0 years-of">Years of</p>
+                                                <p class="experience mt-0">Experience</p>
                                             </div>
                                         </div>
                                         <!-- <button class="fill-button fill-button-body">Read More</button> -->

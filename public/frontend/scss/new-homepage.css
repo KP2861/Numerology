@@ -1777,6 +1777,13 @@ h4.person-title {
     }
 }
 
+.testimonials-bg{
+    background-image: url('../assests/images/hero-section/brown-crescent.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 
 /* .showing-on-top-left{
     position:absolute;
