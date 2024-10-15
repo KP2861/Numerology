@@ -43,21 +43,24 @@ class NumerologyListAdminController extends Controller
 
                     // Construct the download file path
                     $fileName = "{$row->first_name}_{$row->id}.pdf"; // Construct the file name
-                    $filePath = 'public/uploads/nameNumerology/' . $fileName; // Storage path
+                    // $filePath = 'public/storage/uploads/NameNumerology/Akashdeep_3.pdf'; // Storage path
 
-                    // Check if file exists in storage
-                    if (Storage::exists($filePath)) {
+                    $filePath = 'NameNumerology/' . $fileName; // Storage path (no 'public/' or 'storage/' prefix)
+
+                    // Check if the file exists in storage
+                    if (Storage::disk('uploads')->exists($filePath)) {
                         // Show download button if file exists
-                        $downloadUrl = asset('storage/uploads/nameNumerology/' . $fileName); // Construct the download link
-                        $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
-                    } else {
+                        $downloadUrl = Storage::disk('uploads')->url($filePath);
+                        $actionButtons .= '<a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
+                   
+                    }
+                     else {
                         // Show the button with the download icon and success color (without "Expired" text)
                         $actionButtons .= '
-        <button class="btn btn-success expired-download-btn" data-id="' . $encryptedId . '">
-            <i class="fa-solid fa-download"></i>
-        </button>';
+    <button class="btn btn-success expired-download-btn ms-1" data-id="' . $encryptedId . '">
+        <i class="fa-solid fa-download"></i>
+    </button>';
                     }
-
                     // Add delete button
                     $actionButtons .= ' <button class="btn btn-danger delete-btn" data-id="' . $encryptedId . '"><i class="fa-solid fa-trash"></i></button>';
 
@@ -187,12 +190,13 @@ class NumerologyListAdminController extends Controller
 
                     // Construct the download file path
                     $fileName = "mobile_{$row->phone_number}_{$row->id}.pdf"; // Construct the file name
-                    $filePath = 'public/uploads/mobileNumerology/' . $fileName; // Storage path
 
-                    // Check if file exists in storage
-                    if (Storage::exists($filePath)) {
+                    $filePath = 'MobileNumerology/' . $fileName; // Storage path (no 'public/' or 'storage/' prefix)
+
+                    // Check if the file exists in storage
+                    if (Storage::disk('uploads')->exists($filePath)) {
                         // Show download button if file exists
-                        $downloadUrl = asset('storage/uploads/mobileNumerology/' . $fileName); // Construct the download link
+                        $downloadUrl = Storage::disk('uploads')->url($filePath); // Construct the download link
                         $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
                     } else {
                         // Show the button with the download icon and success color (without "Expired" text)
@@ -268,12 +272,14 @@ class NumerologyListAdminController extends Controller
                     $actionButtons = '<a href="' . url('admin/advance-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
 
                     // Construct the download file path
-                    $fileName = "advance_{$row->phone_number}_{$row->id}.pdf";
-                    $filePath = 'public/uploads/mobileNumerology/' . $fileName;
+                    $fileName = "advance_Mobile_{$row->phone_number}_{$row->id}.pdf";
 
-                    // Check if file exists in storage
-                    if (Storage::exists($filePath)) {
-                        $downloadUrl = asset('storage/uploads/mobileNumerology/' . $fileName);
+                    $filePath = 'AdvanceNumerology/' . $fileName; // Storage path (no 'public/' or 'storage/' prefix)
+
+                    // Check if the file exists in storage
+                    if (Storage::disk('uploads')->exists($filePath)) {
+                        // Show download button if file exists
+                        $downloadUrl = Storage::disk('uploads')->url($filePath); // Construct the download link
                         $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
                     } else {
                         $actionButtons .= '
@@ -354,12 +360,14 @@ class NumerologyListAdminController extends Controller
                     $actionButtons = '<a href="' . url('admin/bussiness-numerology/detail/' . $encryptedId) . '" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>';
 
                     // Construct the download file path
-                    $fileName = "business_{$row->phone_number}_{$row->id}.pdf";
-                    $filePath = 'public/uploads/businessNumerology/' . $fileName;
+                    $fileName = "bussiness_{$row->phone_number}_{$row->id}.pdf";
+
+                    $filePath = 'BussinessNumerology/' . $fileName; // Storage path (no 'public/' or 'storage/' prefix)
 
                     // Check if the file exists in storage
-                    if (Storage::exists($filePath)) {
-                        $downloadUrl = asset('storage/uploads/businessNumerology/' . $fileName);
+                    if (Storage::disk('uploads')->exists($filePath)) {
+                        // Show download button if file exists
+                        $downloadUrl = Storage::disk('uploads')->url($filePath); // Construct the download link
                         $actionButtons .= ' <a href="' . $downloadUrl . '" class="btn btn-success"><i class="fa-solid fa-download"></i></a>';
                     } else {
                         $actionButtons .= '
@@ -644,4 +652,6 @@ class NumerologyListAdminController extends Controller
             return redirect()->back()->with('error', 'Error deleting Advance Numerology record: ' . $e->getMessage());
         }
     }
+
+    
 }

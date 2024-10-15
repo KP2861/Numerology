@@ -652,35 +652,88 @@
                                         `<span class="text-danger small">(Expires in ${daysLeft} days)</span>`
                                     );
 
+                                // let type = '';
+                                // switch (item.numerology_type) {
+                                //     case 1:
+                                //         type = 'NameNumerology';
+                                //         break;
+                                //     case 2:
+                                //         type = 'MobileNumerology';
+                                //         break;
+                                //     case 3:
+                                //         type = 'AdvanceNumerology';
+                                //         break;
+                                //     case 4:
+                                //         type = 'BussinessNumerology';
+                                //         break;
+                                // }
+
+                                // let fileName = item.first_name ?
+                                //     `${item.first_name}_${item.id}.pdf` :
+                                //     `mobile_${item.phone_number}_${item.id}.pdf`;
+
+                                // let downloadUrl = isExpired ? '' :
+                                //     {{ asset('storage/app/public/uploads/${type}/') }}${fileName};
+
                                 let type = '';
                                 switch (item.numerology_type) {
                                     case 1:
-                                        type = 'nameNumerology';
+                                        type = 'NameNumerology';
                                         break;
                                     case 2:
-                                        type = 'mobileNumerology';
+                                        type = 'MobileNumerology';
                                         break;
                                     case 3:
-                                        type = 'mobileNumerology';
+                                        type = 'AdvanceNumerology';
                                         break;
                                     case 4:
-                                        type = 'bussinessNumerology';
+                                        type = 'BusinessNumerology';
                                         break;
                                 }
 
-                                let fileName = item.first_name ?
-                                    `/${item.first_name}_${item.id}.pdf` :
-                                    `/mobile_${item.phone_number}_${item.id}.pdf`;
+                                // let fileName = item.first_name ?
+                                //     `${item.first_name}_${item.id}.pdf` :
+                                //     `mobile_${item.phone_number}_${item.id}.pdf`;
+                                let fileName = item.numerology_type === 2 ?
+                                    `mobile_${item.phone_number}_${item.id}.pdf` :
+                                    `${item.first_name}_${item.id}.pdf`;
 
-                                let downloadUrl = isExpired ? '' :
-                                    `{{ asset('storage/uploads/${type}/') }}${fileName}`;
 
+                                // let downloadUrl = isExpired ? '' :
+                                //     `{{ Storage::disk('uploads')->url('${type}/${fileName}') }}`;
+
+                                let downloadUrl = '';
+                                if (!isExpired) {
+                                    // Only generate download URL for Mobile Numerology (type 2)
+                                    if (item.numerology_type === 2 || item.numerology_type ===
+                                        1) {
+                                        downloadUrl =
+                                            `{{ Storage::disk('uploads')->url('${type}/${fileName}') }}`;
+                                    }
+                                }
                                 let displayValue = item.first_name ? item.first_name : item
                                     .phone_number;
 
-                                let downloadButton = isExpired ?
-                                    `<span class="text-danger">Expired</span>` :
-                                    `<a href="${downloadUrl}" class="btn" style="background-color: #674735; color: white;" target="_blank">Download</a>`;
+                                let downloadButton;
+
+                                if (isExpired) {
+                                    // Show "Expired" message only for types 1 and 2
+                                    downloadButton = (item.numerology_type === 1 || item
+                                            .numerology_type === 2) ?
+                                        `<span class="text-danger">Expired</span>` :
+                                        ''; // No message or button for other types
+                                } else {
+                                    // Show download button only for types 1 and 2
+                                    if (item.numerology_type === 1 || item.numerology_type ===
+                                        2) {
+                                        downloadButton =
+                                            `<a  class="btn" style="background-color: #674735; color: white;" target="_blank" onclick="downloadFile('${downloadUrl}', '${fileName}')">Download</a>`;
+                                    } else {
+                                        downloadButton = ''; // No button for types 3 and 4
+
+                                    }
+                                }
+
 
                                 let formattedDate = createdAt.toLocaleDateString('en-GB', {
                                     day: '2-digit',
@@ -694,7 +747,7 @@
                                      <td>
                                             <b>${displayValue}</b>
                                             <small>[${item.numerology_type_name}]</small>
-                                            ${daysLeftText}
+                                            ${item.numerology_type === 1 || item.numerology_type === 2 ? daysLeftText : ''}
                                         </td>
                     
                                     <td>${item.payment_status}</td>
@@ -820,6 +873,23 @@
                 }
             });
         });
+
+        function downloadFile(url, fileName) {
+
+            // Create an anchor element
+            const a = document.createElement('a');
+            a.href = url; // Set the URL to the file
+            a.download = fileName; // Set the filename for download
+
+            // Append the anchor to the body (necessary for Firefox)
+            document.body.appendChild(a);
+
+            // Trigger the download by simulating a click
+            a.click();
+
+            // Remove the anchor from the DOM
+            document.body.removeChild(a);
+        }
     </script>
 
 
